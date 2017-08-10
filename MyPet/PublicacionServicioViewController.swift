@@ -204,6 +204,63 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
         self.performSegue(withIdentifier: "agendarDesdePublicacionServicio", sender: self)
     }
     
+    @IBAction func comprar(_ sender: Any)
+    {
+        if self.validarRegistro()
+        {
+            self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionServicio", sender: self)
+        }
+    }
+    
+    func validarRegistro() -> Bool
+    {
+        if modelUsuario.usuario.count == 0
+        {
+            let alert:UIAlertController = UIAlertController(title: "Aún no estás registrado", message: "Para poder agendar un servicio, debes estar registrado. ¿Deseas registrarte?", preferredStyle: .alert)
+            
+            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                self.performSegue(withIdentifier: "registroUsuarioDesdePublicacionServicio", sender: self)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+            {
+                UIAlertAction in
+            }
+            
+            // Add the actions
+            alert.addAction(continuarAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            
+        }else
+        {
+            if modelUsuario.usuario[0].datosComplementarios?.count == 0
+            {
+                let alert:UIAlertController = UIAlertController(title: "Aún no has completado tu registro", message: "Para poder agendar un servicio, debes completar tu registro. ¿Deseas terminar de registrarte?", preferredStyle: .alert)
+                
+                let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                    self.performSegue(withIdentifier: "completarRegistroDesdePublicacionServicio", sender: self)
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+                {
+                    UIAlertAction in
+                }
+                
+                // Add the actions
+                alert.addAction(continuarAction)
+                alert.addAction(cancelAction)
+                self.present(alert, animated: true, completion: nil)
+                
+            } else
+            {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
     @IBAction func verPreguntas(_ sender: Any)
     {
         let transition = CATransition()
