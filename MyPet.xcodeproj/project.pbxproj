@@ -130,6 +130,12 @@
 		84A3E1E01EC6D3CF0013E4DD /* PublicacionOferenteDosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3E1DE1EC6D3CF0013E4DD /* PublicacionOferenteDosViewController.swift */; };
 		84A5A4CC1F3BB98E00429500 /* AvisoCarritoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5A4CB1F3BB98E00429500 /* AvisoCarritoViewController.swift */; };
 		84A5A4CD1F3BB98E00429500 /* AvisoCarritoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5A4CB1F3BB98E00429500 /* AvisoCarritoViewController.swift */; };
+		84A5A4CF1F3CCB2800429500 /* ConfirmacionUnoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5A4CE1F3CCB2800429500 /* ConfirmacionUnoViewController.swift */; };
+		84A5A4D01F3CCB2800429500 /* ConfirmacionUnoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5A4CE1F3CCB2800429500 /* ConfirmacionUnoViewController.swift */; };
+		84A5A4D41F3CD1A600429500 /* CompraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5A4D21F3CD1A600429500 /* CompraTableViewCell.swift */; };
+		84A5A4D51F3CD1A600429500 /* CompraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A5A4D21F3CD1A600429500 /* CompraTableViewCell.swift */; };
+		84A5A4D61F3CD1A600429500 /* CompraTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A5A4D31F3CD1A600429500 /* CompraTableViewCell.xib */; };
+		84A5A4D71F3CD1A600429500 /* CompraTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A5A4D31F3CD1A600429500 /* CompraTableViewCell.xib */; };
 		84A766011F2995DB001708CE /* ResenaCompradoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A766001F2995DB001708CE /* ResenaCompradoresViewController.swift */; };
 		84A766021F2995DB001708CE /* ResenaCompradoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A766001F2995DB001708CE /* ResenaCompradoresViewController.swift */; };
 		84A766041F2ABB8A001708CE /* VistaPreguntasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A766031F2ABB8A001708CE /* VistaPreguntasViewController.swift */; };
@@ -263,6 +269,9 @@
 		84A3E1DB1EC6B4350013E4DD /* ComandoPublicacion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComandoPublicacion.swift; sourceTree = "<group>"; };
 		84A3E1DE1EC6D3CF0013E4DD /* PublicacionOferenteDosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicacionOferenteDosViewController.swift; sourceTree = "<group>"; };
 		84A5A4CB1F3BB98E00429500 /* AvisoCarritoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvisoCarritoViewController.swift; sourceTree = "<group>"; };
+		84A5A4CE1F3CCB2800429500 /* ConfirmacionUnoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmacionUnoViewController.swift; sourceTree = "<group>"; };
+		84A5A4D21F3CD1A600429500 /* CompraTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompraTableViewCell.swift; sourceTree = "<group>"; };
+		84A5A4D31F3CD1A600429500 /* CompraTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompraTableViewCell.xib; sourceTree = "<group>"; };
 		84A766001F2995DB001708CE /* ResenaCompradoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResenaCompradoresViewController.swift; sourceTree = "<group>"; };
 		84A766031F2ABB8A001708CE /* VistaPreguntasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VistaPreguntasViewController.swift; sourceTree = "<group>"; };
 		84A766061F2AE0F1001708CE /* PreguntarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreguntarViewController.swift; sourceTree = "<group>"; };
@@ -463,6 +472,15 @@
 			name = "Cell Categorias";
 			sourceTree = "<group>";
 		};
+		84A5A4D11F3CCDD400429500 /* Cell Confirmacion Uno */ = {
+			isa = PBXGroup;
+			children = (
+				84A5A4D21F3CD1A600429500 /* CompraTableViewCell.swift */,
+				84A5A4D31F3CD1A600429500 /* CompraTableViewCell.xib */,
+			);
+			name = "Cell Confirmacion Uno";
+			sourceTree = "<group>";
+		};
 		84B1B4771EDCF94D00F838C3 /* Fotos */ = {
 			isa = PBXGroup;
 			children = (
@@ -522,6 +540,8 @@
 				84BD207D1EF0A56C001422E7 /* CarritoComprasViewController.swift */,
 				840B1B4B1F33FDEC00423832 /* Cell Carrito */,
 				84A5A4CB1F3BB98E00429500 /* AvisoCarritoViewController.swift */,
+				84A5A4CE1F3CCB2800429500 /* ConfirmacionUnoViewController.swift */,
+				84A5A4D11F3CCDD400429500 /* Cell Confirmacion Uno */,
 				84BD20801EF0A58F001422E7 /* MenuUsuarioViewController.swift */,
 			);
 			name = Usuario;
@@ -750,6 +770,7 @@
 				8453268A1F0C9B11007A4776 /* AlertaTableViewCell.xib in Resources */,
 				847FDC321ED545A6002F9530 /* Media.xcassets in Resources */,
 				84F4FA501EAA955900F3E69A /* Main.storyboard in Resources */,
+				84A5A4D61F3CD1A600429500 /* CompraTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +779,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84417B941EB2CAE800A70ABC /* DireccionRegistroTableViewCell.xib in Resources */,
+				84A5A4D71F3CD1A600429500 /* CompraTableViewCell.xib in Resources */,
 				84A3E1D31EC4335B0013E4DD /* PublicacionTableViewCell.xib in Resources */,
 				84CA9EFF1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
 				840B1B4A1F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */,
@@ -902,6 +924,8 @@
 				843B56261F13E46B007297CB /* AlarmaViewController.swift in Sources */,
 				847FDC151ED3469F002F9530 /* DetalleHorarioTableViewCell.swift in Sources */,
 				843449151EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift in Sources */,
+				84A5A4D41F3CD1A600429500 /* CompraTableViewCell.swift in Sources */,
+				84A5A4CF1F3CCB2800429500 /* ConfirmacionUnoViewController.swift in Sources */,
 				84A3E1DF1EC6D3CF0013E4DD /* PublicacionOferenteDosViewController.swift in Sources */,
 				8451A38B1EFB7A6200B59E46 /* UbicacionTableViewCell.swift in Sources */,
 				84E4CF2D1F22EAFF009DC256 /* FloatRatingView.swift in Sources */,
@@ -978,6 +1002,8 @@
 				843B56271F13E46B007297CB /* AlarmaViewController.swift in Sources */,
 				847FDC161ED3469F002F9530 /* DetalleHorarioTableViewCell.swift in Sources */,
 				843449161EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift in Sources */,
+				84A5A4D51F3CD1A600429500 /* CompraTableViewCell.swift in Sources */,
+				84A5A4D01F3CCB2800429500 /* ConfirmacionUnoViewController.swift in Sources */,
 				84A3E1E01EC6D3CF0013E4DD /* PublicacionOferenteDosViewController.swift in Sources */,
 				8451A38C1EFB7A6200B59E46 /* UbicacionTableViewCell.swift in Sources */,
 				84E4CF2E1F22EAFF009DC256 /* FloatRatingView.swift in Sources */,

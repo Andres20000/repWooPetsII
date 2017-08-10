@@ -92,14 +92,14 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
             
             cell.imgFotoMascota.loadImageUsingCacheWithUrlString(pathString: path)
             
-            cell.imgFotoMascota.translatesAutoresizingMaskIntoConstraints = false
+            /*cell.imgFotoMascota.translatesAutoresizingMaskIntoConstraints = false
             cell.imgFotoMascota.layer.masksToBounds = true
             cell.imgFotoMascota.contentMode = .scaleAspectFill
             cell.imgFotoMascota.leftAnchor.constraint(equalTo: cell.imgFotoMascota.leftAnchor, constant: 8).isActive = true
             cell.imgFotoMascota.centerYAnchor.constraint(equalTo: cell.imgFotoMascota.centerYAnchor).isActive = true
             cell.imgFotoMascota.widthAnchor.constraint(equalToConstant: cell.imgFotoMascota.frame.width).isActive = true
             cell.imgFotoMascota.heightAnchor.constraint(equalToConstant: cell.imgFotoMascota.frame.height).isActive = true
-            cell.imgFotoMascota.layer.cornerRadius = cell.imgFotoMascota.frame.height / 2
+            cell.imgFotoMascota.layer.cornerRadius = cell.imgFotoMascota.frame.height / 2*/
         }
         
         cell.btnActivarPerfil.tag = indexPath.row

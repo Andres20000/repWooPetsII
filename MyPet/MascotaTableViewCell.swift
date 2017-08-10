@@ -22,6 +22,15 @@ class MascotaTableViewCell: UITableViewCell
     {
         super.awakeFromNib()
         // Initialization code
+        
+        imgFotoMascota.translatesAutoresizingMaskIntoConstraints = false
+        imgFotoMascota.layer.masksToBounds = true
+        imgFotoMascota.contentMode = .scaleAspectFill
+        imgFotoMascota.leftAnchor.constraint(equalTo: imgFotoMascota.leftAnchor, constant: 8).isActive = true
+        imgFotoMascota.centerYAnchor.constraint(equalTo: imgFotoMascota.centerYAnchor).isActive = true
+        imgFotoMascota.widthAnchor.constraint(equalToConstant: imgFotoMascota.frame.width).isActive = true
+        imgFotoMascota.heightAnchor.constraint(equalToConstant: imgFotoMascota.frame.height).isActive = true
+        imgFotoMascota.layer.cornerRadius = imgFotoMascota.frame.height / 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool)

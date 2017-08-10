@@ -203,7 +203,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     {
         if self.validarRegistro()
         {
-            print("Entra")
+            self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionProducto", sender: self)
         }
     }
     
@@ -213,9 +213,8 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
         {
             let alert:UIAlertController = UIAlertController(title: "Aún no estás registrado", message: "Para poder comprar un producto, debes estar registrado. ¿Deseas registrarte?", preferredStyle: .alert)
             
-            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default)
-            {
-                UIAlertAction in self.registrarUsuario()
+            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                self.performSegue(withIdentifier: "registroUsuarioDesdePublicacionProducto", sender: self)
             }
             
             let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
@@ -232,11 +231,10 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
         {
             if modelUsuario.usuario[0].datosComplementarios?.count == 0
             {
-                let alert:UIAlertController = UIAlertController(title: "Aún no has completado tu registro", message: "Para poder comprar un servicio, debes completar tu registro. ¿Deseas terminar de registrarte?", preferredStyle: .alert)
+                let alert:UIAlertController = UIAlertController(title: "Aún no has completado tu registro", message: "Para poder comprar un producto, debes completar tu registro. ¿Deseas terminar de registrarte?", preferredStyle: .alert)
                 
-                let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default)
-                {
-                    UIAlertAction in self.completarRegistro()
+                let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                    self.performSegue(withIdentifier: "completarRegistroDesdePublicacionProducto", sender: self)
                 }
                 
                 let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
@@ -256,16 +254,6 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
         }
         
         return false
-    }
-    
-    func registrarUsuario()
-    {
-        
-    }
-    
-    func completarRegistro()
-    {
-        
     }
     
     @IBAction func verPreguntas(_ sender: Any)
