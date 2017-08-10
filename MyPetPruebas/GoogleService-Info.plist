@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>3406814598-h6vm6fg6gefpeas6kvg40ndr2a4i6nft.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.3406814598-h6vm6fg6gefpeas6kvg40ndr2a4i6nft</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDzInxNgFLpA5Sh035mX9JBtMTeI4AMQng</string>
+	<key>GCM_SENDER_ID</key>
+	<string>3406814598</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.tactomotion.MyPetPruebas</string>
+	<key>PROJECT_ID</key>
+	<string>mypetpruebas-6e090</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mypetpruebas-6e090.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:3406814598:ios:4e9409bd94934dc0</string>
+	<key>DATABASE_URL</key>
+	<string>https://mypetpruebas-6e090.firebaseio.com</string>
+</dict>
+</plist>

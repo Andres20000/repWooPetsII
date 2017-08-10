@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ubicacionTableViewCell" id="KGk-i7-Jjw" customClass="UbicacionTableViewCell" customModule="MyPet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgUbicacionOk" translatesAutoresizingMaskIntoConstraints="NO" id="ldy-NF-gBZ">
+                        <rect key="frame" x="8" y="0.0" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="Juj-ij-k4M"/>
+                            <constraint firstAttribute="height" constant="50" id="ddf-58-WhR"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QFb-OE-HPV">
+                        <rect key="frame" x="66" y="8" width="246" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="gs5-RI-qOm"/>
+                        </constraints>
+                        <string key="text">Dirección
+Domicilio</string>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="QFb-OE-HPV" secondAttribute="trailing" constant="8" id="5bg-5G-cvd"/>
+                    <constraint firstItem="QFb-OE-HPV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="mTj-ca-TDX"/>
+                    <constraint firstItem="ldy-NF-gBZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="o82-AH-fNd"/>
+                    <constraint firstItem="ldy-NF-gBZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="uVa-xA-7eE"/>
+                    <constraint firstItem="QFb-OE-HPV" firstAttribute="leading" secondItem="ldy-NF-gBZ" secondAttribute="trailing" constant="8" id="yRt-SW-QAp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imgUbicacionSelect" destination="ldy-NF-gBZ" id="xTD-gi-8jQ"/>
+                <outlet property="lblDireccionMaps" destination="QFb-OE-HPV" id="com-dw-9Ho"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="imgUbicacionOk" width="50" height="50"/>
+    </resources>
+</document>

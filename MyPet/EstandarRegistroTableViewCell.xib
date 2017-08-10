@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="estandarRegistroTableViewCell" id="KGk-i7-Jjw" customClass="EstandarRegistroTableViewCell" customModule="MyPet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aod-Qe-CeG">
+                        <rect key="frame" x="13" y="8" width="294" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="DrO-t6-JlA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fUm-Ut-PcK">
+                        <rect key="frame" x="13" y="29" width="294" height="30"/>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="RIQ-t5-IRq"/>
+                        </constraints>
+                        <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                        <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="HnY-1n-uyn"/>
+                        </connections>
+                    </textField>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnLista" translatesAutoresizingMaskIntoConstraints="NO" id="BlO-Mh-wET">
+                        <rect key="frame" x="285" y="38" width="16" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="8V2-R7-Y6w"/>
+                            <constraint firstAttribute="height" constant="12" id="T4D-FV-jN2"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="aod-Qe-CeG" secondAttribute="trailing" constant="5" id="2w5-5D-Er4"/>
+                    <constraint firstItem="fUm-Ut-PcK" firstAttribute="top" secondItem="aod-Qe-CeG" secondAttribute="bottom" id="4dv-DE-5g1"/>
+                    <constraint firstItem="aod-Qe-CeG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="5qd-KK-PcT"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="BlO-Mh-wET" secondAttribute="bottom" constant="11.5" id="DZO-KC-4Cv"/>
+                    <constraint firstItem="aod-Qe-CeG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="hMI-TO-gj3"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="BlO-Mh-wET" secondAttribute="trailing" constant="11" id="sKv-5g-8ut"/>
+                    <constraint firstItem="fUm-Ut-PcK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="veq-JL-mAk"/>
+                    <constraint firstItem="fUm-Ut-PcK" firstAttribute="top" secondItem="aod-Qe-CeG" secondAttribute="bottom" id="xKb-pg-OG6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fUm-Ut-PcK" secondAttribute="trailing" constant="5" id="yWM-1I-JJc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imgFlecha" destination="BlO-Mh-wET" id="xx7-Sk-D5u"/>
+                <outlet property="lblNombreCampo" destination="aod-Qe-CeG" id="02x-fM-mGb"/>
+                <outlet property="txtCampo" destination="fUm-Ut-PcK" id="Png-yJ-hlV"/>
+            </connections>
+            <point key="canvasLocation" x="-86" y="37"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btnLista" width="16" height="12"/>
+    </resources>
+</document>
