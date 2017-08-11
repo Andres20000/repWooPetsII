@@ -203,7 +203,28 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     {
         if self.validarRegistro()
         {
-            self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionProducto", sender: self)
+            let alert:UIAlertController = UIAlertController(title: "¡Felicitaciones!", message: "Vas a realizar ésta compra por valor de $ ¿Deseas ver otros productos o servicios?", preferredStyle: .alert)
+            
+            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                
+                if self.readStringFromFile() == ""
+                {
+                    self.performSegue(withIdentifier: "avisoCarritoDesdePublicacionProducto", sender: self)
+                } else
+                {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+            
+            let finalizeAction = UIAlertAction(title: "Finalizar compra", style: .cancel) { (_) -> Void in
+                
+                self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionProducto", sender: self)
+            }
+            
+            // Add the actions
+            alert.addAction(continuarAction)
+            alert.addAction(finalizeAction)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -350,7 +371,6 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     
     func hacerMontaje(_ notification: Notification)
     {
-        print("count Producto: \(modelOferente.oferente.count) - \(modelOferente.publicacion.idOferente)")
         createPageViewController()
     }
     
@@ -465,6 +485,33 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
         
         alerta.addAction(OKAction)
         present(alerta, animated: true, completion: { return })
+    }
+    
+    // Leer texto de archivo .txt
+    
+    func readStringFromFile() -> NSString
+    {
+        let fileName = "AvisoCarrito"
+        var inString = ""
+        
+        let dir = try? FileManager.default.url(for: .documentDirectory,
+                                               in: .userDomainMask, appropriateFor: nil, create: true)
+        
+        // If the directory was found, we write a file to it and read it back
+        if let fileURL = dir?.appendingPathComponent(fileName).appendingPathExtension("txt")
+        {
+            // Then reading it back from the file
+            
+            do {
+                inString = try String(contentsOf: fileURL)
+            } catch {
+                print("Failed reading from URL: \(fileURL), Error: " + error.localizedDescription)
+            }
+            print("Read from the file: \(inString)")
+            
+        }
+        
+        return inString as NSString
     }
 }
 

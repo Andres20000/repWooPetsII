@@ -61,6 +61,11 @@ class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITa
         return 100
     }
     
+    @IBAction func continuarConfirmacion(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "confirmacionDosDesdeConfirmacionUno", sender: self)
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
