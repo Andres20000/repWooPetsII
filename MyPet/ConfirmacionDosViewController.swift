@@ -10,6 +10,8 @@ import UIKit
 
 class ConfirmacionDosViewController: UIViewController
 {
+    let modelUsuario = ModeloUsuario.sharedInstance
+    
     @IBOutlet var lblNombreCompleto: UILabel!
     @IBOutlet var lblCedula: UILabel!
     @IBOutlet var lblDireccion: UILabel!
@@ -44,6 +46,33 @@ class ConfirmacionDosViewController: UIViewController
     @IBAction func finalizarCompra(_ sender: Any)
     {
         //self.performSegue(withIdentifier: "confirmacionDosDesdeConfirmacionUno", sender: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        lblNombreCompleto.text = "   \((modelUsuario.usuario[0].datosComplementarios?[0].nombre)!) \((modelUsuario.usuario[0].datosComplementarios?[0].apellido)!)"
+        
+        lblCedula.text = "   \((modelUsuario.usuario[0].datosComplementarios?[0].documento)!)"
+        
+        for direccion in (modelUsuario.usuario[0].datosComplementarios?[0].direcciones)!
+        {
+            if direccion.porDefecto!
+            {
+                lblDireccion.text = "   \(direccion.direccion!)"
+            }
+        }
+        
+        lblTelefono.text = "   \((modelUsuario.usuario[0].datosComplementarios?[0].celular)!)"
+        
+        if (modelUsuario.usuario[0].datosComplementarios?[0].pagoEfectvo)!
+        {
+            lblMetodoPago.text = "   Efectivo"
+        } else
+        {
+            lblMetodoPago.text = "   Tarjeta"
+        }
     }
     
     override func didReceiveMemoryWarning()
