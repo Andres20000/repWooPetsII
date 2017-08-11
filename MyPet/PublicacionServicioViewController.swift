@@ -195,13 +195,16 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     
     @IBAction func agendarServicio(_ sender: Any)
     {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromRight
-        view.window!.layer.add(transition, forKey: kCATransition)
-        
-        self.performSegue(withIdentifier: "agendarDesdePublicacionServicio", sender: self)
+        if self.validarRegistro()
+        {
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            view.window!.layer.add(transition, forKey: kCATransition)
+            
+            self.performSegue(withIdentifier: "agendarDesdePublicacionServicio", sender: self)
+        }
     }
     
     @IBAction func comprar(_ sender: Any)

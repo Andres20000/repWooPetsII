@@ -1918,6 +1918,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="0oI-YQ-uqB"/>
                                                     <constraint firstAttribute="width" constant="30" id="5Cv-qN-J0k"/>
                                                 </constraints>
+                                                <connections>
+                                                    <action selector="restarProducto:" destination="OrV-0p-8J0" eventType="touchUpInside" id="XPe-MR-iGl"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOx-qx-UvD">
                                                 <rect key="frame" x="295" y="15" width="30" height="25"/>
@@ -1942,6 +1945,9 @@
                                                     <constraint firstAttribute="width" constant="30" id="dkj-Dm-D30"/>
                                                     <constraint firstAttribute="height" constant="30" id="ljD-K8-2ki"/>
                                                 </constraints>
+                                                <connections>
+                                                    <action selector="sumarProducto:" destination="OrV-0p-8J0" eventType="touchUpInside" id="XMz-5B-jiA"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oaB-HB-SNb">
                                                 <rect key="frame" x="0.0" y="53" width="375" height="1"/>
@@ -5912,19 +5918,19 @@
         <image name="textura_Ingreso" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bVH-Q1-m3n"/>
+        <segue reference="aNJ-m2-0I0"/>
+        <segue reference="5AM-1p-jx9"/>
         <segue reference="wv9-fk-FfY"/>
         <segue reference="g9o-0N-P4D"/>
-        <segue reference="5AM-1p-jx9"/>
         <segue reference="rzp-TS-BC7"/>
+        <segue reference="bVH-Q1-m3n"/>
+        <segue reference="FW0-BB-RT8"/>
+        <segue reference="qav-fg-sdY"/>
         <segue reference="aiq-DQ-SKV"/>
-        <segue reference="rxK-zF-aLe"/>
-        <segue reference="ZfC-qD-0SX"/>
-        <segue reference="B7O-E2-n1O"/>
-        <segue reference="7hU-I0-I2k"/>
-        <segue reference="BX6-fI-Ian"/>
-        <segue reference="Sxi-cS-EGb"/>
-        <segue reference="pQ7-FT-sEN"/>
+        <segue reference="gNs-38-JWS"/>
+        <segue reference="IRx-Jv-GCZ"/>
+        <segue reference="95r-G0-w3V"/>
+        <segue reference="ebI-ph-1Ok"/>
         <segue reference="oQN-Js-Es1"/>
         <segue reference="Yba-aL-RMS"/>
         <segue reference="a1h-2i-JbW"/>

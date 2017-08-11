@@ -17,6 +17,8 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     
     let  user = FIRAuth.auth()?.currentUser
     
+    var cant = 0
+    
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceLeadingLayoutConstraint: NSLayoutConstraint?
     @IBOutlet var spaceLeadingBtnPreguntarLayoutConstraint: NSLayoutConstraint?
@@ -199,32 +201,58 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
         self.performSegue(withIdentifier: "resenaCompradoresDesdePublicacionProducto", sender: self)
     }
     
+    @IBAction func sumarProducto(_ sender: Any)
+    {
+        if self.validarRegistro()
+        {
+            cant = cant + 1
+            
+            lblQCompra.text = "\(cant)"
+        }
+    }
+    
+    @IBAction func restarProducto(_ sender: Any)
+    {
+        if cant != 0
+        {
+            cant = cant - 1
+            
+            lblQCompra.text = "\(cant)"
+        }
+    }
+    
     @IBAction func comprar(_ sender: Any)
     {
         if self.validarRegistro()
         {
-            let alert:UIAlertController = UIAlertController(title: "¡Felicitaciones!", message: "Vas a realizar ésta compra por valor de $ ¿Deseas ver otros productos o servicios?", preferredStyle: .alert)
-            
-            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+            if cant == 0
+            {
+                self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes agregar como mínmo un producto para realizar una compra")
+            } else
+            {
+                let alert:UIAlertController = UIAlertController(title: "¡Felicitaciones!", message: "Vas a realizar ésta compra por valor de $ ¿Deseas ver otros productos o servicios?", preferredStyle: .alert)
                 
-                if self.readStringFromFile() == ""
-                {
-                    self.performSegue(withIdentifier: "avisoCarritoDesdePublicacionProducto", sender: self)
-                } else
-                {
-                    self.dismiss(animated: true, completion: nil)
+                let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                    
+                    if self.readStringFromFile() == ""
+                    {
+                        self.performSegue(withIdentifier: "avisoCarritoDesdePublicacionProducto", sender: self)
+                    } else
+                    {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
-            }
-            
-            let finalizeAction = UIAlertAction(title: "Finalizar compra", style: .cancel) { (_) -> Void in
                 
-                self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionProducto", sender: self)
+                let finalizeAction = UIAlertAction(title: "Finalizar compra", style: .cancel) { (_) -> Void in
+                    
+                    self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionProducto", sender: self)
+                }
+                
+                // Add the actions
+                alert.addAction(continuarAction)
+                alert.addAction(finalizeAction)
+                self.present(alert, animated: true, completion: nil)
             }
-            
-            // Add the actions
-            alert.addAction(continuarAction)
-            alert.addAction(finalizeAction)
-            self.present(alert, animated: true, completion: nil)
         }
     }
     
