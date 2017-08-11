@@ -227,7 +227,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
         {
             if cant == 0
             {
-                self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes agregar como mínmo un producto para realizar una compra")
+                self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes agregar como mínimo un producto para realizar una compra")
             } else
             {
                 let alert:UIAlertController = UIAlertController(title: "¡Felicitaciones!", message: "Vas a realizar ésta compra por valor de $ ¿Deseas ver otros productos o servicios?", preferredStyle: .alert)
