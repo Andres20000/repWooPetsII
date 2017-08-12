@@ -21,7 +21,6 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
     @IBOutlet var txtContrasena: UITextField!
     @IBOutlet var btnInicioSesion: UIButton!
     @IBOutlet weak var botonFacebook: FBSDKLoginButton!
-    //@IBOutlet var btnInicioSesionFB: UIButton!
     @IBOutlet var btnRegistro: UIButton!
     
     var sizeFont : CGFloat = 0.0

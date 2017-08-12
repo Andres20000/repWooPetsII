@@ -21,7 +21,6 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
     @IBOutlet var txtContrasena: UITextField!
     @IBOutlet var btnRegistro: UIButton!
     @IBOutlet weak var botonFacebook: FBSDKLoginButton!
-    //@IBOutlet var btnRegistroFB: UIButton!
     @IBOutlet var btnInicioSesion: UIButton!
     
     var sizeFont : CGFloat = 0.0

@@ -195,20 +195,44 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     
     @IBAction func agendarServicio(_ sender: Any)
     {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromRight
-        view.window!.layer.add(transition, forKey: kCATransition)
-        
-        self.performSegue(withIdentifier: "agendarDesdePublicacionServicio", sender: self)
+        if self.validarRegistro()
+        {
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            view.window!.layer.add(transition, forKey: kCATransition)
+            
+            self.performSegue(withIdentifier: "agendarDesdePublicacionServicio", sender: self)
+        }
     }
     
     @IBAction func comprar(_ sender: Any)
     {
         if self.validarRegistro()
         {
-            self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionServicio", sender: self)
+            let alert:UIAlertController = UIAlertController(title: "¡Felicitaciones!", message: "Vas a realizar ésta compra por valor de $ ¿Deseas ver otros productos o servicios?", preferredStyle: .alert)
+            
+            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                
+                if self.readStringFromFile() == ""
+                {
+                    self.performSegue(withIdentifier: "avisoCarritoDesdePublicacionServicio", sender: self)
+                } else
+                {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+            
+            let finalizeAction = UIAlertAction(title: "Finalizar compra", style: .cancel) { (_) -> Void in
+                
+                self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionServicio", sender: self)
+            }
+            
+            // Add the actions
+            alert.addAction(continuarAction)
+            alert.addAction(finalizeAction)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -470,5 +494,32 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
         
         alerta.addAction(OKAction)
         present(alerta, animated: true, completion: { return })
+    }
+    
+    // Leer texto de archivo .txt
+    
+    func readStringFromFile() -> NSString
+    {
+        let fileName = "AvisoCarrito"
+        var inString = ""
+        
+        let dir = try? FileManager.default.url(for: .documentDirectory,
+                                               in: .userDomainMask, appropriateFor: nil, create: true)
+        
+        // If the directory was found, we write a file to it and read it back
+        if let fileURL = dir?.appendingPathComponent(fileName).appendingPathExtension("txt")
+        {
+            // Then reading it back from the file
+            
+            do {
+                inString = try String(contentsOf: fileURL)
+            } catch {
+                print("Failed reading from URL: \(fileURL), Error: " + error.localizedDescription)
+            }
+            print("Read from the file: \(inString)")
+            
+        }
+        
+        return inString as NSString
     }
 }

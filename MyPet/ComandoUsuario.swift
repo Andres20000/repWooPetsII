@@ -17,39 +17,31 @@ class ComandoUsuario
         ref.child("/correo").setValue(correo)
     }
     
-    class func completarRegistro(uid:String, correo:String, datos:DatosComplementarios)
+    class func completarRegistro(uid:String, datos:DatosComplementarios)
     {
         let ref  = FIRDatabase.database().reference().child("clientes/" + uid)
         
-        var newItem = ["apellido":datos.apellido as AnyObject,
-                       "celular":datos.celular as AnyObject,
-                       "documento": datos.documento as AnyObject,
-                       "nombre":datos.nombre as AnyObject,
-                       "pagoEfectivo":datos.pagoEfectvo as AnyObject] as [String : AnyObject]
-        
-        newItem["correo"] = correo as AnyObject
+        ref.child("/apellido").setValue(datos.apellido)
+        ref.child("/celular").setValue(datos.celular)
         
         for direccion in datos.direcciones!
         {
             let refHandle = ref.child("direcciones").childByAutoId()
             
-            var direccionRegistrada = ["direccion" : direccion.direccion as AnyObject,
-                                     "nombre" : direccion.nombre as AnyObject,
-                                     "porDefecto": direccion.porDefecto as AnyObject] as [String : AnyObject]
+            refHandle.child("/direccion").setValue(direccion.direccion)
+            refHandle.child("/nombre").setValue(direccion.nombre)
+            refHandle.child("/porDefecto").setValue(direccion.porDefecto)
             
             for ubicacionDireccion in direccion.ubicacion!
             {
-                let ubicacion = ["lat" : ubicacionDireccion.latitud as AnyObject,
-                                 "lon" : ubicacionDireccion.longitud as AnyObject] as [String : AnyObject]
-                
-                direccionRegistrada["ubicacion"] = ubicacion as AnyObject
+                refHandle.child("/ubicacion/lat").setValue(ubicacionDireccion.latitud)
+                refHandle.child("/ubicacion/lon").setValue(ubicacionDireccion.longitud)
             }
-            
-            newItem["direcciones/\(refHandle.key)"] = direccionRegistrada as AnyObject
         }
         
-        ref.updateChildValues(newItem)
-        
+        ref.child("/documento").setValue(datos.documento)
+        ref.child("/nombre").setValue(datos.nombre)
+        ref.child("/pagoEfectivo").setValue(datos.pagoEfectvo)
     }
     
     class func getUsuario(uid:String?)

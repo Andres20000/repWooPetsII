@@ -70,7 +70,7 @@ class RegistroUsuarioTresViewController: UIViewController, UITextFieldDelegate
         
         let  user = FIRAuth.auth()?.currentUser
         
-        ComandoUsuario.completarRegistro(uid: (user?.uid)!, correo: (user?.email)!, datos: model.registroComplementario)
+        ComandoUsuario.completarRegistro(uid: (user?.uid)!, datos: model.registroComplementario)
         
         self.performSegue(withIdentifier: "registroExitoso", sender: self)
     }
