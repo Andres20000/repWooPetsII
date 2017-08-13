@@ -2032,6 +2032,9 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
+                                                <connections>
+                                                    <action selector="agregarPublicacionAlCarito:" destination="OrV-0p-8J0" eventType="touchUpInside" id="dyB-4M-0kz"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5918,21 +5921,21 @@
         <image name="textura_Ingreso" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UlJ-My-ATf"/>
         <segue reference="wv9-fk-FfY"/>
         <segue reference="g9o-0N-P4D"/>
-        <segue reference="5AM-1p-jx9"/>
         <segue reference="rzp-TS-BC7"/>
         <segue reference="bVH-Q1-m3n"/>
-        <segue reference="gNs-38-JWS"/>
+        <segue reference="5AM-1p-jx9"/>
         <segue reference="aiq-DQ-SKV"/>
+        <segue reference="IRx-Jv-GCZ"/>
         <segue reference="95r-G0-w3V"/>
-        <segue reference="FW0-BB-RT8"/>
         <segue reference="aNJ-m2-0I0"/>
         <segue reference="ebI-ph-1Ok"/>
+        <segue reference="FW0-BB-RT8"/>
         <segue reference="qav-fg-sdY"/>
+        <segue reference="gNs-38-JWS"/>
         <segue reference="oQN-Js-Es1"/>
-        <segue reference="a1h-2i-JbW"/>
         <segue reference="Yba-aL-RMS"/>
+        <segue reference="a1h-2i-JbW"/>
     </inferredMetricsTieBreakers>
 </document>

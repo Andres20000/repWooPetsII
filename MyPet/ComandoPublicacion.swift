@@ -337,7 +337,7 @@ class ComandoPublicacion
                 
                 model.preguntasPublicacion.append(datosPregunta)
                 
-                model.preguntasPublicacion.sort(by: {$0.timestamp! > $1.timestamp!})
+                //model.preguntasPublicacion.sort(by: {$0.timestamp! > $1.timestamp!})
             }
             
             NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoPreguntasRespuestasPublicacion"), object: nil)

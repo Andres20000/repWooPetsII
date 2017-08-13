@@ -38,7 +38,12 @@ class DatosComplementarios
 
 class Carrito
 {
-    var compras:Int?  = 0
+    var cantidadCompra:Int?  = 0
+    var fechaHoraReserva:String?  = ""
+    var idCarrito:String?  = ""
+    var idPublicacion:String?  = ""
+    var publicacionCompra = PublicacionOferente()
+    var servicio:Bool?
 }
 
 class Direccion

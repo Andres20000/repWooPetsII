@@ -53,7 +53,7 @@ class Pregunta
     var idPublicacion:String?  = ""
     var pregunta:String?  = ""
     var respuesta:String?  = ""
-    var timestamp:CLong?
+    var timestamp:CLong! = 0
 }
 
 class Modelo

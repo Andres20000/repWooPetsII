@@ -11,6 +11,8 @@ import FirebaseAuth
 
 class HomeUsuarioViewController: UITabBarController
 {
+    let modelUsuario = ModeloUsuario.sharedInstance
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -41,7 +43,17 @@ class HomeUsuarioViewController: UITabBarController
     {
         super.viewWillAppear(animated)
         
-        //self.tabBar.items?[1].badgeValue = "1"
+        if modelUsuario.usuario.count != 0
+        {
+            if modelUsuario.usuario[0].datosComplementarios?.count != 0
+            {
+                if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
+                {
+                    print("nombre: \((modelUsuario.usuario[0].datosComplementarios?[0].carrito?[0].publicacionCompra.nombre)!)")
+                    self.tabBar.items?[1].badgeValue = "\((modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count)!)"
+                }
+            }
+        }
     }
     
     override func didReceiveMemoryWarning()

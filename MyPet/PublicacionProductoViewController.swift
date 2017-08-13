@@ -17,7 +17,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     
     let  user = FIRAuth.auth()?.currentUser
     
-    var cant = 0
+    let carrito = Carrito()
     
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceLeadingLayoutConstraint: NSLayoutConstraint?
@@ -88,6 +88,8 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
         btnComprar.layer.cornerRadius = 10.0
         
         btnPreguntar.layer.cornerRadius = 10.0
+        
+        carrito.cantidadCompra = 0
     }
 
     func refrescarVista(_ notification: Notification)
@@ -205,19 +207,19 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     {
         if self.validarRegistro()
         {
-            cant = cant + 1
+            carrito.cantidadCompra = carrito.cantidadCompra! + 1
             
-            lblQCompra.text = "\(cant)"
+            lblQCompra.text = "\(carrito.cantidadCompra!)"
         }
     }
     
     @IBAction func restarProducto(_ sender: Any)
     {
-        if cant != 0
+        if carrito.cantidadCompra != 0
         {
-            cant = cant - 1
+            carrito.cantidadCompra = carrito.cantidadCompra! - 1
             
-            lblQCompra.text = "\(cant)"
+            lblQCompra.text = "\(carrito.cantidadCompra!)"
         }
     }
     
@@ -225,7 +227,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     {
         if self.validarRegistro()
         {
-            if cant == 0
+            if carrito.cantidadCompra == 0
             {
                 self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes agregar como mínimo un producto para realizar una compra")
             } else
@@ -252,6 +254,31 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
                 alert.addAction(continuarAction)
                 alert.addAction(finalizeAction)
                 self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    @IBAction func agregarPublicacionAlCarito(_ sender: Any)
+    {
+        if self.validarRegistro()
+        {
+            if carrito.cantidadCompra == 0
+            {
+                self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes agregar como mínimo un producto para realizar una compra")
+            } else
+            {
+                carrito.idPublicacion = modelOferente.publicacion.idPublicacion
+                carrito.servicio = modelOferente.publicacion.servicio
+                
+                ComandoUsuario.agregarAlCarrito(uid: (user?.uid)!, carrito: carrito)
+                
+                if self.readStringFromFile() == ""
+                {
+                    self.performSegue(withIdentifier: "avisoCarritoDesdePublicacionProducto", sender: self)
+                } else
+                {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
