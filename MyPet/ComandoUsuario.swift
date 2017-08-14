@@ -351,6 +351,13 @@ class ComandoUsuario
         refHandle.child("/servicio").setValue(carrito.servicio)
     }
     
+    class func eliminarPublicacionCarrito(uid:String?, idPublicacionCarrito:String?)
+    {
+        let refHandle  = FIRDatabase.database().reference().child("clientes/" + uid! + "/carrito/" + idPublicacionCarrito!)
+        // Remove the post from the DB
+        refHandle.removeValue()
+    }
+    
 }
 
 

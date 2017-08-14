@@ -12,6 +12,7 @@ import FirebaseAuth
 class HomeUsuarioViewController: UITabBarController
 {
     let modelUsuario = ModeloUsuario.sharedInstance
+    let  user = FIRAuth.auth()?.currentUser
     
     override func viewDidLoad()
     {
@@ -39,10 +40,8 @@ class HomeUsuarioViewController: UITabBarController
         }
     }
     
-    override func viewWillAppear(_ animated: Bool)
+    func refrescarVista(_ notification: Notification)
     {
-        super.viewWillAppear(animated)
-        
         if modelUsuario.usuario.count != 0
         {
             if modelUsuario.usuario[0].datosComplementarios?.count != 0
@@ -51,9 +50,24 @@ class HomeUsuarioViewController: UITabBarController
                 {
                     print("nombre: \((modelUsuario.usuario[0].datosComplementarios?[0].carrito?[0].publicacionCompra.nombre)!)")
                     self.tabBar.items?[1].badgeValue = "\((modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count)!)"
+                }else
+                {
+                    self.tabBar.items?[1].badgeValue = nil
                 }
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        if self.user?.uid != nil
+        {
+            ComandoUsuario.getUsuario(uid: (self.user?.uid)!)
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeUsuarioViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
     }
     
     override func didReceiveMemoryWarning()

@@ -100,6 +100,10 @@
 		847FDC321ED545A6002F9530 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847FDC311ED545A6002F9530 /* Media.xcassets */; };
 		847FDC351ED681C1002F9530 /* ExtensionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FDC341ED681C1002F9530 /* ExtensionImage.swift */; };
 		847FDC361ED681C1002F9530 /* ExtensionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847FDC341ED681C1002F9530 /* ExtensionImage.swift */; };
+		84818C551F411CC1001011BA /* CarritoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84818C531F411CC1001011BA /* CarritoTableViewCell.swift */; };
+		84818C561F411CC1001011BA /* CarritoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84818C531F411CC1001011BA /* CarritoTableViewCell.swift */; };
+		84818C571F411CC1001011BA /* CarritoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84818C541F411CC1001011BA /* CarritoTableViewCell.xib */; };
+		84818C581F411CC1001011BA /* CarritoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84818C541F411CC1001011BA /* CarritoTableViewCell.xib */; };
 		848E318F1F26601200D35C6D /* PublicacionServicioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E318E1F26601200D35C6D /* PublicacionServicioViewController.swift */; };
 		848E31901F26601200D35C6D /* PublicacionServicioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E318E1F26601200D35C6D /* PublicacionServicioViewController.swift */; };
 		84A3E1B61EC1850F0013E4DD /* ComandoOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3E1B51EC1850F0013E4DD /* ComandoOferente.swift */; };
@@ -256,6 +260,8 @@
 		847FDC2D1ED54336002F9530 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		847FDC311ED545A6002F9530 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		847FDC341ED681C1002F9530 /* ExtensionImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionImage.swift; sourceTree = "<group>"; };
+		84818C531F411CC1001011BA /* CarritoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarritoTableViewCell.swift; sourceTree = "<group>"; };
+		84818C541F411CC1001011BA /* CarritoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarritoTableViewCell.xib; sourceTree = "<group>"; };
 		848E318E1F26601200D35C6D /* PublicacionServicioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicacionServicioViewController.swift; sourceTree = "<group>"; };
 		84A3E1B51EC1850F0013E4DD /* ComandoOferente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComandoOferente.swift; sourceTree = "<group>"; };
 		84A3E1B81EC29DD40013E4DD /* HomeOferenteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOferenteViewController.swift; sourceTree = "<group>"; };
@@ -371,6 +377,8 @@
 			children = (
 				840B1B551F3594AD00423832 /* FavoritoTableViewCell.swift */,
 				840B1B561F3594AD00423832 /* FavoritoTableViewCell.xib */,
+				84818C531F411CC1001011BA /* CarritoTableViewCell.swift */,
+				84818C541F411CC1001011BA /* CarritoTableViewCell.xib */,
 			);
 			name = "Cell Carrito";
 			sourceTree = "<group>";
@@ -772,6 +780,7 @@
 				84CA9EFE1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
 				8451A38D1EFB7A6200B59E46 /* UbicacionTableViewCell.xib in Resources */,
 				8453268A1F0C9B11007A4776 /* AlertaTableViewCell.xib in Resources */,
+				84818C571F411CC1001011BA /* CarritoTableViewCell.xib in Resources */,
 				847FDC321ED545A6002F9530 /* Media.xcassets in Resources */,
 				84F4FA501EAA955900F3E69A /* Main.storyboard in Resources */,
 				84A5A4D61F3CD1A600429500 /* CompraTableViewCell.xib in Resources */,
@@ -797,6 +806,7 @@
 				84F4FA701EAAAF6900F3E69A /* LaunchScreen.storyboard in Resources */,
 				847838D01F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
 				84A3E1DA1EC66EA80013E4DD /* CategoriaCollectionViewCell.xib in Resources */,
+				84818C581F411CC1001011BA /* CarritoTableViewCell.xib in Resources */,
 				8451A38E1EFB7A6200B59E46 /* UbicacionTableViewCell.xib in Resources */,
 				840B1B5E1F36612500423832 /* Oferente.storyboard in Resources */,
 				847FDC181ED3469F002F9530 /* DetalleHorarioTableViewCell.xib in Resources */,
@@ -916,6 +926,7 @@
 				84417B6D1EB0334400A70ABC /* AvisoOferenteViewController.swift in Sources */,
 				84BD206C1EEF8F9C001422E7 /* ComandoUsuario.swift in Sources */,
 				84A3E1CB1EC3E0580013E4DD /* MisPublicacionesViewController.swift in Sources */,
+				84818C551F411CC1001011BA /* CarritoTableViewCell.swift in Sources */,
 				84BD20811EF0A58F001422E7 /* MenuUsuarioViewController.swift in Sources */,
 				84A3E1C21EC3BE3C0013E4DD /* PublicacionOferenteViewController.swift in Sources */,
 				84A3E1B61EC1850F0013E4DD /* ComandoOferente.swift in Sources */,
@@ -995,6 +1006,7 @@
 				84417B6E1EB0334400A70ABC /* AvisoOferenteViewController.swift in Sources */,
 				84BD206D1EEF8F9C001422E7 /* ComandoUsuario.swift in Sources */,
 				84A3E1CC1EC3E0580013E4DD /* MisPublicacionesViewController.swift in Sources */,
+				84818C561F411CC1001011BA /* CarritoTableViewCell.swift in Sources */,
 				84BD20821EF0A58F001422E7 /* MenuUsuarioViewController.swift in Sources */,
 				84A3E1C31EC3BE3C0013E4DD /* PublicacionOferenteViewController.swift in Sources */,
 				84A3E1B71EC1850F0013E4DD /* ComandoOferente.swift in Sources */,

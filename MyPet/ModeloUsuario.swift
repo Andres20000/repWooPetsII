@@ -132,7 +132,7 @@ class ModeloUsuario
     var mascotaSeleccionada = Mascota()
     var alertasMascotaSeleccionada = [Alerta]()
     var alertaMascota = Alerta()
-    
+    var publicacionCarrito = Carrito()
 }
 
 
