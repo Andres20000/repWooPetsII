@@ -17,8 +17,6 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     
     let  user = FIRAuth.auth()?.currentUser
     
-    var cant = 0
-    
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceLeadingLayoutConstraint: NSLayoutConstraint?
     @IBOutlet var spaceLeadingBtnPreguntarLayoutConstraint: NSLayoutConstraint?
@@ -46,6 +44,10 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     
     @IBAction func backView(_ sender: Any)
     {
+        modelUsuario.publicacionCarrito.cantidadCompra = 0
+        modelUsuario.publicacionCarrito.idCarrito = ""
+        modelUsuario.publicacionCarrito.idPublicacion = ""
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -92,6 +94,10 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
 
     func refrescarVista(_ notification: Notification)
     {
+        modelUsuario.publicacionCarrito.cantidadCompra = 0
+        modelUsuario.publicacionCarrito.idCarrito = ""
+        modelUsuario.publicacionCarrito.idPublicacion = ""
+        
         if modelUsuario.usuario.count != 0
         {
             if modelUsuario.usuario[0].datosComplementarios?.count != 0
@@ -120,6 +126,20 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
                 {
                     barItemFavorito.image = UIImage(named: "btnNoFavorito")?.withRenderingMode(.alwaysOriginal)
                 }
+                
+                if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
+                {
+                    for publicacionCarrito in (modelUsuario.usuario[0].datosComplementarios?[0].carrito)!
+                    {
+                        if publicacionCarrito.idPublicacion == modelOferente.publicacion.idPublicacion
+                        {
+                            modelUsuario.publicacionCarrito.cantidadCompra = publicacionCarrito.cantidadCompra
+                            modelUsuario.publicacionCarrito.idCarrito = publicacionCarrito.idCarrito
+                            modelUsuario.publicacionCarrito.idPublicacion = publicacionCarrito.idPublicacion
+                            modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
+                        }
+                    }
+                }
             } else
             {
                 barItemFavorito.image = UIImage(named: "btnNoFavorito")?.withRenderingMode(.alwaysOriginal)
@@ -141,6 +161,32 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
             {
                 lblPreguntas.text = "Ver las \(model.preguntasPublicacion.count) preguntas realizadas"
             }
+        }
+        
+        if modelUsuario.publicacionCarrito.cantidadCompra != 0
+        {
+            lblQCompra.text = "\(modelUsuario.publicacionCarrito.cantidadCompra!)"
+            
+            btnCarrito.tag = 1
+            btnCarrito.setTitle("Eliminar del carrito", for: .normal)
+            
+            btnCarrito.titleLabel?.font = UIFont (name: "HelveticaNeue-Light", size: 17.0)
+            let attributes = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+            let attributedText = NSAttributedString(string: btnCarrito.currentTitle!, attributes: attributes)
+            
+            btnCarrito.setAttributedTitle(attributedText, for: .normal)
+        } else
+        {
+            lblQCompra.text = "\(modelUsuario.publicacionCarrito.cantidadCompra!)"
+            
+            btnCarrito.tag = 0
+            btnCarrito.setTitle("Añadir al carrito", for: .normal)
+            
+            btnCarrito.titleLabel?.font = UIFont (name: "HelveticaNeue-Light", size: 17.0)
+            let attributes = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+            let attributedText = NSAttributedString(string: btnCarrito.currentTitle!, attributes: attributes)
+            
+            btnCarrito.setAttributedTitle(attributedText, for: .normal)
         }
     }
     
@@ -205,19 +251,19 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     {
         if self.validarRegistro()
         {
-            cant = cant + 1
+            modelUsuario.publicacionCarrito.cantidadCompra = modelUsuario.publicacionCarrito.cantidadCompra! + 1
             
-            lblQCompra.text = "\(cant)"
+            lblQCompra.text = "\(modelUsuario.publicacionCarrito.cantidadCompra!)"
         }
     }
     
     @IBAction func restarProducto(_ sender: Any)
     {
-        if cant != 0
+        if modelUsuario.publicacionCarrito.cantidadCompra != 0
         {
-            cant = cant - 1
+            modelUsuario.publicacionCarrito.cantidadCompra = modelUsuario.publicacionCarrito.cantidadCompra! - 1
             
-            lblQCompra.text = "\(cant)"
+            lblQCompra.text = "\(modelUsuario.publicacionCarrito.cantidadCompra!)"
         }
     }
     
@@ -225,7 +271,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     {
         if self.validarRegistro()
         {
-            if cant == 0
+            if modelUsuario.publicacionCarrito.cantidadCompra == 0
             {
                 self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes agregar como mínimo un producto para realizar una compra")
             } else
@@ -233,6 +279,11 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
                 let alert:UIAlertController = UIAlertController(title: "¡Felicitaciones!", message: "Vas a realizar ésta compra por valor de $ ¿Deseas ver otros productos o servicios?", preferredStyle: .alert)
                 
                 let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                    
+                    self.modelUsuario.publicacionCarrito.idPublicacion = self.modelOferente.publicacion.idPublicacion
+                    self.modelUsuario.publicacionCarrito.servicio = self.modelOferente.publicacion.servicio
+                    
+                    ComandoUsuario.agregarAlCarrito(uid: (self.user?.uid)!, carrito: self.modelUsuario.publicacionCarrito)
                     
                     if self.readStringFromFile() == ""
                     {
@@ -254,6 +305,63 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
                 self.present(alert, animated: true, completion: nil)
             }
         }
+    }
+    
+    @IBAction func agregarPublicacionAlCarito(sender: UIButton!)
+    {
+        if sender.tag == 0
+        {
+            if self.validarRegistro()
+            {
+                if modelUsuario.publicacionCarrito.cantidadCompra == 0
+                {
+                    self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes agregar como mínimo un producto para realizar una compra")
+                } else
+                {
+                    modelUsuario.publicacionCarrito.idPublicacion = modelOferente.publicacion.idPublicacion
+                    modelUsuario.publicacionCarrito.servicio = modelOferente.publicacion.servicio
+                    
+                    ComandoUsuario.agregarAlCarrito(uid: (user?.uid)!, carrito: modelUsuario.publicacionCarrito)
+                    
+                    if self.readStringFromFile() == ""
+                    {
+                        self.performSegue(withIdentifier: "avisoCarritoDesdePublicacionProducto", sender: self)
+                    } else
+                    {
+                        modelUsuario.publicacionCarrito.cantidadCompra = 0
+                        modelUsuario.publicacionCarrito.idCarrito = ""
+                        modelUsuario.publicacionCarrito.idPublicacion = ""
+                        
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        } else
+        {
+            let alert:UIAlertController = UIAlertController(title: "Confirmar", message: "¿Estás seguro de remover de tu carrito ésta compra?", preferredStyle: .alert)
+            
+            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                ComandoUsuario.eliminarPublicacionCarrito(uid: (self.user?.uid)!, idPublicacionCarrito: self.modelUsuario.publicacionCarrito.idCarrito!)
+                
+                if self.user?.uid != nil
+                {
+                    ComandoUsuario.getUsuario(uid: (self.user?.uid)!)
+                }
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(PublicacionProductoViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+            {
+                UIAlertAction in
+            }
+            
+            // Add the actions
+            alert.addAction(continuarAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
     func validarRegistro() -> Bool

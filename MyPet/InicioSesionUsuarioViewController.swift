@@ -151,6 +151,7 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
                 return
             }
             
+            print("User: \((user?.uid)!)")
             let testMail:String?
             
             if user?.email == nil {

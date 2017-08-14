@@ -38,7 +38,12 @@ class DatosComplementarios
 
 class Carrito
 {
-    var compras:Int?  = 0
+    var cantidadCompra:Int?  = 0
+    var fechaHoraReserva:String?  = ""
+    var idCarrito:String?  = ""
+    var idPublicacion:String?  = ""
+    var publicacionCompra = PublicacionOferente()
+    var servicio:Bool?
 }
 
 class Direccion
@@ -127,7 +132,7 @@ class ModeloUsuario
     var mascotaSeleccionada = Mascota()
     var alertasMascotaSeleccionada = [Alerta]()
     var alertaMascota = Alerta()
-    
+    var publicacionCarrito = Carrito()
 }
 
 

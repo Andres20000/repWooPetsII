@@ -10,6 +10,8 @@ import UIKit
 
 class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+    let modelUsuario = ModeloUsuario.sharedInstance
+    
     @IBOutlet var tableCompras: UITableView!
     
     @IBOutlet var lblTotal: UILabel!
@@ -47,6 +49,29 @@ class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "compraTableViewCell")  as! CompraTableViewCell
+        
+        let path = "productos/" + (modelUsuario.publicacionCarrito.idPublicacion)! + "/" + (modelUsuario.publicacionCarrito.publicacionCompra.fotos?[0].nombreFoto)!
+        
+        cell.imgPublicacion.loadImageUsingCacheWithUrlString(pathString: path)
+        
+        cell.lblCantidad.text = "\(modelUsuario.publicacionCarrito.cantidadCompra!)"
+        
+        if let amountString = modelUsuario.publicacionCarrito.publicacionCompra.precio?.currencyInputFormatting()
+        {
+            cell.lblCostoPublicacion.text = "\(amountString) c/u"
+        }
+        
+        cell.lblNombrePublicacion.text = modelUsuario.publicacionCarrito.publicacionCompra.nombre
+        
+        let costo:Int = Int(modelUsuario.publicacionCarrito.publicacionCompra.precio!)!
+        let Total:Int = modelUsuario.publicacionCarrito.cantidadCompra! * costo
+        let TotalString:String = String(Total)
+        cell.lblTotal.text = TotalString
+        
+        if let amountStringDos = cell.lblTotal.text?.currencyInputFormatting()
+        {
+            cell.lblTotal.text = amountStringDos
+        }
         
         return cell;
     }

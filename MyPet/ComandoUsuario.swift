@@ -70,6 +70,35 @@ class ComandoUsuario
                     let datosComplementarios = DatosComplementarios()
                     
                     datosComplementarios.apellido = value?["apellido"] as? String
+                    
+                    if snap.hasChild("carrito")
+                    {
+                        let snapPublicacionesEnCarrito = snap.childSnapshot(forPath: "carrito").value as! NSDictionary
+                        
+                        for (idCarrito, carrito) in snapPublicacionesEnCarrito
+                        {
+                            let postDictCarrito = (carrito as! [String : AnyObject])
+                            let carritoUsuario = Carrito()
+                            
+                            carritoUsuario.servicio = postDictCarrito["servicio"] as? Bool
+                            
+                            if carritoUsuario.servicio!
+                            {
+                                carritoUsuario.fechaHoraReserva = postDictCarrito["fechaHoraReserva"] as? String
+                            }else
+                            {
+                                carritoUsuario.cantidadCompra = postDictCarrito["cantidadCompra"] as? Int
+                            }
+                            
+                            carritoUsuario.idCarrito = idCarrito as? String
+                            carritoUsuario.idPublicacion = postDictCarrito["idPublicacion"] as? String
+                            
+                            carritoUsuario.publicacionCompra = Comando.getPublicacion(idPublicacion: carritoUsuario.idPublicacion!)
+                            
+                            datosComplementarios.carrito?.append(carritoUsuario)
+                        }
+                    }
+                    
                     datosComplementarios.celular = value?["celular"] as? String
                     
                     let snapDirecciones = snap.childSnapshot(forPath: "direcciones").value as! NSDictionary
@@ -304,10 +333,31 @@ class ComandoUsuario
         refHandle.child("/idPublicacion").setValue(pregunta.idPublicacion)
         refHandle.child("/pregunta").setValue(pregunta.pregunta)
         refHandle.child("/timestamp").setValue(FIRServerValue.timestamp())
-        
-        let model = Modelo.sharedInstance
-        model.preguntasPublicacion.removeAll()
     }
+    
+    class func agregarAlCarrito(uid:String?, carrito:Carrito)
+    {
+        let refHandle  = FIRDatabase.database().reference().child("clientes/" + uid! + "/carrito").childByAutoId()
+        
+        if carrito.servicio!
+        {
+            refHandle.child("/fechaHoraReserva").setValue(carrito.fechaHoraReserva)
+        } else
+        {
+            refHandle.child("/cantidadCompra").setValue(carrito.cantidadCompra)
+        }
+        
+        refHandle.child("/idPublicacion").setValue(carrito.idPublicacion)
+        refHandle.child("/servicio").setValue(carrito.servicio)
+    }
+    
+    class func eliminarPublicacionCarrito(uid:String?, idPublicacionCarrito:String?)
+    {
+        let refHandle  = FIRDatabase.database().reference().child("clientes/" + uid! + "/carrito/" + idPublicacionCarrito!)
+        // Remove the post from the DB
+        refHandle.removeValue()
+    }
+    
 }
 
 

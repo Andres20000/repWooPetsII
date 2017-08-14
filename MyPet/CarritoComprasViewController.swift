@@ -12,6 +12,7 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
 {
     let model = Modelo.sharedInstance
     let modelOferente = ModeloOferente.sharedInstance
+    let modelUsuario = ModeloUsuario.sharedInstance
     
     @IBOutlet var segCtrlCarrito: UISegmentedControl!
     
@@ -44,6 +45,9 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         
         let nib = UINib(nibName: "FavoritoTableViewCell", bundle: nil)
         tableProductosServicios.register(nib, forCellReuseIdentifier: "favoritoTableViewCell")
+        
+        let nib2 = UINib(nibName: "CarritoTableViewCell", bundle: nil)
+        tableProductosServicios.register(nib2, forCellReuseIdentifier: "carritoTableViewCell")
     }
     
     func refrescarVista(_ notification: Notification)
@@ -51,9 +55,22 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         switch segCtrlCarrito.selectedSegmentIndex
         {
         case 0:
+            
             viewMensaje.isHidden = false
             imgMensaje.image = UIImage(named: "imgCarritoVacio")
             lblMensaje.text = "Actualmente no tienes ningún producto y/o servicio en tu carrito."
+            
+            if modelUsuario.usuario.count != 0
+            {
+                if modelUsuario.usuario[0].datosComplementarios?.count != 0
+                {
+                    if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
+                    {
+                        viewMensaje.isHidden = true
+                    }
+                }
+            }
+            
         case 1:
             viewMensaje.isHidden = false
             imgMensaje.image = UIImage(named: "imgCarritoVacio")
@@ -89,21 +106,29 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         switch segCtrlCarrito.selectedSegmentIndex
         {
         case 0:
-            tableProductosServicios.separatorStyle = .none
-            return 0
+            if modelUsuario.usuario.count != 0
+            {
+                if modelUsuario.usuario[0].datosComplementarios?.count != 0
+                {
+                    if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
+                    {
+                        tableProductosServicios.separatorStyle = .singleLine
+                        return 1
+                    }
+                }
+            }
+            
         case 1:
             tableProductosServicios.separatorStyle = .none
             return 0
+            
         case 2:
-            if model.publicacionesFavoritas.count == 0
-            {
-                tableProductosServicios.separatorStyle = .none
-                return 0
-            } else
+            if model.publicacionesFavoritas.count != 0
             {
                 tableProductosServicios.separatorStyle = .singleLine
                 return 1
             }
+            
         default:
             break
         }
@@ -117,7 +142,16 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         switch segCtrlCarrito.selectedSegmentIndex
         {
         case 0:
-            return 0
+            if modelUsuario.usuario.count != 0
+            {
+                if modelUsuario.usuario[0].datosComplementarios?.count != 0
+                {
+                    if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
+                    {
+                        return (modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count)!
+                    }
+                }
+            }
         case 1:
             return 0
         case 2:
@@ -133,33 +167,107 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoritoTableViewCell")  as! FavoritoTableViewCell
         
-        if let amountString = model.publicacionesFavoritas[indexPath.row].precio?.currencyInputFormatting()
+        switch segCtrlCarrito.selectedSegmentIndex
         {
-            cell.lblPrecio.text = amountString
-        }
-        
-        cell.lblNombreProducto.text = model.publicacionesFavoritas[indexPath.row].nombre
-        
-        if (model.publicacionesFavoritas[indexPath.row].fotos?.count)! > 0
-        {
-            let path = "productos/" + (model.publicacionesFavoritas[indexPath.row].idPublicacion)! + "/" + (model.publicacionesFavoritas[indexPath.row].fotos?[0].nombreFoto)!
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "carritoTableViewCell")  as! CarritoTableViewCell
             
-            cell.imgProducto.loadImageUsingCacheWithUrlString(pathString: path)
+            let path = "productos/" + (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].idPublicacion)! + "/" + (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].publicacionCompra.fotos?[0].nombreFoto)!
+            
+            cell.imgPublicacion.loadImageUsingCacheWithUrlString(pathString: path)
+            
+            cell.lblNombrePublicacion.text = modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].publicacionCompra.nombre
+            
+            if (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].servicio!)!
+            {
+                if let amountString = modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].publicacionCompra.precio?.currencyInputFormatting()
+                {
+                    cell.lblCostoPublicacion.text = "\(amountString) (x1)"
+                    cell.lblTotal.text = amountString
+                }
+            } else
+            {
+                if let amountStringDos = modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].publicacionCompra.precio?.currencyInputFormatting()
+                {
+                    cell.lblCostoPublicacion.text = "\(amountStringDos) (x\((modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].cantidadCompra)!))"
+                }
+                
+                let costo:Int = Int((modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].publicacionCompra.precio!)!)!
+                let Total:Int = (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].cantidadCompra!)! * costo
+                let TotalString:String = String(Total)
+                cell.lblTotal.text = TotalString
+                
+                if let amountStringDos = cell.lblTotal.text?.currencyInputFormatting()
+                {
+                    cell.lblTotal.text = amountStringDos
+                }
+            }
+            
+            cell.btnComprar.tag = indexPath.row
+            cell.btnComprar.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+            
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "favoritoTableViewCell")  as! FavoritoTableViewCell
+            return cell
+        case 2:
+            if let amountString = model.publicacionesFavoritas[indexPath.row].precio?.currencyInputFormatting()
+            {
+                cell.lblPrecio.text = amountString
+            }
+            
+            cell.lblNombreProducto.text = model.publicacionesFavoritas[indexPath.row].nombre
+            
+            if (model.publicacionesFavoritas[indexPath.row].fotos?.count)! > 0
+            {
+                let path = "productos/" + (model.publicacionesFavoritas[indexPath.row].idPublicacion)! + "/" + (model.publicacionesFavoritas[indexPath.row].fotos?[0].nombreFoto)!
+                
+                cell.imgProducto.loadImageUsingCacheWithUrlString(pathString: path)
+            }
+            
+        default:
+            break
         }
         
-        return cell;
+        return cell
+    }
+    
+    // Celda con botón
+    func buttonAction(sender: UIButton!)
+    {
+        modelUsuario.publicacionCarrito = (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[sender.tag])!
+        
+        self.performSegue(withIdentifier: "confirmacionUnoDesdeCarritoCompras", sender: self)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        modelOferente.publicacion = model.publicacionesFavoritas[indexPath.row]
-        
-        if modelOferente.publicacion.servicio!
+        switch segCtrlCarrito.selectedSegmentIndex
         {
-            self.performSegue(withIdentifier: "publicacionServicioDesdeVistaCarrito", sender: self)
-        } else
-        {
-            self.performSegue(withIdentifier: "publicacionProductoDesdeVistaCarrito", sender: self)
+        case 0:
+            modelOferente.publicacion = (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].publicacionCompra)!
+            
+            if (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].servicio)!
+            {
+                self.performSegue(withIdentifier: "publicacionServicioDesdeVistaCarrito", sender: self)
+            } else
+            {
+                self.performSegue(withIdentifier: "publicacionProductoDesdeVistaCarrito", sender: self)
+            }
+        case 1:
+            print("Selected")
+        case 2:
+            modelOferente.publicacion = model.publicacionesFavoritas[indexPath.row]
+            
+            if modelOferente.publicacion.servicio!
+            {
+                self.performSegue(withIdentifier: "publicacionServicioDesdeVistaCarrito", sender: self)
+            } else
+            {
+                self.performSegue(withIdentifier: "publicacionProductoDesdeVistaCarrito", sender: self)
+            }
+        default:
+            break
         }
     }
     

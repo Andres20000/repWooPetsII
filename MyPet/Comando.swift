@@ -545,6 +545,104 @@ class Comando
         })
     }
     
+    class func getPublicacion(idPublicacion:String?) -> PublicacionOferente
+    {
+        let datosPublicacion = PublicacionOferente()
+        
+        let refHandle = FIRDatabase.database().reference().child("productos/" + idPublicacion!)
+        
+        refHandle.observe(FIRDataEventType.value, with: { (snap) in
+            
+            let value = snap.value as! [String : AnyObject]
+            
+            datosPublicacion.activo = value["activo"] as? Bool
+            datosPublicacion.categoria = value["categoria"] as? String
+            datosPublicacion.descripcion = value["descripcion"] as? String
+            datosPublicacion.destacado = value["destacado"] as? Bool
+            
+            if snap.hasChild("fotos")
+            {
+                let snapFoto = snap.childSnapshot(forPath: "fotos").value as! NSDictionary
+                
+                for (id, foto) in snapFoto
+                {
+                    let fotoPublicacion = Foto()
+                    
+                    fotoPublicacion.idFoto = id as? String
+                    fotoPublicacion.nombreFoto = foto as? String
+                    
+                    let str:String = fotoPublicacion.idFoto!
+                    let endIndex = str.index(str.startIndex, offsetBy: 4)
+                    fotoPublicacion.numeroFoto = Int(str[endIndex].description)
+                    
+                    datosPublicacion.fotos?.append(fotoPublicacion)
+                    datosPublicacion.fotos?.sort(by: {$0.numeroFoto < $1.numeroFoto})
+                }
+            }
+            
+            if snap.hasChild("horario")
+            {
+                let snapHorario = snap.childSnapshot(forPath: "horario").value as! NSDictionary
+                
+                var i = 0
+                
+                for (idHorario, horario) in snapHorario
+                {
+                    let postDictHorario = (horario as! [String : AnyObject])
+                    
+                    if (idHorario as? String == "Semana")
+                    {
+                        let horarioServicioSemana = Horario()
+                        
+                        horarioServicioSemana.dias = postDictHorario["dias"] as? String
+                        horarioServicioSemana.horaInicio = postDictHorario["horaInicio"] as? String
+                        horarioServicioSemana.horaCierre = postDictHorario["horaCierre"] as? String
+                        horarioServicioSemana.nombreArbol = idHorario as? String
+                        
+                        datosPublicacion.horario?.append(horarioServicioSemana)
+                        
+                    }
+                    
+                    if (idHorario as? String == "FinDeSemana")
+                    {
+                        let horarioServicioFestivo = Horario()
+                        
+                        horarioServicioFestivo.dias = postDictHorario["dias"] as? String
+                        horarioServicioFestivo.horaInicio = postDictHorario["horaInicio"] as? String
+                        horarioServicioFestivo.horaCierre = postDictHorario["horaCierre"] as? String
+                        horarioServicioFestivo.nombreArbol = idHorario as? String
+                        
+                        datosPublicacion.horario?.append(horarioServicioFestivo)
+                    }
+                    
+                    i += 1
+                }
+            }
+            
+            datosPublicacion.idOferente = value["idOferente"] as? String
+            datosPublicacion.idPublicacion = snap.key
+            datosPublicacion.nombre = value["nombre"] as? String
+            datosPublicacion.precio = value["precio"] as? String
+            datosPublicacion.servicio = value["servicio"] as? Bool
+            
+            if snap.hasChild("stock")
+            {
+                datosPublicacion.stock = value["stock"] as? String
+            }
+            
+            if snap.hasChild("subcategoria")
+            {
+                datosPublicacion.subcategoria = value["subcategoria"] as? String
+            }
+            
+            datosPublicacion.target = value["target"] as? String
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoPublicacion"), object: nil)
+        })
+        
+        return datosPublicacion
+    }
+    
     // Datos Mascota
     
     class func getCategorias()
