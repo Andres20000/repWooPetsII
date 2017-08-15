@@ -337,6 +337,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
             {
                 self.modelUsuario.publicacionCarrito.idPublicacion = self.modelOferente.publicacion.idPublicacion
                 self.modelUsuario.publicacionCarrito.servicio = self.modelOferente.publicacion.servicio
+                self.modelUsuario.publicacionCarrito.publicacionCompra = self.modelOferente.publicacion
                 
                 self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionProducto", sender: self)
                 

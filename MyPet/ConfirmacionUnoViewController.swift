@@ -33,6 +33,16 @@ class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITa
         let nib = UINib(nibName: "CompraTableViewCell", bundle: nil)
         tableCompras.register(nib, forCellReuseIdentifier: "compraTableViewCell")
         
+        let costo:Int = Int(modelUsuario.publicacionCarrito.publicacionCompra.precio!)!
+        let Total:Int = modelUsuario.publicacionCarrito.cantidadCompra! * costo
+        let TotalString:String = String(Total)
+        lblTotal.text = TotalString
+        
+        if let amountString = lblTotal.text?.currencyInputFormatting()
+        {
+            lblTotal.text = amountString
+        }
+        
         btnSiguiente.layer.cornerRadius = 10.0
     }
     
