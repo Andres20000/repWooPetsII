@@ -358,6 +358,19 @@ class ComandoUsuario
         refHandle.removeValue()
     }
     
+    class func editarPublicacionCarrito(uid:String?, carrito:Carrito)
+    {
+        let refHandle  = FIRDatabase.database().reference().child("clientes/" + uid! + "/carrito/" + carrito.idCarrito!)
+        
+        if carrito.servicio!
+        {
+            refHandle.child("/fechaHoraReserva").setValue(carrito.fechaHoraReserva)
+        } else
+        {
+            refHandle.child("/cantidadCompra").setValue(carrito.cantidadCompra)
+        }
+    }
+    
 }
 
 

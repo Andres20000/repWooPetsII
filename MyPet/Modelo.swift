@@ -149,6 +149,8 @@ class Modelo
     
     var publicacionSeleccionada = PublicacionOferente()
     
+    var publicacionesEnCarrito = [Carrito]()
+    
     // Datos Preguntas y Respuestas
     var preguntasPublicacion = [Pregunta]()
     

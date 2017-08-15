@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     let model = Modelo.sharedInstance
     let modelOferente = ModeloOferente.sharedInstance
     let modelUsuario = ModeloUsuario.sharedInstance
+    let  user = FIRAuth.auth()?.currentUser
     
     @IBOutlet var segCtrlCarrito: UISegmentedControl!
     
@@ -60,15 +62,9 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
             imgMensaje.image = UIImage(named: "imgCarritoVacio")
             lblMensaje.text = "Actualmente no tienes ningún producto y/o servicio en tu carrito."
             
-            if modelUsuario.usuario.count != 0
+            if model.publicacionesEnCarrito.count != 0
             {
-                if modelUsuario.usuario[0].datosComplementarios?.count != 0
-                {
-                    if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
-                    {
-                        viewMensaje.isHidden = true
-                    }
-                }
+                viewMensaje.isHidden = true
             }
             
         case 1:
@@ -106,16 +102,10 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         switch segCtrlCarrito.selectedSegmentIndex
         {
         case 0:
-            if modelUsuario.usuario.count != 0
+            if model.publicacionesEnCarrito.count != 0
             {
-                if modelUsuario.usuario[0].datosComplementarios?.count != 0
-                {
-                    if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
-                    {
-                        tableProductosServicios.separatorStyle = .singleLine
-                        return 1
-                    }
-                }
+                tableProductosServicios.separatorStyle = .singleLine
+                return 1
             }
             
         case 1:
@@ -142,15 +132,9 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         switch segCtrlCarrito.selectedSegmentIndex
         {
         case 0:
-            if modelUsuario.usuario.count != 0
+            if model.publicacionesEnCarrito.count != 0
             {
-                if modelUsuario.usuario[0].datosComplementarios?.count != 0
-                {
-                    if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
-                    {
-                        return (modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count)!
-                    }
-                }
+                return model.publicacionesEnCarrito.count
             }
         case 1:
             return 0
@@ -172,28 +156,28 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "carritoTableViewCell")  as! CarritoTableViewCell
             
-            let path = "productos/" + (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].idPublicacion)! + "/" + (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].publicacionCompra.fotos?[0].nombreFoto)!
+            let path = "productos/" + (model.publicacionesEnCarrito[indexPath.row].idPublicacion)! + "/" + (model.publicacionesEnCarrito[indexPath.row].publicacionCompra.fotos?[0].nombreFoto)!
             
             cell.imgPublicacion.loadImageUsingCacheWithUrlString(pathString: path)
             
-            cell.lblNombrePublicacion.text = modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].publicacionCompra.nombre
+            cell.lblNombrePublicacion.text = model.publicacionesEnCarrito[indexPath.row].publicacionCompra.nombre
             
-            if (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].servicio!)!
+            if (model.publicacionesEnCarrito[indexPath.row].servicio!)
             {
-                if let amountString = modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].publicacionCompra.precio?.currencyInputFormatting()
+                if let amountString = model.publicacionesEnCarrito[indexPath.row].publicacionCompra.precio?.currencyInputFormatting()
                 {
                     cell.lblCostoPublicacion.text = "\(amountString) (x1)"
                     cell.lblTotal.text = amountString
                 }
             } else
             {
-                if let amountStringDos = modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].publicacionCompra.precio?.currencyInputFormatting()
+                if let amountStringDos = model.publicacionesEnCarrito[indexPath.row].publicacionCompra.precio?.currencyInputFormatting()
                 {
-                    cell.lblCostoPublicacion.text = "\(amountStringDos) (x\((modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].cantidadCompra)!))"
+                    cell.lblCostoPublicacion.text = "\(amountStringDos) (x\((model.publicacionesEnCarrito[indexPath.row].cantidadCompra)!))"
                 }
                 
-                let costo:Int = Int((modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].publicacionCompra.precio!)!)!
-                let Total:Int = (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].cantidadCompra!)! * costo
+                let costo:Int = Int((model.publicacionesEnCarrito[indexPath.row].publicacionCompra.precio!))!
+                let Total:Int = (model.publicacionesEnCarrito[indexPath.row].cantidadCompra!) * costo
                 let TotalString:String = String(Total)
                 cell.lblTotal.text = TotalString
                 
@@ -235,7 +219,7 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
     // Celda con botón
     func buttonAction(sender: UIButton!)
     {
-        modelUsuario.publicacionCarrito = (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[sender.tag])!
+        modelUsuario.publicacionCarrito = (model.publicacionesEnCarrito[sender.tag])
         
         self.performSegue(withIdentifier: "confirmacionUnoDesdeCarritoCompras", sender: self)
     }
@@ -245,7 +229,7 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         switch segCtrlCarrito.selectedSegmentIndex
         {
         case 0:
-            modelOferente.publicacion = (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].publicacionCompra)!
+            modelOferente.publicacion = (model.publicacionesEnCarrito[indexPath.row].publicacionCompra)
             
             if (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].servicio)!
             {
@@ -273,14 +257,24 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
+        switch segCtrlCarrito.selectedSegmentIndex
+        {
+        case 0:
+            return 90
+        case 1:
+            return 100
+        case 2:
+            return 100
+        default:
+            break
+        }
+        
         return 100
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        
-        Comando.getPublicaciones()
         
         NotificationCenter.default.addObserver(self, selector: #selector(CarritoComprasViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoPublicaciones"), object: nil)
     }
