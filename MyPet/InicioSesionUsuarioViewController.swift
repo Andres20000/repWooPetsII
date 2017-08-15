@@ -12,7 +12,7 @@ import FBSDKLoginKit
 
 class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate
 {
-    var model  = ModeloUsuario.sharedInstance
+    var modelUsuario  = ModeloUsuario.sharedInstance
     
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceTopLayoutConstraint: NSLayoutConstraint?
@@ -56,17 +56,32 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
     
     func verificarUsuario(_ notification: Notification)
     {
-        if model.usuario.count == 0
+        if modelUsuario.usuario.count == 0
         {
-            let alertController = UIAlertController (title: "Ingreso fallido", message: "Tus datos están creados como Oferente. Registra uno nuevo o ingresa otros datos válidos.", preferredStyle: .alert)
-            
-            let oKAction = UIAlertAction(title: "OK", style: .default) { (_) -> Void in
-                try! FIRAuth.auth()!.signOut()
+            if Comando.validarTipoIngreso()
+            {
+                let alertController = UIAlertController (title: "Ingreso fallido", message: "Para poder iniciar sesión con Facebook primero debes registrarte.", preferredStyle: .alert)
+                
+                let oKAction = UIAlertAction(title: "OK", style: .default) { (_) -> Void in
+                    FBSDKAccessToken.setCurrent(nil)
+                    try! FIRAuth.auth()!.signOut()
+                }
+                
+                alertController.addAction(oKAction)
+                
+                present(alertController, animated: true, completion: nil)
+            } else
+            {
+                let alertController = UIAlertController (title: "Ingreso fallido", message: "Tus datos están creados como Oferente. Registra uno nuevo o ingresa otros datos válidos.", preferredStyle: .alert)
+                
+                let oKAction = UIAlertAction(title: "OK", style: .default) { (_) -> Void in
+                    try! FIRAuth.auth()!.signOut()
+                }
+                
+                alertController.addAction(oKAction)
+                
+                present(alertController, animated: true, completion: nil)
             }
-            
-            alertController.addAction(oKAction)
-            
-            present(alertController, animated: true, completion: nil)
             
         } else
         {
@@ -151,7 +166,6 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
                 return
             }
             
-            print("User: \((user?.uid)!)")
             let testMail:String?
             
             if user?.email == nil {
@@ -162,8 +176,6 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
                     email = testMail!
                 }
             }
-            
-            ComandoUsuario.registrarUsuario(uid: (user?.uid)!, correo: email)
         }
     }
     

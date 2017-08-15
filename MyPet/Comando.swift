@@ -96,6 +96,8 @@ class Comando
         model.publicacionesSaludParaPez.removeAll()
         model.publicacionesSaludParaRoedor.removeAll()
         
+        model.publicacionesEnCarrito.removeAll()
+        
         let refHandle = FIRDatabase.database().reference().child("productos")
         
         refHandle.observe(.value, with: {(snap) -> Void in
@@ -189,6 +191,25 @@ class Comando
                 }
                 
                 datosPublicacion.target = value["target"] as? String
+                
+                if modelUsuario.usuario.count != 0
+                {
+                    if modelUsuario.usuario[0].datosComplementarios?.count != 0
+                    {
+                        if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
+                        {
+                            for publicacionCarrito in (modelUsuario.usuario[0].datosComplementarios?[0].carrito)!
+                            {
+                                if publicacionCarrito.idPublicacion == datosPublicacion.idPublicacion
+                                {
+                                    publicacionCarrito.publicacionCompra = datosPublicacion
+                                    
+                                    model.publicacionesEnCarrito.append(publicacionCarrito)
+                                }
+                            }
+                        }
+                    }
+                }
                 
                 if datosPublicacion.activo!
                 {

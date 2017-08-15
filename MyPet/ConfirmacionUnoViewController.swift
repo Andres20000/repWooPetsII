@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     let modelUsuario = ModeloUsuario.sharedInstance
+    let  user = FIRAuth.auth()?.currentUser
     
     @IBOutlet var tableCompras: UITableView!
     
@@ -32,6 +34,11 @@ class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITa
         tableCompras.register(nib, forCellReuseIdentifier: "compraTableViewCell")
         
         btnSiguiente.layer.cornerRadius = 10.0
+    }
+    
+    func refrescarVista(_ notification: Notification)
+    {
+        tableCompras.reloadData()
     }
     
     // #pragma mark - Table View
@@ -89,6 +96,20 @@ class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITa
     @IBAction func continuarConfirmacion(_ sender: Any)
     {
         self.performSegue(withIdentifier: "confirmacionDosDesdeConfirmacionUno", sender: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        tableCompras.reloadData()
+        
+        /*if user?.uid != nil
+        {
+            ComandoUsuario.getUsuario(uid: (user?.uid)!)
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ConfirmacionUnoViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)*/
     }
     
     override func didReceiveMemoryWarning()
