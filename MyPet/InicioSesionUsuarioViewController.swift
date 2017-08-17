@@ -111,7 +111,7 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
                 if error != nil {
                     
                     self.mostrarAlerta(titulo: "Ingreso fallido", mensaje: "Tus datos no parecen estar correctos. Revisa tus datos y/o tu acceso a Internet.")
-                    
+                    print(error?.localizedDescription)
                 }
             })
         }

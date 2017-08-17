@@ -80,14 +80,13 @@ class ComandoUsuario
                             let postDictCarrito = (carrito as! [String : AnyObject])
                             let carritoUsuario = Carrito()
                             
+                            carritoUsuario.cantidadCompra = postDictCarrito["cantidadCompra"] as? Int
                             carritoUsuario.servicio = postDictCarrito["servicio"] as? Bool
                             
                             if carritoUsuario.servicio!
                             {
+                                
                                 carritoUsuario.fechaHoraReserva = postDictCarrito["fechaHoraReserva"] as? String
-                            }else
-                            {
-                                carritoUsuario.cantidadCompra = postDictCarrito["cantidadCompra"] as? Int
                             }
                             
                             carritoUsuario.idCarrito = idCarrito as? String
@@ -339,12 +338,11 @@ class ComandoUsuario
     {
         let refHandle  = FIRDatabase.database().reference().child("clientes/" + uid! + "/carrito").childByAutoId()
         
+        refHandle.child("/cantidadCompra").setValue(carrito.cantidadCompra)
+        
         if carrito.servicio!
         {
             refHandle.child("/fechaHoraReserva").setValue(carrito.fechaHoraReserva)
-        } else
-        {
-            refHandle.child("/cantidadCompra").setValue(carrito.cantidadCompra)
         }
         
         refHandle.child("/idPublicacion").setValue(carrito.idPublicacion)

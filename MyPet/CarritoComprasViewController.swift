@@ -166,7 +166,7 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
             {
                 if let amountString = model.publicacionesEnCarrito[indexPath.row].publicacionCompra.precio?.currencyInputFormatting()
                 {
-                    cell.lblCostoPublicacion.text = "\(amountString) (x1)"
+                    cell.lblCostoPublicacion.text = "\(amountString) (Agendado para el: \((model.publicacionesEnCarrito[indexPath.row].fechaHoraReserva)!))"
                     cell.lblTotal.text = amountString
                 }
             } else
@@ -231,7 +231,7 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         case 0:
             modelOferente.publicacion = (model.publicacionesEnCarrito[indexPath.row].publicacionCompra)
             
-            if (modelUsuario.usuario[0].datosComplementarios?[0].carrito?[indexPath.row].servicio)!
+            if (modelOferente.publicacion.servicio)!
             {
                 self.performSegue(withIdentifier: "publicacionServicioDesdeVistaCarrito", sender: self)
             } else

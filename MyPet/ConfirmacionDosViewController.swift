@@ -41,11 +41,21 @@ class ConfirmacionDosViewController: UIViewController
         lblTelefono.layer.cornerRadius = 7.0
         
         btnFinalizar.layer.cornerRadius = 10.0
+        
+        let costo:Int = Int(modelUsuario.publicacionCarrito.publicacionCompra.precio!)!
+        let Total:Int = modelUsuario.publicacionCarrito.cantidadCompra! * costo
+        let TotalString:String = String(Total)
+        lblTotal.text = TotalString
+        
+        if let amountString = lblTotal.text?.currencyInputFormatting()
+        {
+            lblTotal.text = amountString
+        }
     }
     
     @IBAction func finalizarCompra(_ sender: Any)
     {
-        //self.performSegue(withIdentifier: "confirmacionDosDesdeConfirmacionUno", sender: self)
+        self.performSegue(withIdentifier: "compraExitosaDesdeConfirmacionDos", sender: self)
     }
     
     override func viewWillAppear(_ animated: Bool)
