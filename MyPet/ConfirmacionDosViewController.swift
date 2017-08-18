@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ConfirmacionDosViewController: UIViewController
 {
     let modelUsuario = ModeloUsuario.sharedInstance
+    let  user = FIRAuth.auth()?.currentUser
     
     @IBOutlet var lblNombreCompleto: UILabel!
     @IBOutlet var lblCedula: UILabel!
@@ -55,6 +57,36 @@ class ConfirmacionDosViewController: UIViewController
     
     @IBAction func finalizarCompra(_ sender: Any)
     {
+        let nowDate = NSDate()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy h:mm a"
+        let dateString = dateFormatter.string(from: nowDate as Date)
+        
+        modelUsuario.compra.fecha = dateString
+        
+        modelUsuario.compra.idCliente = (user?.uid)!
+        modelUsuario.compra.idOferente = modelUsuario.publicacionCarrito.publicacionCompra.idOferente
+        
+        let pedido = PedidoUsuario()
+        
+        pedido.cantidadCompra = modelUsuario.publicacionCarrito.cantidadCompra
+        pedido.estado = "abierta"
+        
+        if modelUsuario.publicacionCarrito.publicacionCompra.servicio!
+        {
+            pedido.fechaServicio = modelUsuario.publicacionCarrito.fechaHoraReserva
+        }
+        
+        pedido.idPublicacion = modelUsuario.publicacionCarrito.publicacionCompra.idPublicacion
+        pedido.servicio = modelUsuario.publicacionCarrito.publicacionCompra.servicio
+        
+        modelUsuario.compra.pedido?.append(pedido)
+        
+        let costo:Int = Int(modelUsuario.publicacionCarrito.publicacionCompra.precio!)!
+        let Total:Int = modelUsuario.publicacionCarrito.cantidadCompra! * costo
+        
+        modelUsuario.compra.valor = Total
+        
         self.performSegue(withIdentifier: "compraExitosaDesdeConfirmacionDos", sender: self)
     }
     

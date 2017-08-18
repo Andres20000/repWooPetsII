@@ -8,8 +8,11 @@
 
 import UIKit
 
-class CompraExitosaViewController: UIViewController
+class CompraExitosaViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
+    let modelUsuario = ModeloUsuario.sharedInstance
+    
+    @IBOutlet var tableCompras: UITableView!
     @IBOutlet var btnContinuar: UIButton!
     
     override func viewDidLoad()
@@ -19,6 +22,53 @@ class CompraExitosaViewController: UIViewController
         // Do any additional setup after loading the view.
         
         btnContinuar.layer.cornerRadius = 10.0
+        
+        let nib = UINib(nibName: "ProductoCompradoTableViewCell", bundle: nil)
+        tableCompras.register(nib, forCellReuseIdentifier: "productoCompradoTableViewCell")
+        
+        let nib2 = UINib(nibName: "ServicioCompradoTableViewCell", bundle: nil)
+        tableCompras.register(nib2, forCellReuseIdentifier: "servicioCompradoTableViewCell")
+    }
+    
+    // #pragma mark - Table View
+    
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        if modelUsuario.publicacionCarrito.publicacionCompra.servicio!
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "servicioCompradoTableViewCell")  as! ServicioCompradoTableViewCell
+            
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "productoCompradoTableViewCell")  as! ProductoCompradoTableViewCell
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        print("Seleccionado")
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if modelUsuario.publicacionCarrito.publicacionCompra.servicio!
+        {
+            return 130
+        }
+        
+        return 110
     }
     
     @IBAction func continuar(_ sender: Any)
