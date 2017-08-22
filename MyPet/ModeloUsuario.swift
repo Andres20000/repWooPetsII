@@ -119,6 +119,7 @@ class PedidoUsuario
     var cantidadCompra:Int?  = 0
     var estado:String?  = ""
     var fechaServicio:String?  = ""
+    var idPedido:Int?  = 0
     var idPublicacion:String?  = ""
     var publicacionCompra = PublicacionOferente()
     var servicio:Bool?
@@ -157,6 +158,7 @@ class ModeloUsuario
     var publicacionCarrito = Carrito()
     
     var misCompras = [CompraUsuario]()
+    var misComprasCompleto = [CompraUsuario]()
     var compra = CompraUsuario()
 }
 

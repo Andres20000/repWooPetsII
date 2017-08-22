@@ -482,7 +482,6 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     
     func hacerMontaje(_ notification: Notification)
     {
-        print("count Servicio: \(modelOferente.oferente.count) - \(modelOferente.publicacion.idOferente)")
         createPageViewController()
     }
     

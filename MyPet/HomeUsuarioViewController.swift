@@ -30,8 +30,6 @@ class HomeUsuarioViewController: UITabBarController
         self.tabBar.items?[2].selectedImage = UIImage(named: "btnMenuAzul")?.withRenderingMode(.alwaysOriginal)
         self.tabBar.items?[2].image = UIImage(named: "btnMenu")?.withRenderingMode(.alwaysOriginal)
         
-        let  user = FIRAuth.auth()?.currentUser
-        
         if user != nil
         {
             let model = Modelo.sharedInstance
@@ -56,9 +54,17 @@ class HomeUsuarioViewController: UITabBarController
     {
         super.viewWillAppear(animated)
         
+        if user != nil
+        {
+            ComandoUsuario.getMisComprasUsuario(uid: (user?.uid)!)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(HomeUsuarioViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoMisComprasUsuario"), object: nil)
+        }
+        
         Comando.getPublicaciones()
         
         NotificationCenter.default.addObserver(self, selector: #selector(HomeUsuarioViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoPublicaciones"), object: nil)
+        
     }
     
     override func didReceiveMemoryWarning()

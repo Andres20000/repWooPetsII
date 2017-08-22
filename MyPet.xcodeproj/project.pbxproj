@@ -76,6 +76,14 @@
 		8448600E1F4644A600DF5D9D /* ServicioCompradoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8448600B1F4644A600DF5D9D /* ServicioCompradoTableViewCell.swift */; };
 		8448600F1F4644A600DF5D9D /* ServicioCompradoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8448600C1F4644A600DF5D9D /* ServicioCompradoTableViewCell.xib */; };
 		844860101F4644A600DF5D9D /* ServicioCompradoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8448600C1F4644A600DF5D9D /* ServicioCompradoTableViewCell.xib */; };
+		844860131F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844860111F4B3F2300DF5D9D /* MiCompraPendienteTableViewCell.swift */; };
+		844860141F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844860111F4B3F2300DF5D9D /* MiCompraPendienteTableViewCell.swift */; };
+		844860151F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844860121F4B3F2300DF5D9D /* MiCompraPendienteTableViewCell.xib */; };
+		844860161F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844860121F4B3F2300DF5D9D /* MiCompraPendienteTableViewCell.xib */; };
+		844860181F4BE27900DF5D9D /* AvisoCalificacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844860171F4BE27900DF5D9D /* AvisoCalificacionViewController.swift */; };
+		844860191F4BE27900DF5D9D /* AvisoCalificacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844860171F4BE27900DF5D9D /* AvisoCalificacionViewController.swift */; };
+		8448601B1F4BE9C700DF5D9D /* CalificacionPublicacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8448601A1F4BE9C700DF5D9D /* CalificacionPublicacionViewController.swift */; };
+		8448601C1F4BE9C700DF5D9D /* CalificacionPublicacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8448601A1F4BE9C700DF5D9D /* CalificacionPublicacionViewController.swift */; };
 		8451A3861EFB227200B59E46 /* UbicacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451A3851EFB227200B59E46 /* UbicacionViewController.swift */; };
 		8451A3871EFB227200B59E46 /* UbicacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451A3851EFB227200B59E46 /* UbicacionViewController.swift */; };
 		8451A38B1EFB7A6200B59E46 /* UbicacionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451A3891EFB7A6200B59E46 /* UbicacionTableViewCell.swift */; };
@@ -258,6 +266,10 @@
 		844860061F46447300DF5D9D /* ProductoCompradoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductoCompradoTableViewCell.xib; sourceTree = "<group>"; };
 		8448600B1F4644A600DF5D9D /* ServicioCompradoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicioCompradoTableViewCell.swift; sourceTree = "<group>"; };
 		8448600C1F4644A600DF5D9D /* ServicioCompradoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServicioCompradoTableViewCell.xib; sourceTree = "<group>"; };
+		844860111F4B3F2300DF5D9D /* MiCompraPendienteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiCompraPendienteTableViewCell.swift; sourceTree = "<group>"; };
+		844860121F4B3F2300DF5D9D /* MiCompraPendienteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiCompraPendienteTableViewCell.xib; sourceTree = "<group>"; };
+		844860171F4BE27900DF5D9D /* AvisoCalificacionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvisoCalificacionViewController.swift; sourceTree = "<group>"; };
+		8448601A1F4BE9C700DF5D9D /* CalificacionPublicacionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalificacionPublicacionViewController.swift; sourceTree = "<group>"; };
 		8451A3851EFB227200B59E46 /* UbicacionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UbicacionViewController.swift; sourceTree = "<group>"; };
 		8451A3891EFB7A6200B59E46 /* UbicacionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UbicacionTableViewCell.swift; sourceTree = "<group>"; };
 		8451A38A1EFB7A6200B59E46 /* UbicacionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UbicacionTableViewCell.xib; sourceTree = "<group>"; };
@@ -394,6 +406,8 @@
 				840B1B561F3594AD00423832 /* FavoritoTableViewCell.xib */,
 				84818C531F411CC1001011BA /* CarritoTableViewCell.swift */,
 				84818C541F411CC1001011BA /* CarritoTableViewCell.xib */,
+				844860111F4B3F2300DF5D9D /* MiCompraPendienteTableViewCell.swift */,
+				844860121F4B3F2300DF5D9D /* MiCompraPendienteTableViewCell.xib */,
 			);
 			name = "Cell Carrito";
 			sourceTree = "<group>";
@@ -582,6 +596,8 @@
 				84A5A4D81F3D5BA800429500 /* ConfirmacionDosViewController.swift */,
 				84485FFB1F455CC500DF5D9D /* CompraExitosaViewController.swift */,
 				84485FFE1F462ED800DF5D9D /* Compra Exitosa Cell */,
+				844860171F4BE27900DF5D9D /* AvisoCalificacionViewController.swift */,
+				8448601A1F4BE9C700DF5D9D /* CalificacionPublicacionViewController.swift */,
 				84BD20801EF0A58F001422E7 /* MenuUsuarioViewController.swift */,
 			);
 			name = Usuario;
@@ -806,6 +822,7 @@
 				840B1B591F3594AD00423832 /* FavoritoTableViewCell.xib in Resources */,
 				84A3E1D91EC66EA80013E4DD /* CategoriaCollectionViewCell.xib in Resources */,
 				840B1B491F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */,
+				844860151F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.xib in Resources */,
 				84CA9EFE1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
 				8451A38D1EFB7A6200B59E46 /* UbicacionTableViewCell.xib in Resources */,
 				8448600F1F4644A600DF5D9D /* ServicioCompradoTableViewCell.xib in Resources */,
@@ -837,6 +854,7 @@
 				84F4FA701EAAAF6900F3E69A /* LaunchScreen.storyboard in Resources */,
 				847838D01F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
 				8448600A1F46447300DF5D9D /* ProductoCompradoTableViewCell.xib in Resources */,
+				844860161F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.xib in Resources */,
 				84A3E1DA1EC66EA80013E4DD /* CategoriaCollectionViewCell.xib in Resources */,
 				84818C581F411CC1001011BA /* CarritoTableViewCell.xib in Resources */,
 				8451A38E1EFB7A6200B59E46 /* UbicacionTableViewCell.xib in Resources */,
@@ -955,6 +973,7 @@
 				84A766011F2995DB001708CE /* ResenaCompradoresViewController.swift in Sources */,
 				84CA9EF41F02E35D000F6F72 /* AdministrarMascotasViewController.swift in Sources */,
 				84BD20841EF0ADC7001422E7 /* PreCargaDatosViewController.swift in Sources */,
+				8448601B1F4BE9C700DF5D9D /* CalificacionPublicacionViewController.swift in Sources */,
 				84417B6D1EB0334400A70ABC /* AvisoOferenteViewController.swift in Sources */,
 				84BD206C1EEF8F9C001422E7 /* ComandoUsuario.swift in Sources */,
 				84A3E1CB1EC3E0580013E4DD /* MisPublicacionesViewController.swift in Sources */,
@@ -1003,6 +1022,7 @@
 				84BD20721EF092DB001422E7 /* Comando.swift in Sources */,
 				847FDC0F1ED34029002F9530 /* DetalleEstandarTableViewCell.swift in Sources */,
 				84E4CF291F22EADA009DC256 /* PublicacionProductoViewController.swift in Sources */,
+				844860131F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.swift in Sources */,
 				8447098F1EEE070C00C27CDF /* RegistroExitosoViewController.swift in Sources */,
 				847FDC351ED681C1002F9530 /* ExtensionImage.swift in Sources */,
 				84A3E1D01EC4335B0013E4DD /* PublicacionTableViewCell.swift in Sources */,
@@ -1024,6 +1044,7 @@
 				84F4FA4B1EAA955900F3E69A /* AppDelegate.swift in Sources */,
 				847838CD1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift in Sources */,
 				848E318F1F26601200D35C6D /* PublicacionServicioViewController.swift in Sources */,
+				844860181F4BE27900DF5D9D /* AvisoCalificacionViewController.swift in Sources */,
 				840BD1841ED259AE00AAD2AE /* DestacarPublicacionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1038,6 +1059,7 @@
 				84A766021F2995DB001708CE /* ResenaCompradoresViewController.swift in Sources */,
 				84CA9EF51F02E35D000F6F72 /* AdministrarMascotasViewController.swift in Sources */,
 				84BD20851EF0ADC7001422E7 /* PreCargaDatosViewController.swift in Sources */,
+				8448601C1F4BE9C700DF5D9D /* CalificacionPublicacionViewController.swift in Sources */,
 				84417B6E1EB0334400A70ABC /* AvisoOferenteViewController.swift in Sources */,
 				84BD206D1EEF8F9C001422E7 /* ComandoUsuario.swift in Sources */,
 				84A3E1CC1EC3E0580013E4DD /* MisPublicacionesViewController.swift in Sources */,
@@ -1086,6 +1108,7 @@
 				84BD20731EF092DB001422E7 /* Comando.swift in Sources */,
 				847FDC101ED34029002F9530 /* DetalleEstandarTableViewCell.swift in Sources */,
 				84E4CF2A1F22EADA009DC256 /* PublicacionProductoViewController.swift in Sources */,
+				844860141F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.swift in Sources */,
 				844709901EEE070C00C27CDF /* RegistroExitosoViewController.swift in Sources */,
 				847FDC361ED681C1002F9530 /* ExtensionImage.swift in Sources */,
 				84A3E1D11EC4335B0013E4DD /* PublicacionTableViewCell.swift in Sources */,
@@ -1107,6 +1130,7 @@
 				84F4FA661EAAAF6900F3E69A /* AppDelegate.swift in Sources */,
 				847838CE1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift in Sources */,
 				848E31901F26601200D35C6D /* PublicacionServicioViewController.swift in Sources */,
+				844860191F4BE27900DF5D9D /* AvisoCalificacionViewController.swift in Sources */,
 				840BD1851ED259AE00AAD2AE /* DestacarPublicacionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
