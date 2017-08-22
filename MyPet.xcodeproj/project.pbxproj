@@ -45,7 +45,6 @@
 		4124FE5F1F3D4DAB00C9A1C5 /* ChatCelda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE5D1F3D4DAB00C9A1C5 /* ChatCelda.swift */; };
 		4124FE611F3D533400C9A1C5 /* ChatOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE601F3D533400C9A1C5 /* ChatOferente.swift */; };
 		4124FE621F3D533400C9A1C5 /* ChatOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE601F3D533400C9A1C5 /* ChatOferente.swift */; };
-		4126C95B1F44601800BC4413 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4126C95A1F44601800BC4413 /* GoogleService-Info.plist */; };
 		4126C95D1F44877D00BC4413 /* MisVentas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C95C1F44877D00BC4413 /* MisVentas.swift */; };
 		4126C95E1F44877D00BC4413 /* MisVentas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C95C1F44877D00BC4413 /* MisVentas.swift */; };
 		4126C9601F449F7200BC4413 /* ComandoCompras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C95F1F449F7200BC4413 /* ComandoCompras.swift */; };
@@ -66,6 +65,7 @@
 		41572E881F4CE17D00F3878D /* RespuestaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41572E861F4CE17D00F3878D /* RespuestaVC.swift */; };
 		41572E8A1F4CE33000F3878D /* DestacarPublicacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */; };
 		41572E8B1F4CE33000F3878D /* DestacarPublicacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */; };
+		41572E8D1F4CEC4800F3878D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41572E8C1F4CEC4800F3878D /* GoogleService-Info.plist */; };
 		840B1B3A1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
 		840B1B3B1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
 		840B1B3C1F339B2900423832 /* ResenaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840B1B391F339B2900423832 /* ResenaTableViewCell.xib */; };
@@ -275,7 +275,6 @@
 		4124FE5A1F3D3D6800C9A1C5 /* ChatCelda.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCelda.xib; sourceTree = "<group>"; };
 		4124FE5D1F3D4DAB00C9A1C5 /* ChatCelda.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCelda.swift; sourceTree = "<group>"; };
 		4124FE601F3D533400C9A1C5 /* ChatOferente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatOferente.swift; sourceTree = "<group>"; };
-		4126C95A1F44601800BC4413 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4126C95C1F44877D00BC4413 /* MisVentas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MisVentas.swift; sourceTree = "<group>"; };
 		4126C95F1F449F7200BC4413 /* ComandoCompras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComandoCompras.swift; sourceTree = "<group>"; };
 		4126C9621F44AA3D00BC4413 /* Compra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Compra.swift; sourceTree = "<group>"; };
@@ -286,6 +285,7 @@
 		4134D5191F46033400DB43DA /* DetalleMiVenta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalleMiVenta.swift; sourceTree = "<group>"; };
 		41572E861F4CE17D00F3878D /* RespuestaVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RespuestaVC.swift; sourceTree = "<group>"; };
 		41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestacarPublicacionViewController.swift; sourceTree = "<group>"; };
+		41572E8C1F4CEC4800F3878D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49E7A6DA1136AACD9514E46A /* Pods-MyPetPruebas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPetPruebas.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyPetPruebas/Pods-MyPetPruebas.release.xcconfig"; sourceTree = "<group>"; };
 		840B1B381F339B2900423832 /* ResenaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResenaTableViewCell.swift; sourceTree = "<group>"; };
 		840B1B391F339B2900423832 /* ResenaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResenaTableViewCell.xib; sourceTree = "<group>"; };
@@ -755,7 +755,7 @@
 				84F4FA651EAAAF6900F3E69A /* AppDelegate.swift */,
 				84F4FA6E1EAAAF6900F3E69A /* LaunchScreen.storyboard */,
 				84F4FA711EAAAF6900F3E69A /* Info.plist */,
-				4126C95A1F44601800BC4413 /* GoogleService-Info.plist */,
+				41572E8C1F4CEC4800F3878D /* GoogleService-Info.plist */,
 				847FDC2D1ED54336002F9530 /* Media.xcassets */,
 			);
 			path = MyPetPruebas;
@@ -907,6 +907,7 @@
 			files = (
 				84417B941EB2CAE800A70ABC /* DireccionRegistroTableViewCell.xib in Resources */,
 				84A3E1D31EC4335B0013E4DD /* PublicacionTableViewCell.xib in Resources */,
+				41572E8D1F4CEC4800F3878D /* GoogleService-Info.plist in Resources */,
 				84CA9EFF1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
 				840B1B4A1F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */,
 				84F4FA781EAAEF0300F3E69A /* Main.storyboard in Resources */,
@@ -926,7 +927,6 @@
 				411A85FC1F41E27A00BDC788 /* ChatCeldaSinRespuesta.xib in Resources */,
 				847FDC181ED3469F002F9530 /* DetalleHorarioTableViewCell.xib in Resources */,
 				847FDC121ED34029002F9530 /* DetalleEstandarTableViewCell.xib in Resources */,
-				4126C95B1F44601800BC4413 /* GoogleService-Info.plist in Resources */,
 				847FDC2E1ED54336002F9530 /* Media.xcassets in Resources */,
 				4124FE5C1F3D3D6800C9A1C5 /* ChatCelda.xib in Resources */,
 				840B1B5A1F3594AD00423832 /* FavoritoTableViewCell.xib in Resources */,
