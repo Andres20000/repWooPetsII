@@ -19,6 +19,8 @@ class CompraExitosaViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var tableCompras: UITableView!
     @IBOutlet var btnContinuar: UIButton!
     
+    var vistoDesdeMisCompras:Bool = false
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -53,7 +55,7 @@ class CompraExitosaViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        if modelUsuario.publicacionCarrito.publicacionCompra.servicio!
+        if (modelUsuario.compra.pedido?[0].servicio)!
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "servicioCompradoTableViewCell")  as! ServicioCompradoTableViewCell
             
@@ -109,7 +111,7 @@ class CompraExitosaViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        if modelUsuario.publicacionCarrito.publicacionCompra.servicio!
+        if (modelUsuario.compra.pedido?[0].servicio)!
         {
             return 130
         }
@@ -119,11 +121,17 @@ class CompraExitosaViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func continuar(_ sender: Any)
     {
-        modelUsuario.publicacionCarrito.idCarrito = ""
-        
-        ComandoUsuario.getUsuario(uid: (user?.uid)!)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(CompraExitosaViewController.irAPrecargar(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
+        if vistoDesdeMisCompras
+        {
+            dismiss(animated: true, completion: nil)
+        } else
+        {
+            modelUsuario.publicacionCarrito.idCarrito = ""
+            
+            ComandoUsuario.getUsuario(uid: (user?.uid)!)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(CompraExitosaViewController.irAPrecargar(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
+        }
     }
     
     func irAPrecargar(_ notification: Notification)

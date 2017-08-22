@@ -45,6 +45,31 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         segCtrlCarrito.layer.borderWidth = 1.0
         segCtrlCarrito.layer.borderColor = UIColor.white.cgColor
         
+        if user == nil
+        {
+            switch segCtrlCarrito.selectedSegmentIndex
+            {
+            case 0:
+                
+                viewMensaje.isHidden = false
+                imgMensaje.image = UIImage(named: "imgCarritoVacio")
+                lblMensaje.text = "Actualmente no tienes ningún producto y/o servicio en tu carrito."
+                
+            case 1:
+                viewMensaje.isHidden = false
+                imgMensaje.image = UIImage(named: "imgCarritoVacio")
+                lblMensaje.text = "Actualmente no tienes productos y/o servicios en tus compras."
+    
+                
+            case 2:
+                viewMensaje.isHidden = false
+                imgMensaje.image = UIImage(named: "imgFavoritoVacio")
+                lblMensaje.text = "Actualmente no tienes productos y/o servicios favoritos."
+            default:
+                break
+            }
+        }
+        
         let nib = UINib(nibName: "FavoritoTableViewCell", bundle: nil)
         tableProductosServicios.register(nib, forCellReuseIdentifier: "favoritoTableViewCell")
         
@@ -81,15 +106,15 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
             }
             
         case 2:
-            if model.publicacionesFavoritas.count == 0
-            {
-                viewMensaje.isHidden = false
-                imgMensaje.image = UIImage(named: "imgFavoritoVacio")
-                lblMensaje.text = "Actualmente no tienes productos y/o servicios favoritos."
-            } else
+            viewMensaje.isHidden = false
+            imgMensaje.image = UIImage(named: "imgFavoritoVacio")
+            lblMensaje.text = "Actualmente no tienes productos y/o servicios favoritos."
+            
+            if model.publicacionesFavoritas.count != 0
             {
                 viewMensaje.isHidden = true
             }
+            
         default:
             break
         }
@@ -294,8 +319,12 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
                 self.performSegue(withIdentifier: "publicacionProductoDesdeVistaCarrito", sender: self)
             }
         case 1:
-            print("Seleccionada")
-            //self.performSegue(withIdentifier: "compraExitosaDesdeMisCompras", sender: self)
+            modelUsuario.compra = modelUsuario.misComprasCompleto[indexPath.row]
+            
+            ComandoOferente.getOferente(uid: modelUsuario.compra.idOferente)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(CarritoComprasViewController.verCompra(_:)), name:NSNotification.Name(rawValue:"cargoOferente"), object: nil)
+            
         case 2:
             modelOferente.publicacion = model.publicacionesFavoritas[indexPath.row]
             
@@ -309,6 +338,11 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         default:
             break
         }
+    }
+    
+    func verCompra(_ notification: Notification)
+    {
+        self.performSegue(withIdentifier: "compraExitosaDesdeMisCompras", sender: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
@@ -341,16 +375,20 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if (segue.identifier == "compraExitosaDesdeMisCompras")
+        {
+            let detailController = segue.destination as! CompraExitosaViewController
+            detailController.vistoDesdeMisCompras = true
+        }
     }
-    */
     
     // Leer texto de archivo .txt
     

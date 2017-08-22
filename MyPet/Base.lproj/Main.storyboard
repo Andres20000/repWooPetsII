@@ -3508,6 +3508,29 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgTexturaBlancoCompleto" translatesAutoresizingMaskIntoConstraints="NO" id="4Jb-b5-bCm">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NhM-Pc-Iau" customClass="FloatRatingView" customModule="MyPet" customModuleProvider="target">
+                                <rect key="frame" x="16" y="220" width="343" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Porque deseamos mejorar, te pedimos el favor de calificar nuestro servicio:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnA-rG-GV2">
+                                <rect key="frame" x="16" y="123" width="343" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -3592,7 +3615,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ku-QS-1cd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3020" y="-2257"/>
+            <point key="canvasLocation" x="3020" y="-2257.4212893553226"/>
         </scene>
         <!--Carrito Compras View Controller-->
         <scene sceneID="UKT-7F-S47">
@@ -3665,7 +3688,7 @@
                                     <outlet property="delegate" destination="Mz6-me-0lf" id="2Uq-Yp-QCC"/>
                                 </connections>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGp-be-x6G">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGp-be-x6G">
                                 <rect key="frame" x="67" y="290.5" width="240" height="190"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qqd-4s-cmN">
@@ -6144,19 +6167,19 @@
         <segue reference="g9o-0N-P4D"/>
         <segue reference="a0Y-0f-miF"/>
         <segue reference="KSr-oI-4G4"/>
-        <segue reference="ccS-eF-KMJ"/>
-        <segue reference="5yC-5s-kks"/>
-        <segue reference="elx-fp-KNU"/>
-        <segue reference="d72-8e-bX5"/>
-        <segue reference="Sxi-cS-EGb"/>
-        <segue reference="pQ7-FT-sEN"/>
-        <segue reference="BX6-fI-Ian"/>
-        <segue reference="rxK-zF-aLe"/>
-        <segue reference="ZfC-qD-0SX"/>
-        <segue reference="B7O-E2-n1O"/>
-        <segue reference="7hU-I0-I2k"/>
+        <segue reference="c64-eH-oia"/>
+        <segue reference="rzp-TS-BC7"/>
+        <segue reference="MuH-BR-ujl"/>
+        <segue reference="KNz-Nx-pOf"/>
+        <segue reference="FW0-BB-RT8"/>
+        <segue reference="qav-fg-sdY"/>
+        <segue reference="aiq-DQ-SKV"/>
+        <segue reference="gNs-38-JWS"/>
+        <segue reference="IRx-Jv-GCZ"/>
+        <segue reference="95r-G0-w3V"/>
+        <segue reference="aNJ-m2-0I0"/>
+        <segue reference="ebI-ph-1Ok"/>
         <segue reference="k7m-qH-c1t"/>
         <segue reference="oQN-Js-Es1"/>
-        <segue reference="rzp-TS-BC7"/>
     </inferredMetricsTieBreakers>
 </document>
