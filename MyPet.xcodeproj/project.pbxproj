@@ -65,7 +65,6 @@
 		41572E881F4CE17D00F3878D /* RespuestaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41572E861F4CE17D00F3878D /* RespuestaVC.swift */; };
 		41572E8A1F4CE33000F3878D /* DestacarPublicacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */; };
 		41572E8B1F4CE33000F3878D /* DestacarPublicacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */; };
-		41572E8D1F4CEC4800F3878D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41572E8C1F4CEC4800F3878D /* GoogleService-Info.plist */; };
 		840B1B3A1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
 		840B1B3B1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
 		840B1B3C1F339B2900423832 /* ResenaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840B1B391F339B2900423832 /* ResenaTableViewCell.xib */; };
@@ -285,7 +284,6 @@
 		4134D5191F46033400DB43DA /* DetalleMiVenta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalleMiVenta.swift; sourceTree = "<group>"; };
 		41572E861F4CE17D00F3878D /* RespuestaVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RespuestaVC.swift; sourceTree = "<group>"; };
 		41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestacarPublicacionViewController.swift; sourceTree = "<group>"; };
-		41572E8C1F4CEC4800F3878D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49E7A6DA1136AACD9514E46A /* Pods-MyPetPruebas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPetPruebas.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyPetPruebas/Pods-MyPetPruebas.release.xcconfig"; sourceTree = "<group>"; };
 		840B1B381F339B2900423832 /* ResenaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResenaTableViewCell.swift; sourceTree = "<group>"; };
 		840B1B391F339B2900423832 /* ResenaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResenaTableViewCell.xib; sourceTree = "<group>"; };
@@ -755,7 +753,6 @@
 				84F4FA651EAAAF6900F3E69A /* AppDelegate.swift */,
 				84F4FA6E1EAAAF6900F3E69A /* LaunchScreen.storyboard */,
 				84F4FA711EAAAF6900F3E69A /* Info.plist */,
-				41572E8C1F4CEC4800F3878D /* GoogleService-Info.plist */,
 				847FDC2D1ED54336002F9530 /* Media.xcassets */,
 			);
 			path = MyPetPruebas;
@@ -907,7 +904,6 @@
 			files = (
 				84417B941EB2CAE800A70ABC /* DireccionRegistroTableViewCell.xib in Resources */,
 				84A3E1D31EC4335B0013E4DD /* PublicacionTableViewCell.xib in Resources */,
-				41572E8D1F4CEC4800F3878D /* GoogleService-Info.plist in Resources */,
 				84CA9EFF1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
 				840B1B4A1F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */,
 				84F4FA781EAAEF0300F3E69A /* Main.storyboard in Resources */,
