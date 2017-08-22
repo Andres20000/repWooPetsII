@@ -206,4 +206,43 @@ class ComandoOferente
         }
         
     }
+    
+    
+    class func setIdClienteTpaga(uid:String, idClienteTpaga:String) {
+        
+        let ref  = FIRDatabase.database().reference().child("oferentes/" + uid + "/idClienteTpaga")
+        
+        ref.setValue(idClienteTpaga)
+        
+    }
+    
+    class func desactivarTarjeta(uid:String?, idTarjeta:String) {
+        
+        let ref  = FIRDatabase.database().reference().child("oferentes/" + uid! + "/tarjetas/" + idTarjeta + "/activo")
+        ref.setValue(false)
+        
+    }
+    
+    class func crearTarjeta(uid:String, lastFour:String, token : String, cuotas : Int,franquicia: String , activo: Bool  ) -> String{
+        
+        
+        
+        let ref  = FIRDatabase.database().reference().child("oferentes/" + uid + "/tarjetas" ).childByAutoId()
+        
+        
+        let newItem = ["lastFour":lastFour,
+                       "cuotas": cuotas,
+                       "token": token,
+                       "franquicia":franquicia,
+                       "activo":activo] as [String : Any]
+        
+        
+        ref.setValue(newItem)
+        
+        return ref.key
+        
+    }
+    
+    
+    
 }

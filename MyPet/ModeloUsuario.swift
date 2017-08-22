@@ -12,6 +12,7 @@ class Usuario
 {
     var correo:String?  = ""
     var datosComplementarios:[DatosComplementarios]? = []
+    var id = ""
     
     var tieneDatosComplementarios:Bool
     {
@@ -127,6 +128,8 @@ class ModeloUsuario
     var mascotaSeleccionada = Mascota()
     var alertasMascotaSeleccionada = [Alerta]()
     var alertaMascota = Alerta()
+    
+    
     
 }
 

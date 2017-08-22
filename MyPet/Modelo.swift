@@ -54,6 +54,18 @@ class Pregunta
     var pregunta:String?  = ""
     var respuesta:String?  = ""
     var timestamp:CLong?
+    
+    
+    func tieneRespuesta() -> Bool {
+    
+        if respuesta != "" {
+            return true
+        }
+
+        return false
+        
+    }
+    
 }
 
 class Modelo
@@ -165,6 +177,9 @@ class Modelo
     var myApp = Sistema()
     var sistema = Sistema()
     
+    // La idea es guardar en este mismo cache las imagenes tanto de cliente como de oferente.
+    let cache = NSCache<NSString, NSData>()
+    
     func existeActualizacion() -> Bool
     {
         let dictionary = Bundle.main.infoDictionary!
@@ -184,6 +199,17 @@ class Modelo
         return false
         
     }
+    
+    
+    
+    // MARK: Imagenes
+    func getVersionFirebase(de imagen:ImageFire) -> Int {
+        
+        return 0
+        
+    }
+    
+    
 }
 
 extension Date
@@ -199,13 +225,15 @@ extension Date
         return dateString
     }
     
-    func fechaString() -> String
+    
+    
+    /*func fechaString() -> String
     {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         
         let dateString = dateFormatter.string(from: self)
         return dateString
-    }
+    }*/
 }
 

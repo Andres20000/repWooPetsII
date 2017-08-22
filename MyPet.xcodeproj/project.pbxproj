@@ -7,7 +7,63 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		840996AF1EC183ED00693C58 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 840996AE1EC183ED00693C58 /* GoogleService-Info.plist */; };
+		4101EEE81F43445100F161DE /* ImageFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101EEE71F43445100F161DE /* ImageFire.swift */; };
+		4101EEE91F43445100F161DE /* ImageFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101EEE71F43445100F161DE /* ImageFire.swift */; };
+		4101EEEB1F43483700F161DE /* Adiciones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101EEEA1F43483700F161DE /* Adiciones.swift */; };
+		4101EEEC1F43483700F161DE /* Adiciones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101EEEA1F43483700F161DE /* Adiciones.swift */; };
+		4101EEEE1F434BC500F161DE /* ComandoDestacados.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101EEED1F434BC500F161DE /* ComandoDestacados.swift */; };
+		4101EEEF1F434BC500F161DE /* ComandoDestacados.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101EEED1F434BC500F161DE /* ComandoDestacados.swift */; };
+		4101FA471F4B76880098F735 /* IngresoTarjetaHabiente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101FA461F4B76880098F735 /* IngresoTarjetaHabiente.swift */; };
+		4101FA481F4B76880098F735 /* IngresoTarjetaHabiente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101FA461F4B76880098F735 /* IngresoTarjetaHabiente.swift */; };
+		4101FA4B1F4B7B380098F735 /* TPCliente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101FA4A1F4B7B380098F735 /* TPCliente.swift */; };
+		4101FA4C1F4B7B380098F735 /* TPCliente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101FA4A1F4B7B380098F735 /* TPCliente.swift */; };
+		4101FA4E1F4B7B3E0098F735 /* TPErrores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101FA4D1F4B7B3E0098F735 /* TPErrores.swift */; };
+		4101FA4F1F4B7B3E0098F735 /* TPErrores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101FA4D1F4B7B3E0098F735 /* TPErrores.swift */; };
+		4101FA511F4B7B430098F735 /* TPaga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101FA501F4B7B430098F735 /* TPaga.swift */; };
+		4101FA521F4B7B430098F735 /* TPaga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101FA501F4B7B430098F735 /* TPaga.swift */; };
+		41160B5F1F49BC6B00FF4765 /* ComandoCalificacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41160B5E1F49BC6B00FF4765 /* ComandoCalificacion.swift */; };
+		41160B601F49BC6B00FF4765 /* ComandoCalificacion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41160B5E1F49BC6B00FF4765 /* ComandoCalificacion.swift */; };
+		411A85FB1F41E27A00BDC788 /* ChatCeldaSinRespuesta.xib in Resources */ = {isa = PBXBuildFile; fileRef = 411A85FA1F41E27A00BDC788 /* ChatCeldaSinRespuesta.xib */; };
+		411A85FC1F41E27A00BDC788 /* ChatCeldaSinRespuesta.xib in Resources */ = {isa = PBXBuildFile; fileRef = 411A85FA1F41E27A00BDC788 /* ChatCeldaSinRespuesta.xib */; };
+		411A85FE1F41E5F500BDC788 /* ChatCeldaSinRespuesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A85FD1F41E5F500BDC788 /* ChatCeldaSinRespuesta.swift */; };
+		411A85FF1F41E5F500BDC788 /* ChatCeldaSinRespuesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A85FD1F41E5F500BDC788 /* ChatCeldaSinRespuesta.swift */; };
+		411A86071F426EA200BDC788 /* CoachMarkDestacarImagen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A86061F426EA200BDC788 /* CoachMarkDestacarImagen.swift */; };
+		411A86081F426EA200BDC788 /* CoachMarkDestacarImagen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A86061F426EA200BDC788 /* CoachMarkDestacarImagen.swift */; };
+		411E20FD1F4BB2D400D2484F /* IngresoTarjetaOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411E20FC1F4BB2D400D2484F /* IngresoTarjetaOferente.swift */; };
+		411E20FE1F4BB2D400D2484F /* IngresoTarjetaOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411E20FC1F4BB2D400D2484F /* IngresoTarjetaOferente.swift */; };
+		4124FE4B1F3CAD9400C9A1C5 /* ComandoPreguntasOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE4A1F3CAD9400C9A1C5 /* ComandoPreguntasOferente.swift */; };
+		4124FE4C1F3CAD9400C9A1C5 /* ComandoPreguntasOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE4A1F3CAD9400C9A1C5 /* ComandoPreguntasOferente.swift */; };
+		4124FE4E1F3CC6FE00C9A1C5 /* PublicacionesOferenteSinRespuesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE4D1F3CC6FE00C9A1C5 /* PublicacionesOferenteSinRespuesta.swift */; };
+		4124FE4F1F3CC6FE00C9A1C5 /* PublicacionesOferenteSinRespuesta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE4D1F3CC6FE00C9A1C5 /* PublicacionesOferenteSinRespuesta.swift */; };
+		4124FE551F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4124FE541F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib */; };
+		4124FE561F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4124FE541F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib */; };
+		4124FE581F3D394200C9A1C5 /* HeaderPreguntaCeldaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE571F3D394200C9A1C5 /* HeaderPreguntaCeldaTableViewCell.swift */; };
+		4124FE591F3D394200C9A1C5 /* HeaderPreguntaCeldaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE571F3D394200C9A1C5 /* HeaderPreguntaCeldaTableViewCell.swift */; };
+		4124FE5B1F3D3D6800C9A1C5 /* ChatCelda.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4124FE5A1F3D3D6800C9A1C5 /* ChatCelda.xib */; };
+		4124FE5C1F3D3D6800C9A1C5 /* ChatCelda.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4124FE5A1F3D3D6800C9A1C5 /* ChatCelda.xib */; };
+		4124FE5E1F3D4DAB00C9A1C5 /* ChatCelda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE5D1F3D4DAB00C9A1C5 /* ChatCelda.swift */; };
+		4124FE5F1F3D4DAB00C9A1C5 /* ChatCelda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE5D1F3D4DAB00C9A1C5 /* ChatCelda.swift */; };
+		4124FE611F3D533400C9A1C5 /* ChatOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE601F3D533400C9A1C5 /* ChatOferente.swift */; };
+		4124FE621F3D533400C9A1C5 /* ChatOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4124FE601F3D533400C9A1C5 /* ChatOferente.swift */; };
+		4126C95B1F44601800BC4413 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4126C95A1F44601800BC4413 /* GoogleService-Info.plist */; };
+		4126C95D1F44877D00BC4413 /* MisVentas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C95C1F44877D00BC4413 /* MisVentas.swift */; };
+		4126C95E1F44877D00BC4413 /* MisVentas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C95C1F44877D00BC4413 /* MisVentas.swift */; };
+		4126C9601F449F7200BC4413 /* ComandoCompras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C95F1F449F7200BC4413 /* ComandoCompras.swift */; };
+		4126C9611F449F7200BC4413 /* ComandoCompras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C95F1F449F7200BC4413 /* ComandoCompras.swift */; };
+		4126C9631F44AA3D00BC4413 /* Compra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C9621F44AA3D00BC4413 /* Compra.swift */; };
+		4126C9641F44AA3D00BC4413 /* Compra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C9621F44AA3D00BC4413 /* Compra.swift */; };
+		4126C9661F44EE1900BC4413 /* MisVentasXProducto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C9651F44EE1900BC4413 /* MisVentasXProducto.swift */; };
+		4126C9671F44EE1900BC4413 /* MisVentasXProducto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C9651F44EE1900BC4413 /* MisVentasXProducto.swift */; };
+		4126C96A1F44F5B600BC4413 /* CeldaVentaProducto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4126C9691F44F5B600BC4413 /* CeldaVentaProducto.xib */; };
+		4126C96B1F44F5B600BC4413 /* CeldaVentaProducto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4126C9691F44F5B600BC4413 /* CeldaVentaProducto.xib */; };
+		4126C96D1F45017800BC4413 /* CeldaVentaProducto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C96C1F45017800BC4413 /* CeldaVentaProducto.swift */; };
+		4126C96E1F45017800BC4413 /* CeldaVentaProducto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4126C96C1F45017800BC4413 /* CeldaVentaProducto.swift */; };
+		4134D5171F45EF8700DB43DA /* DetalleVenta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4134D5161F45EF8700DB43DA /* DetalleVenta.swift */; };
+		4134D5181F45EF8700DB43DA /* DetalleVenta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4134D5161F45EF8700DB43DA /* DetalleVenta.swift */; };
+		4134D51A1F46033400DB43DA /* DetalleMiVenta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4134D5191F46033400DB43DA /* DetalleMiVenta.swift */; };
+		4134D51B1F46033400DB43DA /* DetalleMiVenta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4134D5191F46033400DB43DA /* DetalleMiVenta.swift */; };
+		41E1D5021F3DF89E009329D6 /* RespuestaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E1D5011F3DF89E009329D6 /* RespuestaVC.swift */; };
+		41E1D5031F3DF89E009329D6 /* RespuestaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E1D5011F3DF89E009329D6 /* RespuestaVC.swift */; };
 		840B1B3A1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
 		840B1B3B1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
 		840B1B3C1F339B2900423832 /* ResenaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840B1B391F339B2900423832 /* ResenaTableViewCell.xib */; };
@@ -200,8 +256,36 @@
 
 /* Begin PBXFileReference section */
 		1B040272672C8C297D2CE6C9 /* Pods-MyPet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyPet/Pods-MyPet.debug.xcconfig"; sourceTree = "<group>"; };
+		4101EEE71F43445100F161DE /* ImageFire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFire.swift; sourceTree = "<group>"; };
+		4101EEEA1F43483700F161DE /* Adiciones.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adiciones.swift; sourceTree = "<group>"; };
+		4101EEED1F434BC500F161DE /* ComandoDestacados.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComandoDestacados.swift; sourceTree = "<group>"; };
+		4101FA461F4B76880098F735 /* IngresoTarjetaHabiente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngresoTarjetaHabiente.swift; sourceTree = "<group>"; };
+		4101FA4A1F4B7B380098F735 /* TPCliente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPCliente.swift; sourceTree = "<group>"; };
+		4101FA4D1F4B7B3E0098F735 /* TPErrores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPErrores.swift; sourceTree = "<group>"; };
+		4101FA501F4B7B430098F735 /* TPaga.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPaga.swift; sourceTree = "<group>"; };
+		41160B5E1F49BC6B00FF4765 /* ComandoCalificacion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComandoCalificacion.swift; sourceTree = "<group>"; };
+		411A85FA1F41E27A00BDC788 /* ChatCeldaSinRespuesta.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCeldaSinRespuesta.xib; sourceTree = "<group>"; };
+		411A85FD1F41E5F500BDC788 /* ChatCeldaSinRespuesta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCeldaSinRespuesta.swift; sourceTree = "<group>"; };
+		411A86061F426EA200BDC788 /* CoachMarkDestacarImagen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachMarkDestacarImagen.swift; sourceTree = "<group>"; };
+		411E20FC1F4BB2D400D2484F /* IngresoTarjetaOferente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngresoTarjetaOferente.swift; sourceTree = "<group>"; };
+		4124FE4A1F3CAD9400C9A1C5 /* ComandoPreguntasOferente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComandoPreguntasOferente.swift; sourceTree = "<group>"; };
+		4124FE4D1F3CC6FE00C9A1C5 /* PublicacionesOferenteSinRespuesta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicacionesOferenteSinRespuesta.swift; sourceTree = "<group>"; };
+		4124FE541F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderPreguntaCelda.xib; sourceTree = "<group>"; };
+		4124FE571F3D394200C9A1C5 /* HeaderPreguntaCeldaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderPreguntaCeldaTableViewCell.swift; sourceTree = "<group>"; };
+		4124FE5A1F3D3D6800C9A1C5 /* ChatCelda.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCelda.xib; sourceTree = "<group>"; };
+		4124FE5D1F3D4DAB00C9A1C5 /* ChatCelda.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCelda.swift; sourceTree = "<group>"; };
+		4124FE601F3D533400C9A1C5 /* ChatOferente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatOferente.swift; sourceTree = "<group>"; };
+		4126C95A1F44601800BC4413 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4126C95C1F44877D00BC4413 /* MisVentas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MisVentas.swift; sourceTree = "<group>"; };
+		4126C95F1F449F7200BC4413 /* ComandoCompras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComandoCompras.swift; sourceTree = "<group>"; };
+		4126C9621F44AA3D00BC4413 /* Compra.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Compra.swift; sourceTree = "<group>"; };
+		4126C9651F44EE1900BC4413 /* MisVentasXProducto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MisVentasXProducto.swift; sourceTree = "<group>"; };
+		4126C9691F44F5B600BC4413 /* CeldaVentaProducto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CeldaVentaProducto.xib; sourceTree = "<group>"; };
+		4126C96C1F45017800BC4413 /* CeldaVentaProducto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CeldaVentaProducto.swift; sourceTree = "<group>"; };
+		4134D5161F45EF8700DB43DA /* DetalleVenta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalleVenta.swift; sourceTree = "<group>"; };
+		4134D5191F46033400DB43DA /* DetalleMiVenta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalleMiVenta.swift; sourceTree = "<group>"; };
+		41E1D5011F3DF89E009329D6 /* RespuestaVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RespuestaVC.swift; sourceTree = "<group>"; };
 		49E7A6DA1136AACD9514E46A /* Pods-MyPetPruebas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPetPruebas.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyPetPruebas/Pods-MyPetPruebas.release.xcconfig"; sourceTree = "<group>"; };
-		840996AE1EC183ED00693C58 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		840B1B381F339B2900423832 /* ResenaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResenaTableViewCell.swift; sourceTree = "<group>"; };
 		840B1B391F339B2900423832 /* ResenaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResenaTableViewCell.xib; sourceTree = "<group>"; };
 		840B1B451F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreguntaRespuestaTableViewCell.swift; sourceTree = "<group>"; };
@@ -336,6 +420,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4101EEE61F43438600F161DE /* Adiciones */ = {
+			isa = PBXGroup;
+			children = (
+				4101EEE71F43445100F161DE /* ImageFire.swift */,
+				4101EEEA1F43483700F161DE /* Adiciones.swift */,
+			);
+			name = Adiciones;
+			sourceTree = "<group>";
+		};
+		4101FA451F4B75EB0098F735 /* Tpaga Oferente */ = {
+			isa = PBXGroup;
+			children = (
+				4101FA461F4B76880098F735 /* IngresoTarjetaHabiente.swift */,
+				411E20FC1F4BB2D400D2484F /* IngresoTarjetaOferente.swift */,
+			);
+			name = "Tpaga Oferente";
+			sourceTree = "<group>";
+		};
+		4101FA491F4B7B080098F735 /* TPaga */ = {
+			isa = PBXGroup;
+			children = (
+				4101FA501F4B7B430098F735 /* TPaga.swift */,
+				4101FA4A1F4B7B380098F735 /* TPCliente.swift */,
+				4101FA4D1F4B7B3E0098F735 /* TPErrores.swift */,
+			);
+			name = TPaga;
+			sourceTree = "<group>";
+		};
+		4126C9681F44F57800BC4413 /* Cell Mis Ventas */ = {
+			isa = PBXGroup;
+			children = (
+				4126C9691F44F5B600BC4413 /* CeldaVentaProducto.xib */,
+				4126C96C1F45017800BC4413 /* CeldaVentaProducto.swift */,
+			);
+			name = "Cell Mis Ventas";
+			sourceTree = "<group>";
+		};
 		840B1B371F3398AC00423832 /* Cell Resena */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +500,7 @@
 		84417BA01EBC507800A70ABC /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				4101FA491F4B7B080098F735 /* TPaga */,
 				84BD206E1EF0922B001422E7 /* Modelo.swift */,
 				84BD20711EF092DB001422E7 /* Comando.swift */,
 				84BD20671EEF8709001422E7 /* Usuario */,
@@ -391,8 +513,13 @@
 		84417BA11EBC508100A70ABC /* Oferente */ = {
 			isa = PBXGroup;
 			children = (
+				4126C9621F44AA3D00BC4413 /* Compra.swift */,
 				84417BA21EBD1EA100A70ABC /* ModeloOferente.swift */,
 				84A3E1B51EC1850F0013E4DD /* ComandoOferente.swift */,
+				4124FE4A1F3CAD9400C9A1C5 /* ComandoPreguntasOferente.swift */,
+				4101EEED1F434BC500F161DE /* ComandoDestacados.swift */,
+				4126C95F1F449F7200BC4413 /* ComandoCompras.swift */,
+				41160B5E1F49BC6B00FF4765 /* ComandoCalificacion.swift */,
 			);
 			name = Oferente;
 			sourceTree = "<group>";
@@ -450,6 +577,12 @@
 			children = (
 				84A3E1CE1EC4335B0013E4DD /* PublicacionTableViewCell.swift */,
 				84A3E1CF1EC4335B0013E4DD /* PublicacionTableViewCell.xib */,
+				4124FE571F3D394200C9A1C5 /* HeaderPreguntaCeldaTableViewCell.swift */,
+				4124FE541F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib */,
+				4124FE5D1F3D4DAB00C9A1C5 /* ChatCelda.swift */,
+				4124FE5A1F3D3D6800C9A1C5 /* ChatCelda.xib */,
+				411A85FD1F41E5F500BDC788 /* ChatCeldaSinRespuesta.swift */,
+				411A85FA1F41E27A00BDC788 /* ChatCeldaSinRespuesta.xib */,
 			);
 			name = "Cell Mis Publicaciones";
 			sourceTree = "<group>";
@@ -558,6 +691,7 @@
 		84F4FA491EAA955900F3E69A /* MyPet */ = {
 			isa = PBXGroup;
 			children = (
+				4101FA451F4B75EB0098F735 /* Tpaga Oferente */,
 				847FDC331ED6818E002F9530 /* Helpers */,
 				84417BA01EBC507800A70ABC /* Firebase */,
 				84F4FA4A1EAA955900F3E69A /* AppDelegate.swift */,
@@ -569,6 +703,7 @@
 				847838CA1F1699BB006A41F8 /* Cell Publicacion */,
 				84F4FA5C1EAA9BB000F3E69A /* Oferente */,
 				84D5AC071EE7A61600A18D7E /* Usuario */,
+				4101EEE61F43438600F161DE /* Adiciones */,
 				84F4FA4E1EAA955900F3E69A /* Main.storyboard */,
 				840B1B5B1F36612500423832 /* Oferente.storyboard */,
 				84F4FA511EAA955900F3E69A /* Assets.xcassets */,
@@ -582,6 +717,7 @@
 		84F4FA5C1EAA9BB000F3E69A /* Oferente */ = {
 			isa = PBXGroup;
 			children = (
+				4126C9681F44F57800BC4413 /* Cell Mis Ventas */,
 				84F4FA7B1EAB1A2800F3E69A /* InicioSesionOferenteViewController.swift */,
 				84417B6C1EB0334400A70ABC /* AvisoOferenteViewController.swift */,
 				84417B6F1EB04F6900A70ABC /* RegistroOferenteViewController.swift */,
@@ -597,6 +733,14 @@
 				843449141EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift */,
 				84B451501EC9553E001282B4 /* PublicacionOferenteCuatroViewController.swift */,
 				840BD1801ED1339500AAD2AE /* DetallePublicacionOferenteViewController.swift */,
+				4124FE4D1F3CC6FE00C9A1C5 /* PublicacionesOferenteSinRespuesta.swift */,
+				4124FE601F3D533400C9A1C5 /* ChatOferente.swift */,
+				41E1D5011F3DF89E009329D6 /* RespuestaVC.swift */,
+				411A86061F426EA200BDC788 /* CoachMarkDestacarImagen.swift */,
+				4126C95C1F44877D00BC4413 /* MisVentas.swift */,
+				4126C9651F44EE1900BC4413 /* MisVentasXProducto.swift */,
+				4134D5161F45EF8700DB43DA /* DetalleVenta.swift */,
+				4134D5191F46033400DB43DA /* DetalleMiVenta.swift */,
 				847FDC061ED33F72002F9530 /* Cell Detalle Publicacion */,
 				84B1B4771EDCF94D00F838C3 /* Fotos */,
 				840BD1831ED259AE00AAD2AE /* DestacarPublicacionViewController.swift */,
@@ -611,7 +755,7 @@
 				84F4FA651EAAAF6900F3E69A /* AppDelegate.swift */,
 				84F4FA6E1EAAAF6900F3E69A /* LaunchScreen.storyboard */,
 				84F4FA711EAAAF6900F3E69A /* Info.plist */,
-				840996AE1EC183ED00693C58 /* GoogleService-Info.plist */,
+				4126C95A1F44601800BC4413 /* GoogleService-Info.plist */,
 				847FDC2D1ED54336002F9530 /* Media.xcassets */,
 			);
 			path = MyPetPruebas;
@@ -737,18 +881,22 @@
 				84F4FA551EAA955900F3E69A /* LaunchScreen.storyboard in Resources */,
 				847FDC111ED34029002F9530 /* DetalleEstandarTableViewCell.xib in Resources */,
 				840B1B5D1F36612500423832 /* Oferente.storyboard in Resources */,
+				4124FE551F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib in Resources */,
 				847838CF1F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
 				840B1B3C1F339B2900423832 /* ResenaTableViewCell.xib in Resources */,
 				847FDC171ED3469F002F9530 /* DetalleHorarioTableViewCell.xib in Resources */,
 				84417B991EB93D0D00A70ABC /* HorarioTableViewCell.xib in Resources */,
+				411A85FB1F41E27A00BDC788 /* ChatCeldaSinRespuesta.xib in Resources */,
 				84417B8D1EB2AA0600A70ABC /* EstandarRegistroTableViewCell.xib in Resources */,
 				840B1B591F3594AD00423832 /* FavoritoTableViewCell.xib in Resources */,
 				84A3E1D91EC66EA80013E4DD /* CategoriaCollectionViewCell.xib in Resources */,
 				840B1B491F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */,
 				84CA9EFE1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
+				4124FE5B1F3D3D6800C9A1C5 /* ChatCelda.xib in Resources */,
 				8451A38D1EFB7A6200B59E46 /* UbicacionTableViewCell.xib in Resources */,
 				8453268A1F0C9B11007A4776 /* AlertaTableViewCell.xib in Resources */,
 				847FDC321ED545A6002F9530 /* Media.xcassets in Resources */,
+				4126C96A1F44F5B600BC4413 /* CeldaVentaProducto.xib in Resources */,
 				84F4FA501EAA955900F3E69A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -767,16 +915,20 @@
 				847FDC1E1ED37089002F9530 /* DetalleDescripcionTableViewCell.xib in Resources */,
 				84417B8E1EB2AA0600A70ABC /* EstandarRegistroTableViewCell.xib in Resources */,
 				847FDC301ED54353002F9530 /* Assets.xcassets in Resources */,
+				4126C96B1F44F5B600BC4413 /* CeldaVentaProducto.xib in Resources */,
 				840B1B3D1F339B2900423832 /* ResenaTableViewCell.xib in Resources */,
 				84F4FA701EAAAF6900F3E69A /* LaunchScreen.storyboard in Resources */,
 				847838D01F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
 				84A3E1DA1EC66EA80013E4DD /* CategoriaCollectionViewCell.xib in Resources */,
+				4124FE561F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib in Resources */,
 				8451A38E1EFB7A6200B59E46 /* UbicacionTableViewCell.xib in Resources */,
 				840B1B5E1F36612500423832 /* Oferente.storyboard in Resources */,
+				411A85FC1F41E27A00BDC788 /* ChatCeldaSinRespuesta.xib in Resources */,
 				847FDC181ED3469F002F9530 /* DetalleHorarioTableViewCell.xib in Resources */,
 				847FDC121ED34029002F9530 /* DetalleEstandarTableViewCell.xib in Resources */,
+				4126C95B1F44601800BC4413 /* GoogleService-Info.plist in Resources */,
 				847FDC2E1ED54336002F9530 /* Media.xcassets in Resources */,
-				840996AF1EC183ED00693C58 /* GoogleService-Info.plist in Resources */,
+				4124FE5C1F3D3D6800C9A1C5 /* ChatCelda.xib in Resources */,
 				840B1B5A1F3594AD00423832 /* FavoritoTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -892,35 +1044,47 @@
 				84A3E1CB1EC3E0580013E4DD /* MisPublicacionesViewController.swift in Sources */,
 				84BD20811EF0A58F001422E7 /* MenuUsuarioViewController.swift in Sources */,
 				84A3E1C21EC3BE3C0013E4DD /* PublicacionOferenteViewController.swift in Sources */,
+				4124FE611F3D533400C9A1C5 /* ChatOferente.swift in Sources */,
 				84A3E1B61EC1850F0013E4DD /* ComandoOferente.swift in Sources */,
 				84A766041F2ABB8A001708CE /* VistaPreguntasViewController.swift in Sources */,
 				84417B911EB2CAE800A70ABC /* DireccionRegistroTableViewCell.swift in Sources */,
+				4101FA511F4B7B430098F735 /* TPaga.swift in Sources */,
 				840B1B3A1F339B2900423832 /* ResenaTableViewCell.swift in Sources */,
+				4134D51A1F46033400DB43DA /* DetalleMiVenta.swift in Sources */,
 				84417B971EB93D0D00A70ABC /* HorarioTableViewCell.swift in Sources */,
 				84417B9E1EBACB2400A70ABC /* HorarioViewController.swift in Sources */,
 				84417B701EB04F6900A70ABC /* RegistroOferenteViewController.swift in Sources */,
+				4101FA4B1F4B7B380098F735 /* TPCliente.swift in Sources */,
 				843B56261F13E46B007297CB /* AlarmaViewController.swift in Sources */,
 				847FDC151ED3469F002F9530 /* DetalleHorarioTableViewCell.swift in Sources */,
+				4124FE581F3D394200C9A1C5 /* HeaderPreguntaCeldaTableViewCell.swift in Sources */,
 				843449151EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift in Sources */,
 				84A3E1DF1EC6D3CF0013E4DD /* PublicacionOferenteDosViewController.swift in Sources */,
+				4134D5171F45EF8700DB43DA /* DetalleVenta.swift in Sources */,
 				8451A38B1EFB7A6200B59E46 /* UbicacionTableViewCell.swift in Sources */,
 				84E4CF2D1F22EAFF009DC256 /* FloatRatingView.swift in Sources */,
 				84417BA31EBD1EA100A70ABC /* ModeloOferente.swift in Sources */,
+				4126C9601F449F7200BC4413 /* ComandoCompras.swift in Sources */,
 				84A3E1D71EC66EA80013E4DD /* CategoriaCollectionViewCell.swift in Sources */,
 				845326831F0C9015007A4776 /* AdministrarAlarmasViewController.swift in Sources */,
 				840B1B501F34217600423832 /* AgendarServicioViewController.swift in Sources */,
+				411E20FD1F4BB2D400D2484F /* IngresoTarjetaOferente.swift in Sources */,
 				84BD206F1EF0922B001422E7 /* Modelo.swift in Sources */,
 				84A3E1B91EC29DD40013E4DD /* HomeOferenteViewController.swift in Sources */,
 				84A3E1DC1EC6B4350013E4DD /* ComandoPublicacion.swift in Sources */,
 				84BD207E1EF0A56C001422E7 /* CarritoComprasViewController.swift in Sources */,
 				8446CC3D1EE8F927005BA3D4 /* IngresoExitosoViewController.swift in Sources */,
+				4126C95D1F44877D00BC4413 /* MisVentas.swift in Sources */,
 				840B1B471F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift in Sources */,
 				84A766071F2AE0F1001708CE /* PreguntarViewController.swift in Sources */,
+				411A85FE1F41E5F500BDC788 /* ChatCeldaSinRespuesta.swift in Sources */,
 				8446CC501EEB8650005BA3D4 /* RegistroUsuarioTresViewController.swift in Sources */,
 				84BD20781EF09FDB001422E7 /* HomeUsuarioViewController.swift in Sources */,
 				84A3E1BF1EC3BE1F0013E4DD /* AgregarPublicacionViewController.swift in Sources */,
 				845326881F0C9B11007A4776 /* AlertaTableViewCell.swift in Sources */,
+				4101FA4E1F4B7B3E0098F735 /* TPErrores.swift in Sources */,
 				840B1B571F3594AD00423832 /* FavoritoTableViewCell.swift in Sources */,
+				41E1D5021F3DF89E009329D6 /* RespuestaVC.swift in Sources */,
 				84BD20691EEF8753001422E7 /* ModeloUsuario.swift in Sources */,
 				84417B8B1EB2AA0600A70ABC /* EstandarRegistroTableViewCell.swift in Sources */,
 				8410A77B1F1870CE0069912F /* PublicacionesPorCategoriaViewController.swift in Sources */,
@@ -934,18 +1098,30 @@
 				847FDC351ED681C1002F9530 /* ExtensionImage.swift in Sources */,
 				84A3E1D01EC4335B0013E4DD /* PublicacionTableViewCell.swift in Sources */,
 				84B1B4791EDCF96E00F838C3 /* FotoViewController.swift in Sources */,
+				4101EEEB1F43483700F161DE /* Adiciones.swift in Sources */,
 				8451A3861EFB227200B59E46 /* UbicacionViewController.swift in Sources */,
+				4124FE5E1F3D4DAB00C9A1C5 /* ChatCelda.swift in Sources */,
 				84A3E1C81EC3C4530013E4DD /* NotificacionOferenteViewController.swift in Sources */,
 				84A5A4CC1F3BB98E00429500 /* AvisoCarritoViewController.swift in Sources */,
+				41160B5F1F49BC6B00FF4765 /* ComandoCalificacion.swift in Sources */,
+				4126C9631F44AA3D00BC4413 /* Compra.swift in Sources */,
+				4101EEEE1F434BC500F161DE /* ComandoDestacados.swift in Sources */,
 				84BD207B1EF0A310001422E7 /* HomePublicacionesViewController.swift in Sources */,
+				4124FE4B1F3CAD9400C9A1C5 /* ComandoPreguntasOferente.swift in Sources */,
 				844709921EEE22E200C27CDF /* TuMascotaViewController.swift in Sources */,
 				84F4FA7C1EAB1A2800F3E69A /* InicioSesionOferenteViewController.swift in Sources */,
 				84D5AC0C1EE7A74700A18D7E /* RegistroUsuarioViewController.swift in Sources */,
 				84B451511EC9553E001282B4 /* PublicacionOferenteCuatroViewController.swift in Sources */,
 				8446CC401EE905FD005BA3D4 /* AvisoAppViewController.swift in Sources */,
+				4126C9661F44EE1900BC4413 /* MisVentasXProducto.swift in Sources */,
+				4126C96D1F45017800BC4413 /* CeldaVentaProducto.swift in Sources */,
 				84CA9EFC1F02E6ED000F6F72 /* MascotaTableViewCell.swift in Sources */,
+				4101FA471F4B76880098F735 /* IngresoTarjetaHabiente.swift in Sources */,
 				84A7660A1F2AE9CE001708CE /* InfoVendedorViewController.swift in Sources */,
+				411A86071F426EA200BDC788 /* CoachMarkDestacarImagen.swift in Sources */,
+				4101EEE81F43445100F161DE /* ImageFire.swift in Sources */,
 				8446CC431EE9CDFB005BA3D4 /* RegistroUsuarioDosViewController.swift in Sources */,
+				4124FE4E1F3CC6FE00C9A1C5 /* PublicacionesOferenteSinRespuesta.swift in Sources */,
 				84F4FA4B1EAA955900F3E69A /* AppDelegate.swift in Sources */,
 				847838CD1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift in Sources */,
 				848E318F1F26601200D35C6D /* PublicacionServicioViewController.swift in Sources */,
@@ -968,35 +1144,47 @@
 				84A3E1CC1EC3E0580013E4DD /* MisPublicacionesViewController.swift in Sources */,
 				84BD20821EF0A58F001422E7 /* MenuUsuarioViewController.swift in Sources */,
 				84A3E1C31EC3BE3C0013E4DD /* PublicacionOferenteViewController.swift in Sources */,
+				4124FE621F3D533400C9A1C5 /* ChatOferente.swift in Sources */,
 				84A3E1B71EC1850F0013E4DD /* ComandoOferente.swift in Sources */,
 				84A766051F2ABB8A001708CE /* VistaPreguntasViewController.swift in Sources */,
 				84417B921EB2CAE800A70ABC /* DireccionRegistroTableViewCell.swift in Sources */,
+				4101FA521F4B7B430098F735 /* TPaga.swift in Sources */,
 				840B1B3B1F339B2900423832 /* ResenaTableViewCell.swift in Sources */,
+				4134D51B1F46033400DB43DA /* DetalleMiVenta.swift in Sources */,
 				84417B981EB93D0D00A70ABC /* HorarioTableViewCell.swift in Sources */,
 				84417B9F1EBACB2400A70ABC /* HorarioViewController.swift in Sources */,
 				84417B711EB04F6900A70ABC /* RegistroOferenteViewController.swift in Sources */,
+				4101FA4C1F4B7B380098F735 /* TPCliente.swift in Sources */,
 				843B56271F13E46B007297CB /* AlarmaViewController.swift in Sources */,
 				847FDC161ED3469F002F9530 /* DetalleHorarioTableViewCell.swift in Sources */,
+				4124FE591F3D394200C9A1C5 /* HeaderPreguntaCeldaTableViewCell.swift in Sources */,
 				843449161EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift in Sources */,
 				84A3E1E01EC6D3CF0013E4DD /* PublicacionOferenteDosViewController.swift in Sources */,
+				4134D5181F45EF8700DB43DA /* DetalleVenta.swift in Sources */,
 				8451A38C1EFB7A6200B59E46 /* UbicacionTableViewCell.swift in Sources */,
 				84E4CF2E1F22EAFF009DC256 /* FloatRatingView.swift in Sources */,
 				84417BA41EBD1EA100A70ABC /* ModeloOferente.swift in Sources */,
+				4126C9611F449F7200BC4413 /* ComandoCompras.swift in Sources */,
 				84A3E1D81EC66EA80013E4DD /* CategoriaCollectionViewCell.swift in Sources */,
 				845326841F0C9015007A4776 /* AdministrarAlarmasViewController.swift in Sources */,
 				840B1B511F34217600423832 /* AgendarServicioViewController.swift in Sources */,
+				411E20FE1F4BB2D400D2484F /* IngresoTarjetaOferente.swift in Sources */,
 				84BD20701EF0922B001422E7 /* Modelo.swift in Sources */,
 				84A3E1BA1EC29DD40013E4DD /* HomeOferenteViewController.swift in Sources */,
 				84A3E1DD1EC6B4350013E4DD /* ComandoPublicacion.swift in Sources */,
 				84BD207F1EF0A56C001422E7 /* CarritoComprasViewController.swift in Sources */,
 				8446CC3E1EE8F927005BA3D4 /* IngresoExitosoViewController.swift in Sources */,
+				4126C95E1F44877D00BC4413 /* MisVentas.swift in Sources */,
 				840B1B481F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift in Sources */,
 				84A766081F2AE0F1001708CE /* PreguntarViewController.swift in Sources */,
+				411A85FF1F41E5F500BDC788 /* ChatCeldaSinRespuesta.swift in Sources */,
 				8446CC511EEB8650005BA3D4 /* RegistroUsuarioTresViewController.swift in Sources */,
 				84BD20791EF09FDB001422E7 /* HomeUsuarioViewController.swift in Sources */,
 				84A3E1C01EC3BE1F0013E4DD /* AgregarPublicacionViewController.swift in Sources */,
 				845326891F0C9B11007A4776 /* AlertaTableViewCell.swift in Sources */,
+				4101FA4F1F4B7B3E0098F735 /* TPErrores.swift in Sources */,
 				840B1B581F3594AD00423832 /* FavoritoTableViewCell.swift in Sources */,
+				41E1D5031F3DF89E009329D6 /* RespuestaVC.swift in Sources */,
 				84BD206A1EEF8753001422E7 /* ModeloUsuario.swift in Sources */,
 				84417B8C1EB2AA0600A70ABC /* EstandarRegistroTableViewCell.swift in Sources */,
 				8410A77C1F1870CE0069912F /* PublicacionesPorCategoriaViewController.swift in Sources */,
@@ -1010,18 +1198,30 @@
 				847FDC361ED681C1002F9530 /* ExtensionImage.swift in Sources */,
 				84A3E1D11EC4335B0013E4DD /* PublicacionTableViewCell.swift in Sources */,
 				84B1B47A1EDCF96E00F838C3 /* FotoViewController.swift in Sources */,
+				4101EEEC1F43483700F161DE /* Adiciones.swift in Sources */,
 				8451A3871EFB227200B59E46 /* UbicacionViewController.swift in Sources */,
+				4124FE5F1F3D4DAB00C9A1C5 /* ChatCelda.swift in Sources */,
 				84A3E1C91EC3C4530013E4DD /* NotificacionOferenteViewController.swift in Sources */,
 				84A5A4CD1F3BB98E00429500 /* AvisoCarritoViewController.swift in Sources */,
+				41160B601F49BC6B00FF4765 /* ComandoCalificacion.swift in Sources */,
+				4126C9641F44AA3D00BC4413 /* Compra.swift in Sources */,
+				4101EEEF1F434BC500F161DE /* ComandoDestacados.swift in Sources */,
 				84BD207C1EF0A311001422E7 /* HomePublicacionesViewController.swift in Sources */,
+				4124FE4C1F3CAD9400C9A1C5 /* ComandoPreguntasOferente.swift in Sources */,
 				844709931EEE22E200C27CDF /* TuMascotaViewController.swift in Sources */,
 				84F4FA7D1EAB1A2800F3E69A /* InicioSesionOferenteViewController.swift in Sources */,
 				84D5AC0D1EE7A74700A18D7E /* RegistroUsuarioViewController.swift in Sources */,
 				84B451521EC9553E001282B4 /* PublicacionOferenteCuatroViewController.swift in Sources */,
 				8446CC411EE905FD005BA3D4 /* AvisoAppViewController.swift in Sources */,
+				4126C9671F44EE1900BC4413 /* MisVentasXProducto.swift in Sources */,
+				4126C96E1F45017800BC4413 /* CeldaVentaProducto.swift in Sources */,
 				84CA9EFD1F02E6ED000F6F72 /* MascotaTableViewCell.swift in Sources */,
+				4101FA481F4B76880098F735 /* IngresoTarjetaHabiente.swift in Sources */,
 				84A7660B1F2AE9CE001708CE /* InfoVendedorViewController.swift in Sources */,
+				411A86081F426EA200BDC788 /* CoachMarkDestacarImagen.swift in Sources */,
+				4101EEE91F43445100F161DE /* ImageFire.swift in Sources */,
 				8446CC441EE9CDFB005BA3D4 /* RegistroUsuarioDosViewController.swift in Sources */,
+				4124FE4F1F3CC6FE00C9A1C5 /* PublicacionesOferenteSinRespuesta.swift in Sources */,
 				84F4FA661EAAAF6900F3E69A /* AppDelegate.swift in Sources */,
 				847838CE1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift in Sources */,
 				848E31901F26601200D35C6D /* PublicacionServicioViewController.swift in Sources */,

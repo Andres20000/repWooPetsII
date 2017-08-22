@@ -1,15 +1,17 @@
 //
-//  MisPublicacionesViewController.swift
+//  MisVentas.swift
 //  MyPet
 //
-//  Created by Jose Aguilar on 10/05/17.
+//  Created by Andres Garcia on 8/16/17.
 //  Copyright © 2017 Jose Aguilar. All rights reserved.
 //
 
 import UIKit
 import FirebaseAuth
 
-class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+
+
+class MisVentas: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet var btnActivas: UIButton!
     @IBOutlet var btnInactivas: UIButton!
@@ -20,6 +22,8 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
     var publicaciones = [PublicacionOferente]()
     
     var estadoPublicacion = ""
+    
+    var selectedIndex = -1
     
     @IBOutlet var tableMisPublicaciones: UITableView!
     
@@ -37,39 +41,44 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         let nib = UINib(nibName: "PublicacionTableViewCell", bundle: nil)
         tableMisPublicaciones.register(nib, forCellReuseIdentifier: "publicacionTableViewCell")
         
-        estadoPublicacion = "activas"
+        estadoPublicacion = "abiertas"
+        
+        cargarPublicaciones()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.repintarXPregunta), name:NSNotification.Name(rawValue:"cargoPregunta"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.repintarXPregunta), name:NSNotification.Name(rawValue:"cargoVenta"), object: nil)
+        
         
         
     }
     
-    func cargarPublicaciones(_ notification: Notification)
+    func cargarPublicaciones()
     {
-        if estadoPublicacion == "activas"
+        if estadoPublicacion == "abiertas"
         {
-            publicaciones = model.publicacionesActivas
+            publicaciones = model.getPublicacionesDeMisVentas(abiertas: true)
         }else
         {
-            publicaciones = model.publicacionesInactivas
+            publicaciones = model.getPublicacionesDeMisVentas(abiertas: false)
         }
         
         tableMisPublicaciones.reloadData()
     }
     
+    
     func repintarXPregunta(){
-        if estadoPublicacion == "activas"
+        if estadoPublicacion == "abiertas"
         {
-            publicaciones = model.publicacionesActivas
+            publicaciones = model.getPublicacionesDeMisVentas(abiertas: true)
         }else
         {
-            publicaciones = model.publicacionesInactivas
+            publicaciones = model.getPublicacionesDeMisVentas(abiertas: false)
         }
         
         tableMisPublicaciones.reloadData()
@@ -86,22 +95,18 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
             btnActivas.setImage(UIImage(named: "btnActivoAzul"), for: UIControlState.normal)
             btnInactivas.setImage(UIImage(named: "btnInactivoGris"), for: UIControlState.normal)
             
-            estadoPublicacion = "activas"
+            estadoPublicacion = "abiertas"
             
         } else
         {
+            ComandoCompras.getMisCompras(abiertas: false)
             btnActivas.setImage(UIImage(named: "btnActivoGris"), for: UIControlState.normal)
             btnInactivas.setImage(UIImage(named: "btnInactivoAzul"), for: UIControlState.normal)
             
-            estadoPublicacion = "inactivas"
+            estadoPublicacion = "cerradas"
         }
         
-        model.publicacionesActivas.removeAll()
-        model.publicacionesInactivas.removeAll()
-        
-        ComandoPublicacion.getPublicacionesOferente(uid: (user?.uid)!)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(MisPublicacionesViewController.cargarPublicaciones(_:)), name:NSNotification.Name(rawValue:"cargoPublicacionesOferente"), object: nil)
+        cargarPublicaciones()
     }
     
     // #pragma mark - Table View
@@ -117,7 +122,7 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
             return 1
         } else
         {
-            Comando.init().EmptyMessage("No tienes publicaciones \(estadoPublicacion)", tableView: tableMisPublicaciones)
+            Comando.init().EmptyMessage("No tienes publicaciones con Ventas \(estadoPublicacion)", tableView: tableMisPublicaciones)
             
             tableMisPublicaciones.separatorStyle = .none
             
@@ -132,20 +137,20 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        model.publicacion = publicaciones[(indexPath as NSIndexPath).row]
+        let publi = publicaciones[(indexPath as NSIndexPath).row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "publicacionTableViewCell")  as! PublicacionTableViewCell
         
-        if let amountString = model.publicacion.precio?.currencyInputFormatting()
+        if let amountString = publi.precio?.currencyInputFormatting()
         {
             cell.lblPrecio.text = amountString
         }
         
-        cell.lblNombreProducto.text = model.publicacion.nombre
+        cell.lblNombreProducto.text = publi.nombre
         
         
         //Pintamos si numero de preguntas sin contestar
-        let preguntas = model.numeroPreguntasSinRespuesta(idPublicacion: model.publicacion.idPublicacion!)
+        let preguntas = model.numeroPreguntasSinRespuesta(idPublicacion: publi.idPublicacion!)
         
         if  preguntas == 0 {
             cell.imgCirculo.isHidden = true
@@ -154,10 +159,10 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
             cell.imgCirculo.isHidden = false
             cell.numeroPreguntas.text = String(preguntas)
         }
-
         
         
-        if model.publicacion.destacado!
+        
+        if publi.destacado!
         {
             cell.imgDestacado.isHidden = false
         } else
@@ -165,9 +170,9 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
             cell.imgDestacado.isHidden = true
         }
         
-        if (model.publicacion.fotos?.count)! > 0
+        if (publi.fotos?.count)! > 0
         {
-            let path = "productos/" + (model.publicacion.idPublicacion)! + "/" + (model.publicacion.fotos?[0].nombreFoto)!
+            let path = "productos/" + (publi.idPublicacion)! + "/" + (publi.fotos?[0].nombreFoto)!
             
             cell.imgProducto.loadImageUsingCacheWithUrlString(pathString: path)
         }
@@ -175,15 +180,19 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
         return cell;
     }
     
+    
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         // Return false if you do not want the specified item to be editable.
         return true
     }
     
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        model.publicacion = publicaciones[(indexPath as NSIndexPath).row]
+        selectedIndex = indexPath.row
         
         let transition = CATransition()
         transition.duration = 0.5
@@ -191,7 +200,7 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
         transition.subtype = kCATransitionFromRight
         view.window!.layer.add(transition, forKey: kCATransition)
         
-        self.performSegue(withIdentifier: "verDetallePublicacionDesdeMisPublicaciones", sender: self)
+        self.performSegue(withIdentifier: "verListaMismoProducto", sender: self)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
@@ -209,12 +218,7 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
     {
         super.viewWillAppear(animated)
         
-        model.publicacionesActivas.removeAll()
-        model.publicacionesInactivas.removeAll()
         
-        ComandoPublicacion.getPublicacionesOferente(uid: (user?.uid)!)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(MisPublicacionesViewController.cargarPublicaciones(_:)), name:NSNotification.Name(rawValue:"cargoPublicacionesOferente"), object: nil)
     }
     
     
@@ -224,7 +228,7 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -233,11 +237,19 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if (segue.identifier == "verDetallePublicacionDesdeMisPublicaciones")
+        if (segue.identifier == "verListaMismoProducto")
         {
-            let detailController = segue.destination as! DetallePublicacionOferenteViewController
-            detailController.vistoDesde = "MisPublicaciones"
+            let publi = publicaciones[selectedIndex]
+            
+            let detailController = segue.destination as! MisVentasXProducto
+            detailController.publicacion = publi
+            
+            if estadoPublicacion == "abiertas" {
+                detailController.abiertas = true
+            } else {
+                detailController.abiertas = false
+            }
         }
     }
-
+    
 }

@@ -15,13 +15,40 @@ class MenuOferenteViewController: UIViewController
     
     @IBOutlet var lblRazonSocial: UILabel!
     
+    @IBOutlet weak var numeroPreguntas: UILabel!
+    
+    @IBOutlet weak var circuloRojo: UIImageView!
+    
+    
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.repintarXPregunta), name:NSNotification.Name(rawValue:"cargoPregunta"), object: nil)
     }
-
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        refrescarPreguntas()
+    }
+    
+    
+    func refrescarPreguntas() {
+        let preguntas = model.numeroPreguntasSinRespuesta()
+        if   preguntas == 0 {
+            circuloRojo.isHidden = true
+        }
+        else {
+            circuloRojo.isHidden = false
+            numeroPreguntas.text = String(preguntas)
+        }
+        
+        
+    }
+    
+    
     func cargarDatosOferente(_ notification: Notification)
     {
         lblRazonSocial.text = "   " + model.oferente[0].razonSocial!
@@ -48,14 +75,18 @@ class MenuOferenteViewController: UIViewController
             self.performSegue(withIdentifier: "misPublicaciones", sender: self)
             
         case 2:
-            //self.performSegue(withIdentifier: "misPublicaciones", sender: self)
-            print("En construcción")
+            self.performSegue(withIdentifier: "misPreguntas", sender: self)
+
             
         case 3:
             //self.performSegue(withIdentifier: "misPublicaciones", sender: self)
             print("En construcción")
             
         case 4:
+            self.performSegue(withIdentifier: "misVentas", sender: self)
+            print("En construcción")
+            
+        case 5:
             
             let transition = CATransition()
             transition.duration = 0.5
@@ -65,11 +96,11 @@ class MenuOferenteViewController: UIViewController
             
             self.performSegue(withIdentifier: "editarOferente", sender: self)
             
-        case 5:
+        case 6:
             //self.performSegue(withIdentifier: "misPublicaciones", sender: self)
             print("En construcción")
             
-        case 6:
+        case 7:
             
             let alert:UIAlertController = UIAlertController(title: "¡Atención!", message: "¿Seguro deseas cerrar sesión?", preferredStyle: .alert)
             
@@ -120,14 +151,10 @@ class MenuOferenteViewController: UIViewController
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func repintarXPregunta(){
+        refrescarPreguntas()
+        
     }
-    */
-
+    
+    
 }

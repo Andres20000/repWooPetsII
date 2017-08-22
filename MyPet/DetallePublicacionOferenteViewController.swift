@@ -362,6 +362,14 @@ class DetallePublicacionOferenteViewController: UIViewController, UITableViewDel
             let detailController = segue.destination as! PublicacionOferenteCuatroViewController
             detailController.datosEditables = true
         }
+        
+        if (segue.identifier == "destacar")
+        {
+            let detailController = segue.destination as! DestacarPublicacionViewController
+            detailController.publicacion = model.publicacion
+        }
+        
+        
     }
 
     // PageViewController

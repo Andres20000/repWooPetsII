@@ -54,6 +54,9 @@ class ComandoUsuario
     
     class func getUsuario(uid:String?)
     {
+        
+        print(uid!)
+        
         if uid == nil {
             NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoUsuario"), object: nil)
         }
@@ -162,8 +165,12 @@ class ComandoUsuario
             }
             
             NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoUsuario"), object: nil)
-        })
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
+    
+    
     
     class func crearIdMascotaUsuario(uid:String?) -> String
     {

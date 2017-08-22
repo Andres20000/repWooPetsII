@@ -42,11 +42,34 @@ class ViewController: UIViewController
     {
         if self.model.usuario.count == 0
         {
+            
+            precargarPublicacionesOferente()
+            
             self.performSegue(withIdentifier: "homeOferenteDesdeVistaDeCarga", sender: self)
         }else
         {
             self.performSegue(withIdentifier: "precargarPublicacionesDesdeVistaDeCarga", sender: self)
         }
+    }
+    
+    
+    func precargarPublicacionesOferente(){
+        
+        let model = ModeloOferente.sharedInstance
+        let user = FIRAuth.auth()?.currentUser
+        
+        if user != nil && !model.yaPrecargo {
+            
+            model.idOferente =  (FIRAuth.auth()!.currentUser?.uid)!
+            ComandoPublicacion.getPublicacionesOferente(uid: user!.uid)
+            ComandoPreguntasOferente.getTodasMisPreguntas()
+            ComandoCompras.getMisCompras(abiertas: true)
+            ComandoCalificacion.getMisCalificaciones()
+            
+            model.yaPrecargo = true
+        }
+        
+        
     }
     
     override func didReceiveMemoryWarning()
