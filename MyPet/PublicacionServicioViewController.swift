@@ -41,6 +41,7 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     
     @IBAction func backView(_ sender: Any)
     {
+        modelUsuario.publicacionCarrito.cantidadCompra = 0
         modelUsuario.publicacionCarrito.fechaHoraReserva = ""
         modelUsuario.publicacionCarrito.idCarrito = ""
         modelUsuario.publicacionCarrito.idPublicacion = ""
@@ -89,10 +90,6 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
 
     func refrescarVista(_ notification: Notification)
     {
-        modelUsuario.publicacionCarrito.fechaHoraReserva = ""
-        modelUsuario.publicacionCarrito.idCarrito = ""
-        modelUsuario.publicacionCarrito.idPublicacion = ""
-        
         if modelUsuario.usuario.count != 0
         {
             if modelUsuario.usuario[0].datosComplementarios?.count != 0
@@ -116,22 +113,24 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
                     {
                         barItemFavorito.image = UIImage(named: "btnNoFavorito")?.withRenderingMode(.alwaysOriginal)
                     }
-                    
-                    if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
-                    {
-                        for publicacionCarrito in (modelUsuario.usuario[0].datosComplementarios?[0].carrito)!
-                        {
-                            if publicacionCarrito.idPublicacion == modelOferente.publicacion.idPublicacion
-                            {
-                                modelUsuario.publicacionCarrito.fechaHoraReserva = publicacionCarrito.fechaHoraReserva
-                                modelUsuario.publicacionCarrito.idCarrito = publicacionCarrito.idCarrito
-                                modelUsuario.publicacionCarrito.idPublicacion = publicacionCarrito.idPublicacion
-                            }
-                        }
-                    }
                 }else
                 {
                     barItemFavorito.image = UIImage(named: "btnNoFavorito")?.withRenderingMode(.alwaysOriginal)
+                }
+                
+                if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
+                {
+                    for publicacionCarrito in (modelUsuario.usuario[0].datosComplementarios?[0].carrito)!
+                    {
+                        if publicacionCarrito.idPublicacion == modelOferente.publicacion.idPublicacion
+                        {
+                            modelUsuario.publicacionCarrito.fechaHoraReserva = publicacionCarrito.fechaHoraReserva
+                            modelUsuario.publicacionCarrito.idCarrito = publicacionCarrito.idCarrito
+                            modelUsuario.publicacionCarrito.idPublicacion = publicacionCarrito.idPublicacion
+                            modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
+                            modelUsuario.publicacionCarrito.servicio = modelOferente.publicacion.servicio
+                        }
+                    }
                 }
             } else
             {
@@ -156,9 +155,9 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
             }
         }
         
-        if modelUsuario.publicacionCarrito.fechaHoraReserva != ""
+        if modelUsuario.publicacionCarrito.idCarrito != ""
         {
-            lblFechaHoraReserva.text = modelUsuario.publicacionCarrito.fechaHoraReserva
+            lblFechaHoraReserva.text = "Agendado para el: \(modelUsuario.publicacionCarrito.fechaHoraReserva!)"
             
             btnCarrito.tag = 1
             btnCarrito.setTitle("Eliminar del carrito", for: .normal)
@@ -180,6 +179,11 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
             let attributedText = NSAttributedString(string: btnCarrito.currentTitle!, attributes: attributes)
             
             btnCarrito.setAttributedTitle(attributedText, for: .normal)
+        }
+        
+        if modelUsuario.publicacionCarrito.fechaHoraReserva != ""
+        {
+            lblFechaHoraReserva.text = "Agendado para el: \(modelUsuario.publicacionCarrito.fechaHoraReserva!)"
         }
     }
     
@@ -256,37 +260,83 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     
     @IBAction func comprar(_ sender: Any)
     {
-        if modelUsuario.publicacionCarrito.fechaHoraReserva == ""
+        if self.validarRegistro()
         {
-            self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes reservar tu servicio para realizar una compra")
-        } else
+            if modelUsuario.publicacionCarrito.fechaHoraReserva == ""
+            {
+                self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes reservar tu servicio para realizar la compra")
+            } else
+            {
+                modelUsuario.publicacionCarrito.cantidadCompra = 1
+                modelUsuario.publicacionCarrito.idPublicacion = modelOferente.publicacion.idPublicacion
+                modelUsuario.publicacionCarrito.servicio = modelOferente.publicacion.servicio
+                modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
+                
+                self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionServicio", sender: self)
+            }
+        }
+    }
+    
+    @IBAction func agregarPublicacionAlCarito(sender: UIButton!)
+    {
+        if sender.tag == 0
         {
             if self.validarRegistro()
             {
-                let alert:UIAlertController = UIAlertController(title: "¡Felicitaciones!", message: "Vas a realizar ésta compra por valor de $ ¿Deseas ver otros productos o servicios?", preferredStyle: .alert)
-                
-                let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                if modelUsuario.publicacionCarrito.fechaHoraReserva == ""
+                {
+                    self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes reservar tu servicio para realizar la compra")
+                } else
+                {
+                    modelUsuario.publicacionCarrito.cantidadCompra = 1
+                    modelUsuario.publicacionCarrito.idPublicacion = modelOferente.publicacion.idPublicacion
+                    modelUsuario.publicacionCarrito.servicio = modelOferente.publicacion.servicio
+                    modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
+                    
+                    ComandoUsuario.agregarAlCarrito(uid: (user?.uid)!, carrito: modelUsuario.publicacionCarrito)
                     
                     if self.readStringFromFile() == ""
                     {
+                        ComandoUsuario.getUsuario(uid: (user?.uid)!)
+                        
                         self.performSegue(withIdentifier: "avisoCarritoDesdePublicacionServicio", sender: self)
                     } else
                     {
+                        modelUsuario.publicacionCarrito.cantidadCompra = 0
+                        modelUsuario.publicacionCarrito.fechaHoraReserva = ""
+                        modelUsuario.publicacionCarrito.idCarrito = ""
+                        modelUsuario.publicacionCarrito.idPublicacion = ""
+                        
                         self.dismiss(animated: true, completion: nil)
                     }
                 }
+            }
+        } else
+        {
+            let alert:UIAlertController = UIAlertController(title: "Confirmar", message: "¿Estás seguro de remover de tu carrito ésta compra?", preferredStyle: .alert)
+            
+            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                ComandoUsuario.eliminarPublicacionCarrito(uid: (self.user?.uid)!, idPublicacionCarrito: self.modelUsuario.publicacionCarrito.idCarrito!)
                 
-                let finalizeAction = UIAlertAction(title: "Finalizar compra", style: .cancel) { (_) -> Void in
-                    
-                    self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionServicio", sender: self)
+                if self.user?.uid != nil
+                {
+                    ComandoUsuario.getUsuario(uid: (self.user?.uid)!)
                 }
                 
-                // Add the actions
-                alert.addAction(continuarAction)
-                alert.addAction(finalizeAction)
-                self.present(alert, animated: true, completion: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(PublicacionProductoViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
             }
+            
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+            {
+                UIAlertAction in
+            }
+            
+            // Add the actions
+            alert.addAction(continuarAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
         }
+        
     }
     
     func validarRegistro() -> Bool
@@ -432,7 +482,6 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     
     func hacerMontaje(_ notification: Notification)
     {
-        print("count Servicio: \(modelOferente.oferente.count) - \(modelOferente.publicacion.idOferente)")
         createPageViewController()
     }
     

@@ -12,6 +12,8 @@ import FirebaseAuth
 class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     let modelUsuario = ModeloUsuario.sharedInstance
+    let modelOferente = ModeloOferente.sharedInstance
+    
     let  user = FIRAuth.auth()?.currentUser
     
     @IBOutlet var tableCompras: UITableView!
@@ -32,6 +34,16 @@ class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITa
         
         let nib = UINib(nibName: "CompraTableViewCell", bundle: nil)
         tableCompras.register(nib, forCellReuseIdentifier: "compraTableViewCell")
+        
+        let costo:Int = Int(modelUsuario.publicacionCarrito.publicacionCompra.precio!)!
+        let Total:Int = modelUsuario.publicacionCarrito.cantidadCompra! * costo
+        let TotalString:String = String(Total)
+        lblTotal.text = TotalString
+        
+        if let amountString = lblTotal.text?.currencyInputFormatting()
+        {
+            lblTotal.text = amountString
+        }
         
         btnSiguiente.layer.cornerRadius = 10.0
     }
@@ -102,14 +114,9 @@ class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITa
     {
         super.viewWillAppear(animated)
         
-        tableCompras.reloadData()
+        ComandoOferente.getOferente(uid: modelUsuario.publicacionCarrito.publicacionCompra.idOferente)
         
-        /*if user?.uid != nil
-        {
-            ComandoUsuario.getUsuario(uid: (user?.uid)!)
-        }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(ConfirmacionUnoViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)*/
+        NotificationCenter.default.addObserver(self, selector: #selector(ConfirmacionUnoViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoOferente"), object: nil)
     }
     
     override func didReceiveMemoryWarning()

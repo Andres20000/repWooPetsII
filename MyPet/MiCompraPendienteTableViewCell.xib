@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="miCompraPendienteTableViewCell" id="KGk-i7-Jjw" customClass="MiCompraPendienteTableViewCell" customModule="MyPet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G1u-Vx-WpS">
+                        <rect key="frame" x="8" y="19" width="56" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="QQj-fR-uyp"/>
+                            <constraint firstAttribute="width" constant="56" id="qCu-KX-6X2"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre Publicación" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HrP-Za-R29">
+                        <rect key="frame" x="72" y="28" width="222" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="mEp-z9-rXM"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Texto info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Yqi-Lb-u1r">
+                        <rect key="frame" x="72" y="8" width="222" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="lHG-xm-tB9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqk-0x-wQJ">
+                        <rect key="frame" x="72" y="56" width="99" height="20"/>
+                        <color key="backgroundColor" red="0.050980392156862744" green="0.4392156862745098" blue="0.48627450980392156" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="dfv-Yw-jPm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                        <state key="normal" title="Confirmar">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkH-Fc-mxd">
+                        <rect key="frame" x="186" y="56" width="99" height="20"/>
+                        <color key="backgroundColor" red="0.90980392156862744" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="NpL-V6-tZh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                        <state key="normal" title="Rechazar">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnAdelante" translatesAutoresizingMaskIntoConstraints="NO" id="xvv-Pi-AeV">
+                        <rect key="frame" x="302" y="32" width="10" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="Ecw-ae-ai2"/>
+                            <constraint firstAttribute="width" constant="10" id="lTa-hT-6Gj"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Yqi-Lb-u1r" firstAttribute="leading" secondItem="G1u-Vx-WpS" secondAttribute="trailing" constant="8" id="0cl-7b-wRS"/>
+                    <constraint firstItem="G1u-Vx-WpS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="5Pa-kW-MZR"/>
+                    <constraint firstItem="HrP-Za-R29" firstAttribute="top" secondItem="Yqi-Lb-u1r" secondAttribute="bottom" id="BVY-V1-NwN"/>
+                    <constraint firstItem="zqk-0x-wQJ" firstAttribute="leading" secondItem="G1u-Vx-WpS" secondAttribute="trailing" constant="8" id="DuE-r1-zdx"/>
+                    <constraint firstItem="zkH-Fc-mxd" firstAttribute="top" secondItem="HrP-Za-R29" secondAttribute="bottom" constant="8" id="Kki-Yu-Yc4"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Yqi-Lb-u1r" secondAttribute="trailing" constant="18" id="OhC-6h-uXN"/>
+                    <constraint firstItem="xvv-Pi-AeV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="24" id="Ooq-FX-hJp"/>
+                    <constraint firstItem="xvv-Pi-AeV" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="bVU-2d-YhW"/>
+                    <constraint firstItem="xvv-Pi-AeV" firstAttribute="leading" secondItem="HrP-Za-R29" secondAttribute="trailing" constant="8" id="fOh-if-Fx0"/>
+                    <constraint firstItem="zqk-0x-wQJ" firstAttribute="top" secondItem="HrP-Za-R29" secondAttribute="bottom" constant="8" id="lVV-uQ-nLI"/>
+                    <constraint firstItem="HrP-Za-R29" firstAttribute="leading" secondItem="G1u-Vx-WpS" secondAttribute="trailing" constant="8" id="lyK-h1-Pwk"/>
+                    <constraint firstItem="G1u-Vx-WpS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="11" id="mlV-qf-ZCC"/>
+                    <constraint firstItem="Yqi-Lb-u1r" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="qCa-oW-MGV"/>
+                    <constraint firstItem="zkH-Fc-mxd" firstAttribute="leading" secondItem="zqk-0x-wQJ" secondAttribute="trailing" constant="15" id="z1f-Lp-Mbb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="zqk-0x-wQJ" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="width" multiplier="0.31" id="EAu-Eh-bG5"/>
+                <constraint firstItem="zkH-Fc-mxd" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="width" multiplier="0.31" id="z3r-xz-04k"/>
+            </constraints>
+            <connections>
+                <outlet property="btnConfirmar" destination="zqk-0x-wQJ" id="FWP-4m-aBz"/>
+                <outlet property="btnRechazar" destination="zkH-Fc-mxd" id="LDt-xZ-tKM"/>
+                <outlet property="imgPublicacion" destination="G1u-Vx-WpS" id="JTC-oz-AgK"/>
+                <outlet property="lblNombrePublicacion" destination="HrP-Za-R29" id="cIB-kp-omY"/>
+                <outlet property="lblTextoInfo" destination="Yqi-Lb-u1r" id="Wtk-hg-PNq"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btnAdelante" width="12" height="16"/>
+    </resources>
+</document>

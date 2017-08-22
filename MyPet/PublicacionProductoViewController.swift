@@ -121,7 +121,6 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
                     {
                         barItemFavorito.image = UIImage(named: "btnNoFavorito")?.withRenderingMode(.alwaysOriginal)
                     }
-                    
                 }else
                 {
                     barItemFavorito.image = UIImage(named: "btnNoFavorito")?.withRenderingMode(.alwaysOriginal)
@@ -164,7 +163,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
             }
         }
         
-        if modelUsuario.publicacionCarrito.cantidadCompra != 0
+        if modelUsuario.publicacionCarrito.idCarrito != ""
         {
             lblQCompra.text = "\(modelUsuario.publicacionCarrito.cantidadCompra!)"
             
@@ -335,8 +334,9 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
                 self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes agregar como mínimo un producto para realizar una compra")
             } else
             {
-                self.modelUsuario.publicacionCarrito.idPublicacion = self.modelOferente.publicacion.idPublicacion
-                self.modelUsuario.publicacionCarrito.servicio = self.modelOferente.publicacion.servicio
+                modelUsuario.publicacionCarrito.idPublicacion = modelOferente.publicacion.idPublicacion
+                modelUsuario.publicacionCarrito.servicio = modelOferente.publicacion.servicio
+                modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
                 
                 self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionProducto", sender: self)
                 

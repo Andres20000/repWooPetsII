@@ -103,6 +103,28 @@ class UbicacionGoogleMaps
     var direccion:String?  = ""
 }
 
+class CompraUsuario
+{
+    var fecha:String?  = ""
+    var idCompra:String?  = ""
+    var idCliente:String?  = ""
+    var idOferente:String?  = ""
+    var pedido:[PedidoUsuario]? = []
+    var timestamp:CLong! = 0
+    var valor:Int?  = 0
+}
+
+class PedidoUsuario
+{
+    var cantidadCompra:Int?  = 0
+    var estado:String?  = ""
+    var fechaServicio:String?  = ""
+    var idPedido:Int?  = 0
+    var idPublicacion:String?  = ""
+    var publicacionCompra = PublicacionOferente()
+    var servicio:Bool?
+}
+
 class ModeloUsuario
 {
     static let sharedInstance:ModeloUsuario =
@@ -132,7 +154,12 @@ class ModeloUsuario
     var mascotaSeleccionada = Mascota()
     var alertasMascotaSeleccionada = [Alerta]()
     var alertaMascota = Alerta()
+    
     var publicacionCarrito = Carrito()
+    
+    var misCompras = [CompraUsuario]()
+    var misComprasCompleto = [CompraUsuario]()
+    var compra = CompraUsuario()
 }
 
 
