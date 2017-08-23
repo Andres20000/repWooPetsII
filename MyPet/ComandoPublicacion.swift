@@ -159,6 +159,8 @@ class ComandoPublicacion
                 datosPublicacion.nombre = value["nombre"] as? String
                 datosPublicacion.precio = value["precio"] as? String
                 datosPublicacion.servicio = value["servicio"] as? Bool
+                datosPublicacion.duracion = value["duracion"] as? Int
+            
                 
                 if publicacion.hasChild("stock")
                 {
@@ -183,7 +185,10 @@ class ComandoPublicacion
             }
             
             NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoPublicacionesOferente"), object: nil)
-        })
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
     class func loadImagenPublicacion(idFoto: String, nombreFoto: String, fotoData:Data)

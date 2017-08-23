@@ -14,6 +14,8 @@ class PublicacionTableViewCell: UITableViewCell
     @IBOutlet var imgDestacado: UIImageView!
     @IBOutlet var lblPrecio: UILabel!
     @IBOutlet var lblNombreProducto: UILabel!
+    @IBOutlet weak var numeroPreguntas: UILabel!    
+    @IBOutlet weak var imgCirculo: UIImageView!
 
     override func awakeFromNib()
     {

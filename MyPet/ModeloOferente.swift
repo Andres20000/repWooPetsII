@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+
 class Oferente
 {
     var aprobacionMyPet:String?  = ""
@@ -38,6 +40,8 @@ class Ubicacion
     var latitud:Double?
     var longitud:Double?
 }
+
+
 
 enum Dias:Int
 {
@@ -194,6 +198,7 @@ class HorarioAtencion
     }
 }
 
+
 class Horario
 {
     var dias:String?  = ""
@@ -203,6 +208,7 @@ class Horario
     var diasActivos:[Dias] = []
     var nombreArbol:String?  = ""
 }
+
 
 class ContactoPrincipal
 {
@@ -215,14 +221,35 @@ class ContactoPrincipal
     var contraseña:String?  = ""
 }
 
+
 class PublicacionOferente
 {
-    var idPublicacion:String?  = ""
+    var idPublicacion:String?  = "" {
+        didSet {
+            imagenDestacado = ImageFire()
+            imagenDestacado!.nombre = "destacado"
+            imagenDestacado!.extenci = ".jpg"
+            imagenDestacado!.prefijo = ""
+            imagenDestacado!.folderStorage = "productos/" + idPublicacion!
+            
+            imagenPrincipal = ImageFire()
+            imagenPrincipal!.nombre = "Foto1"
+            imagenPrincipal!.extenci = ".png"
+            imagenPrincipal!.prefijo = ""
+            imagenPrincipal!.folderStorage = "productos/" + idPublicacion!
+            
+            
+        }
+    }
     var activo:Bool?
     var categoria:String?  = ""
     var descripcion:String?  = ""
     var destacado:Bool?
     var fotos:[Foto]? = []
+    var imagenDestacado:ImageFire?
+    var imagenPrincipal:ImageFire?
+    var duracion:Int?
+
     
     var tieneFotos:Bool
     {
@@ -334,6 +361,8 @@ enum Mascotas:Int
     }
 }
 
+
+
 class TipoMascotas
 {
     var mascotas:[Mascotas] = []
@@ -412,8 +441,25 @@ class TipoMascotas
     }
 }
 
+class Calificacion {
+    
+    
+    var idCalificacion = ""
+    var calificacion = 0
+    var comentario = ""
+    var fecha = ""
+    var idCliente = ""
+    var idOferente = ""
+    var idPublicacion = ""
+    var idCompra = ""
+    
+}
+
+
+
 class ModeloOferente
 {
+    
     static let sharedInstance:ModeloOferente =
     {
         
@@ -441,6 +487,203 @@ class ModeloOferente
     
     var publicacionesActivas = [PublicacionOferente]()
     var publicacionesInactivas = [PublicacionOferente]()
+    
+    
+    
+    var idOferente = ""
+    
+    var preguntas:[Pregunta] = [] {
+        didSet {
+            print("aca")
+        }
+    }
+    
+    var yaPrecargo = false
+    var yaEstaLlamandoCerradas = false
+    
+    var misUsuarios:[String:Usuario] = [:]
+    
+    var misVentas:[Compra] = []
+    var misVentasCerradas:[Compra] = []
+    var misCalificaciones:[Calificacion] = []
+    
+    var tpaga = TPaga()
+    
+    
+    
+    func numeroPreguntasSinRespuesta() -> Int {
+        
+        var res = 0
+        
+        for pregu in preguntas {
+            if pregu.tieneRespuesta() == false {
+                res+=1
+            }
+        }
+        
+        return res
+    
+    }
+    
+    
+    func numeroPreguntasSinRespuesta(idPublicacion:String) -> Int {
+        
+        var res = 0
+        
+        for pregu in preguntas {
+            
+            if pregu.tieneRespuesta() == false && pregu.idPublicacion == idPublicacion {
+                res+=1
+            }
+        }
+        
+        return res
+        
+    }
+    
+    
+    
+    func getIdsPublicacionesSinRespuesta()-> [String] {
+        
+        var ids:[String] = []
+        for pregu in preguntas {
+            
+            if !pregu.tieneRespuesta() && !ids.contains(pregu.idPublicacion!) {
+                ids.append(pregu.idPublicacion!)
+            }
+        }
+        return ids
+    }
+    
+    
+    func getPublicacion(idPublicacion:String) -> PublicacionOferente? {
+        
+        for ofert in publicacionesActivas {
+            
+            if ofert.idPublicacion == idPublicacion {
+                return ofert
+            }
+        }
+        return nil
+        
+    }
+    
+    func getIdsClientes(de idPublicacion:String) -> [String] {
+        var ids:[String] = []
+        for pregu in preguntas {
+            
+            if !ids.contains(pregu.idCliente!) {
+                ids.append(pregu.idCliente!)
+            }
+        }
+        return ids
+
+        
+    }
+    
+    func getPreguntas(de idPublicacion:String, idCliente:String) -> [Pregunta] {
+        
+        var pregus:[Pregunta] = []
+        for pregu in preguntas {
+            
+            if pregu.idCliente == idCliente && pregu.idPublicacion == idPublicacion {
+                
+                pregus.append(pregu)
+            }
+        }
+        
+        return pregus
+    }
+    
+    
+    
+    func getPublicacionesDeMisVentas(abiertas:Bool) -> [PublicacionOferente] {
+        
+        var publicaciones:[PublicacionOferente] = []
+        
+        if abiertas {
+            for venta in misVentas {
+                
+                for item in venta.items {
+                    
+                    if !publicaciones.contains(where: { $0.idPublicacion == item.idPublicacion }) {
+                        publicaciones.append(getPublicacion(idPublicacion: item.idPublicacion)!)
+                    }
+                }
+            }
+            return publicaciones
+        }else {
+            for venta in misVentasCerradas {
+                
+                for item in venta.items {
+                    
+                    if !publicaciones.contains(where: { $0.idPublicacion == item.idPublicacion }) {
+                        publicaciones.append(getPublicacion(idPublicacion: item.idPublicacion)!)
+                    }
+                }
+            }
+            return publicaciones
+            
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    func getMisVentasDeUnaPublicacion(abiertas: Bool, idPublicacion:String) -> [ItemCompra] {
+        
+        var res:[ItemCompra] = []
+        
+        if abiertas {
+            
+            for venta in misVentas {
+                
+                for item in venta.items {
+                    if item.idPublicacion == idPublicacion {
+                        res.append(item)
+                    }
+                }
+                
+            }
+        } else {
+            for venta in misVentasCerradas {
+                
+                for item in venta.items {
+                    if item.idPublicacion == idPublicacion {
+                        res.append(item)
+                    }
+                }
+                
+            }
+            
+        }
+        
+        return res
+        
+    }
+    
+    func getCalificacionCompra(idCompra:String)  -> Calificacion?{
+        
+        for cali in misCalificaciones {
+            
+            if cali.idCompra == idCompra {
+                return cali
+            }
+        }
+        
+        return nil
+        
+    }
+    
+    
+
+    
 }
 
 extension String

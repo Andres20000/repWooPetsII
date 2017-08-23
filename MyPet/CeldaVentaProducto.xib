@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CeldaVentaProducto" rowHeight="71" id="Y4z-Re-odd" customClass="CeldaVentaProducto" customModule="MyPet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="471" height="71"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y4z-Re-odd" id="QHF-Vz-F7p">
+                <rect key="frame" x="0.0" y="0.0" width="471" height="70.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wtE-fu-c0k">
+                        <rect key="frame" x="13" y="24.5" width="30" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="9oc-Gw-mYu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="06/07/2017" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gbk-uH-9zB">
+                        <rect key="frame" x="349" y="28" width="67" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="67" id="pfS-hO-U1o"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9OL-Vr-Vbg">
+                        <rect key="frame" x="416" y="10.5" width="49" height="49.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="9OL-Vr-Vbg" secondAttribute="height" multiplier="1:1" id="COE-zD-LJS"/>
+                        </constraints>
+                        <state key="normal" image="btnAdelanteGr"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Juan Carlos telles rodrigues" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CKe-8d-G6z">
+                        <rect key="frame" x="47" y="21.5" width="297" height="23"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="9OL-Vr-Vbg" secondAttribute="trailing" constant="-2" id="5E0-Rc-KqH"/>
+                    <constraint firstItem="9OL-Vr-Vbg" firstAttribute="leading" secondItem="gbk-uH-9zB" secondAttribute="trailing" id="8jP-oC-Tpx"/>
+                    <constraint firstItem="9OL-Vr-Vbg" firstAttribute="centerY" secondItem="QHF-Vz-F7p" secondAttribute="centerY" id="9Vr-Jf-VqE"/>
+                    <constraint firstItem="CKe-8d-G6z" firstAttribute="baseline" secondItem="wtE-fu-c0k" secondAttribute="baseline" id="Feh-r5-XXi"/>
+                    <constraint firstItem="wtE-fu-c0k" firstAttribute="leading" secondItem="QHF-Vz-F7p" secondAttribute="leadingMargin" constant="5" id="J8U-Nc-Vm5"/>
+                    <constraint firstItem="gbk-uH-9zB" firstAttribute="centerY" secondItem="9OL-Vr-Vbg" secondAttribute="centerY" id="Slh-Xg-zvV"/>
+                    <constraint firstItem="9OL-Vr-Vbg" firstAttribute="height" secondItem="QHF-Vz-F7p" secondAttribute="height" multiplier="0.7" id="VhU-jx-9Kt"/>
+                    <constraint firstItem="CKe-8d-G6z" firstAttribute="leading" secondItem="wtE-fu-c0k" secondAttribute="trailing" constant="4" id="eRW-H9-tBi"/>
+                    <constraint firstItem="gbk-uH-9zB" firstAttribute="baseline" secondItem="wtE-fu-c0k" secondAttribute="baseline" id="qyA-cX-5ie"/>
+                    <constraint firstItem="gbk-uH-9zB" firstAttribute="leading" secondItem="CKe-8d-G6z" secondAttribute="trailing" constant="5" id="sAV-am-2qL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cantidad" destination="wtE-fu-c0k" id="OHr-kb-rEy"/>
+                <outlet property="fecha" destination="gbk-uH-9zB" id="3It-Eu-crD"/>
+                <outlet property="nombre" destination="CKe-8d-G6z" id="6pv-Qh-b8H"/>
+            </connections>
+            <point key="canvasLocation" x="79.5" y="-352.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btnAdelanteGr" width="20" height="27"/>
+    </resources>
+</document>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCelda" rowHeight="99" id="hSl-rO-9IL" customClass="ChatCelda" customModule="MyPet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="464" height="99"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hSl-rO-9IL" id="3wt-77-Ab2">
+                <rect key="frame" x="0.0" y="0.0" width="464" height="98.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Ayer, 3:15 pm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uit-AB-AJF">
+                        <rect key="frame" x="374" y="8" width="82" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Hola tienes pasto con sabor a pichón ahumado" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vau-Qq-Jil">
+                        <rect key="frame" x="14" y="36.5" width="325" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Si, tambien a bacalao y palomo." textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLz-30-kK0">
+                        <rect key="frame" x="131" y="62.5" width="325" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="topMargin" secondItem="uit-AB-AJF" secondAttribute="top" id="1da-51-ww2"/>
+                    <constraint firstItem="wLz-30-kK0" firstAttribute="width" secondItem="Vau-Qq-Jil" secondAttribute="width" id="KLm-zi-PH0"/>
+                    <constraint firstItem="Vau-Qq-Jil" firstAttribute="top" secondItem="uit-AB-AJF" secondAttribute="bottom" constant="8" id="Lhk-O6-Z6T"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="wLz-30-kK0" secondAttribute="bottom" constant="10" id="OLr-ik-2Vg"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="Vau-Qq-Jil" secondAttribute="leading" constant="-6" id="Qmv-NO-BNc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="uit-AB-AJF" secondAttribute="trailing" id="QpY-ar-QAX"/>
+                    <constraint firstItem="wLz-30-kK0" firstAttribute="top" secondItem="Vau-Qq-Jil" secondAttribute="bottom" constant="8" id="RrG-3S-JAE"/>
+                    <constraint firstItem="Vau-Qq-Jil" firstAttribute="width" secondItem="3wt-77-Ab2" secondAttribute="width" multiplier="0.7" id="j0e-Bu-h9r"/>
+                    <constraint firstItem="uit-AB-AJF" firstAttribute="trailing" secondItem="wLz-30-kK0" secondAttribute="trailing" id="j6j-SG-9eR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="hora" destination="uit-AB-AJF" id="Lmx-iN-OXx"/>
+                <outlet property="pregunta" destination="Vau-Qq-Jil" id="DsV-zO-FeI"/>
+                <outlet property="respuesta" destination="wLz-30-kK0" id="HBb-wW-Spt"/>
+            </connections>
+            <point key="canvasLocation" x="479" y="-110.5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -12,6 +12,7 @@ class Usuario
 {
     var correo:String?  = ""
     var datosComplementarios:[DatosComplementarios]? = []
+    var id = ""
     
     var tieneDatosComplementarios:Bool
     {

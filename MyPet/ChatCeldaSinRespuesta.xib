@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCeldaSinRespuesta" rowHeight="114" id="Br4-cF-Nfj" customClass="ChatCeldaSinRespuesta" customModule="MyPet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="464" height="114"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Br4-cF-Nfj" id="iRv-By-M6m">
+                <rect key="frame" x="0.0" y="0.0" width="464" height="113.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Ayer, 3:15 pm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fsi-xw-s9d">
+                        <rect key="frame" x="374" y="8" width="82" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Hola tienes pasto con sabor a pichón ahumado" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8i-gL-0Qe">
+                        <rect key="frame" x="14" y="32" width="325" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62z-aZ-s9w">
+                        <rect key="frame" x="330.5" y="64" width="125.5" height="40"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnResponder" translatesAutoresizingMaskIntoConstraints="NO" id="1iM-Ft-VXe">
+                                <rect key="frame" x="0.5" y="-0.5" width="125.5" height="40"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8s-re-SZv">
+                                <rect key="frame" x="0.0" y="-0.5" width="125.5" height="40"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="A8s-re-SZv" firstAttribute="width" secondItem="1iM-Ft-VXe" secondAttribute="width" id="1qj-m0-emH"/>
+                            <constraint firstItem="1iM-Ft-VXe" firstAttribute="centerY" secondItem="62z-aZ-s9w" secondAttribute="centerY" id="3bj-zM-WOh"/>
+                            <constraint firstItem="1iM-Ft-VXe" firstAttribute="width" secondItem="62z-aZ-s9w" secondAttribute="width" id="55q-OA-9IH"/>
+                            <constraint firstItem="A8s-re-SZv" firstAttribute="centerX" secondItem="1iM-Ft-VXe" secondAttribute="centerX" id="5Mg-kB-k5h"/>
+                            <constraint firstItem="A8s-re-SZv" firstAttribute="height" secondItem="1iM-Ft-VXe" secondAttribute="height" id="TDa-qJ-7ef"/>
+                            <constraint firstAttribute="width" secondItem="62z-aZ-s9w" secondAttribute="height" multiplier="25:8" id="bTX-3p-nIU"/>
+                            <constraint firstItem="1iM-Ft-VXe" firstAttribute="centerX" secondItem="62z-aZ-s9w" secondAttribute="centerX" id="sPO-aL-GHJ"/>
+                            <constraint firstItem="1iM-Ft-VXe" firstAttribute="height" secondItem="62z-aZ-s9w" secondAttribute="height" id="wA9-MT-d6F"/>
+                            <constraint firstItem="A8s-re-SZv" firstAttribute="centerY" secondItem="1iM-Ft-VXe" secondAttribute="centerY" id="xxW-EF-UGP"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Fsi-xw-s9d" firstAttribute="trailing" secondItem="62z-aZ-s9w" secondAttribute="trailing" id="6dA-Le-HxV"/>
+                    <constraint firstItem="d8i-gL-0Qe" firstAttribute="width" secondItem="iRv-By-M6m" secondAttribute="width" multiplier="0.7" id="AaF-0K-34L"/>
+                    <constraint firstItem="d8i-gL-0Qe" firstAttribute="top" secondItem="Fsi-xw-s9d" secondAttribute="bottom" constant="8" id="B0Z-Kg-BCy"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="d8i-gL-0Qe" secondAttribute="leading" constant="-6" id="EnX-ef-Zeh"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="62z-aZ-s9w" secondAttribute="bottom" constant="1.5" id="Inh-UJ-ZRG"/>
+                    <constraint firstAttribute="topMargin" secondItem="Fsi-xw-s9d" secondAttribute="top" id="QPN-TG-M7r"/>
+                    <constraint firstItem="62z-aZ-s9w" firstAttribute="width" secondItem="iRv-By-M6m" secondAttribute="width" multiplier="0.27" id="Twu-CJ-Gin"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Fsi-xw-s9d" secondAttribute="trailing" id="l9h-iz-nWu"/>
+                    <constraint firstItem="62z-aZ-s9w" firstAttribute="top" secondItem="d8i-gL-0Qe" secondAttribute="bottom" priority="750" constant="14" id="lGO-s1-zls"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="boton" destination="A8s-re-SZv" id="Egh-vH-V6e"/>
+                <outlet property="hora" destination="Fsi-xw-s9d" id="OWP-6y-cDu"/>
+                <outlet property="pregunta" destination="d8i-gL-0Qe" id="YqO-gq-gut"/>
+                <outlet property="viewResponder" destination="62z-aZ-s9w" id="Plh-HY-qiY"/>
+            </connections>
+            <point key="canvasLocation" x="215" y="-128"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btnResponder" width="180" height="40"/>
+    </resources>
+</document>
