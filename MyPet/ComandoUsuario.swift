@@ -376,6 +376,39 @@ class ComandoUsuario
         }
     }
     
+    class func descontarEnstock(compra:Carrito)
+    {
+        let refHandle = FIRDatabase.database().reference().child("productos/" + (compra.idPublicacion)! + "/stock")
+        
+        refHandle.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+            if let value = currentData.value as? Int {
+                debugPrint("FB BEFORE \(currentData)")
+                currentData.value = value - (compra.cantidadCompra)!
+                debugPrint("FB AFTER \(currentData)")
+                
+                if (currentData.value as? Int)! > 0 || (currentData.value as? Int)! == 0
+                {
+                    return .success(withValue: currentData)
+                    
+                }
+                
+            } else {
+                //data.value = 1
+                debugPrint("FB EMPTY \(currentData)")
+                //return .success(withValue: currentData)
+            }
+            
+            return .success(withValue: currentData)
+            
+        }){ (error, committed, snapshot) in
+            if let error = error {
+                debugPrint("FB ERROR: \(error)")
+            } else {
+                debugPrint("FB COMMITTED \(snapshot)")
+            }
+        }
+    }
+    
     class func realizarCompra(compra:CompraUsuario)
     {
         var refHandle:FIRDatabaseReference! = nil

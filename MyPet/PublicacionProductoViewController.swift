@@ -338,6 +338,8 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
                 modelUsuario.publicacionCarrito.servicio = modelOferente.publicacion.servicio
                 modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
                 
+                //ComandoUsuario.descontarEnstock(compra: modelUsuario.publicacionCarrito)
+                
                 self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionProducto", sender: self)
                 
                 /*let alert:UIAlertController = UIAlertController(title: "¡Felicitaciones!", message: "Vas a realizar ésta compra por valor de $ ¿Deseas ver otros productos o servicios?", preferredStyle: .alert)

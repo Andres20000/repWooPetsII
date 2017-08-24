@@ -954,7 +954,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
     {
         let pageContentViewController = self.storyboard?.instantiateViewController(withIdentifier: "fotoViewController") as! FotoViewController
         
-        pageContentViewController.pathImage = "productos/" + (modelPublicacion.publicacionesDestacadas[index].idPublicacion)! + "/" + (modelPublicacion.publicacionesDestacadas[index].fotos?[0].nombreFoto)!
+        pageContentViewController.pathImage = "productos/" + (modelPublicacion.publicacionesDestacadas[index].idPublicacion)! + "/destacado.jpg"
         
         pageContentViewController.pageIndex = index
         

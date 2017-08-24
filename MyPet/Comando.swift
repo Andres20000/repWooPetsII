@@ -209,20 +209,14 @@ class Comando
                             }
                         }
                         
-                        print("mis Compras: \(modelUsuario.misCompras.count)")
-                        
                         if modelUsuario.misCompras.count != 0
                         {
                             for miCompra in (modelUsuario.misCompras)
                             {
-                                print("id compra: \(miCompra.idCompra!) - cant. Pedido: \((miCompra.pedido?.count)!)")
-                                
                                 if miCompra.pedido?.count != 0
                                 {
                                     if miCompra.pedido?[0].idPublicacion == datosPublicacion.idPublicacion
                                     {
-                                        print("id compraPedido: \((miCompra.pedido?[0].idPublicacion)!) - id. Publicacion: \(datosPublicacion.idPublicacion!)")
-                                        
                                         miCompra.pedido?[0].publicacionCompra = datosPublicacion
                                         
                                         modelUsuario.misComprasCompleto.append(miCompra)

@@ -59,12 +59,12 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
                 viewMensaje.isHidden = false
                 imgMensaje.image = UIImage(named: "imgCarritoVacio")
                 lblMensaje.text = "Actualmente no tienes productos y/o servicios en tus compras."
-    
                 
             case 2:
                 viewMensaje.isHidden = false
                 imgMensaje.image = UIImage(named: "imgFavoritoVacio")
                 lblMensaje.text = "Actualmente no tienes productos y/o servicios favoritos."
+                
             default:
                 break
             }
@@ -290,12 +290,10 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
     {
         if self.readStringFromFile() == ""
         {
-            //self.performSegue(withIdentifier: "avisoCalificacionDesdeCarrito", sender: self)
-            print("Ir a aviso")
+            self.performSegue(withIdentifier: "avisoCalificacionDesdeCarrito", sender: self)
         } else
         {
-            //self.performSegue(withIdentifier: "calificacionPublicacionDesdeCarrito", sender: self)
-            print("Ir a calificar")
+            self.performSegue(withIdentifier: "calificacionPublicacionDesdeCarrito", sender: self)
         }
     }
     
@@ -344,6 +342,54 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
     {
         self.performSegue(withIdentifier: "compraExitosaDesdeMisCompras", sender: self)
     }
+    
+    /*func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        // Return false if you do not want the specified item to be editable.
+        
+        if segCtrlCarrito.selectedSegmentIndex == 0
+        {
+            return true
+        }
+        
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if segCtrlCarrito.selectedSegmentIndex == 0
+        {
+            let alert:UIAlertController = UIAlertController(title: "Confirmar", message: "¿Estás seguro de remover de tu carrito ésta compra?", preferredStyle: .alert)
+            
+            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                ComandoUsuario.eliminarPublicacionCarrito(uid: (self.user?.uid)!, idPublicacionCarrito: self.model.publicacionesEnCarrito[indexPath.row].idCarrito!)
+                
+                if self.user?.uid != nil
+                {
+                    ComandoUsuario.getUsuario(uid: (self.user?.uid)!)
+                }
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(CarritoComprasViewController.refrescarUsuario(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+            {
+                UIAlertAction in
+            }
+            
+            // Add the actions
+            alert.addAction(continuarAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func refrescarUsuario(_ notification: Notification)
+    {
+        Comando.getPublicaciones()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(CarritoComprasViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoPublicaciones"), object: nil)
+    }*/
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {

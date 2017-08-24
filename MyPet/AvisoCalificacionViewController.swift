@@ -23,15 +23,13 @@ class AvisoCalificacionViewController: UIViewController
     
     @IBAction func calificar(_ sender: Any)
     {
-        //self.performSegue(withIdentifier: "calificacionPublicacionDesdeAvisoCalificacion", sender: self)
-        print("calificacionPublicacionDesdeAvisoCalificacion")
+        self.performSegue(withIdentifier: "calificacionPublicacionDesdeAvisoCalificacion", sender: self)
     }
     
     @IBAction func omitirAviso(_ sender: Any)
     {
-        //self.writeStringToFile()
-        //self.performSegue(withIdentifier: "calificacionPublicacionDesdeAvisoCalificacion", sender: self)
-        print("calificacionPublicacionDesdeAvisoCalificacion")
+        self.writeStringToFile()
+        self.performSegue(withIdentifier: "calificacionPublicacionDesdeAvisoCalificacion", sender: self)
     }
     
     override func didReceiveMemoryWarning()
