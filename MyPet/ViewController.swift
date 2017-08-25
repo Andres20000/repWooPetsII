@@ -65,6 +65,9 @@ class ViewController: UIViewController
             ComandoPreguntasOferente.getTodasMisPreguntas()
             ComandoCompras.getMisCompras(abiertas: true)
             ComandoCalificacion.getMisCalificaciones()
+            ComandoOferente.getDatosTPaga(uid: user!.uid)
+            ComandoOferente.getTarjetas(uid: user!.uid)
+            ComandoParametros.getParametros()
             
             model.yaPrecargo = true
         }

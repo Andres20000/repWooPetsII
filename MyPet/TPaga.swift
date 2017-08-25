@@ -49,6 +49,11 @@ class TPaga {
     var idPago = ""
     
     
+    var nombre = ""
+    var apellido = ""
+    var telefono = ""
+    var correo = ""
+    
     
     init() {
         

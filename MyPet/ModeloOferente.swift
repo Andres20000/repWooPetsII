@@ -509,6 +509,8 @@ class ModeloOferente
     
     var tpaga = TPaga()
     
+    var params = Parametros()
+    
     
     
     func numeroPreguntasSinRespuesta() -> Int {

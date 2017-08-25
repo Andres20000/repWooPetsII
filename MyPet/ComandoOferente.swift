@@ -210,11 +210,51 @@ class ComandoOferente
     
     class func setIdClienteTpaga(uid:String, idClienteTpaga:String) {
         
-        let ref  = FIRDatabase.database().reference().child("oferentes/" + uid + "/idClienteTpaga")
+        let ref  = FIRDatabase.database().reference().child("oferentes/" + uid + "/datosTpaga/idClienteTpaga")
         
         ref.setValue(idClienteTpaga)
         
     }
+    
+    class func setDatosTpaga(uid:String) {
+        
+        let model = ModeloOferente.sharedInstance
+        
+        let ref  = FIRDatabase.database().reference().child("oferentes/" + uid + "/datosTpaga")
+        
+        let newItem = ["nombres":model.tpaga.nombre,
+                       "apellidos": model.tpaga.apellido,
+                       "telefono": model.tpaga.telefono,
+                       "correo":model.tpaga.correo] as [String : Any]
+
+        
+        ref.updateChildValues(newItem)
+        
+    }
+    
+    
+    
+    class func getDatosTPaga(uid:String) {
+        
+        let model = ModeloOferente.sharedInstance
+        
+        let ref  = FIRDatabase.database().reference().child("oferentes/" + uid + "/datosTpaga")
+        
+        ref.observe(.value, with: {(snap) -> Void in
+            
+            
+            let value = snap.value as! [String : AnyObject]
+            
+            model.tpaga.idClienteEnTpaga = value["idClienteTpaga"] as! String
+            model.tpaga.nombre = value["nombres"] as! String
+            model.tpaga.apellido = value["apellidos"] as! String
+            model.tpaga.telefono = value["telefono"] as! String
+            model.tpaga.correo = value["correo"] as! String
+            
+        })
+        
+    }
+    
     
     class func desactivarTarjeta(uid:String?, idTarjeta:String) {
         
@@ -242,6 +282,84 @@ class ComandoOferente
         return ref.key
         
     }
+    
+    
+    class func getTarjetas(uid:String) {
+        
+        let model = ModeloOferente.sharedInstance
+        var ref  = FIRDatabase.database().reference().child("oferentes/" + uid + "/tarjetas" )
+        
+        ref.observe(.childAdded, with: { snap in
+            
+            let tarj = snap.value as! NSDictionary
+            
+            let mini = MiniTarjeta()
+            mini.activa = tarj["activo"] as! Bool
+            mini.cuotas = tarj["cuotas"] as! Int
+            mini.numero = tarj["lastFour"] as! String
+            mini.token = tarj["token"] as! String
+            mini.franquicia = tarj["franquicia"] as! String
+            mini.id = snap.key
+            model.tpaga.adicionarMiniTarjeta(mini: mini)
+            
+            
+        })
+        
+        //Ademas traemos el idClienteTpaga
+        ref  = FIRDatabase.database().reference().child("clientes/" + uid + "/idClienteTpaga")
+        
+        ref.observe(.value, with: {snap in
+            
+            if snap.exists() {
+                model.tpaga.idClienteEnTpaga = snap.value as! String
+            }
+        })
+        
+        
+    }
+    
+    
+    class func activarDestacado( idPublicacion:String , idTarjeta:String){
+        
+        let model = ModeloOferente.sharedInstance
+        let tpaga = model.tpaga
+        
+        let refi  = FIRDatabase.database().reference().child("pagosOferente")
+        let ref = refi.childByAutoId()
+        
+        
+        
+        
+        let pago = ["authorizationCode":tpaga.authorizationCode,
+                    "paymentTransaction": tpaga.paymentTransaction,
+                    "idPago": tpaga.idPago,
+                    "idTarjeta":idTarjeta,
+                    "metodoPago":"Tarjeta",
+                    "idPublicacion":idPublicacion,
+                    "Descripcion":"Destacado"] as [String : Any]
+        
+        
+        
+        
+        
+        ref.setValue(pago, withCompletionBlock: { error, snap in
+            
+            if error == nil {
+                NotificationCenter.default.post(name: Notification.Name("pagoExitoso"), object: nil)
+                
+            }else {
+                print(error.debugDescription)
+                print(error!.localizedDescription)
+                
+                NotificationCenter.default.post(name: Notification.Name("pagoFallido"), object: nil)
+            }
+            
+            
+        })
+        
+        
+    }
+
     
     
     

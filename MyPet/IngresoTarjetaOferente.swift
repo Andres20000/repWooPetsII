@@ -44,6 +44,20 @@ class IngresoTarjetaOferente: UIViewController,  UITextFieldDelegate{
         super.viewDidLoad()
         
         registerForKeyboardNotifications()
+        
+        let tarjeta =  model.tpaga.getTarjetaActiva()
+        
+        if tarjeta == nil {
+            return
+        }
+        
+       numeroTarjeta.text = "**** **** **** " + tarjeta!.numero
+       nombre.text = "****** ******"
+       mes.text = "**"
+       ano.text = "****"
+       codSeguridad.text = "***"
+       cuotas.text = String(tarjeta!.cuotas)
+ 
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,7 +75,19 @@ class IngresoTarjetaOferente: UIViewController,  UITextFieldDelegate{
     }
     
     
+    @IBAction func back(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     @IBAction func didTapFinalizar(_ sender: Any) {
+        
+        /// Validar si el usuaio hizo cambios 
+        if noHuboCambios() {
+            
+             dismiss(animated: true, completion: nil)
+             return
+        }
         
         
         ///1. Revisamos errores obvios
@@ -242,6 +268,24 @@ class IngresoTarjetaOferente: UIViewController,  UITextFieldDelegate{
             })
             
         })
+        
+    }
+    
+    func noHuboCambios() -> Bool {
+        
+        let tarjeta =  model.tpaga.getTarjetaActiva()
+        
+        if tarjeta == nil {
+            return false
+        }
+        
+        if numeroTarjeta.text == "**** **** **** " + tarjeta!.numero && nombre.text == "****** ******" &&  mes.text == "**" && ano.text == "****" && codSeguridad.text == "***" {
+            
+            return true
+            
+        }
+
+        return false
         
     }
     

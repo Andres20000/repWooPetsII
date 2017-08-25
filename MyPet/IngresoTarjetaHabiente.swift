@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
     
@@ -35,8 +36,11 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
     //@IBOutlet weak var ciudad: UITextField!
     
     @IBOutlet weak var botonFianalizar: UIButton!
-    
     @IBOutlet weak var vistaMetodoPago: UIView!
+    
+    @IBOutlet weak var valor: UILabel!
+    
+    @IBOutlet weak var tarjeta: UILabel!
     
     
     var inicialesPais = "CO"
@@ -49,6 +53,7 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
     var activityIndicator = UIActivityIndicatorView()
     ///////////
 
+    var publicacion:PublicacionOferente?
     
 
     override func viewDidLoad() {
@@ -60,7 +65,21 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
         botonFianalizar.layer.cornerRadius = 20.0
         vistaMetodoPago.layer.cornerRadius = 15.0
         registerForKeyboardNotifications()
+        
+        
+        nombre.text = model.tpaga.nombre
+        apellido.text = model.tpaga.apellido
+        telefono.text = model.tpaga.telefono
+        correo.text = model.tpaga.correo
+        valor.text = String(model.params.valorDestacado).convertToMoney()
+        
+        
+
+        
+        
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -74,10 +93,22 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         activityIndicator.removeFromSuperview()
         messageFrame.removeFromSuperview()
+        let tarjeta =  model.tpaga.getTarjetaActiva()
+        
+        if tarjeta != nil {
+            self.tarjeta.text = "Tarjeta de crédito terminada en " + tarjeta!.numero
+        }
+        
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     
     @IBAction func didTapSiguiente(_ sender: Any) {
+        
+        
         
         
         //Validaciones Basicas
@@ -97,6 +128,15 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
             return
             
         }
+        
+        
+        //Validar si hubo modificacion.
+        if noHuboCambios() {
+            self.performSegue(withIdentifier: "confirmarTarjeta", sender: self)
+            return 
+            
+        }
+
         
         progressBarDisplayer(msg: "", indicator: true)
         
@@ -168,15 +208,25 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
             // En teoria de aqui pa abajo ya esta bien la respuesta
             print(idCliente!)
             
+           
+            
+            
             self.model.tpaga.idClienteEnTpaga = idCliente!
+            self.model.tpaga.nombre = self.nombre.text!
+            self.model.tpaga.apellido = self.apellido.text!
+            self.model.tpaga.correo = self.correo.text!
+            self.model.tpaga.telefono = self.telefono.text!
+            
             
             ComandoOferente.setIdClienteTpaga(uid: self.model.idOferente , idClienteTpaga: idCliente!)
+            
+            ComandoOferente.setDatosTpaga(uid: self.model.idOferente)
             
             DispatchQueue.main.async {
                 () -> Void in
                 self.activityIndicator.removeFromSuperview()
                 self.messageFrame.removeFromSuperview()
-                self.performSegue(withIdentifier: "siguiente", sender: self)
+                self.performSegue(withIdentifier: "confirmarTarjeta", sender: self)
             }
             
         })
@@ -184,7 +234,14 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
         
     }
     
-    
+    func noHuboCambios() -> Bool {
+        
+        let tpaga = model.tpaga
+        if nombre.text != tpaga.nombre || apellido.text != tpaga.apellido || correo.text != tpaga.correo || telefono.text != tpaga.telefono {
+            return false
+        }
+        return true
+    }
     
     
     
@@ -380,6 +437,214 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
             }
             
         }
+        
+    }
+    
+    
+    func pagarConTarjeta() {
+        
+        
+        let tpaga = model.tpaga
+        
+        var pago = TPPago()
+        pago.amount = model.params.valorDestacado
+        pago.creditCard = tpaga.getTarjetaActiva()!.token
+        pago.description = "Destacado de WooPets"
+        pago.orderId = "ID___Orden"
+        pago.taxAmount = 0
+        pago.installments = tpaga.getTarjetaActiva()!.cuotas
+        
+        TPCliente.hacerPago(pago: pago, completion: {(autorizado,authorizationCode, paymentTransaction , idPago , error) in
+            
+            
+            if let err = error as? TPagaError {
+                switch err {
+                case .idClienteNoExiste :
+                    print("cliente no existe")
+                    self.mostrarMensajeOk(titulo: "Error", msg: "Fallo al intentar la transacción. Cod: CNE")
+                case .noAutorizado :
+                    print("No hay autorización")
+                    self.mostrarMensajeOk(titulo: "Error", msg: "Fallo al intentar la transacción. Cod: NHA")
+                case .desconocido :
+                    print("error desconocido")
+                    self.mostrarMensajeOk(titulo: "Error", msg: "Fallo al intentar la transacción. Cod: ED")
+                case .rechazada(let motivo):
+                    self.mostrarMensajeOk(titulo: "Error", msg: motivo + ". Puedes intentar con otra tarjeta o pagar en efectivo")
+                default:
+                    print("error no esperado")
+                    self.mostrarMensajeOk(titulo: "Error", msg: "Fallo al intentar la transacción. Cod: ENE")
+                }
+                return
+            }
+            
+            
+            if let err = error as? SerializacionError{
+                switch err {
+                case .missing(let mensaje) :
+                    print("Falta: \(mensaje)")
+                    self.mostrarMensajeOk(titulo: "Error", msg: "Fallo al intentar la transacción. F: \(mensaje)")
+                case .invalid(let nombre, let dat) :
+                    print("Invalido: \(nombre): \(dat)")
+                    self.mostrarMensajeOk(titulo: "Error", msg: "Fallo al intentar la transacción. I: \(nombre): \(dat)")
+                }
+                return
+            }
+            
+            
+            
+            if error != nil {
+                print(error!.localizedDescription)
+                self.mostrarMensajeOk(titulo: "Error", msg: "No fue posible el pago con la tarjeta, puedes probar con otra tarjeta o pagar en efectivo.")
+                return
+            }
+            
+            
+            if autorizado! {
+                tpaga.authorizationCode = authorizationCode!
+                tpaga.paymentTransaction = paymentTransaction!
+                tpaga.idPago = idPago!
+                ComandoDestacados.destacarPublicacion(publicacion: self.publicacion!, newVersion: 1)
+                ComandoOferente.activarDestacado(idPublicacion: self.publicacion!.idPublicacion!, idTarjeta: tpaga.getTarjetaActiva()!.id)
+                
+                return
+            }
+            
+            self.mostrarMensajeOk(titulo: "Error", msg: "El pago con la tarjeta no fue aprobado, puedes probar con otra tarjeta o pagar en efectivo.")
+            
+            
+        })
+        
+        
+        
+        
+    }
+    
+    
+    
+    @IBAction func didTapFinalizarCompra(_ sender: Any) {
+        
+        //TODO hacer verificaciones antes de intentar hacer el pago.
+        
+        
+        let connectedRef = FIRDatabase.database().reference(withPath: ".info/connected")
+        
+        connectedRef.observe(.value, with: { snapshot in
+            if let connected = snapshot.value as? Bool, connected {
+                self.finalizarYaRedAsegurada()
+            } else {
+                let alerta = UIAlertController(title: "Sin conexión", message: " No detectamos conexión a internet, por favor valida tu señal para poder enviar tu pedido.", preferredStyle: .alert)
+                
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                    
+                    return
+                }
+                
+                alerta.addAction(OKAction)
+                self.present(alerta, animated: true, completion: { return })
+            }
+        })
+        
+        
+    }
+
+    
+    func finalizarYaRedAsegurada(){
+        
+        
+        
+        let res = evaluarErrores()
+        
+        if res.mensaje != "" {
+            let alerta = UIAlertController(title: "Información Incompleta ", message: res.mensaje, preferredStyle: .alert)
+            
+            let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.botonFianalizar.isEnabled = true
+                self.botonFianalizar.alpha = 1.0
+                
+                return
+            }
+            
+            alerta.addAction(OKAction)
+            present(alerta, animated: true, completion: { return })
+            
+        }
+        
+        self.botonFianalizar.isEnabled = false
+        self.botonFianalizar.alpha = 0.4
+        
+        
+        
+        
+        let ultimaAd = "A punto de cargar a tu tarjeta una compra por valor de " + String(model.params.valorDestacado).convertToMoney() + ". Estas seguro?"
+        
+        let ultima = UIAlertController(title: "Confirma tu información", message: ultimaAd, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "Si", style: .default) { (action) in
+            
+            
+            
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(self.mostrarExito), name:NSNotification.Name(rawValue: "pagoExitoso"), object: nil)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(self.mostrarFracaso), name:NSNotification.Name(rawValue: "pagoFallido"), object: nil)
+            
+            
+            self.progressBarDisplayer(msg: "Realizando la Transacción", indicator: true)
+            
+            
+            ///Realizamos el pago con la tarjeta
+            
+            self.pagarConTarjeta()
+            
+            
+            return
+        }
+        
+        let cancelAction = UIAlertAction(title: "No", style: .default) { (action) in
+            
+            self.botonFianalizar.isEnabled = true
+            self.botonFianalizar.alpha = 1.0
+            return
+        }
+        
+        ultima.addAction(cancelAction)
+        ultima.addAction(OKAction)
+        present(ultima, animated: true, completion: { return })
+        
+        
+        
+    }
+    
+    
+    func mostrarExito() {
+        
+        
+        FIRAnalytics.logEvent(withName: "Compro_Destacado", parameters: ["Valor" : model.params.valorDestacado as NSObject])
+        DispatchQueue.main.async {
+            
+            self.performSegue(withIdentifier: "mostrarExito", sender: self)
+        }
+        
+        
+    }
+    
+    
+    
+    func mostrarFracaso() {
+        
+        let mensaje = "Tu pedido no se pudo enviar. Asegurate que tienes acceso a Internet e intenta nuevamente"
+        
+        let alerta = UIAlertController(title: "Pedido no enviado. ", message: mensaje, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            
+            return
+        }
+        
+        alerta.addAction(OKAction)
+        present(alerta, animated: true, completion: { return })
+        
+        
         
     }
 
