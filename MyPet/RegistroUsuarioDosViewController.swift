@@ -66,12 +66,15 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         
         model.direccion1.direccion = ""
         model.direccion1.nombre = ""
+        model.direccion1.ubicacion?.removeAll()
         
         model.direccion2.direccion = ""
         model.direccion2.nombre = ""
+        model.direccion2.ubicacion?.removeAll()
         
         model.direccion3.direccion = ""
         model.direccion3.nombre = ""
+        model.direccion3.ubicacion?.removeAll()
         
         dismiss(animated: true, completion: nil)
     }
@@ -131,6 +134,12 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         txtDireccion1.text = ""
         txtDireccion1.attributedPlaceholder = NSAttributedString(string:"Elige tu dirección", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
+        model.ubicacion1.latitud = 0
+        model.ubicacion1.longitud = 0
+        
+        model.direccion1.ubicacion?.removeAll()
+        model.direccion1.ubicacion?.append(model.ubicacion1)
+        
         let spacerViewTxtNombreDireccion1 = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtNombreDireccion1.leftViewMode = UITextFieldViewMode.always
@@ -145,6 +154,12 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         txtDireccion2.text = ""
         txtDireccion2.attributedPlaceholder = NSAttributedString(string:"Elige tu dirección", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
+        model.ubicacion2.latitud = 0
+        model.ubicacion2.longitud = 0
+        
+        model.direccion2.ubicacion?.removeAll()
+        model.direccion2.ubicacion?.append(model.ubicacion2)
+        
         let spacerViewTxtNombreDireccion2 = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtNombreDireccion2.leftViewMode = UITextFieldViewMode.always
@@ -158,6 +173,12 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         txtDireccion3.leftView = spacerViewTxtDireccion3
         txtDireccion3.text = ""
         txtDireccion3.attributedPlaceholder = NSAttributedString(string:"Elige tu dirección", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        
+        model.ubicacion3.latitud = 0
+        model.ubicacion3.longitud = 0
+        
+        model.direccion3.ubicacion?.removeAll()
+        model.direccion3.ubicacion?.append(model.ubicacion3)
         
         let spacerViewTxtNombreDireccion3 = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
@@ -427,8 +448,34 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
     func refreshView()
     {
         txtDireccion1.text = model.direccion1.direccion
+        txtDireccion2.text = model.direccion2.direccion
+        txtDireccion3.text = model.direccion3.direccion
         
-        if txtDireccion1.text == ""
+        if model.direccion1.ubicacion?[0].latitud == 0
+        {
+            btnUbicacion1.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
+        } else
+        {
+            btnUbicacion1.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
+        }
+        
+        if model.direccion2.ubicacion?[0].latitud == 0
+        {
+            btnUbicacion2.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
+        } else
+        {
+            btnUbicacion2.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
+        }
+        
+        if model.direccion3.ubicacion?[0].latitud == 0
+        {
+            btnUbicacion3.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
+        } else
+        {
+            btnUbicacion3.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
+        }
+        
+        /*if txtDireccion1.text == ""
         {
             txtDireccion1.isEnabled = false
             btnUbicacion1.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
@@ -460,7 +507,7 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         {
             txtDireccion3.isEnabled = true
             btnUbicacion3.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
-        }
+        }*/
         
         if txtDireccion1.text == "" || txtNombreDireccion1.text == ""
         {

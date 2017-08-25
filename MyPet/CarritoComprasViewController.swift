@@ -45,29 +45,41 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         segCtrlCarrito.layer.borderWidth = 1.0
         segCtrlCarrito.layer.borderColor = UIColor.white.cgColor
         
-        if user == nil
+        switch segCtrlCarrito.selectedSegmentIndex
         {
-            switch segCtrlCarrito.selectedSegmentIndex
+        case 0:
+            
+            viewMensaje.isHidden = false
+            imgMensaje.image = UIImage(named: "imgCarritoVacio")
+            lblMensaje.text = "Actualmente no tienes ningún producto y/o servicio en tu carrito."
+            
+            if model.publicacionesEnCarrito.count != 0
             {
-            case 0:
-                
-                viewMensaje.isHidden = false
-                imgMensaje.image = UIImage(named: "imgCarritoVacio")
-                lblMensaje.text = "Actualmente no tienes ningún producto y/o servicio en tu carrito."
-                
-            case 1:
-                viewMensaje.isHidden = false
-                imgMensaje.image = UIImage(named: "imgCarritoVacio")
-                lblMensaje.text = "Actualmente no tienes productos y/o servicios en tus compras."
-                
-            case 2:
-                viewMensaje.isHidden = false
-                imgMensaje.image = UIImage(named: "imgFavoritoVacio")
-                lblMensaje.text = "Actualmente no tienes productos y/o servicios favoritos."
-                
-            default:
-                break
+                viewMensaje.isHidden = true
             }
+            
+        case 1:
+            viewMensaje.isHidden = false
+            imgMensaje.image = UIImage(named: "imgCarritoVacio")
+            lblMensaje.text = "Actualmente no tienes productos y/o servicios en tus compras."
+            
+            if modelUsuario.misComprasCompleto.count != 0
+            {
+                viewMensaje.isHidden = true
+            }
+            
+        case 2:
+            viewMensaje.isHidden = false
+            imgMensaje.image = UIImage(named: "imgFavoritoVacio")
+            lblMensaje.text = "Actualmente no tienes productos y/o servicios favoritos."
+            
+            if model.publicacionesFavoritas.count != 0
+            {
+                viewMensaje.isHidden = true
+            }
+            
+        default:
+            break
         }
         
         let nib = UINib(nibName: "FavoritoTableViewCell", bundle: nil)

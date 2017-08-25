@@ -37,6 +37,8 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
     @IBAction func backView(_ sender: Any)
     {
         model.ubicacionGoogle.direccion = ""
+        model.ubicacionGoogle.latitud = 0
+        model.ubicacionGoogle.longitud = 0
         model.horarioSemana.dias = ""
         model.horarioFestivo.dias = ""
         model.oferente.removeAll()
@@ -132,6 +134,10 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
             datosContacto.insert("No aplica" as Any, at: 6)
         }else
         {
+            model.ubicacionGoogle.direccion = ""
+            model.ubicacionGoogle.latitud = 0
+            model.ubicacionGoogle.longitud = 0
+            
             barItemTitulo.title = "Registro"
             
             oferenteRegistro.aprobacionMyPet = "Pendiente"
@@ -229,14 +235,27 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                 
                 if (datosNegocio[indexPath.row] as? String) == ""
                 {
-                    cell.txtCampo.placeholder = "Tráelo desde tu ubicación"
+                    cell.txtCampo.placeholder = "Escríbelo o tráelo desde tu ubicación"
+                }
+                
+                if model.ubicacionGoogle.latitud == 0
+                {
+                    cell.btnGeolocalizar.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
+                } else
+                {
+                    cell.btnGeolocalizar.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
+                }
+                
+                /*if (datosNegocio[indexPath.row] as? String) == ""
+                {
+                    cell.txtCampo.placeholder = "Escríbelo o tráelo desde tu ubicación"
                     cell.txtCampo.isEnabled = false
                     cell.btnGeolocalizar.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
                 } else
                 {
                     cell.txtCampo.isEnabled = true
                     cell.btnGeolocalizar.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
-                }
+                }*/
                 
                 cell.lblNombreCampo.text = tituloNegocio[indexPath.row]
                 cell.txtCampo.text = datosNegocio[indexPath.row] as? String
@@ -515,7 +534,17 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
         
         if textField.tag == 2
         {
-            oferenteRegistro.direccion = textField.text
+            model.ubicacionGoogle.direccion = textField.text
+            
+            oferenteRegistro.direccion = model.ubicacionGoogle.direccion
+            
+            oferenteRegistro.ubicacion?.removeAll()
+            
+            let ubicacionRegistrado = Ubicacion()
+            ubicacionRegistrado.latitud = model.ubicacionGoogle.latitud
+            ubicacionRegistrado.longitud = model.ubicacionGoogle.longitud
+            
+            oferenteRegistro.ubicacion?.append(ubicacionRegistrado)
         }
         
         if textField.tag == 3
@@ -676,9 +705,9 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                     {
                         ComandoOferente.crearOferente(uid: (user?.uid)!, registro: self.oferenteRegistro)
                         
-                        let alert:UIAlertController = UIAlertController(title: "¡Registro Exitoso!", message: "Tu registro ha sido exitoso", preferredStyle: .alert)
+                        let alert:UIAlertController = UIAlertController(title: "¡Hemos recibido tu solicitud!", message: "Tus datos serán confirmados. Mientras tanto, puedes continuar creando publicaciones y estas serán mostradas a todos los usuarios de WooPets cuando seas aprobado", preferredStyle: .alert)
                         
-                        let continuarAction = UIAlertAction(title: "Ok", style: .default)
+                        let continuarAction = UIAlertAction(title: "OK, entendido", style: .default)
                         {
                             UIAlertAction in self.continuarRegistro()
                         }
@@ -769,7 +798,7 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
         datosNegocio.removeObject(at: 2)
         datosNegocio.insert(model.ubicacionGoogle.direccion as Any, at: 2)
         
-        if model.ubicacionGoogle.direccion != ""
+        if model.ubicacionGoogle.latitud != 0
         {
             oferenteRegistro.ubicacion?.removeAll()
             

@@ -2075,7 +2075,7 @@
                         <outlet property="numeroPreguntas" destination="mQg-Ev-jH0" id="U5g-yO-07M"/>
                         <segue destination="Udy-gI-dXJ" kind="presentation" identifier="ingresoDesdeHomeOferente" id="xFU-dj-8VT"/>
                         <segue destination="TRX-Ww-eEQ" kind="presentation" identifier="editarOferente" animates="NO" id="Ujj-Fc-o7Y"/>
-                        <segue destination="4mn-XI-9Y3" kind="presentation" identifier="misPublicaciones" id="kEB-1u-cLh"/>
+                        <segue destination="4mn-XI-9Y3" kind="presentation" identifier="misPublicaciones" animates="NO" id="kEB-1u-cLh"/>
                         <segue destination="GGn-Yq-OOD" kind="presentation" identifier="misPreguntas" id="Fb3-n8-vyK"/>
                         <segue destination="9vR-hU-M6e" kind="presentation" identifier="misVentas" id="JR9-Vu-G1n"/>
                     </connections>
@@ -3225,7 +3225,7 @@
                         <outlet property="viewTableViewBottom" destination="a1E-OZ-nEQ" id="2FO-cd-bYc"/>
                         <segue destination="kRZ-vI-fEp" kind="presentation" identifier="horarioDesdeRegistroOferente" animates="NO" id="uMY-cc-n0G"/>
                         <segue destination="p9Q-5F-oME" kind="presentation" identifier="homeOferenteDesdeRegistro" id="76k-lT-QGq"/>
-                        <segue destination="4UG-ue-bSE" kind="presentation" identifier="ubicacionDesdeRegistroOferente" id="6bV-1w-oqd"/>
+                        <segue destination="4UG-ue-bSE" kind="presentation" identifier="ubicacionDesdeRegistroOferente" animates="NO" id="6bV-1w-oqd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGG-kQ-ihw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5063,13 +5063,13 @@
         <image name="textura_Ingreso" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="opa-8Z-Ijh"/>
-        <segue reference="8j2-lp-SYU"/>
-        <segue reference="h3L-qL-Kwr"/>
         <segue reference="cT9-T2-yqT"/>
+        <segue reference="h3L-qL-Kwr"/>
+        <segue reference="sYu-Og-K4J"/>
         <segue reference="hgm-wc-gfv"/>
-        <segue reference="YPk-TY-Hhz"/>
-        <segue reference="0tx-yz-OQB"/>
+        <segue reference="8j2-lp-SYU"/>
+        <segue reference="Ujj-Fc-o7Y"/>
         <segue reference="uMY-cc-n0G"/>
+        <segue reference="YPk-TY-Hhz"/>
     </inferredMetricsTieBreakers>
 </document>

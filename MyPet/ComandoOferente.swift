@@ -242,15 +242,16 @@ class ComandoOferente
         
         ref.observe(.value, with: {(snap) -> Void in
             
-            
-            let value = snap.value as! [String : AnyObject]
-            
-            model.tpaga.idClienteEnTpaga = value["idClienteTpaga"] as! String
-            model.tpaga.nombre = value["nombres"] as! String
-            model.tpaga.apellido = value["apellidos"] as! String
-            model.tpaga.telefono = value["telefono"] as! String
-            model.tpaga.correo = value["correo"] as! String
-            
+            if snap.value as? [String : AnyObject] != nil
+            {
+                let value = snap.value as! [String : AnyObject]
+                
+                model.tpaga.idClienteEnTpaga = value["idClienteTpaga"] as! String
+                model.tpaga.nombre = value["nombres"] as! String
+                model.tpaga.apellido = value["apellidos"] as! String
+                model.tpaga.telefono = value["telefono"] as! String
+                model.tpaga.correo = value["correo"] as! String
+            }
         })
         
     }

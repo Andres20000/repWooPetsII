@@ -37,8 +37,8 @@ class Oferente
 
 class Ubicacion
 {
-    var latitud:Double?
-    var longitud:Double?
+    var latitud:Double? = 0
+    var longitud:Double? = 0
 }
 
 
