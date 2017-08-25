@@ -68,6 +68,11 @@ class Pregunta
     
 }
 
+
+
+
+
+
 class Modelo
 {
     static let sharedInstance:Modelo =

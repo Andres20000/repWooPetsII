@@ -176,34 +176,24 @@ class DestacarPublicacionViewController: UIViewController, UIImagePickerControll
         
         
         
-        performSegue(withIdentifier: "metodoPago", sender: nil)
-        
-        /*if !subir {
-            dismiss(animated: true, completion: nil)
-            return
-        }*/
-        
-        activarDestacado()
-
-    }
-    
-    
-    
-    func activarDestacado() {
-        
-        
         if imagen.image != nil {
             publicacion?.imagenDestacado?.imageData = UIImageJPEGRepresentation(imagen.image!, 1.0)
         }
         else {
+            
+            mostrarAlerta(titulo: "Información Incompleta", mensaje: "Antes de hacer el pago debes seleccionar una imagen para destacar tu anuncio. ")
             return
         }
 
         
-        ComandoDestacados.destacarPublicacion(publicacion: publicacion!, newVersion: 1)
         
         
+        performSegue(withIdentifier: "metodoPago", sender: nil)
+        
+      
     }
+    
+    
     
     
     
@@ -236,10 +226,33 @@ class DestacarPublicacionViewController: UIViewController, UIImagePickerControll
             }
             
         }
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
         
+        if (segue.identifier == "metodoPago"){
+            
+            let detailController = segue.destination as! IngresoTarjetaHabiente
+            detailController.publicacion = publicacion!
+
+        }
+    }
+    
+    func mostrarAlerta(titulo:String, mensaje:String)
+    {
+        let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
         
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            
+            return
+        }
         
-        
+        alerta.addAction(OKAction)
+        present(alerta, animated: true, completion: { return })
     }
 
     

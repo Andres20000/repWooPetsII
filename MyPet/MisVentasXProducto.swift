@@ -88,7 +88,7 @@ class MisVentasXProducto: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
-        selectedIndex = indexPath.row
+        
         
         let item = model.getMisVentasDeUnaPublicacion(abiertas: abiertas, idPublicacion: publicacion!.idPublicacion!)[indexPath.row]
         
@@ -107,7 +107,7 @@ class MisVentasXProducto: UIViewController, UITableViewDelegate, UITableViewData
 
        
         cell.cantidad.text = String(item.cantidad)
-        cell.fecha.text = item.fechaServicio!
+        cell.fecha.text = item.compra!.fecha
         
         return cell;
     }
@@ -127,7 +127,7 @@ class MisVentasXProducto: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         
-        
+        selectedIndex = indexPath.row
         
         let transition = CATransition()
         transition.duration = 0.5

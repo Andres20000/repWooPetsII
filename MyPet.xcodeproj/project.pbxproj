@@ -65,6 +65,8 @@
 		41572E881F4CE17D00F3878D /* RespuestaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41572E861F4CE17D00F3878D /* RespuestaVC.swift */; };
 		41572E8A1F4CE33000F3878D /* DestacarPublicacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */; };
 		41572E8B1F4CE33000F3878D /* DestacarPublicacionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */; };
+		41D9E45B1F4E465000923B2B /* Parametros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D9E45A1F4E465000923B2B /* Parametros.swift */; };
+		41D9E45C1F4E465100923B2B /* Parametros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D9E45A1F4E465000923B2B /* Parametros.swift */; };
 		840B1B3A1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
 		840B1B3B1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
 		840B1B3C1F339B2900423832 /* ResenaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840B1B391F339B2900423832 /* ResenaTableViewCell.xib */; };
@@ -315,6 +317,7 @@
 		4134D5191F46033400DB43DA /* DetalleMiVenta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalleMiVenta.swift; sourceTree = "<group>"; };
 		41572E861F4CE17D00F3878D /* RespuestaVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RespuestaVC.swift; sourceTree = "<group>"; };
 		41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestacarPublicacionViewController.swift; sourceTree = "<group>"; };
+		41D9E45A1F4E465000923B2B /* Parametros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parametros.swift; sourceTree = "<group>"; };
 		49E7A6DA1136AACD9514E46A /* Pods-MyPetPruebas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPetPruebas.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyPetPruebas/Pods-MyPetPruebas.release.xcconfig"; sourceTree = "<group>"; };
 		840B1B381F339B2900423832 /* ResenaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResenaTableViewCell.swift; sourceTree = "<group>"; };
 		840B1B391F339B2900423832 /* ResenaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResenaTableViewCell.xib; sourceTree = "<group>"; };
@@ -552,6 +555,7 @@
 				4101FA491F4B7B080098F735 /* TPaga */,
 				84BD206E1EF0922B001422E7 /* Modelo.swift */,
 				84BD20711EF092DB001422E7 /* Comando.swift */,
+				41D9E45A1F4E465000923B2B /* Parametros.swift */,
 				84BD20671EEF8709001422E7 /* Usuario */,
 				84417BA11EBC508100A70ABC /* Oferente */,
 				84A3E1DB1EC6B4350013E4DD /* ComandoPublicacion.swift */,
@@ -1144,6 +1148,7 @@
 				8448600D1F4644A600DF5D9D /* ServicioCompradoTableViewCell.swift in Sources */,
 				84417B701EB04F6900A70ABC /* RegistroOferenteViewController.swift in Sources */,
 				4101FA4B1F4B7B380098F735 /* TPCliente.swift in Sources */,
+				41D9E45B1F4E465000923B2B /* Parametros.swift in Sources */,
 				843B56261F13E46B007297CB /* AlarmaViewController.swift in Sources */,
 				847FDC151ED3469F002F9530 /* DetalleHorarioTableViewCell.swift in Sources */,
 				4124FE581F3D394200C9A1C5 /* HeaderPreguntaCeldaTableViewCell.swift in Sources */,
@@ -1222,7 +1227,6 @@
 				847838CD1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift in Sources */,
 				848E318F1F26601200D35C6D /* PublicacionServicioViewController.swift in Sources */,
 				844860181F4BE27900DF5D9D /* AvisoCalificacionViewController.swift in Sources */,
-				840BD1841ED259AE00AAD2AE /* DestacarPublicacionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1255,6 +1259,7 @@
 				8448600E1F4644A600DF5D9D /* ServicioCompradoTableViewCell.swift in Sources */,
 				84417B711EB04F6900A70ABC /* RegistroOferenteViewController.swift in Sources */,
 				4101FA4C1F4B7B380098F735 /* TPCliente.swift in Sources */,
+				41D9E45C1F4E465100923B2B /* Parametros.swift in Sources */,
 				843B56271F13E46B007297CB /* AlarmaViewController.swift in Sources */,
 				847FDC161ED3469F002F9530 /* DetalleHorarioTableViewCell.swift in Sources */,
 				4124FE591F3D394200C9A1C5 /* HeaderPreguntaCeldaTableViewCell.swift in Sources */,
@@ -1333,7 +1338,6 @@
 				847838CE1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift in Sources */,
 				848E31901F26601200D35C6D /* PublicacionServicioViewController.swift in Sources */,
 				844860191F4BE27900DF5D9D /* AvisoCalificacionViewController.swift in Sources */,
-				840BD1851ED259AE00AAD2AE /* DestacarPublicacionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
