@@ -105,6 +105,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         {
             if (model.usuario[0].datosComplementarios?.count)! == 0
             {
+                print("Entra porque falta terminar de registrarse")
                 if DeviceType.IS_IPHONE_5
                 {
                     sizeFont = 15.0
@@ -136,6 +137,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
             {
                 if (model.usuario[0].datosComplementarios?[0].mascotas?.count)! == 0
                 {
+                    print("Entra porque falta crear mascota")
                     if DeviceType.IS_IPHONE_5
                     {
                         sizeFont = 15.0

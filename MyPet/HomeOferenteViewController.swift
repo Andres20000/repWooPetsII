@@ -11,6 +11,8 @@ import FirebaseAuth
 
 class HomeOferenteViewController: UITabBarController
 {
+    let  user = FIRAuth.auth()?.currentUser
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -26,10 +28,13 @@ class HomeOferenteViewController: UITabBarController
         self.tabBar.items?[2].selectedImage = UIImage(named: "btnNotificacionAzul")?.withRenderingMode(.alwaysOriginal)
         self.tabBar.items?[2].image = UIImage(named: "btnNotificacionBlanco")?.withRenderingMode(.alwaysOriginal)
         
-        let model = Modelo.sharedInstance
-        
-        let version = model.myApp.version
-        Comando.updateDataSystem(tipo: "oferentes", uid: (FIRAuth.auth()?.currentUser?.uid)!, version: version)
+        if user != nil
+        {
+            let model = Modelo.sharedInstance
+            
+            let version = model.myApp.version
+            Comando.updateDataSystem(tipo: "oferentes", uid: (user?.uid)!, version: version)
+        }
         
     }
 

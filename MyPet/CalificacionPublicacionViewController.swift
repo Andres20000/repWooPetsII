@@ -14,6 +14,31 @@ class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDe
     @IBOutlet var textComentario: UITextView!
     @IBOutlet var btnEnviar: UIButton!
     
+    @IBAction func backView(_ sender: Any)
+    {
+        let alert:UIAlertController = UIAlertController(title: "¡Confirmar!", message: "¿Está seguro de abandonar la vista sin enviar una calificación?", preferredStyle: .alert)
+        
+        let continuarAction = UIAlertAction(title: "Sí", style: .default)
+        {
+            UIAlertAction in self.abandonar()
+        }
+        
+        let cancelAction = UIAlertAction(title: "No", style: .cancel)
+        {
+            UIAlertAction in
+        }
+        
+        // Add the actions
+        alert.addAction(continuarAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func abandonar()
+    {
+        self.performSegue(withIdentifier: "precargarPublicacionesDesdeCalificacionPublicacion", sender: self)
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()

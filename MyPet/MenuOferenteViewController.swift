@@ -11,6 +11,8 @@ import FirebaseAuth
 
 class MenuOferenteViewController: UIViewController
 {
+    let  user = FIRAuth.auth()?.currentUser
+    
     var model  = ModeloOferente.sharedInstance
     
     @IBOutlet var lblRazonSocial: UILabel!
@@ -139,7 +141,7 @@ class MenuOferenteViewController: UIViewController
     {
         super.viewWillAppear(animated)
         
-        ComandoOferente.getOferente(uid: FIRAuth.auth()?.currentUser?.uid)
+        ComandoOferente.getOferente(uid: (user?.uid)!)
         
         NotificationCenter.default.addObserver(self, selector: #selector(MenuOferenteViewController.cargarDatosOferente(_:)), name:NSNotification.Name(rawValue:"cargoOferente"), object: nil)
     }

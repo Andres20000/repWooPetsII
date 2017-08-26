@@ -146,7 +146,34 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
             tituloNegocio = ["Razón Social","NIT","Dirección", "Teléfono fijo", "Celular", "Correo electrónico", "Página web (opcional)", "Horario de atención a domicilio"]
             
             tituloContacto = ["Nombre completo","Tipo de documento","Número de documento", "Teléfono fijo", "Celular", "Correo electrónico (este será tu Usuario)", "Contraseña (para tu Usuario)"]
+            
+            FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+                
+                if user != nil
+                {
+                    print("uid Registrado antes de la alerta: \((user?.uid)!)")
+                    ComandoOferente.getOferente(uid: (user?.uid)!)
+                    
+                    NotificationCenter.default.addObserver(self, selector: #selector(RegistroOferenteViewController.continuarRegistro(_:)), name:NSNotification.Name(rawValue:"cargoOferente"), object: nil)
+                    
+                }
+            }
         }
+        
+    }
+    
+    func continuarRegistro(_ notification: Notification)
+    {
+        let alert:UIAlertController = UIAlertController(title: "¡Hemos recibido tu solicitud!", message: "Tus datos serán confirmados. Mientras tanto, puedes continuar creando publicaciones y estas serán mostradas a todos los usuarios de WooPets cuando seas aprobado", preferredStyle: .alert)
+        
+        let continuarAction = UIAlertAction(title: "OK, entendido", style: .default){ (_) -> Void in
+            
+            self.performSegue(withIdentifier: "homeOferenteDesdeRegistro", sender: self)
+        }
+        
+        // Add the actions
+        alert.addAction(continuarAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     // #pragma mark - Table View
@@ -704,18 +731,6 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                     else
                     {
                         ComandoOferente.crearOferente(uid: (user?.uid)!, registro: self.oferenteRegistro)
-                        
-                        let alert:UIAlertController = UIAlertController(title: "¡Hemos recibido tu solicitud!", message: "Tus datos serán confirmados. Mientras tanto, puedes continuar creando publicaciones y estas serán mostradas a todos los usuarios de WooPets cuando seas aprobado", preferredStyle: .alert)
-                        
-                        let continuarAction = UIAlertAction(title: "OK, entendido", style: .default)
-                        {
-                            UIAlertAction in self.continuarRegistro()
-                        }
-                        
-                        // Add the actions
-                        alert.addAction(continuarAction)
-                        self.present(alert, animated: true, completion: nil)
-                        
                     }
                 })
             }
@@ -732,11 +747,6 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                 }
             })
         }
-    }
-    
-    func continuarRegistro()
-    {
-        self.performSegue(withIdentifier: "homeOferenteDesdeRegistro", sender: self)
     }
     
     func editarDatosOferente()

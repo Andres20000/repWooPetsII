@@ -62,13 +62,15 @@ class InicioSesionOferenteViewController: UIViewController, UITextFieldDelegate
             
         } else
         {
-            if model.oferente[0].aprobacionMyPet == "Pendiente"
+            self.performSegue(withIdentifier: "homeOferenteDesdeInicioSesion", sender: self)
+            /*if model.oferente[0].aprobacionMyPet == "Pendiente"
             {
                 self.mostrarAlerta(titulo: "¡Aviso importante!", mensaje: "Tu usuario aún está pendiente por activar")
+                try! FIRAuth.auth()!.signOut()
             } else
             {
                 self.performSegue(withIdentifier: "homeOferenteDesdeInicioSesion", sender: self)
-            }
+            }*/
         }
     }
     

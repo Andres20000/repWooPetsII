@@ -83,14 +83,14 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
             }
         }else
         {
-            print("Registro: Con usuario listo")
+            print("Registro: Con usuario correo listo")
             self.performSegue(withIdentifier: "ingresoExitosoDesdeRegistroUsuario", sender: self)
         }
     }
     
     func continuarFB(_ notification: Notification)
     {
-        print("Registro: Con usuario listo")
+        print("Registro: Con usuario FB listo")
         self.performSegue(withIdentifier: "ingresoExitosoDesdeRegistroUsuario", sender: self)
     }
     

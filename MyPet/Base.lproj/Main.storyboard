@@ -3244,7 +3244,7 @@
                                     <constraint firstAttribute="width" constant="25" id="dK4-jN-1Si"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medios de pago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCj-l9-AyZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Método de pago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCj-l9-AyZ">
                                 <rect key="frame" x="49" y="127" width="310" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="eMP-UK-Qnp"/>
@@ -3288,7 +3288,7 @@
                                     <constraint firstAttribute="width" constant="25" id="qSS-ry-jA0"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ayuda (PQR's)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBe-8g-2n0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ayuda (PQRS)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBe-8g-2n0">
                                 <rect key="frame" x="49" y="233" width="310" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="n41-La-SzG"/>
@@ -3351,7 +3351,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RsD-pk-oWw">
-                                <rect key="frame" x="0.0" y="502" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="453" width="375" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SÍGUENOS EN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKL-SS-J1o">
                                         <rect key="frame" x="0.0" y="8" width="375" height="25"/>
@@ -3497,6 +3497,9 @@
                                 <items>
                                     <barButtonItem image="btnAtrasBlanco" id="7lK-zD-kSc">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="backView:" destination="Do6-zR-9tl" id="oOy-gh-6nH"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="SRN-Es-8nJ"/>
                                     <barButtonItem title="¡Califícanos!" id="VwZ-8a-gey">
@@ -3602,6 +3605,7 @@
                         <outlet property="btnEnviar" destination="b3B-fe-btX" id="OTP-PE-5U8"/>
                         <outlet property="floatRatingView" destination="NhM-Pc-Iau" id="Fa6-eD-nWf"/>
                         <outlet property="textComentario" destination="p7z-YG-Qas" id="5aA-r8-Kbo"/>
+                        <segue destination="kP5-u7-Mb7" kind="presentation" identifier="precargarPublicacionesDesdeCalificacionPublicacion" id="4dZ-15-YtV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hZW-LH-CbI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3739,7 +3743,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i5o-FR-nhy">
-                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="514"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Mz6-me-0lf" id="nEe-Op-Zlf"/>
@@ -3747,7 +3751,7 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGp-be-x6G">
-                                <rect key="frame" x="67" y="290.5" width="240" height="190"/>
+                                <rect key="frame" x="67" y="266" width="240" height="190"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qqd-4s-cmN">
                                         <rect key="frame" x="49" y="0.0" width="142" height="142"/>
@@ -6221,23 +6225,23 @@
         <image name="textura_Ingreso" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IRx-Jv-GCZ"/>
+        <segue reference="a1h-2i-JbW"/>
+        <segue reference="bgn-VA-ZLh"/>
+        <segue reference="Yba-aL-RMS"/>
         <segue reference="d72-8e-bX5"/>
-        <segue reference="a0Y-0f-miF"/>
-        <segue reference="KSr-oI-4G4"/>
-        <segue reference="rzp-TS-BC7"/>
-        <segue reference="rmU-qS-rqw"/>
         <segue reference="ccS-eF-KMJ"/>
-        <segue reference="c64-eH-oia"/>
+        <segue reference="KSr-oI-4G4"/>
+        <segue reference="aiq-DQ-SKV"/>
+        <segue reference="IRx-Jv-GCZ"/>
+        <segue reference="gNs-38-JWS"/>
+        <segue reference="95r-G0-w3V"/>
         <segue reference="aNJ-m2-0I0"/>
         <segue reference="ebI-ph-1Ok"/>
         <segue reference="FW0-BB-RT8"/>
         <segue reference="qav-fg-sdY"/>
-        <segue reference="aiq-DQ-SKV"/>
-        <segue reference="gNs-38-JWS"/>
-        <segue reference="95r-G0-w3V"/>
         <segue reference="oQN-Js-Es1"/>
-        <segue reference="k7m-qH-c1t"/>
-        <segue reference="Yba-aL-RMS"/>
+        <segue reference="c64-eH-oia"/>
+        <segue reference="rzp-TS-BC7"/>
+        <segue reference="rmU-qS-rqw"/>
     </inferredMetricsTieBreakers>
 </document>
