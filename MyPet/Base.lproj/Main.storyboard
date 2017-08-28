@@ -1555,10 +1555,10 @@
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1KR-xG-4l6">
-                                        <rect key="frame" x="0.0" y="478" width="375" height="224"/>
+                                        <rect key="frame" x="0.0" y="478" width="375" height="404"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="224" id="SH5-U2-Nkn"/>
+                                            <constraint firstAttribute="height" constant="404" id="SH5-U2-Nkn"/>
                                         </constraints>
                                         <collectionViewLayout key="collectionViewLayout" id="atZ-on-gxV"/>
                                         <cells/>
@@ -6225,23 +6225,23 @@
         <image name="textura_Ingreso" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a1h-2i-JbW"/>
+        <segue reference="qav-fg-sdY"/>
+        <segue reference="5AM-1p-jx9"/>
         <segue reference="bgn-VA-ZLh"/>
         <segue reference="Yba-aL-RMS"/>
-        <segue reference="d72-8e-bX5"/>
-        <segue reference="ccS-eF-KMJ"/>
+        <segue reference="a1h-2i-JbW"/>
         <segue reference="KSr-oI-4G4"/>
-        <segue reference="aiq-DQ-SKV"/>
-        <segue reference="IRx-Jv-GCZ"/>
-        <segue reference="gNs-38-JWS"/>
-        <segue reference="95r-G0-w3V"/>
-        <segue reference="aNJ-m2-0I0"/>
-        <segue reference="ebI-ph-1Ok"/>
-        <segue reference="FW0-BB-RT8"/>
-        <segue reference="qav-fg-sdY"/>
-        <segue reference="oQN-Js-Es1"/>
         <segue reference="c64-eH-oia"/>
         <segue reference="rzp-TS-BC7"/>
-        <segue reference="rmU-qS-rqw"/>
+        <segue reference="bVH-Q1-m3n"/>
+        <segue reference="g9o-0N-P4D"/>
+        <segue reference="UlJ-My-ATf"/>
+        <segue reference="A6W-wT-hwa"/>
+        <segue reference="oQN-Js-Es1"/>
+        <segue reference="FW0-BB-RT8"/>
+        <segue reference="aNJ-m2-0I0"/>
+        <segue reference="ebI-ph-1Ok"/>
+        <segue reference="gNs-38-JWS"/>
+        <segue reference="aiq-DQ-SKV"/>
     </inferredMetricsTieBreakers>
 </document>

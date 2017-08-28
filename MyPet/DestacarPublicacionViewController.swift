@@ -26,6 +26,9 @@ class DestacarPublicacionViewController: UIViewController, UIImagePickerControll
     
     @IBOutlet weak var imagen: UIImageView!
     
+    @IBOutlet weak var viewImage: UIView!
+    @IBOutlet var lblTitulo: UILabel!
+    @IBOutlet var lblPrecio: UILabel!
     
     
     let imagePicker = UIImagePickerController()
@@ -147,14 +150,32 @@ class DestacarPublicacionViewController: UIViewController, UIImagePickerControll
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
-        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage
+        {
+            subir = true
             imagen.image = self.resizeImage(pickedImage, newWidth: 300.0)
             
-            subir = true
-        } else if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            viewImage.isHidden = false
+            lblTitulo.text = publicacion?.nombre
+            if let amountString = publicacion?.precio?.currencyInputFormatting()
+            {
+                lblPrecio.text = amountString
+            }
+            
+        } else if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
             subir = true
             imagen.image = self.resizeImage(pickedImage, newWidth: 300.0)
-        } else {
+            
+            viewImage.isHidden = false
+            lblTitulo.text = publicacion?.nombre
+            if let amountString = publicacion?.precio?.currencyInputFormatting()
+            {
+                lblPrecio.text = amountString
+            }
+            
+        } else
+        {
             imagen.image = nil
         }
         

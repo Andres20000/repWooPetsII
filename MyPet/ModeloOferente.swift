@@ -275,7 +275,7 @@ class PublicacionOferente
     var nombre:String?  = ""
     var precio:String?  = ""
     var servicio:Bool?
-    var stock:String?  = ""
+    var stock:Int?  = 0
     
     var tieneStock:Bool
     {

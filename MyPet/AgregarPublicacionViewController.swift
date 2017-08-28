@@ -37,7 +37,7 @@ class AgregarPublicacionViewController: UIViewController
         model.publicacion.nombre = ""
         model.publicacion.precio = ""
         model.publicacion.servicio = false
-        model.publicacion.stock = ""
+        model.publicacion.stock = 0
         model.publicacion.subcategoria = ""
         model.publicacion.target = ""
         

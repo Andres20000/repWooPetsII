@@ -486,6 +486,49 @@ class ComandoUsuario
             
             NotificationCenter.default.post(name: Notification.Name("cargoMisComprasUsuario"), object: nil)
         })
+        
+        let refHandle2  = FIRDatabase.database().reference().child("compras/cerradas")
+        let ref2 = refHandle2.queryOrdered(byChild: "/idCliente").queryEqual(toValue: uid)
+        
+        ref2.observe(.childAdded, with: {(snap) -> Void in
+            
+            let miCompra = CompraUsuario()
+            let postDict = snap.value as! [String : AnyObject]
+            
+            miCompra.fecha = postDict["fecha"] as? String
+            miCompra.idCliente = postDict["idCliente"] as? String
+            miCompra.idCompra = snap.key
+            miCompra.idOferente = postDict["idOferente"] as? String
+            miCompra.timestamp = postDict["timestamp"] as? CLong
+            miCompra.valor = postDict["valor"] as? Int
+            
+            let snapPedidos = snap.childSnapshot(forPath: "pedido")
+            let pedidos = snapPedidos.children
+            
+            while let pedido = pedidos.nextObject() as? FIRDataSnapshot
+            {
+                let pedidoCompra = PedidoUsuario()
+                let postDictPedido = pedido.value as! NSDictionary
+                
+                pedidoCompra.idPedido = Int(pedido.key)
+                pedidoCompra.cantidadCompra = postDictPedido["cantidad"] as? Int
+                pedidoCompra.estado = postDictPedido["estado"] as? String
+                pedidoCompra.servicio = postDictPedido["servicio"] as? Bool
+                
+                if pedidoCompra.servicio!
+                {
+                    pedidoCompra.fechaServicio = postDictPedido["fechaServicio"] as? String
+                }
+                
+                pedidoCompra.idPublicacion = postDictPedido["idPublicacion"] as? String
+                
+                miCompra.pedido?.append(pedidoCompra)
+            }
+            
+            modelUsuario.misCompras.append(miCompra)
+            
+            NotificationCenter.default.post(name: Notification.Name("cargoMisComprasUsuario"), object: nil)
+        })
     }
 }
 

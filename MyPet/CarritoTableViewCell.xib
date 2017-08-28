@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -52,10 +53,10 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RPA-1O-i69">
-                        <rect key="frame" x="159" y="64" width="45" height="20"/>
+                        <rect key="frame" x="164" y="64" width="40" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="FDM-rf-crb"/>
-                            <constraint firstAttribute="width" constant="45" id="O3g-V3-AiP"/>
+                            <constraint firstAttribute="width" constant="40" id="O3g-V3-AiP"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,50 +73,43 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiV-l3-eNx">
-                        <rect key="frame" x="8" y="64" width="83" height="20"/>
+                        <rect key="frame" x="8" y="64" width="67" height="20"/>
                         <color key="backgroundColor" red="0.0" green="0.57254901960000004" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="2V3-zF-Vo4"/>
-                            <constraint firstAttribute="width" constant="83" id="SyR-c9-P7s"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                        <state key="normal">
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
+                        <state key="normal" title="Comprar">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgDinero" translatesAutoresizingMaskIntoConstraints="NO" id="XJJ-g7-t2V">
-                        <rect key="frame" x="18" y="68" width="19" height="12"/>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRg-qG-sxp">
+                        <rect key="frame" x="83" y="64" width="67" height="20"/>
+                        <color key="backgroundColor" red="0.90980392156862744" green="0.21176470588235294" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="12" id="K9M-me-cZv"/>
-                            <constraint firstAttribute="width" constant="19" id="gH1-eW-vqc"/>
+                            <constraint firstAttribute="height" constant="20" id="RYa-C7-OfB"/>
                         </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comprar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aul-AY-BtH">
-                        <rect key="frame" x="43" y="68" width="41" height="12"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="41" id="PA5-YI-nSk"/>
-                            <constraint firstAttribute="height" constant="12" id="VPo-AB-i00"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="9"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="11"/>
+                        <state key="normal" title="Eliminar">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Aul-AY-BtH" firstAttribute="top" secondItem="TiV-l3-eNx" secondAttribute="top" constant="4" id="35U-WV-QzO"/>
                     <constraint firstAttribute="bottom" secondItem="o9t-kH-M3s" secondAttribute="bottom" constant="5.5" id="3UA-vh-Vso"/>
+                    <constraint firstItem="bRg-qG-sxp" firstAttribute="leading" secondItem="TiV-l3-eNx" secondAttribute="trailing" constant="8" id="3at-iZ-Phc"/>
                     <constraint firstItem="TiV-l3-eNx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="4bo-lq-Yca"/>
                     <constraint firstAttribute="trailing" secondItem="o9t-kH-M3s" secondAttribute="trailing" constant="8" id="5Md-z7-Zyi"/>
                     <constraint firstAttribute="trailingMargin" secondItem="cR5-uX-36c" secondAttribute="trailing" constant="18" id="5ci-On-VBz"/>
                     <constraint firstAttribute="bottom" secondItem="RPA-1O-i69" secondAttribute="bottom" constant="5.5" id="6lf-mC-unB"/>
                     <constraint firstItem="eMd-86-uTB" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="86w-ku-btO"/>
-                    <constraint firstItem="Aul-AY-BtH" firstAttribute="leading" secondItem="XJJ-g7-t2V" secondAttribute="leading" constant="25" id="AzG-iY-eX5"/>
+                    <constraint firstItem="bRg-qG-sxp" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.21" id="8Hn-JO-MhC"/>
                     <constraint firstItem="FMu-p0-tLa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="C2x-U5-xY0"/>
                     <constraint firstItem="FMu-p0-tLa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="CP3-3O-6QO"/>
                     <constraint firstAttribute="bottom" secondItem="TiV-l3-eNx" secondAttribute="bottom" constant="5.5" id="CTW-b2-cRS"/>
-                    <constraint firstItem="XJJ-g7-t2V" firstAttribute="top" secondItem="TiV-l3-eNx" secondAttribute="top" constant="4" id="Ogt-Xl-LOT"/>
+                    <constraint firstAttribute="bottom" secondItem="bRg-qG-sxp" secondAttribute="bottom" constant="5.5" id="DD7-LT-tNn"/>
                     <constraint firstItem="eMd-86-uTB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="19" id="P3A-ca-cEk"/>
-                    <constraint firstItem="XJJ-g7-t2V" firstAttribute="leading" secondItem="TiV-l3-eNx" secondAttribute="leading" constant="10" id="SsW-Ln-fVr"/>
+                    <constraint firstItem="TiV-l3-eNx" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.21" id="QEp-2T-zOR"/>
                     <constraint firstItem="o9t-kH-M3s" firstAttribute="leading" secondItem="RPA-1O-i69" secondAttribute="trailing" constant="8" id="WHT-Oe-7qy"/>
                     <constraint firstItem="eMd-86-uTB" firstAttribute="leading" secondItem="kid-uG-fMr" secondAttribute="trailing" constant="8" id="feV-bG-nif"/>
                     <constraint firstItem="cR5-uX-36c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="h3c-LV-cGO"/>
@@ -126,6 +120,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="btnComprar" destination="TiV-l3-eNx" id="ZVP-JI-ydI"/>
+                <outlet property="btnEliminar" destination="bRg-qG-sxp" id="OEo-OM-PO3"/>
                 <outlet property="imgPublicacion" destination="FMu-p0-tLa" id="EQe-Hd-JlF"/>
                 <outlet property="lblCostoPublicacion" destination="cR5-uX-36c" id="LlE-21-9hX"/>
                 <outlet property="lblNombrePublicacion" destination="kid-uG-fMr" id="kVt-nT-zeV"/>
@@ -135,6 +130,5 @@
     </objects>
     <resources>
         <image name="btnAdelante" width="12" height="16"/>
-        <image name="imgDinero" width="39" height="24"/>
     </resources>
 </document>

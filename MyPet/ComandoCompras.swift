@@ -86,7 +86,7 @@ class ComandoCompras {
     class func setEstadoCompraAbierta(item:ItemCompra, estado:String ) {
     
         
-        var ref  = FIRDatabase.database().reference().child("compras/abiertas/" +  item.compra!.idCompra + "/pedido/" + String(item.consecutivo) + "/estado")
+        let ref  = FIRDatabase.database().reference().child("compras/abiertas/" +  item.compra!.idCompra + "/pedido/" + String(item.consecutivo) + "/estado")
         
         ref.setValue(estado)
         

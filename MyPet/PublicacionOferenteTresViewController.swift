@@ -54,7 +54,7 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
             model.publicacion.descripcion = ""
             model.publicacion.nombre = ""
             model.publicacion.precio = ""
-            model.publicacion.stock = ""
+            model.publicacion.stock = 0
         }
         
         dismiss(animated: true, completion: nil)
@@ -219,7 +219,7 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         
         if textField.tag == 4
         {
-            model.publicacion.stock = textField.text
+            model.publicacion.stock = Int(textField.text!)
         }
         
         if DeviceType.IS_IPHONE_5
@@ -330,7 +330,7 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         }
         
         txtPrecio.text = model.publicacion.precio
-        txtCantidad.text = model.publicacion.stock
+        txtCantidad.text = "\(model.publicacion.stock!)"
         
         if txtPrecio.text != ""
         {
@@ -460,7 +460,7 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
                 }
             }else
             {
-                if model.publicacion.stock != ""
+                if model.publicacion.stock != 0
                 {
                     btnContinuar.backgroundColor = UIColor.init(red: 0.050980392156863, green: 0.43921568627451, blue: 0.486274509803922, alpha: 1.0)
                     btnContinuar.isEnabled = true

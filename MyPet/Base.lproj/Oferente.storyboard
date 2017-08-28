@@ -2654,6 +2654,46 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgMuestraDestacado" translatesAutoresizingMaskIntoConstraints="NO" id="bh1-Oi-t4c">
                                         <rect key="frame" x="-0.5" y="-0.5" width="375" height="233.5"/>
                                     </imageView>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xb-kA-Vgt">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgDestacado" translatesAutoresizingMaskIntoConstraints="NO" id="C1D-G4-Vgx">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Wiu-t2-WYA">
+                                                <rect key="frame" x="16" y="8" width="343" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="c8K-Um-ywj"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Precio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="er8-ZD-MQo">
+                                                <rect key="frame" x="16" y="33" width="343" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="lbf-4k-Ker"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Wiu-t2-WYA" secondAttribute="trailing" constant="16" id="3Qb-eK-Tv4"/>
+                                            <constraint firstItem="C1D-G4-Vgx" firstAttribute="leading" secondItem="7Xb-kA-Vgt" secondAttribute="leading" id="GYy-jH-ZcN"/>
+                                            <constraint firstItem="Wiu-t2-WYA" firstAttribute="leading" secondItem="7Xb-kA-Vgt" secondAttribute="leading" constant="16" id="KeA-PU-PYm"/>
+                                            <constraint firstAttribute="bottom" secondItem="C1D-G4-Vgx" secondAttribute="bottom" id="LBG-Pl-bPW"/>
+                                            <constraint firstItem="Wiu-t2-WYA" firstAttribute="top" secondItem="7Xb-kA-Vgt" secondAttribute="top" constant="8" id="Tak-vZ-rzf"/>
+                                            <constraint firstItem="C1D-G4-Vgx" firstAttribute="top" secondItem="7Xb-kA-Vgt" secondAttribute="top" id="fQz-lZ-13c"/>
+                                            <constraint firstItem="er8-ZD-MQo" firstAttribute="top" secondItem="Wiu-t2-WYA" secondAttribute="bottom" id="goj-ge-dFD"/>
+                                            <constraint firstAttribute="trailing" secondItem="C1D-G4-Vgx" secondAttribute="trailing" id="rBB-j7-okl"/>
+                                            <constraint firstAttribute="height" constant="117" id="rCe-p1-fQO"/>
+                                            <constraint firstAttribute="trailing" secondItem="er8-ZD-MQo" secondAttribute="trailing" constant="16" id="ys5-wh-hOl"/>
+                                            <constraint firstItem="er8-ZD-MQo" firstAttribute="leading" secondItem="7Xb-kA-Vgt" secondAttribute="leading" constant="16" id="z3q-bb-2SO"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhl-cC-UqJ">
                                         <rect key="frame" x="-0.5" y="-0.5" width="375" height="233.5"/>
                                         <connections>
@@ -2663,10 +2703,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="7Xb-kA-Vgt" firstAttribute="top" secondItem="vEt-jo-uQI" secondAttribute="top" id="D60-vh-S6L"/>
                                     <constraint firstItem="fhl-cC-UqJ" firstAttribute="height" secondItem="vEt-jo-uQI" secondAttribute="height" id="FGo-nY-JIb"/>
                                     <constraint firstItem="fhl-cC-UqJ" firstAttribute="centerY" secondItem="vEt-jo-uQI" secondAttribute="centerY" id="IE1-t5-vTK"/>
                                     <constraint firstItem="bh1-Oi-t4c" firstAttribute="centerX" secondItem="vEt-jo-uQI" secondAttribute="centerX" id="MIs-SF-uw2"/>
+                                    <constraint firstItem="7Xb-kA-Vgt" firstAttribute="leading" secondItem="vEt-jo-uQI" secondAttribute="leading" id="P0G-MV-nIi"/>
                                     <constraint firstItem="fhl-cC-UqJ" firstAttribute="centerX" secondItem="vEt-jo-uQI" secondAttribute="centerX" id="R3v-M7-Yi9"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Xb-kA-Vgt" secondAttribute="trailing" id="UsF-8K-YjI"/>
                                     <constraint firstItem="bh1-Oi-t4c" firstAttribute="centerY" secondItem="vEt-jo-uQI" secondAttribute="centerY" id="Vus-qA-XAY"/>
                                     <constraint firstItem="fhl-cC-UqJ" firstAttribute="width" secondItem="vEt-jo-uQI" secondAttribute="width" id="bcw-a8-SP4"/>
                                     <constraint firstItem="bh1-Oi-t4c" firstAttribute="width" secondItem="vEt-jo-uQI" secondAttribute="width" id="kAu-We-8Fp"/>
@@ -2836,12 +2879,15 @@
                         <outlet property="cancelar" destination="rQZ-8z-auf" id="f3F-5y-5VC"/>
                         <outlet property="examinar" destination="UKd-Bz-8fo" id="liK-lh-bcO"/>
                         <outlet property="imagen" destination="bh1-Oi-t4c" id="wsT-Lr-jw0"/>
+                        <outlet property="lblPrecio" destination="er8-ZD-MQo" id="vVy-z4-wau"/>
+                        <outlet property="lblTitulo" destination="Wiu-t2-WYA" id="eFV-bp-BP9"/>
+                        <outlet property="viewImage" destination="7Xb-kA-Vgt" id="gmP-J8-WIl"/>
                         <segue destination="Kuk-k8-DSY" kind="show" identifier="metodoPago" id="KB1-4Z-tEB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XC7-eR-Plf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6553" y="430"/>
+            <point key="canvasLocation" x="6552.8000000000002" y="429.53523238380814"/>
         </scene>
         <!--Coach Mark Destacar Imagen-->
         <scene sceneID="J9n-Dk-H8f">

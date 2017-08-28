@@ -56,7 +56,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         
         publicaciones = modelPublicacion.publicacionesPopulares
         
-        contentSizeScroll = 702
+        contentSizeScroll = 882
         
         imgFotoMascota.isHidden = true
         lblNombreMascota.isHidden = true
@@ -179,7 +179,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                     
                     lblAvisoHome.isHidden = true
                     btnAviso.isHidden = true
-                    contentSizeScroll = 702 - 65
+                    contentSizeScroll = 882 - 65
                     
                     if model.mascotaSeleccionada.foto == ""
                     {

@@ -1,21 +1,19 @@
 //
-//  CarritoTableViewCell.swift
+//  MiCompraConfirmadaTableViewCell.swift
 //  MyPet
 //
-//  Created by Jose Aguilar on 13/08/17.
+//  Created by Jose Aguilar on 27/08/17.
 //  Copyright © 2017 Jose Aguilar. All rights reserved.
 //
 
 import UIKit
 
-class CarritoTableViewCell: UITableViewCell
+class MiCompraConfirmadaTableViewCell: UITableViewCell
 {
     @IBOutlet var imgPublicacion: UIImageView!
-    @IBOutlet var lblCostoPublicacion: UILabel!
+    @IBOutlet var lblTextoInfo: UILabel!
     @IBOutlet var lblNombrePublicacion: UILabel!
-    @IBOutlet var btnComprar: UIButton!
-    @IBOutlet var btnEliminar: UIButton!
-    @IBOutlet var lblTotal: UILabel!
+    @IBOutlet var btnCalificar: UIButton!
     
     override func awakeFromNib()
     {
@@ -30,8 +28,7 @@ class CarritoTableViewCell: UITableViewCell
         imgPublicacion.widthAnchor.constraint(equalToConstant: imgPublicacion.frame.width).isActive = true
         imgPublicacion.heightAnchor.constraint(equalToConstant: imgPublicacion.frame.height).isActive = true
         
-        btnComprar.layer.cornerRadius = 5.0
-        btnEliminar.layer.cornerRadius = 5.0
+        btnCalificar.layer.cornerRadius = 5.0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool)

@@ -126,11 +126,15 @@ class DetallePublicacionOferenteViewController: UIViewController, UITableViewDel
         }
         
         cell.lblTitulo.text = tituloDatoPublicacion[indexPath.row]
-        cell.lblDescripcion.text = DatoPublicacion[indexPath.row] as? String
         
         if indexPath.row == 3
         {
             cell.viewDetalleEstandarBottom.isHidden = false
+            cell.lblDescripcion.text = "\((DatoPublicacion[indexPath.row] as? Int)!)"
+            
+        }else
+        {
+            cell.lblDescripcion.text = DatoPublicacion[indexPath.row] as? String
         }
         
         return cell;
@@ -307,8 +311,10 @@ class DetallePublicacionOferenteViewController: UIViewController, UITableViewDel
         {
             tituloDatoPublicacion = ["Título","Descripción","Precio", "Cantidad"]
             
+            print("stock: \(model.publicacion.stock)")
             DatoPublicacion.removeObject(at: 3)
             DatoPublicacion.insert(model.publicacion.stock as Any, at: 3)
+            print("stock después: \(DatoPublicacion[3])")
         }
         
         tableDatosPublicacion.reloadData()

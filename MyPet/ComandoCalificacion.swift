@@ -50,17 +50,45 @@ class ComandoCalificacion {
         
     }
     
-    class func setEstadoCompraAbierta(item:ItemCompra, estado:String ) {
+    // Agregado para Usuario
+    
+    class func  getCalificacionesPublicaciones()
+    {
+        let modelUsuario = ModeloUsuario.sharedInstance
         
+        let refHandle:FIRDatabaseReference! = FIRDatabase.database().reference().child("calificaciones")
         
-        var ref  = FIRDatabase.database().reference().child("compras/abiertas/" +  item.compra!.idCompra + "/pedido/" + String(item.consecutivo) + "/estado")
-        
-        ref.setValue(estado)
-        
-        
-        
+        refHandle.observe(.childAdded, with: {(snap) -> Void in
+            
+            let calificacion = Calificacion()
+            let value = snap.value as! [String : AnyObject]
+            
+            calificacion.calificacion = value["calificacion"] as! Int
+            calificacion.comentario = value["comentario"] as! String
+            calificacion.fecha = value["fecha"] as! String
+            calificacion.idCalificacion = snap.key
+            calificacion.idCliente = value["idCliente"] as! String
+            calificacion.idCompra = value["idCompra"] as! String
+            calificacion.idOferente = value["idOferente"] as! String
+            calificacion.idPublicacion = value["idPublicacion"] as! String
+            
+            modelUsuario.calificacionesPublicaciones.append(calificacion)
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoCalificacionesPublicaciones"), object: nil)
+            
+        })
     }
     
-    
-    
+    class func calificarCompra(calificacionCompra:Calificacion)
+    {
+        let refHandle  = FIRDatabase.database().reference().child("calificaciones").childByAutoId()
+        
+        refHandle.child("/calificacion").setValue(calificacionCompra.calificacion)
+        refHandle.child("/comentario").setValue(calificacionCompra.comentario)
+        refHandle.child("/fecha").setValue(calificacionCompra.fecha)
+        refHandle.child("/idCliente").setValue(calificacionCompra.idCliente)
+        refHandle.child("/idCompra").setValue(calificacionCompra.idCompra)
+        refHandle.child("/idOferente").setValue(calificacionCompra.idOferente)
+        refHandle.child("/idPublicacion").setValue(calificacionCompra.idPublicacion)
+    }
 }

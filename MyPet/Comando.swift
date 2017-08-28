@@ -182,7 +182,7 @@ class Comando
                 
                 if publicacion.hasChild("stock")
                 {
-                    datosPublicacion.stock = value["stock"] as? String
+                    datosPublicacion.stock = value["stock"] as? Int
                 }
                 
                 if publicacion.hasChild("subcategoria")
@@ -664,7 +664,7 @@ class Comando
             
             if snap.hasChild("stock")
             {
-                datosPublicacion.stock = value["stock"] as? String
+                datosPublicacion.stock = value["stock"] as? Int
             }
             
             if snap.hasChild("subcategoria")

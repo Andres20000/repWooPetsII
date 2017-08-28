@@ -225,6 +225,10 @@
 		84A766081F2AE0F1001708CE /* PreguntarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A766061F2AE0F1001708CE /* PreguntarViewController.swift */; };
 		84A7660A1F2AE9CE001708CE /* InfoVendedorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A766091F2AE9CE001708CE /* InfoVendedorViewController.swift */; };
 		84A7660B1F2AE9CE001708CE /* InfoVendedorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A766091F2AE9CE001708CE /* InfoVendedorViewController.swift */; };
+		84AF00681F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF00661F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.swift */; };
+		84AF00691F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AF00661F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.swift */; };
+		84AF006A1F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AF00671F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib */; };
+		84AF006B1F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AF00671F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib */; };
 		84B1A8B71F5081D000BFC805 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84B1A8B61F5081D000BFC805 /* GoogleService-Info.plist */; };
 		84B1B4791EDCF96E00F838C3 /* FotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1B4781EDCF96E00F838C3 /* FotoViewController.swift */; };
 		84B1B47A1EDCF96E00F838C3 /* FotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1B4781EDCF96E00F838C3 /* FotoViewController.swift */; };
@@ -398,6 +402,8 @@
 		84A766031F2ABB8A001708CE /* VistaPreguntasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VistaPreguntasViewController.swift; sourceTree = "<group>"; };
 		84A766061F2AE0F1001708CE /* PreguntarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreguntarViewController.swift; sourceTree = "<group>"; };
 		84A766091F2AE9CE001708CE /* InfoVendedorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoVendedorViewController.swift; sourceTree = "<group>"; };
+		84AF00661F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiCompraConfirmadaTableViewCell.swift; sourceTree = "<group>"; };
+		84AF00671F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiCompraConfirmadaTableViewCell.xib; sourceTree = "<group>"; };
 		84B1A8B61F5081D000BFC805 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84B1B4781EDCF96E00F838C3 /* FotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FotoViewController.swift; sourceTree = "<group>"; };
 		84B451501EC9553E001282B4 /* PublicacionOferenteCuatroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicacionOferenteCuatroViewController.swift; sourceTree = "<group>"; };
@@ -532,6 +538,8 @@
 				84818C541F411CC1001011BA /* CarritoTableViewCell.xib */,
 				844860111F4B3F2300DF5D9D /* MiCompraPendienteTableViewCell.swift */,
 				844860121F4B3F2300DF5D9D /* MiCompraPendienteTableViewCell.xib */,
+				84AF00661F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.swift */,
+				84AF00671F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib */,
 			);
 			name = "Cell Carrito";
 			sourceTree = "<group>";
@@ -672,7 +680,6 @@
 		84B1B4771EDCF94D00F838C3 /* Fotos */ = {
 			isa = PBXGroup;
 			children = (
-				41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */,
 				84B1B4781EDCF96E00F838C3 /* FotoViewController.swift */,
 			);
 			name = Fotos;
@@ -814,6 +821,7 @@
 				843449141EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift */,
 				84B451501EC9553E001282B4 /* PublicacionOferenteCuatroViewController.swift */,
 				840BD1801ED1339500AAD2AE /* DetallePublicacionOferenteViewController.swift */,
+				847FDC061ED33F72002F9530 /* Cell Detalle Publicacion */,
 				4124FE4D1F3CC6FE00C9A1C5 /* PublicacionesOferenteSinRespuesta.swift */,
 				41572E861F4CE17D00F3878D /* RespuestaVC.swift */,
 				4124FE601F3D533400C9A1C5 /* ChatOferente.swift */,
@@ -822,8 +830,8 @@
 				4126C9651F44EE1900BC4413 /* MisVentasXProducto.swift */,
 				4134D5161F45EF8700DB43DA /* DetalleVenta.swift */,
 				4134D5191F46033400DB43DA /* DetalleMiVenta.swift */,
-				847FDC061ED33F72002F9530 /* Cell Detalle Publicacion */,
 				84B1B4771EDCF94D00F838C3 /* Fotos */,
+				41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */,
 				84A3E1C71EC3C4530013E4DD /* NotificacionOferenteViewController.swift */,
 			);
 			name = Oferente;
@@ -963,6 +971,7 @@
 				844860091F46447300DF5D9D /* ProductoCompradoTableViewCell.xib in Resources */,
 				840B1B5D1F36612500423832 /* Oferente.storyboard in Resources */,
 				4124FE551F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib in Resources */,
+				84AF006A1F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib in Resources */,
 				847838CF1F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
 				840B1B3C1F339B2900423832 /* ResenaTableViewCell.xib in Resources */,
 				847FDC171ED3469F002F9530 /* DetalleHorarioTableViewCell.xib in Resources */,
@@ -996,6 +1005,7 @@
 				84CA9EFF1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
 				840B1B4A1F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */,
 				84F4FA781EAAEF0300F3E69A /* Main.storyboard in Resources */,
+				84AF006B1F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib in Resources */,
 				8453268B1F0C9B11007A4776 /* AlertaTableViewCell.xib in Resources */,
 				84417B9A1EB93D0D00A70ABC /* HorarioTableViewCell.xib in Resources */,
 				847FDC1E1ED37089002F9530 /* DetalleDescripcionTableViewCell.xib in Resources */,
@@ -1123,6 +1133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84AF00681F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.swift in Sources */,
 				847FDC1B1ED37089002F9530 /* DetalleDescripcionTableViewCell.swift in Sources */,
 				84A3E1BC1EC3BD090013E4DD /* MenuOferenteViewController.swift in Sources */,
 				840BD1811ED1339500AAD2AE /* DetallePublicacionOferenteViewController.swift in Sources */,
@@ -1234,6 +1245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84AF00691F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.swift in Sources */,
 				847FDC1C1ED37089002F9530 /* DetalleDescripcionTableViewCell.swift in Sources */,
 				84A3E1BD1EC3BD090013E4DD /* MenuOferenteViewController.swift in Sources */,
 				840BD1821ED1339600AAD2AE /* DetallePublicacionOferenteViewController.swift in Sources */,

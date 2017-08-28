@@ -54,7 +54,7 @@ class ComandoPublicacion
             }
         }
         
-        if publicacion.stock != ""
+        if publicacion.stock != 0
         {
             newItem["stock"] = publicacion.stock as AnyObject
         }
@@ -164,7 +164,7 @@ class ComandoPublicacion
                 
                 if publicacion.hasChild("stock")
                 {
-                    datosPublicacion.stock = value["stock"] as? String
+                    datosPublicacion.stock = value["stock"] as? Int
                 }
                 
                 if publicacion.hasChild("subcategoria")

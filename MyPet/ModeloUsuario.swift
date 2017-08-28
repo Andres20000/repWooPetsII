@@ -161,6 +161,22 @@ class ModeloUsuario
     var misCompras = [CompraUsuario]()
     var misComprasCompleto = [CompraUsuario]()
     var compra = CompraUsuario()
+    
+    var calificacionMiCompra = Calificacion()
+    var calificacionesPublicaciones = [Calificacion]()
+    
+    func getCalificacionesPublicacion(idPublicacion:String)  -> Calificacion?
+    {
+        for calificacion in calificacionesPublicaciones {
+            
+            if calificacion.idPublicacion == idPublicacion
+            {
+                return calificacion
+            }
+        }
+        
+        return nil
+    }
 }
 
 
