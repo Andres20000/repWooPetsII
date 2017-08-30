@@ -78,7 +78,6 @@ class MenuOferenteViewController: UIViewController
             
         case 2:
             self.performSegue(withIdentifier: "misPreguntas", sender: self)
-
             
         case 3:
             //self.performSegue(withIdentifier: "misPublicaciones", sender: self)
@@ -86,7 +85,6 @@ class MenuOferenteViewController: UIViewController
             
         case 4:
             self.performSegue(withIdentifier: "misVentas", sender: self)
-            print("En construcción")
             
         case 5:
             

@@ -30,7 +30,7 @@ class HomeUsuarioViewController: UITabBarController
         self.tabBar.items?[2].selectedImage = UIImage(named: "btnMenuAzul")?.withRenderingMode(.alwaysOriginal)
         self.tabBar.items?[2].image = UIImage(named: "btnMenu")?.withRenderingMode(.alwaysOriginal)
         
-        if user != nil
+        if modelUsuario.usuario.count > 0
         {
             let model = Modelo.sharedInstance
             

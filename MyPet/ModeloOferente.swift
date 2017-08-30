@@ -41,8 +41,6 @@ class Ubicacion
     var longitud:Double? = 0
 }
 
-
-
 enum Dias:Int
 {
     case domingo = 1
@@ -204,6 +202,7 @@ class Horario
     var dias:String?  = ""
     var horaCierre:String?  = ""
     var horaInicio:String?  = ""
+    var sinJornadaContinua:Bool?
     
     var diasActivos:[Dias] = []
     var nombreArbol:String?  = ""

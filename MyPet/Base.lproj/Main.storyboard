@@ -22,7 +22,34 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textura_Anuncio" translatesAutoresizingMaskIntoConstraints="NO" id="Cj3-fK-B9o">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoMyPet" translatesAutoresizingMaskIntoConstraints="NO" id="Ce7-Bi-j8h">
+                                <rect key="frame" x="94.5" y="50" width="185" height="185.5"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qz2-hn-O92">
+                                <rect key="frame" x="162" y="308" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9YT-D2-Axp"/>
+                                    <constraint firstAttribute="width" constant="50" id="ohL-Mh-nOO"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Cj3-fK-B9o" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="1WK-bY-8tY"/>
+                            <constraint firstItem="Ce7-Bi-j8h" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="48o-3Q-FQs"/>
+                            <constraint firstAttribute="trailing" secondItem="Cj3-fK-B9o" secondAttribute="trailing" id="Es3-uN-2eG"/>
+                            <constraint firstItem="Ce7-Bi-j8h" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.278" id="V2l-cY-bd5"/>
+                            <constraint firstItem="Ce7-Bi-j8h" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.494" id="Wrg-9U-Cfe"/>
+                            <constraint firstItem="Ce7-Bi-j8h" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ice-yI-lYh"/>
+                            <constraint firstItem="qz2-hn-O92" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iwQ-Ek-82D"/>
+                            <constraint firstItem="Cj3-fK-B9o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="quf-JR-qVx"/>
+                            <constraint firstItem="qz2-hn-O92" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sTK-PT-oe2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Cj3-fK-B9o" secondAttribute="bottom" id="wqQ-1A-c4N"/>
+                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
@@ -6236,12 +6263,12 @@
         <segue reference="bVH-Q1-m3n"/>
         <segue reference="g9o-0N-P4D"/>
         <segue reference="UlJ-My-ATf"/>
-        <segue reference="A6W-wT-hwa"/>
-        <segue reference="oQN-Js-Es1"/>
         <segue reference="FW0-BB-RT8"/>
         <segue reference="aNJ-m2-0I0"/>
         <segue reference="ebI-ph-1Ok"/>
         <segue reference="gNs-38-JWS"/>
         <segue reference="aiq-DQ-SKV"/>
+        <segue reference="oQN-Js-Es1"/>
+        <segue reference="wJh-es-f6y"/>
     </inferredMetricsTieBreakers>
 </document>

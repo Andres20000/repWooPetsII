@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FBSDKLoginKit
 
 class ViewController: UIViewController
 {
@@ -27,9 +28,33 @@ class ViewController: UIViewController
             
             if user != nil
             {
-                ComandoUsuario.getUsuario(uid: (user?.uid)!)
-                
-                NotificationCenter.default.addObserver(self, selector: #selector(ViewController.validarIngreso(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
+                if Comando.isConnectedToNetwork()
+                {
+                    ComandoUsuario.getUsuario(uid: (user?.uid)!)
+                    
+                    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.validarIngreso(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
+                }else
+                {
+                    let alert:UIAlertController = UIAlertController(title: "¡Sin conexión!", message: "No detectamos conexión a internet, por favor valida tu señal para poder ingresar a la aplicación. La app se cerrará por seguridad.", preferredStyle: .alert)
+                    
+                    let continuarAction = UIAlertAction(title: "OK, entiendo", style: .default) { (_) -> Void in
+                        
+                        if Comando.validarTipoIngreso()
+                        {
+                            FBSDKAccessToken.setCurrent(nil)
+                            print("Entra aquí al estar con FB")
+                        }
+                        
+                        try! FIRAuth.auth()!.signOut()
+                        
+                        exit(0)
+                    }
+                    
+                    // Add the actions
+                    alert.addAction(continuarAction)
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
                 
             }else
             {
@@ -96,6 +121,7 @@ class ViewController: UIViewController
             detailController.omitir = false
         }
     }
-    
 }
+
+
 

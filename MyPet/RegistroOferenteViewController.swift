@@ -146,18 +146,6 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
             tituloNegocio = ["Razón Social","NIT","Dirección", "Teléfono fijo", "Celular", "Correo electrónico", "Página web (opcional)", "Horario de atención a domicilio"]
             
             tituloContacto = ["Nombre completo","Tipo de documento","Número de documento", "Teléfono fijo", "Celular", "Correo electrónico (este será tu Usuario)", "Contraseña (para tu Usuario)"]
-            
-            FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-                
-                if user != nil
-                {
-                    print("uid Registrado antes de la alerta: \((user?.uid)!)")
-                    ComandoOferente.getOferente(uid: (user?.uid)!)
-                    
-                    NotificationCenter.default.addObserver(self, selector: #selector(RegistroOferenteViewController.continuarRegistro(_:)), name:NSNotification.Name(rawValue:"cargoOferente"), object: nil)
-                    
-                }
-            }
         }
         
     }
@@ -273,17 +261,6 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                     cell.btnGeolocalizar.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
                 }
                 
-                /*if (datosNegocio[indexPath.row] as? String) == ""
-                {
-                    cell.txtCampo.placeholder = "Escríbelo o tráelo desde tu ubicación"
-                    cell.txtCampo.isEnabled = false
-                    cell.btnGeolocalizar.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
-                } else
-                {
-                    cell.txtCampo.isEnabled = true
-                    cell.btnGeolocalizar.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
-                }*/
-                
                 cell.lblNombreCampo.text = tituloNegocio[indexPath.row]
                 cell.txtCampo.text = datosNegocio[indexPath.row] as? String
                 
@@ -327,14 +304,47 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                     {
                         if horario.nombreArbol == "Semana"
                         {
+                            cell.lblDiasSemana.isHidden = false
+                            cell.lblHorarioDiasSemana.isHidden = false
+                            
                             cell.lblDiasSemana.text = horario.dias
                             cell.lblHorarioDiasSemana.text = (horario.horaInicio)! + " - " + (horario.horaCierre)!
+                            
+                            if horario.sinJornadaContinua!
+                            {
+                                cell.lblJornadaContinuaSemana.text = "Cerramos entre 12 y 2 pm"
+                            } else
+                            {
+                                cell.lblJornadaContinuaSemana.text = "Jornada continua"
+                            }
+                            
                         } else
                         {
+                            cell.lblDiasFestivos.isHidden = false
+                            cell.lblHorarioDiasFestivos.isHidden = false
+                            
                             cell.lblDiasFestivos.text = horario.dias
                             cell.lblHorarioDiasFestivos.text = (horario.horaInicio)! + " - " + (horario.horaCierre)!
+                            
+                            cell.lblJornadaContinuaFestivos.isHidden = false
+                            
+                            if horario.sinJornadaContinua!
+                            {
+                                cell.lblJornadaContinuaFestivos.text = "Cerramos entre 12 y 2 pm"
+                            } else
+                            {
+                                cell.lblJornadaContinuaFestivos.text = "Jornada continua"
+                            }
                         }
                     }
+                }else
+                {
+                    cell.lblDiasSemana.isHidden = true
+                    cell.lblHorarioDiasSemana.isHidden = true
+                    
+                    cell.lblDiasFestivos.isHidden = true
+                    cell.lblHorarioDiasFestivos.isHidden = true
+                    cell.lblJornadaContinuaFestivos.isHidden = true
                 }
                 
                 return cell
@@ -493,10 +503,10 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                     {
                         if model.oferente[0].horario?.count == 1
                         {
-                            return 60
+                            return 70
                         } else
                         {
-                            return 90
+                            return 100
                         }
                     }
                 }
@@ -731,6 +741,10 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                     else
                     {
                         ComandoOferente.crearOferente(uid: (user?.uid)!, registro: self.oferenteRegistro)
+                        
+                        ComandoOferente.getOferente(uid: (user?.uid)!)
+                        
+                        NotificationCenter.default.addObserver(self, selector: #selector(RegistroOferenteViewController.continuarRegistro(_:)), name:NSNotification.Name(rawValue:"cargoOferente"), object: nil)
                     }
                 })
             }
@@ -833,6 +847,7 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                 oferenteRegistro.horario?[0].horaInicio = model.horarioSemana.horaInicio
                 oferenteRegistro.horario?[0].horaCierre = model.horarioSemana.horaCierre
                 oferenteRegistro.horario?[0].nombreArbol = "Semana"
+                oferenteRegistro.horario?[0].sinJornadaContinua = model.horarioSemana.sinJornadaContinua
             }
         }else
         {
@@ -850,6 +865,7 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                 oferenteRegistro.horario?[1].horaInicio = model.horarioFestivo.horaInicio
                 oferenteRegistro.horario?[1].horaCierre = model.horarioFestivo.horaCierre
                 oferenteRegistro.horario?[1].nombreArbol = "FinDeSemana"
+                oferenteRegistro.horario?[1].sinJornadaContinua = model.horarioFestivo.sinJornadaContinua
             }
         }else
         {

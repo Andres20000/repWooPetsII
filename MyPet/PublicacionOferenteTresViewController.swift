@@ -12,7 +12,7 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
 {
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var horizontalSpaceConstraint: NSLayoutConstraint?
-    @IBOutlet var bottomLayoutConstraint: NSLayoutConstraint?
+    @IBOutlet var viewHeightConstraint: NSLayoutConstraint?
     @IBOutlet var topLayoutConstraint: NSLayoutConstraint?
     
     let model = ModeloOferente.sharedInstance
@@ -29,15 +29,21 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
     @IBOutlet var textDescripcion: UITextView!
     @IBOutlet var lblCampoPrecio: UILabel!
     @IBOutlet var txtPrecio: UITextField!
+    
+    @IBOutlet var viewCantidad: UIView!
     @IBOutlet var lblCampoCantidad: UILabel!
     @IBOutlet var txtCantidad: UITextField!
+    
+    @IBOutlet var viewHorario: UIView!
     @IBOutlet var lblCampoHorario: UILabel!
-    @IBOutlet var btnHorario: UIButton!
+    
     @IBOutlet var lblDiasSemana: UILabel!
     @IBOutlet var lblHorarioDiasSemana: UILabel!
+    @IBOutlet var lblJornadaContinuaSemana: UILabel!
+    
     @IBOutlet var lblDiasFestivos: UILabel!
     @IBOutlet var lblHorarioDiasFestivos: UILabel!
-    @IBOutlet var imgAdelante: UIImageView!
+    @IBOutlet var lblJornadaContinuaFestivos: UILabel!
     
     @IBOutlet var btnContinuar: UIButton!
     
@@ -94,7 +100,6 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         {
             // Definir espacio para cada dispositivo
             self.horizontalSpaceConstraint?.constant = 40.0
-            self.bottomLayoutConstraint?.constant = 10.0
             
             lblCampoTitulo.font = UIFont (name: "Helvetica Neue", size: 14.0)
             lblCampoDescripcion.font = UIFont (name: "Helvetica Neue", size: 14.0)
@@ -103,9 +108,11 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
             
             lblDiasSemana.font = UIFont (name: "HelveticaNeue-Light", size: 9.5)
             lblHorarioDiasSemana.font = UIFont (name: "HelveticaNeue-Light", size: 9.5)
+            lblJornadaContinuaSemana.font = UIFont (name: "HelveticaNeue-Light", size: 9.5)
             
             lblDiasFestivos.font = UIFont (name: "HelveticaNeue-Light", size: 9.5)
             lblHorarioDiasFestivos.font = UIFont (name: "HelveticaNeue-Light", size: 9.5)
+            lblJornadaContinuaFestivos.font = UIFont (name: "HelveticaNeue-Light", size: 9.5)
         }
         
         if DeviceType.IS_IPHONE_6P
@@ -119,37 +126,23 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         
         if model.publicacion.servicio!
         {
-            lblCampoCantidad.isHidden = true
-            txtCantidad.isHidden = true
+            viewCantidad.isHidden = true
             
-            self.topLayoutConstraint?.constant = 55.0
-            lblCampoHorario.isHidden = false
+            viewHorario.isHidden = false
+            
             lblCampoHorario.layer.masksToBounds = true
             lblCampoHorario.layer.cornerRadius = 5.0
-            btnHorario.isHidden = false
-            imgAdelante.isHidden = false
             
-            lblDiasSemana.isHidden = true
-            lblHorarioDiasSemana.isHidden = true
-            lblDiasFestivos.isHidden = true
-            lblHorarioDiasFestivos.isHidden = true
-            
+            self.topLayoutConstraint?.constant = 440.0
         } else
         {
             model.horarioSemana.dias = ""
             model.horarioFestivo.dias = ""
+            viewHorario.isHidden = true
             
-            lblCampoCantidad.isHidden = false
-            txtCantidad.isHidden = false
+            viewCantidad.isHidden = false
             
-            self.topLayoutConstraint?.constant = 90.0
-            lblCampoHorario.isHidden = true
-            btnHorario.isHidden = true
-            lblDiasSemana.isHidden = true
-            lblHorarioDiasSemana.isHidden = true
-            lblDiasFestivos.isHidden = true
-            lblHorarioDiasFestivos.isHidden = true
-            imgAdelante.isHidden = true
+            self.topLayoutConstraint?.constant = 440.0
         }
     }
     
@@ -356,6 +349,7 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
                 model.publicacion.horario?[0].horaInicio = model.horarioSemana.horaInicio
                 model.publicacion.horario?[0].horaCierre = model.horarioSemana.horaCierre
                 model.publicacion.horario?[0].nombreArbol = "Semana"
+                model.publicacion.horario?[0].sinJornadaContinua = model.horarioSemana.sinJornadaContinua
             }
         }else
         {
@@ -373,6 +367,7 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
                 model.publicacion.horario?[1].horaInicio = model.horarioFestivo.horaInicio
                 model.publicacion.horario?[1].horaCierre = model.horarioFestivo.horaCierre
                 model.publicacion.horario?[1].nombreArbol = "FinDeSemana"
+                model.publicacion.horario?[1].sinJornadaContinua = model.horarioFestivo.sinJornadaContinua
             }
         }else
         {
@@ -412,36 +407,78 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         {
             if model.publicacion.servicio!
             {
-                self.topLayoutConstraint?.constant = 55.0
+                self.viewHeightConstraint?.constant = 55
+                
                 lblDiasSemana.isHidden = true
                 lblHorarioDiasSemana.isHidden = true
+                lblJornadaContinuaSemana.isHidden = true
+                
                 lblDiasFestivos.isHidden = true
                 lblHorarioDiasFestivos.isHidden = true
+                lblJornadaContinuaFestivos.isHidden = true
+                //self.topLayoutConstraint?.constant = 55.0
             }
         }else
         {
             if model.publicacion.horario?.count == 1
             {
+                self.viewHeightConstraint?.constant = 90
+                
+                lblDiasSemana.isHidden = false
+                lblHorarioDiasSemana.isHidden = false
+                lblJornadaContinuaSemana.isHidden = false
+                
                 lblDiasSemana.text = model.publicacion.horario?[0].dias
                 lblHorarioDiasSemana.text = (model.publicacion.horario?[0].horaInicio)! + " - " + (model.publicacion.horario?[0].horaCierre)!
                 
-                self.topLayoutConstraint?.constant = 70.0
-                lblDiasSemana.isHidden = false
-                lblHorarioDiasSemana.isHidden = false
+                if (model.publicacion.horario?[0].sinJornadaContinua)!
+                {
+                    lblJornadaContinuaSemana.text = "Cerramos entre 12 y 2 pm"
+                } else
+                {
+                    lblJornadaContinuaSemana.text = "Jornada continua"
+                }
+                
+                lblDiasFestivos.isHidden = true
+                lblHorarioDiasFestivos.isHidden = true
+                lblJornadaContinuaFestivos.isHidden = true
+                //self.topLayoutConstraint?.constant = 70.0
+                
             }else
             {
+                self.viewHeightConstraint?.constant = 130
+                
+                lblDiasSemana.isHidden = false
+                lblHorarioDiasSemana.isHidden = false
+                lblJornadaContinuaSemana.isHidden = false
+                
                 lblDiasSemana.text = model.publicacion.horario?[0].dias
                 lblHorarioDiasSemana.text = (model.publicacion.horario?[0].horaInicio)! + " - " + (model.publicacion.horario?[0].horaCierre)!
+                
+                if (model.publicacion.horario?[0].sinJornadaContinua)!
+                {
+                    lblJornadaContinuaSemana.text = "Cerramos entre 12 y 2 pm"
+                } else
+                {
+                    lblJornadaContinuaSemana.text = "Jornada continua"
+                }
+                
+                lblDiasFestivos.isHidden = false
+                lblHorarioDiasFestivos.isHidden = false
+                lblJornadaContinuaFestivos.isHidden = false
                 
                 lblDiasFestivos.text = model.publicacion.horario?[1].dias
                 lblHorarioDiasFestivos.text = (model.publicacion.horario?[1].horaInicio)! + " - " + (model.publicacion.horario?[1].horaCierre)!
                 
-                self.topLayoutConstraint?.constant = 90.0
-                lblDiasSemana.isHidden = false
-                lblHorarioDiasSemana.isHidden = false
+                if (model.publicacion.horario?[1].sinJornadaContinua)!
+                {
+                    lblJornadaContinuaFestivos.text = "Cerramos entre 12 y 2 pm"
+                } else
+                {
+                    lblJornadaContinuaFestivos.text = "Jornada continua"
+                }
                 
-                lblDiasFestivos.isHidden = false
-                lblHorarioDiasFestivos.isHidden = false
+                //self.topLayoutConstraint?.constant = 90.0
             }
         }
         

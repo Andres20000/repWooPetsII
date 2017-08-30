@@ -12,7 +12,8 @@ import FBSDKLoginKit
 
 class MenuUsuarioViewController: UIViewController
 {
-    var model  = ModeloUsuario.sharedInstance
+    var model  = Modelo.sharedInstance
+    var modelUsuario  = ModeloUsuario.sharedInstance
     let  user = FIRAuth.auth()?.currentUser
     
     // This constraint ties an element at zero points from the top layout guide
@@ -88,14 +89,14 @@ class MenuUsuarioViewController: UIViewController
     
     func cerrarSesion()
     {
-        print("Tipo: \(Comando.validarTipoIngreso())")
         if Comando.validarTipoIngreso()
         {
             FBSDKAccessToken.setCurrent(nil)
             print("Entra aquí al estar con FB")
         }
         
-        model.usuario.removeAll()
+        model.publicacionesDestacadas.removeAll()
+        modelUsuario.usuario.removeAll()
         
         try! FIRAuth.auth()!.signOut()
         

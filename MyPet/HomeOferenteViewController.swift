@@ -28,7 +28,9 @@ class HomeOferenteViewController: UITabBarController
         self.tabBar.items?[2].selectedImage = UIImage(named: "btnNotificacionAzul")?.withRenderingMode(.alwaysOriginal)
         self.tabBar.items?[2].image = UIImage(named: "btnNotificacionBlanco")?.withRenderingMode(.alwaysOriginal)
         
-        if user != nil
+        let modeloOferente  = ModeloOferente.sharedInstance
+        
+        if modeloOferente.oferente.count > 0
         {
             let model = Modelo.sharedInstance
             

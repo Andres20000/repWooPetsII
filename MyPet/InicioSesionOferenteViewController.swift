@@ -22,7 +22,7 @@ class InicioSesionOferenteViewController: UIViewController, UITextFieldDelegate
     @IBOutlet var txtContrasena: UITextField!
     @IBOutlet var btnInicioSesion: UIButton!
     @IBOutlet var btnRegistro: UIButton!
-
+    
     @IBAction func backView(_ sender: Any)
     {
         dismiss(animated: true, completion: nil)
@@ -33,17 +33,6 @@ class InicioSesionOferenteViewController: UIViewController, UITextFieldDelegate
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            
-            if user != nil {
-                
-                ComandoOferente.getOferente(uid: (user?.uid)!)
-                
-                NotificationCenter.default.addObserver(self, selector: #selector(InicioSesionOferenteViewController.verificarOferente(_:)), name:NSNotification.Name(rawValue:"cargoOferente"), object: nil)
-                
-            }
-        }
     }
     
     func verificarOferente(_ notification: Notification)
@@ -63,14 +52,6 @@ class InicioSesionOferenteViewController: UIViewController, UITextFieldDelegate
         } else
         {
             self.performSegue(withIdentifier: "homeOferenteDesdeInicioSesion", sender: self)
-            /*if model.oferente[0].aprobacionMyPet == "Pendiente"
-            {
-                self.mostrarAlerta(titulo: "¡Aviso importante!", mensaje: "Tu usuario aún está pendiente por activar")
-                try! FIRAuth.auth()!.signOut()
-            } else
-            {
-                self.performSegue(withIdentifier: "homeOferenteDesdeInicioSesion", sender: self)
-            }*/
         }
     }
     
@@ -93,6 +74,11 @@ class InicioSesionOferenteViewController: UIViewController, UITextFieldDelegate
                 
                 self.mostrarAlerta(titulo: "Ingreso fallido", mensaje: "Tus datos no parecen estar correctos. Revisa tus datos y/o tu acceso a Internet.")
                 
+            }else
+            {
+                ComandoOferente.getOferente(uid: (user?.uid)!)
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(InicioSesionOferenteViewController.verificarOferente(_:)), name:NSNotification.Name(rawValue:"cargoOferente"), object: nil)
             }
         })
     }

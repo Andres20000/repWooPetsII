@@ -37,9 +37,21 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
 
         // Do any additional setup after loading the view.
         
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+        let  user = FIRAuth.auth()?.currentUser
+        
+        if user == nil
+        {
+            print("Registro: Con usuario en NILLL")
+            self.botonFacebook.readPermissions = ["public_profile", "email" ]
+            self.botonFacebook.delegate = self
+            self.botonFacebook.isHidden = false
+        }
+        /*FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             
-            if user != nil {
+            if user != nil
+            {
+                print("Ingreso para Usuario con usuario \((user?.uid)!)")
+                
                 ComandoUsuario.getUsuario(uid: (user?.uid)!)
                 
                 NotificationCenter.default.addObserver(self, selector: #selector(InicioSesionUsuarioViewController.verificarUsuario(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
@@ -50,7 +62,7 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
                 self.botonFacebook.delegate = self
                 self.botonFacebook.isHidden = false
             }
-        }
+        }*/
         
     }
     
@@ -112,6 +124,13 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
                     
                     self.mostrarAlerta(titulo: "Ingreso fallido", mensaje: "Tus datos no parecen estar correctos. Revisa tus datos y/o tu acceso a Internet.")
                     print(error?.localizedDescription)
+                }else
+                {
+                    print("Ingreso para Usuario con usuario \((user?.uid)!)")
+                    
+                    ComandoUsuario.getUsuario(uid: (user?.uid)!)
+                    
+                    NotificationCenter.default.addObserver(self, selector: #selector(InicioSesionUsuarioViewController.verificarUsuario(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
                 }
             })
         }
@@ -174,6 +193,12 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
                 
                 if testMail != nil {
                     email = testMail!
+                    
+                    print("Ingreso para Usuario con usuario \((user?.uid)!)")
+                    
+                    ComandoUsuario.getUsuario(uid: (user?.uid)!)
+                    
+                    NotificationCenter.default.addObserver(self, selector: #selector(InicioSesionUsuarioViewController.verificarUsuario(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
                 }
             }
         }

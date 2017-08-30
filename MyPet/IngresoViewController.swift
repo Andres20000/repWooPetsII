@@ -43,7 +43,13 @@ class IngresoViewController: UIViewController
     
     @IBAction func omitirIngresoRegistro(_ sender: Any)
     {
-        self.performSegue(withIdentifier: "precargarPublicacionesDesdeHome", sender: self)
+        if Comando.isConnectedToNetwork()
+        {
+            self.performSegue(withIdentifier: "precargarPublicacionesDesdeHome", sender: self)
+        }else
+        {
+            self.mostrarAlerta(titulo: "¡Sin conexión!", mensaje: "No detectamos conexión a internet, por favor valida tu señal para poder ver las publicaciones.")
+        }
     }
     
     @IBAction func registrarOferente(_ sender: Any)
@@ -89,4 +95,16 @@ class IngresoViewController: UIViewController
      }
      */
 
+    func mostrarAlerta(titulo:String, mensaje:String)
+    {
+        let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            
+            return
+        }
+        
+        alerta.addAction(OKAction)
+        present(alerta, animated: true, completion: { return })
+    }
 }

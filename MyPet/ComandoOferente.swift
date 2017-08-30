@@ -39,7 +39,8 @@ class ComandoOferente
         {
             let horario = ["dias" : horarioRegistro.dias as AnyObject,
                            "horaCierre" : horarioRegistro.horaCierre as AnyObject,
-                           "horaInicio" : horarioRegistro.horaInicio as AnyObject] as [String : AnyObject]
+                           "horaInicio" : horarioRegistro.horaInicio as AnyObject,
+                           "sinJornadaContinua" : horarioRegistro.sinJornadaContinua as AnyObject] as [String : AnyObject]
             
             newItem["horario/\(horarioRegistro.nombreArbol as AnyObject)"] = horario as AnyObject
         }
@@ -117,7 +118,7 @@ class ComandoOferente
                             model.horarioSemana.horaInicio = postDictHorario["horaInicio"] as? String
                             model.horarioSemana.horaCierre = postDictHorario["horaCierre"] as? String
                             model.horarioSemana.nombreArbol = idHorario as? String
-                            
+                            model.horarioSemana.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                         }
                         
                         if (idHorario as? String == "FinDeSemana")
@@ -126,6 +127,7 @@ class ComandoOferente
                             model.horarioFestivo.horaInicio = postDictHorario["horaInicio"] as? String
                             model.horarioFestivo.horaCierre = postDictHorario["horaCierre"] as? String
                             model.horarioFestivo.nombreArbol = idHorario as? String
+                            model.horarioFestivo.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                         }
                         
                         i += 1
@@ -200,7 +202,8 @@ class ComandoOferente
         {
             let horario = ["dias" : horarioRegistro.dias as AnyObject,
                            "horaCierre" : horarioRegistro.horaCierre as AnyObject,
-                           "horaInicio" : horarioRegistro.horaInicio as AnyObject] as [String : AnyObject]
+                           "horaInicio" : horarioRegistro.horaInicio as AnyObject,
+                           "sinJornadaContinua" : horarioRegistro.sinJornadaContinua as AnyObject] as [String : AnyObject]
             
             ref.child("/horario/\(horarioRegistro.nombreArbol as AnyObject)").setValue(horario)
         }

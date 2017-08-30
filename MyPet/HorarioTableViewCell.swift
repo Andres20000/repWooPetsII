@@ -14,8 +14,10 @@ class HorarioTableViewCell: UITableViewCell
     @IBOutlet var lblTitulo: UILabel!
     @IBOutlet var lblDiasSemana: UILabel!
     @IBOutlet var lblHorarioDiasSemana: UILabel!
+    @IBOutlet var lblJornadaContinuaSemana: UILabel!
     @IBOutlet var lblDiasFestivos: UILabel!
     @IBOutlet var lblHorarioDiasFestivos: UILabel!
+    @IBOutlet var lblJornadaContinuaFestivos: UILabel!
 
     override func awakeFromNib()
     {

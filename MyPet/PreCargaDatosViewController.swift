@@ -50,6 +50,8 @@ class PreCargaDatosViewController: UIViewController
             
         }else
         {
+            print("entra aquí")
+            
             NotificationCenter.default.addObserver(self, selector: #selector(PreCargaDatosViewController.cargarDirecto(_:)), name:NSNotification.Name(rawValue:"cargoPublicaciones"), object: nil)
         }
     }
@@ -64,7 +66,6 @@ class PreCargaDatosViewController: UIViewController
         super.viewWillAppear(animated)
         
         Comando.getCategorias()
-        
         Comando.getPublicaciones()
         
         NotificationCenter.default.addObserver(self, selector: #selector(PreCargaDatosViewController.validarIngreso(_:)), name:NSNotification.Name(rawValue:"cargoCategorias"), object: nil)

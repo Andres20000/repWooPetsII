@@ -14,6 +14,10 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
     var atencionSemana = ModeloOferente.sharedInstance.horarioAtencionSemana
     var atencionFestivo = ModeloOferente.sharedInstance.horarioAtencionFinSemana
     
+    // This constraint ties an element at zero points from the top layout guide
+    @IBOutlet var spaceTop1LayoutConstraint: NSLayoutConstraint?
+    @IBOutlet var spaceTop2LayoutConstraint: NSLayoutConstraint?
+    
     var datePicker : UIDatePicker!
     var textFieldGenerico: UITextField!
     
@@ -24,12 +28,14 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
     @IBOutlet var btnDiaV: UIButton!
     @IBOutlet var txtDesdeSemana: UITextField!
     @IBOutlet var txtHastaSemana: UITextField!
+    @IBOutlet var swiJornadaContinuaSemana: UISwitch!
     
     @IBOutlet var btnDiaS: UIButton!
     @IBOutlet var btnDiaD: UIButton!
     @IBOutlet var btnDiaF: UIButton!
     @IBOutlet var txtDesdeFinSemana: UITextField!
     @IBOutlet var txtHastaFinSemana: UITextField!
+    @IBOutlet var swiJornadaContinuaFinSemana: UISwitch!
     
     @IBOutlet var btnAceptar: UIButton!
     
@@ -82,6 +88,13 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
 
         // Do any additional setup after loading the view.
         
+        // Definir espacio para cada dispositivo
+        if DeviceType.IS_IPHONE_5
+        {
+            self.spaceTop1LayoutConstraint?.constant = 50.0
+            self.spaceTop2LayoutConstraint?.constant = 50.0
+        }
+        
         btnDiaL.layer.cornerRadius = 22.0
         btnDiaM.layer.cornerRadius = 22.0
         btnDiaX.layer.cornerRadius = 22.0
@@ -126,6 +139,7 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
                     atencionSemana?.adicionarDia(dias: (model.oferente[0].horario?[0].dias)!)
                     txtDesdeSemana.text = (model.oferente[0].horario?[0].horaInicio)!
                     txtHastaSemana.text = (model.oferente[0].horario?[0].horaCierre)!
+                    swiJornadaContinuaSemana.setOn((model.oferente[0].horario?[0].sinJornadaContinua)!, animated: true)
                     
                 } else
                 {
@@ -136,6 +150,7 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
                     atencionSemana?.adicionarDia(dias: (model.oferente[0].horario?[0].dias)!)
                     txtDesdeSemana.text = (model.oferente[0].horario?[0].horaInicio)!
                     txtHastaSemana.text = (model.oferente[0].horario?[0].horaCierre)!
+                    swiJornadaContinuaSemana.setOn((model.oferente[0].horario?[0].sinJornadaContinua)!, animated: true)
                     
                     if atencionFestivo == nil {
                         atencionFestivo = HorarioAtencion()
@@ -144,6 +159,7 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
                     atencionFestivo?.adicionarDia(dias: (model.oferente[0].horario?[1].dias)!)
                     txtDesdeFinSemana.text = (model.oferente[0].horario?[1].horaInicio)!
                     txtHastaFinSemana.text = (model.oferente[0].horario?[1].horaCierre)!
+                    swiJornadaContinuaFinSemana.setOn((model.oferente[0].horario?[1].sinJornadaContinua)!, animated: true)
                 }
             }
         } else
@@ -162,6 +178,7 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
                     atencionSemana?.adicionarDia(dias: (model.publicacion.horario?[0].dias)!)
                     txtDesdeSemana.text = (model.publicacion.horario?[0].horaInicio)!
                     txtHastaSemana.text = (model.publicacion.horario?[0].horaCierre)!
+                    swiJornadaContinuaSemana.setOn((model.publicacion.horario?[0].sinJornadaContinua)!, animated: true)
                     
                 } else
                 {
@@ -172,6 +189,7 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
                     atencionSemana?.adicionarDia(dias: (model.publicacion.horario?[0].dias)!)
                     txtDesdeSemana.text = (model.publicacion.horario?[0].horaInicio)!
                     txtHastaSemana.text = (model.publicacion.horario?[0].horaCierre)!
+                    swiJornadaContinuaSemana.setOn((model.publicacion.horario?[0].sinJornadaContinua)!, animated: true)
                     
                     if atencionFestivo == nil {
                         atencionFestivo = HorarioAtencion()
@@ -180,6 +198,7 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
                     atencionFestivo?.adicionarDia(dias: (model.publicacion.horario?[1].dias)!)
                     txtDesdeFinSemana.text = (model.publicacion.horario?[1].horaInicio)!
                     txtHastaFinSemana.text = (model.publicacion.horario?[1].horaCierre)!
+                    swiJornadaContinuaFinSemana.setOn((model.publicacion.horario?[1].sinJornadaContinua)!, animated: true)
                 }
             }
         }
@@ -369,6 +388,7 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
                         model.horarioFestivo.dias = atencionFestivo?.getDiasPegadosLargos()
                         model.horarioFestivo.horaInicio = txtDesdeFinSemana.text
                         model.horarioFestivo.horaCierre = txtHastaFinSemana.text
+                        model.horarioFestivo.sinJornadaContinua = swiJornadaContinuaFinSemana.isOn
                         
                         model.horarioFestivo.diasActivos = (atencionFestivo?.dias)!
                         model.horarioFestivo.nombreArbol = "FinDeSemana"
@@ -383,6 +403,7 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
                 model.horarioSemana.dias = atencionSemana?.getDiasPegadosLargos()
                 model.horarioSemana.horaInicio = txtDesdeSemana.text
                 model.horarioSemana.horaCierre = txtHastaSemana.text
+                model.horarioSemana.sinJornadaContinua = swiJornadaContinuaSemana.isOn
                 
                 model.horarioSemana.diasActivos = (atencionSemana?.dias)!
                 model.horarioSemana.nombreArbol = "Semana"
