@@ -18,10 +18,7 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func viewDidAppear(_ animated: Bool)
-    {
+        
         //try! FIRAuth.auth()!.signOut()
         
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
@@ -35,7 +32,7 @@ class ViewController: UIViewController
                     NotificationCenter.default.addObserver(self, selector: #selector(ViewController.validarIngreso(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
                 }else
                 {
-                    let alert:UIAlertController = UIAlertController(title: "¡Sin conexión!", message: "No detectamos conexión a internet, por favor valida tu señal para poder ingresar a la aplicación. La app se cerrará por seguridad.", preferredStyle: .alert)
+                    let alert:UIAlertController = UIAlertController(title: "¡Sin conexión!", message: "No detectamos conexión a internet, por favor valida tu señal para poder ingresar a la aplicación. La app se cerrará.", preferredStyle: .alert)
                     
                     let continuarAction = UIAlertAction(title: "OK, entiendo", style: .default) { (_) -> Void in
                         
@@ -58,9 +55,20 @@ class ViewController: UIViewController
                 
             }else
             {
+                /*let transition = CATransition()
+                transition.duration = 0.5
+                transition.type = kCATransitionReveal
+                transition.subtype = kCATransitionFade
+                self.view.window!.layer.add(transition, forKey: kCATransition)*/
+                
                 self.performSegue(withIdentifier: "ingreso", sender: self)
             }
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
     }
     
     func validarIngreso(_ notification: Notification)
@@ -70,10 +78,22 @@ class ViewController: UIViewController
             
             precargarPublicacionesOferente()
             
+            /*let transition = CATransition()
+            transition.duration = 0.5
+            transition.type = kCATransitionReveal
+            transition.subtype = kCATransitionFade
+            view.window!.layer.add(transition, forKey: kCATransition)*/
+            
             self.performSegue(withIdentifier: "homeOferenteDesdeVistaDeCarga", sender: self)
         }else
         {
-            self.performSegue(withIdentifier: "precargarPublicacionesDesdeVistaDeCarga", sender: self)
+            /*let transition = CATransition()
+            transition.duration = 0.5
+            transition.type = kCATransitionReveal
+            transition.subtype = kCATransitionFade
+            view.window!.layer.add(transition, forKey: kCATransition)*/
+            
+            performSegue(withIdentifier: "precargarPublicacionesDesdeVistaDeCarga", sender: self)
         }
     }
     

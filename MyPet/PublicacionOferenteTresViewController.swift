@@ -8,16 +8,20 @@
 
 import UIKit
 
-class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate
+class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate, UIPickerViewDelegate
 {
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var horizontalSpaceConstraint: NSLayoutConstraint?
-    @IBOutlet var viewHeightConstraint: NSLayoutConstraint?
+    @IBOutlet var detalleViewHeightConstraint: NSLayoutConstraint?
+    @IBOutlet var horarioViewHeightConstraint: NSLayoutConstraint?
     @IBOutlet var topLayoutConstraint: NSLayoutConstraint?
     
     let model = ModeloOferente.sharedInstance
     
     @IBOutlet var barItemTitulo: UIBarButtonItem!
+    
+    @IBOutlet var scrollDetalle: UIScrollView!
+    
     @IBOutlet var lblEtapaPublicacion_1: UILabel!
     @IBOutlet var lblEtapaPublicacion_2: UILabel!
     @IBOutlet var lblEtapaPublicacion_3: UILabel!
@@ -45,7 +49,22 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
     @IBOutlet var lblHorarioDiasFestivos: UILabel!
     @IBOutlet var lblJornadaContinuaFestivos: UILabel!
     
+    @IBOutlet var viewDuracion: UIView!
+    @IBOutlet var lblCampoDuracion: UILabel!
+    @IBOutlet var txtDuracion: UITextField!
+    @IBOutlet var txtDuracionMedida: UITextField!
+    
+    @IBOutlet var viewDireccion: UIView!
+    @IBOutlet var lblCampoDireccion: UILabel!
+    @IBOutlet var lblDomicilio: UILabel!
+    @IBOutlet var swiDomicilio: UISwitch!
+    @IBOutlet var lblTienda: UILabel!
+    @IBOutlet var swiTienda: UISwitch!
+    
     @IBOutlet var btnContinuar: UIButton!
+    
+    let pickerView = UIPickerView()
+    var pickOption = ["Minutos", "Horas", "Días"]
     
     var datosEditables:Bool = false
     
@@ -96,6 +115,10 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         
         self .toolBarTextField(txtCantidad)
         
+        self .toolBarTextField(txtDuracion)
+        
+        self .toolBarTextField(txtDuracionMedida)
+        
         if DeviceType.IS_IPHONE_5
         {
             // Definir espacio para cada dispositivo
@@ -105,6 +128,11 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
             lblCampoDescripcion.font = UIFont (name: "Helvetica Neue", size: 14.0)
             lblCampoPrecio.font = UIFont (name: "Helvetica Neue", size: 14.0)
             lblCampoCantidad.font = UIFont (name: "Helvetica Neue", size: 14.0)
+            lblCampoHorario.font = UIFont (name: "Helvetica Neue", size: 14.0)
+            lblCampoDuracion.font = UIFont (name: "Helvetica Neue", size: 14.0)
+            lblCampoDireccion.font = UIFont (name: "Helvetica Neue", size: 14.0)
+            lblDomicilio.font = UIFont (name: "Helvetica Neue", size: 14.0)
+            lblTienda.font = UIFont (name: "Helvetica Neue", size: 14.0)
             
             lblDiasSemana.font = UIFont (name: "HelveticaNeue-Light", size: 9.5)
             lblHorarioDiasSemana.font = UIFont (name: "HelveticaNeue-Light", size: 9.5)
@@ -133,7 +161,18 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
             lblCampoHorario.layer.masksToBounds = true
             lblCampoHorario.layer.cornerRadius = 5.0
             
-            self.topLayoutConstraint?.constant = 440.0
+            pickerView.delegate = self
+            pickerView.dataSource = self as? UIPickerViewDataSource
+            
+            txtDuracionMedida.inputView = pickerView
+            
+            viewDuracion.isHidden = false
+            
+            model.publicacion.duracion = 0
+            model.publicacion.duracionMedida = "Minutos"
+            
+            viewDireccion.isHidden = false
+            
         } else
         {
             model.horarioSemana.dias = ""
@@ -142,8 +181,70 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
             
             viewCantidad.isHidden = false
             
-            self.topLayoutConstraint?.constant = 440.0
+            if DeviceType.IS_IPHONE_5
+            {
+                self.topLayoutConstraint?.constant = 385.0
+            }else
+            {
+                self.topLayoutConstraint?.constant = 440.0
+            }
+            
+            model.publicacion.duracion = 0
+            model.publicacion.duracionMedida = ""
+            viewDuracion.isHidden = true
+            
+            viewDireccion.isHidden = true
         }
+        
+        swiDomicilio .addTarget(self, action: #selector(PublicacionOferenteTresViewController.stateChanged(_:)), for: .valueChanged)
+        swiTienda .addTarget(self, action: #selector(PublicacionOferenteTresViewController.stateChanged(_:)), for: .valueChanged)
+    }
+    
+    func stateChanged(_ sender: UISwitch)
+    {
+        if sender.tag == 1
+        {
+            if sender.isOn
+            {
+                swiTienda.setOn(false, animated: true)
+            } else
+            {
+                swiTienda.setOn(true, animated: true)
+            }
+        } else
+        {
+            if sender.isOn
+            {
+                swiDomicilio.setOn(false, animated: true)
+            } else
+            {
+                swiDomicilio.setOn(true, animated: true)
+            }
+        }
+        
+    }
+    
+    // #pragma mark - pickerView
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
+    {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
+        return pickOption.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    {
+        return pickOption[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        model.publicacion.duracionMedida = pickOption[row]
+        txtDuracionMedida.text = model.publicacion.duracionMedida
     }
     
     // #pragma mark - textField
@@ -159,6 +260,16 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         if textField.tag == 3
         {
             textField.text = ""
+        }
+        
+        if textField.tag == 5
+        {
+            textField.text = ""
+        }
+        
+        if textField.tag == 6
+        {
+            textField.text = model.publicacion.duracionMedida
         }
         
         if DeviceType.IS_IPHONE_5
@@ -213,6 +324,16 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         if textField.tag == 4
         {
             model.publicacion.stock = Int(textField.text!)
+        }
+        
+        if textField.tag == 5
+        {
+            if textField.text == ""
+            {
+                textField.text = "0"
+            }
+            
+            model.publicacion.duracion = Int(textField.text!)
         }
         
         if DeviceType.IS_IPHONE_5
@@ -275,6 +396,8 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
     
     @IBAction func continuarPublicacion(_ sender: Any)
     {
+        model.publicacion.servicioEnDomicilio = swiDomicilio.isOn
+        
         if datosEditables
         {
             ComandoPublicacion.updateArticulo(idPublicacion: model.publicacion.idPublicacion!)
@@ -304,6 +427,16 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
             btnContinuar.isEnabled = true
             
             textDescripcion.textColor = UIColor.init(red: 0.301960784313725, green: 0.301960784313725, blue: 0.301960784313725, alpha: 1.0)
+            
+            swiDomicilio.setOn((model.publicacion.servicioEnDomicilio)!, animated: true)
+            
+            if (model.publicacion.servicioEnDomicilio)!
+            {
+                swiTienda.setOn(false, animated: true)
+            }else
+            {
+                swiTienda.setOn(true, animated: true)
+            }
             
         }else
         {
@@ -377,6 +510,9 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
             }
         }
         
+        txtDuracion.text = "\(model.publicacion.duracion!)"
+        txtDuracionMedida.text = model.publicacion.duracionMedida
+        
         self .validarDatos()
     }
     
@@ -407,7 +543,7 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         {
             if model.publicacion.servicio!
             {
-                self.viewHeightConstraint?.constant = 55
+                self.horarioViewHeightConstraint?.constant = 55
                 
                 lblDiasSemana.isHidden = true
                 lblHorarioDiasSemana.isHidden = true
@@ -422,7 +558,7 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         {
             if model.publicacion.horario?.count == 1
             {
-                self.viewHeightConstraint?.constant = 90
+                self.horarioViewHeightConstraint?.constant = 90
                 
                 lblDiasSemana.isHidden = false
                 lblHorarioDiasSemana.isHidden = false
@@ -446,7 +582,7 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
                 
             }else
             {
-                self.viewHeightConstraint?.constant = 130
+                self.horarioViewHeightConstraint?.constant = 130
                 
                 lblDiasSemana.isHidden = false
                 lblHorarioDiasSemana.isHidden = false
@@ -486,7 +622,7 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         {
             if model.publicacion.servicio!
             {
-                if model.publicacion.horario?.count != 0
+                if model.publicacion.horario?.count != 0 && model.publicacion.duracion != 0
                 {
                     btnContinuar.backgroundColor = UIColor.init(red: 0.050980392156863, green: 0.43921568627451, blue: 0.486274509803922, alpha: 1.0)
                     btnContinuar.isEnabled = true
@@ -511,6 +647,18 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         {
             btnContinuar.backgroundColor = UIColor.init(red: 0.4, green: 0.4, blue: 0.4, alpha: 1.0)
             btnContinuar.isEnabled = false
+        }
+        
+        if model.publicacion.servicio!
+        {
+            self.topLayoutConstraint?.constant = 520.0 + (self.horarioViewHeightConstraint?.constant)!
+            
+            self.detalleViewHeightConstraint?.constant = 676 + (self.horarioViewHeightConstraint?.constant)!
+            scrollDetalle.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: (self.detalleViewHeightConstraint?.constant)!)
+        }else
+        {
+            self.detalleViewHeightConstraint?.constant = UIScreen.main.bounds.height - 44.0
+            scrollDetalle.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: (self.detalleViewHeightConstraint?.constant)!)
         }
     }
     

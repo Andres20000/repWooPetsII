@@ -117,6 +117,16 @@ class Comando
                 datosPublicacion.descripcion = value["descripcion"] as? String
                 datosPublicacion.destacado = value["destacado"] as? Bool
                 
+                if publicacion.hasChild("duracion")
+                {
+                    datosPublicacion.duracion = value["duracion"] as? Int
+                }
+                
+                if publicacion.hasChild("duracionMedida")
+                {
+                    datosPublicacion.duracionMedida = value["duracionMedida"] as? String
+                }
+                
                 if publicacion.hasChild("fotos")
                 {
                     let snapFoto = publicacion.childSnapshot(forPath: "fotos").value as! NSDictionary
@@ -155,6 +165,7 @@ class Comando
                             horarioServicioSemana.horaInicio = postDictHorario["horaInicio"] as? String
                             horarioServicioSemana.horaCierre = postDictHorario["horaCierre"] as? String
                             horarioServicioSemana.nombreArbol = idHorario as? String
+                            horarioServicioSemana.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                             
                             datosPublicacion.horario?.append(horarioServicioSemana)
                             
@@ -168,6 +179,7 @@ class Comando
                             horarioServicioFestivo.horaInicio = postDictHorario["horaInicio"] as? String
                             horarioServicioFestivo.horaCierre = postDictHorario["horaCierre"] as? String
                             horarioServicioFestivo.nombreArbol = idHorario as? String
+                            horarioServicioFestivo.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                             
                             datosPublicacion.horario?.append(horarioServicioFestivo)
                         }
@@ -181,6 +193,11 @@ class Comando
                 datosPublicacion.nombre = value["nombre"] as? String
                 datosPublicacion.precio = value["precio"] as? String
                 datosPublicacion.servicio = value["servicio"] as? Bool
+                
+                if publicacion.hasChild("servicioEnDomicilio")
+                {
+                    datosPublicacion.servicioEnDomicilio = value["servicioEnDomicilio"] as? Bool
+                }
                 
                 if publicacion.hasChild("stock")
                 {
@@ -599,6 +616,16 @@ class Comando
             datosPublicacion.descripcion = value["descripcion"] as? String
             datosPublicacion.destacado = value["destacado"] as? Bool
             
+            if snap.hasChild("duracion")
+            {
+                datosPublicacion.duracion = value["duracion"] as? Int
+            }
+            
+            if snap.hasChild("duracionMedida")
+            {
+                datosPublicacion.duracionMedida = value["duracionMedida"] as? String
+            }
+            
             if snap.hasChild("fotos")
             {
                 let snapFoto = snap.childSnapshot(forPath: "fotos").value as! NSDictionary
@@ -637,6 +664,7 @@ class Comando
                         horarioServicioSemana.horaInicio = postDictHorario["horaInicio"] as? String
                         horarioServicioSemana.horaCierre = postDictHorario["horaCierre"] as? String
                         horarioServicioSemana.nombreArbol = idHorario as? String
+                        horarioServicioSemana.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                         
                         datosPublicacion.horario?.append(horarioServicioSemana)
                         
@@ -650,6 +678,7 @@ class Comando
                         horarioServicioFestivo.horaInicio = postDictHorario["horaInicio"] as? String
                         horarioServicioFestivo.horaCierre = postDictHorario["horaCierre"] as? String
                         horarioServicioFestivo.nombreArbol = idHorario as? String
+                        horarioServicioFestivo.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                         
                         datosPublicacion.horario?.append(horarioServicioFestivo)
                     }
@@ -663,6 +692,11 @@ class Comando
             datosPublicacion.nombre = value["nombre"] as? String
             datosPublicacion.precio = value["precio"] as? String
             datosPublicacion.servicio = value["servicio"] as? Bool
+            
+            if snap.hasChild("servicioEnDomicilio")
+            {
+                datosPublicacion.servicioEnDomicilio = value["servicioEnDomicilio"] as? Bool
+            }
             
             if snap.hasChild("stock")
             {
@@ -871,8 +905,8 @@ class Comando
             
             for profile in user!.providerData
             {
-                let providerID = profile.providerID
-                let uid = profile.uid;  // Provider-specific UID
+                //let providerID = profile.providerID
+                //let uid = profile.uid;  // Provider-specific UID
                 provider = profile.providerID
             }
             

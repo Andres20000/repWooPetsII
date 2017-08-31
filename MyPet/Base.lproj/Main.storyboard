@@ -53,8 +53,8 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <segue destination="MgS-bb-9MY" kind="presentation" identifier="ingreso" id="Yba-aL-RMS"/>
-                        <segue destination="8w6-H6-8Nr" kind="presentation" identifier="homeOferenteDesdeVistaDeCarga" id="Hle-el-k8u"/>
+                        <segue destination="MgS-bb-9MY" kind="presentation" identifier="ingreso" animates="NO" id="Yba-aL-RMS"/>
+                        <segue destination="8w6-H6-8Nr" kind="presentation" identifier="homeOferenteDesdeVistaDeCarga" animates="NO" id="Hle-el-k8u"/>
                         <segue destination="kP5-u7-Mb7" kind="presentation" identifier="precargarPublicacionesDesdeVistaDeCarga" id="bgn-VA-ZLh"/>
                         <segue destination="LYW-la-bRt" kind="presentation" identifier="avisoAppDesdeVistaDeCarga" id="a1h-2i-JbW"/>
                     </connections>
@@ -3497,7 +3497,7 @@
                         <outlet property="imgCerrarSesion" destination="Ath-1x-IGG" id="JkZ-2k-bsN"/>
                         <outlet property="lblCerrarSesion" destination="2sb-kF-Qjg" id="oRe-JB-pwT"/>
                         <outlet property="spaceBottomLayoutConstraint" destination="u5b-MW-nZH" id="v0O-nX-NEe"/>
-                        <segue destination="MgS-bb-9MY" kind="presentation" identifier="ingresoDesdeHomeUsuario" id="ceK-EH-2VH"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="ingresoDesdeHomeUsuario" id="kdP-pV-Jk1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yao-A9-hHQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -6252,23 +6252,22 @@
         <image name="textura_Ingreso" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qav-fg-sdY"/>
+        <segue reference="aNJ-m2-0I0"/>
         <segue reference="5AM-1p-jx9"/>
         <segue reference="bgn-VA-ZLh"/>
-        <segue reference="Yba-aL-RMS"/>
         <segue reference="a1h-2i-JbW"/>
         <segue reference="KSr-oI-4G4"/>
         <segue reference="c64-eH-oia"/>
-        <segue reference="rzp-TS-BC7"/>
-        <segue reference="bVH-Q1-m3n"/>
-        <segue reference="g9o-0N-P4D"/>
         <segue reference="UlJ-My-ATf"/>
-        <segue reference="FW0-BB-RT8"/>
-        <segue reference="aNJ-m2-0I0"/>
+        <segue reference="g9o-0N-P4D"/>
+        <segue reference="bVH-Q1-m3n"/>
+        <segue reference="rzp-TS-BC7"/>
         <segue reference="ebI-ph-1Ok"/>
+        <segue reference="FW0-BB-RT8"/>
+        <segue reference="qav-fg-sdY"/>
         <segue reference="gNs-38-JWS"/>
         <segue reference="aiq-DQ-SKV"/>
-        <segue reference="oQN-Js-Es1"/>
         <segue reference="wJh-es-f6y"/>
+        <segue reference="oQN-Js-Es1"/>
     </inferredMetricsTieBreakers>
 </document>

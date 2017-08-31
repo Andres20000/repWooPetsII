@@ -34,6 +34,17 @@ class ComandoPublicacion
                        "servicio":publicacion.servicio as Any,
                        "target":publicacion.target as Any] as [String : Any]
         
+        if publicacion.duracion != 0
+        {
+            newItem["duracion"] = publicacion.duracion as AnyObject
+            newItem["servicioEnDomicilio"] = publicacion.servicioEnDomicilio as AnyObject
+        }
+        
+        if publicacion.duracionMedida != ""
+        {
+            newItem["duracionMedida"] = publicacion.duracionMedida as AnyObject
+        }
+        
         if (publicacion.fotos?.count)! > 0
         {
             for foto in (publicacion.fotos)!
@@ -48,7 +59,8 @@ class ComandoPublicacion
             {
                 let horario = ["dias" : horarioPublicacion.dias as Any,
                                "horaCierre" : horarioPublicacion.horaCierre as Any,
-                               "horaInicio" : horarioPublicacion.horaInicio as Any] as [String : Any]
+                               "horaInicio" : horarioPublicacion.horaInicio as Any,
+                               "sinJornadaContinua" : horarioPublicacion.sinJornadaContinua as AnyObject] as [String : AnyObject]
                 
                 newItem["horario/\(horarioPublicacion.nombreArbol as AnyObject)"] = horario as AnyObject
             }
@@ -95,6 +107,16 @@ class ComandoPublicacion
                 datosPublicacion.descripcion = value["descripcion"] as? String
                 datosPublicacion.destacado = value["destacado"] as? Bool
                 
+                if publicacion.hasChild("duracion")
+                {
+                    datosPublicacion.duracion = value["duracion"] as? Int
+                }
+                
+                if publicacion.hasChild("duracionMedida")
+                {
+                    datosPublicacion.duracionMedida = value["duracionMedida"] as? String
+                }
+                
                 if publicacion.hasChild("fotos")
                 {
                     let snapFoto = publicacion.childSnapshot(forPath: "fotos").value as! NSDictionary
@@ -133,6 +155,7 @@ class ComandoPublicacion
                             horarioServicioSemana.horaInicio = postDictHorario["horaInicio"] as? String
                             horarioServicioSemana.horaCierre = postDictHorario["horaCierre"] as? String
                             horarioServicioSemana.nombreArbol = idHorario as? String
+                            horarioServicioSemana.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                             
                             datosPublicacion.horario?.append(horarioServicioSemana)
                             
@@ -146,6 +169,7 @@ class ComandoPublicacion
                             horarioServicioFestivo.horaInicio = postDictHorario["horaInicio"] as? String
                             horarioServicioFestivo.horaCierre = postDictHorario["horaCierre"] as? String
                             horarioServicioFestivo.nombreArbol = idHorario as? String
+                            horarioServicioFestivo.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                             
                             datosPublicacion.horario?.append(horarioServicioFestivo)
                         }
@@ -159,6 +183,12 @@ class ComandoPublicacion
                 datosPublicacion.nombre = value["nombre"] as? String
                 datosPublicacion.precio = value["precio"] as? String
                 datosPublicacion.servicio = value["servicio"] as? Bool
+                
+                if publicacion.hasChild("servicioEnDomicilio")
+                {
+                    datosPublicacion.servicioEnDomicilio = value["servicioEnDomicilio"] as? Bool
+                }
+                
                 datosPublicacion.duracion = value["duracion"] as? Int
             
                 
@@ -274,6 +304,7 @@ class ComandoPublicacion
                     refHandle.child("/horario/Semana/dias").setValue(horarioPublicacion.dias)
                     refHandle.child("/horario/Semana/horaCierre").setValue(horarioPublicacion.horaCierre)
                     refHandle.child("/horario/Semana/horaInicio").setValue(horarioPublicacion.horaInicio)
+                    refHandle.child("/horario/Semana/sinJornadaContinua").setValue(horarioPublicacion.sinJornadaContinua)
                 }
                 
                 if horarioPublicacion.nombreArbol == "FinDeSemana"
@@ -281,8 +312,14 @@ class ComandoPublicacion
                     refHandle.child("/horario/FinDeSemana/dias").setValue(horarioPublicacion.dias)
                     refHandle.child("/horario/FinDeSemana/horaCierre").setValue(horarioPublicacion.horaCierre)
                     refHandle.child("/horario/FinDeSemana/horaInicio").setValue(horarioPublicacion.horaInicio)
+                    refHandle.child("/horario/FinDeSemana/sinJornadaContinua").setValue(horarioPublicacion.sinJornadaContinua)
                 }
             }
+            
+            refHandle.child("/duracion").setValue(model.publicacion.duracion)
+            refHandle.child("/duracionMedida").setValue(model.publicacion.duracionMedida)
+            refHandle.child("/servicioEnDomicilio").setValue(model.publicacion.servicioEnDomicilio)
+            
         }else
         {
             refHandle.child("/stock").setValue(model.publicacion.stock)

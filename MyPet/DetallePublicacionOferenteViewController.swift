@@ -114,10 +114,27 @@ class DetallePublicacionOferenteViewController: UIViewController, UITableViewDel
                     {
                         cell.lblDiasSemana.text = horario.dias
                         cell.lblHorarioDiasSemana.text = (horario.horaInicio)! + " - " + (horario.horaCierre)!
+                        
+                        if horario.sinJornadaContinua!
+                        {
+                            cell.lblJornadaContinuaSemana.text = "Cerramos entre 12 y 2 pm"
+                        } else
+                        {
+                            cell.lblJornadaContinuaSemana.text = "Jornada continua"
+                        }
+                        
                     } else
                     {
                         cell.lblDiasFestivos.text = horario.dias
                         cell.lblHorarioDiasFestivos.text = (horario.horaInicio)! + " - " + (horario.horaCierre)!
+                        
+                        if horario.sinJornadaContinua!
+                        {
+                            cell.lblJornadaContinuaFestivos.text = "Cerramos entre 12 y 2 pm"
+                        } else
+                        {
+                            cell.lblJornadaContinuaFestivos.text = "Jornada continua"
+                        }
                     }
                 }
                 
@@ -135,6 +152,44 @@ class DetallePublicacionOferenteViewController: UIViewController, UITableViewDel
         }else
         {
             cell.lblDescripcion.text = DatoPublicacion[indexPath.row] as? String
+        }
+        
+        if indexPath.row == 4
+        {
+            if model.publicacion.duracion! == 1
+            {
+                if model.publicacion.duracionMedida! == "Minutos"
+                {
+                    cell.lblDescripcion.text = "\(model.publicacion.duracion!) Minuto"
+                }
+                
+                if model.publicacion.duracionMedida! == "Horas"
+                {
+                    cell.lblDescripcion.text = "\(model.publicacion.duracion!) Hora"
+                }
+                
+                if model.publicacion.duracionMedida! == "Días"
+                {
+                    cell.lblDescripcion.text = "\(model.publicacion.duracion!) Día"
+                }
+                
+            } else
+            {
+                cell.lblDescripcion.text = "\(model.publicacion.duracion!) \(model.publicacion.duracionMedida!)"
+            }
+        }
+        
+        if indexPath.row == 5
+        {
+            cell.viewDetalleEstandarBottom.isHidden = false
+            
+            if (model.publicacion.servicioEnDomicilio)!
+            {
+                cell.lblDescripcion.text = "Servicio a domicilio"
+            }else
+            {
+                cell.lblDescripcion.text = "Servicio en tienda"
+            }
         }
         
         return cell;
@@ -168,12 +223,12 @@ class DetallePublicacionOferenteViewController: UIViewController, UITableViewDel
         {
             if (model.publicacion.horario?.count)! == 1
             {
-                return 50
+                return 70
             } else
             {
                 if (model.publicacion.horario?.count)! == 2
                 {
-                    return 70
+                    return 100
                 }
             }
         }
@@ -251,6 +306,14 @@ class DetallePublicacionOferenteViewController: UIViewController, UITableViewDel
     {
         super.viewWillAppear(animated)
         
+        if model.publicacion.servicio!
+        {
+            DatoPublicacion = ["","","","","",""]
+        }else
+        {
+            DatoPublicacion = ["","","",""]
+        }
+        
         if (model.publicacion.horario?.count)! > 0
         {
             for horario in (model.publicacion.horario)!
@@ -261,12 +324,14 @@ class DetallePublicacionOferenteViewController: UIViewController, UITableViewDel
                     model.horarioSemana.horaInicio = horario.horaInicio
                     model.horarioSemana.horaCierre = horario.horaCierre
                     model.horarioSemana.nombreArbol = horario.nombreArbol
+                    model.horarioSemana.sinJornadaContinua = horario.sinJornadaContinua
                 } else
                 {
                     model.horarioFestivo.dias = horario.dias
                     model.horarioFestivo.horaInicio = horario.horaInicio
                     model.horarioFestivo.horaCierre = horario.horaCierre
                     model.horarioFestivo.nombreArbol = horario.nombreArbol
+                    model.horarioFestivo.sinJornadaContinua = horario.sinJornadaContinua
                 }
             }
         }
@@ -305,13 +370,13 @@ class DetallePublicacionOferenteViewController: UIViewController, UITableViewDel
         
         if model.publicacion.servicio!
         {
-            tituloDatoPublicacion = ["Título","Descripción","Precio", "Horario"]
+            tituloDatoPublicacion = ["Título","Descripción","Precio","Horario","Duración Servicio","Dirección del servicio"]
             
         } else
         {
-            tituloDatoPublicacion = ["Título","Descripción","Precio", "Cantidad"]
+            tituloDatoPublicacion = ["Título","Descripción","Precio","Cantidad"]
             
-            print("stock: \(model.publicacion.stock)")
+            print("stock: \(model.publicacion.stock!)")
             DatoPublicacion.removeObject(at: 3)
             DatoPublicacion.insert(model.publicacion.stock as Any, at: 3)
             print("stock después: \(DatoPublicacion[3])")

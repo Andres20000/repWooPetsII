@@ -247,8 +247,8 @@ class PublicacionOferente
     var fotos:[Foto]? = []
     var imagenDestacado:ImageFire?
     var imagenPrincipal:ImageFire?
-    var duracion:Int?
-
+    var duracion:Int? = 0
+    var duracionMedida:String?  = ""
     
     var tieneFotos:Bool
     {
@@ -274,6 +274,7 @@ class PublicacionOferente
     var nombre:String?  = ""
     var precio:String?  = ""
     var servicio:Bool?
+    var servicioEnDomicilio:Bool?
     var stock:Int?  = 0
     
     var tieneStock:Bool
