@@ -31,6 +31,7 @@ class ComandoUsuario
             refHandle.child("/direccion").setValue(direccion.direccion)
             refHandle.child("/nombre").setValue(direccion.nombre)
             refHandle.child("/porDefecto").setValue(direccion.porDefecto)
+            refHandle.child("/posicion").setValue(direccion.posicion)
             
             for ubicacionDireccion in direccion.ubicacion!
             {
@@ -42,6 +43,30 @@ class ComandoUsuario
         ref.child("/documento").setValue(datos.documento)
         ref.child("/nombre").setValue(datos.nombre)
         ref.child("/pagoEfectivo").setValue(datos.pagoEfectvo)
+    }
+    
+    class func editarDatosPerfil(uid:String, datos:DatosComplementarios)
+    {
+        let ref  = FIRDatabase.database().reference().child("clientes/" + uid)
+        
+        ref.child("/apellido").setValue(datos.apellido)
+        ref.child("/celular").setValue(datos.celular)
+        
+        for direccion in datos.direcciones!
+        {
+            let refHandle = ref.child("direcciones").childByAutoId()
+            
+            refHandle.child("/direccion").setValue(direccion.direccion)
+            refHandle.child("/nombre").setValue(direccion.nombre)
+            refHandle.child("/porDefecto").setValue(direccion.porDefecto)
+            refHandle.child("/posicion").setValue(direccion.posicion)
+            
+            for ubicacionDireccion in direccion.ubicacion!
+            {
+                refHandle.child("/ubicacion/lat").setValue(ubicacionDireccion.latitud)
+                refHandle.child("/ubicacion/lon").setValue(ubicacionDireccion.longitud)
+            }
+        }
     }
     
     class func getUsuario(uid:String?)
@@ -114,6 +139,7 @@ class ComandoUsuario
                         direccionUsuario.direccion = postDictDireccion["direccion"] as? String
                         direccionUsuario.nombre = postDictDireccion["nombre"] as? String
                         direccionUsuario.porDefecto = postDictDireccion["porDefecto"] as? Bool
+                        direccionUsuario.posicion = postDictDireccion["posicion"] as? Int
                         
                         let valUbicacion = postDictDireccion["ubicacion"] as? NSDictionary
                         let ubicacionDireccion = Ubicacion()

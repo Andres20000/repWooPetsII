@@ -10,7 +10,7 @@ import UIKit
 
 class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate
 {
-    var model  = ModeloUsuario.sharedInstance
+    var modelUsuario  = ModeloUsuario.sharedInstance
     
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceTopLayoutConstraint: NSLayoutConstraint?
@@ -58,23 +58,32 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
     
     @IBAction func closeView(_ sender: Any)
     {
-        model.registroComplementario.apellido = ""
-        model.registroComplementario.celular = ""
-        model.registroComplementario.documento = ""
-        model.registroComplementario.nombre = ""
-        model.registroComplementario.direcciones?.removeAll()
+        modelUsuario.registroComplementario.apellido = ""
+        modelUsuario.registroComplementario.celular = ""
+        modelUsuario.registroComplementario.documento = ""
+        modelUsuario.registroComplementario.nombre = ""
+        modelUsuario.registroComplementario.direcciones?.removeAll()
         
-        model.direccion1.direccion = ""
-        model.direccion1.nombre = ""
-        model.direccion1.ubicacion?.removeAll()
+        modelUsuario.direccion1.direccion = ""
+        modelUsuario.direccion1.nombre = ""
+        modelUsuario.direccion1.ubicacion?.removeAll()
         
-        model.direccion2.direccion = ""
-        model.direccion2.nombre = ""
-        model.direccion2.ubicacion?.removeAll()
+        modelUsuario.direccion2.direccion = ""
+        modelUsuario.direccion2.nombre = ""
+        modelUsuario.direccion2.ubicacion?.removeAll()
         
-        model.direccion3.direccion = ""
-        model.direccion3.nombre = ""
-        model.direccion3.ubicacion?.removeAll()
+        modelUsuario.direccion3.direccion = ""
+        modelUsuario.direccion3.nombre = ""
+        modelUsuario.direccion3.ubicacion?.removeAll()
+        
+        if datosEditables
+        {
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromLeft
+            view.window!.layer.add(transition, forKey: kCATransition)
+        }
         
         dismiss(animated: true, completion: nil)
     }
@@ -92,8 +101,6 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         {
             imgMailFB.image = UIImage(named: "imgMailOk")
         }
-        
-        tieneDireccionTres = false
         
         let spacerViewTxtNombre = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
@@ -134,12 +141,6 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         txtDireccion1.text = ""
         txtDireccion1.attributedPlaceholder = NSAttributedString(string:"Elige tu dirección", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
-        model.ubicacion1.latitud = 0
-        model.ubicacion1.longitud = 0
-        
-        model.direccion1.ubicacion?.removeAll()
-        model.direccion1.ubicacion?.append(model.ubicacion1)
-        
         let spacerViewTxtNombreDireccion1 = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtNombreDireccion1.leftViewMode = UITextFieldViewMode.always
@@ -153,12 +154,6 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         txtDireccion2.leftView = spacerViewTxtDireccion2
         txtDireccion2.text = ""
         txtDireccion2.attributedPlaceholder = NSAttributedString(string:"Elige tu dirección", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
-        
-        model.ubicacion2.latitud = 0
-        model.ubicacion2.longitud = 0
-        
-        model.direccion2.ubicacion?.removeAll()
-        model.direccion2.ubicacion?.append(model.ubicacion2)
         
         let spacerViewTxtNombreDireccion2 = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
@@ -174,12 +169,6 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         txtDireccion3.text = ""
         txtDireccion3.attributedPlaceholder = NSAttributedString(string:"Elige tu dirección", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
-        model.ubicacion3.latitud = 0
-        model.ubicacion3.longitud = 0
-        
-        model.direccion3.ubicacion?.removeAll()
-        model.direccion3.ubicacion?.append(model.ubicacion3)
-        
         let spacerViewTxtNombreDireccion3 = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtNombreDireccion3.leftViewMode = UITextFieldViewMode.always
@@ -188,6 +177,32 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         txtNombreDireccion3.attributedPlaceholder = NSAttributedString(string:"Asígnale un nombre al lugar", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         btnContinuar.layer.cornerRadius = 10.0
+        
+        modelUsuario.ubicacion1.latitud = 0
+        modelUsuario.ubicacion1.longitud = 0
+        
+        modelUsuario.direccion1.ubicacion?.removeAll()
+        modelUsuario.direccion1.ubicacion?.append(modelUsuario.ubicacion1)
+        
+        modelUsuario.ubicacion2.latitud = 0
+        modelUsuario.ubicacion2.longitud = 0
+        
+        modelUsuario.direccion2.ubicacion?.removeAll()
+        modelUsuario.direccion2.ubicacion?.append(modelUsuario.ubicacion2)
+        
+        modelUsuario.ubicacion3.latitud = 0
+        modelUsuario.ubicacion3.longitud = 0
+        
+        modelUsuario.direccion3.ubicacion?.removeAll()
+        modelUsuario.direccion3.ubicacion?.append(modelUsuario.ubicacion3)
+        
+        if datosEditables
+        {
+            btnContinuar.setTitle("Editar", for: .normal)
+        } else
+        {
+            btnContinuar.setTitle("Ok, continuar", for: .normal)
+        }
     }
     
     // #pragma mark - textField
@@ -209,52 +224,52 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         
         if textField.tag == 1
         {
-            model.registroComplementario.nombre = textField.text
+            modelUsuario.registroComplementario.nombre = textField.text
         }
         
         if textField.tag == 2
         {
-            model.registroComplementario.apellido = textField.text
+            modelUsuario.registroComplementario.apellido = textField.text
         }
         
         if textField.tag == 3
         {
-            model.registroComplementario.documento = textField.text
+            modelUsuario.registroComplementario.documento = textField.text
         }
         
         if textField.tag == 4
         {
-            model.registroComplementario.celular = textField.text
+            modelUsuario.registroComplementario.celular = textField.text
         }
         
         if textField.tag == 5
         {
-            model.direccion1.direccion = textField.text
+            modelUsuario.direccion1.direccion = textField.text
         }
         
         if textField.tag == 6
         {
-            model.direccion1.nombre = textField.text
+            modelUsuario.direccion1.nombre = textField.text
         }
         
         if textField.tag == 7
         {
-            model.direccion2.direccion = textField.text
+            modelUsuario.direccion2.direccion = textField.text
         }
         
         if textField.tag == 8
         {
-            model.direccion2.nombre = textField.text
+            modelUsuario.direccion2.nombre = textField.text
         }
         
         if textField.tag == 9
         {
-            model.direccion3.direccion = textField.text
+            modelUsuario.direccion3.direccion = textField.text
         }
         
         if textField.tag == 10
         {
-            model.direccion3.nombre = textField.text
+            modelUsuario.direccion3.nombre = textField.text
         }
     }
     
@@ -298,11 +313,11 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
             txtDireccion2.text = ""
             txtNombreDireccion2.text = ""
             
-            model.direccion2.direccion = ""
-            model.direccion2.nombre = ""
+            modelUsuario.direccion2.direccion = ""
+            modelUsuario.direccion2.nombre = ""
             
-            model.ubicacion2.latitud = 0.0
-            model.ubicacion2.longitud = 0.0
+            modelUsuario.ubicacion2.latitud = 0.0
+            modelUsuario.ubicacion2.longitud = 0.0
 
             contentSizeScroll = UIScreen.main.bounds.height
             
@@ -360,11 +375,11 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         txtDireccion3.text = ""
         txtNombreDireccion3.text = ""
         
-        model.direccion3.direccion = ""
-        model.direccion3.nombre = ""
+        modelUsuario.direccion3.direccion = ""
+        modelUsuario.direccion3.nombre = ""
         
-        model.ubicacion3.latitud = 0.0
-        model.ubicacion3.longitud = 0.0
+        modelUsuario.ubicacion3.latitud = 0.0
+        modelUsuario.ubicacion3.longitud = 0.0
         
         contentSizeScroll = 845.0 - 140.0
         
@@ -398,60 +413,76 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
     {
         self.view.endEditing(true)
         
-        if model.registroComplementario.apellido == "" || model.registroComplementario.celular == "" || model.registroComplementario.documento == "" || model.registroComplementario.nombre == "" || model.direccion1.direccion == "" || model.direccion1.nombre == ""
+        if datosEditables
         {
-            self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
+            print("Editar")
+        } else
+        {
+            if modelUsuario.registroComplementario.apellido == "" || modelUsuario.registroComplementario.celular == "" || modelUsuario.registroComplementario.documento == "" || modelUsuario.registroComplementario.nombre == "" || modelUsuario.direccion1.direccion == "" || modelUsuario.direccion1.nombre == ""
+            {
+                self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
+                
+                return
+            }
             
-            return
-        }
-        
-        if tieneDireccionDos
-        {
-            if model.direccion2.direccion == "" || model.direccion2.nombre == ""
+            if tieneDireccionDos
             {
-                self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
-                
-                return
+                if modelUsuario.direccion2.direccion == "" || modelUsuario.direccion2.nombre == ""
+                {
+                    self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
+                    
+                    return
+                }
             }
-        }
-        
-        if tieneDireccionTres
-        {
-            if model.direccion3.direccion == "" || model.direccion3.nombre == ""
+            
+            if tieneDireccionTres
             {
-                self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
-                
-                return
+                if modelUsuario.direccion3.direccion == "" || modelUsuario.direccion3.nombre == ""
+                {
+                    self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
+                    
+                    return
+                }
             }
+            
+            modelUsuario.registroComplementario.direcciones?.removeAll()
+            
+            modelUsuario.direccion1.porDefecto = true
+            modelUsuario.registroComplementario.direcciones?.append(modelUsuario.direccion1)
+            
+            if tieneDireccionDos
+            {
+                modelUsuario.direccion2.porDefecto = false
+                modelUsuario.registroComplementario.direcciones?.append(modelUsuario.direccion2)
+            }
+            
+            if tieneDireccionTres
+            {
+                modelUsuario.direccion3.porDefecto = false
+                modelUsuario.registroComplementario.direcciones?.append(modelUsuario.direccion3)
+            }
+            
+            self.performSegue(withIdentifier: "completarRegistroTresDesdecompletarRegistroDos", sender: self)
         }
-        
-        model.registroComplementario.direcciones?.removeAll()
-        
-        model.direccion1.porDefecto = true
-        model.registroComplementario.direcciones?.append(model.direccion1)
-        
-        if tieneDireccionDos
-        {
-            model.direccion2.porDefecto = false
-            model.registroComplementario.direcciones?.append(model.direccion2)
-        }
-        
-        if tieneDireccionTres
-        {
-            model.direccion3.porDefecto = false
-            model.registroComplementario.direcciones?.append(model.direccion3)
-        }
-        
-        self.performSegue(withIdentifier: "completarRegistroTresDesdecompletarRegistroDos", sender: self)
     }
     
     func refreshView()
     {
-        txtDireccion1.text = model.direccion1.direccion
-        txtDireccion2.text = model.direccion2.direccion
-        txtDireccion3.text = model.direccion3.direccion
+        txtApellido.text = modelUsuario.registroComplementario.apellido
+        txtTelefono.text = modelUsuario.registroComplementario.celular
+        txtCedula.text = modelUsuario.registroComplementario.documento
+        txtNombre.text = modelUsuario.registroComplementario.nombre
         
-        if model.direccion1.ubicacion?[0].latitud == 0
+        txtDireccion1.text = modelUsuario.direccion1.direccion
+        txtNombreDireccion1.text = modelUsuario.direccion1.nombre
+        
+        txtDireccion2.text = modelUsuario.direccion2.direccion
+        txtNombreDireccion2.text = modelUsuario.direccion2.nombre
+        
+        txtDireccion3.text = modelUsuario.direccion3.direccion
+        txtNombreDireccion3.text = modelUsuario.direccion3.nombre
+        
+        if modelUsuario.direccion1.ubicacion?[0].latitud == 0
         {
             btnUbicacion1.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
         } else
@@ -459,7 +490,7 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
             btnUbicacion1.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
         }
         
-        if model.direccion2.ubicacion?[0].latitud == 0
+        if modelUsuario.direccion2.ubicacion?[0].latitud == 0
         {
             btnUbicacion2.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
         } else
@@ -467,47 +498,13 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
             btnUbicacion2.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
         }
         
-        if model.direccion3.ubicacion?[0].latitud == 0
+        if modelUsuario.direccion3.ubicacion?[0].latitud == 0
         {
             btnUbicacion3.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
         } else
         {
             btnUbicacion3.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
         }
-        
-        /*if txtDireccion1.text == ""
-        {
-            txtDireccion1.isEnabled = false
-            btnUbicacion1.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
-        } else
-        {
-            txtDireccion1.isEnabled = true
-            btnUbicacion1.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
-        }
-        
-        txtDireccion2.text = model.direccion2.direccion
-        
-        if txtDireccion2.text == ""
-        {
-            txtDireccion2.isEnabled = false
-            btnUbicacion2.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
-        } else
-        {
-            txtDireccion2.isEnabled = true
-            btnUbicacion2.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
-        }
-        
-        txtDireccion3.text = model.direccion3.direccion
-        
-        if txtDireccion3.text == ""
-        {
-            txtDireccion3.isEnabled = false
-            btnUbicacion3.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
-        } else
-        {
-            txtDireccion3.isEnabled = true
-            btnUbicacion3.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
-        }*/
         
         if txtDireccion1.text == "" || txtNombreDireccion1.text == ""
         {

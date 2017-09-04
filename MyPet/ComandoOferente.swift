@@ -119,6 +119,8 @@ class ComandoOferente
                             model.horarioSemana.horaCierre = postDictHorario["horaCierre"] as? String
                             model.horarioSemana.nombreArbol = idHorario as? String
                             model.horarioSemana.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
+                            
+                            datosOferente.horario?.append(model.horarioSemana)
                         }
                         
                         if (idHorario as? String == "FinDeSemana")
@@ -128,6 +130,8 @@ class ComandoOferente
                             model.horarioFestivo.horaCierre = postDictHorario["horaCierre"] as? String
                             model.horarioFestivo.nombreArbol = idHorario as? String
                             model.horarioFestivo.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
+                            
+                            datosOferente.horario?.append(model.horarioFestivo)
                         }
                         
                         i += 1

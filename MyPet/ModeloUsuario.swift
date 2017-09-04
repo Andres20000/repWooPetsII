@@ -53,6 +53,7 @@ class Direccion
     var direccion:String?  = ""
     var nombre:String?  = ""
     var porDefecto:Bool?
+    var posicion:Int?  = 0
     var ubicacion:[Ubicacion]? = []
 }
 

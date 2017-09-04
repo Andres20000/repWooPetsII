@@ -274,6 +274,10 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
         self.datePicker = UIDatePicker(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
         self.datePicker.backgroundColor = UIColor.white
         self.datePicker.datePickerMode = UIDatePickerMode.time
+        self.datePicker.minuteInterval = 5
+        self.datePicker.tag = textField.tag
+        self.datePicker.addTarget(self, action: #selector(HorarioViewController.changeTimeText), for: .valueChanged)
+        
         textField.inputView = self.datePicker
         
         // ToolBar
@@ -286,30 +290,34 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
         // Adding Button ToolBar
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(HorarioViewController.doneClick))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(HorarioViewController.cancelClick))
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.setItems([spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         textField.inputAccessoryView = toolBar
         
         textFieldGenerico = textField
     }
     
+    func changeTimeText()
+    {
+        textFieldGenerico.text = datePicker.date.horaString()
+    }
+    
     func doneClick()
     {
-        let dateFormatter1 = DateFormatter()
-        dateFormatter1.timeStyle = .short
-        textFieldGenerico.text = dateFormatter1.string(from: datePicker.date)
         textFieldGenerico.resignFirstResponder()
     }
     
-    func cancelClick()
-    {
-        view.endEditing(true)
-    }
+    // #pragma mark - textField
     
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
         self .pickUpDate(textField)
+        animateViewMoving(up: true, moveValue: 145)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
+        animateViewMoving(up: false, moveValue: 145)
     }
     
     func setDias()
@@ -448,6 +456,18 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
         
         alerta.addAction(OKAction)
         present(alerta, animated: true, completion: { return })
+    }
+    
+    // Move show/hide Keypoard
+    func animateViewMoving (up:Bool, moveValue :CGFloat)
+    {
+        let movementDuration:TimeInterval = 0.3
+        let movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = self.view.frame.offsetBy(dx: 0,  dy: movement)
+        UIView.commitAnimations()
     }
 }
 

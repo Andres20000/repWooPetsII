@@ -517,6 +517,8 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     
     @IBAction func verInfoVendedor(_ sender: Any)
     {
+        print("id Oferente: \(modelOferente.publicacion.idOferente!)")
+        
         let transition = CATransition()
         transition.duration = 0.5
         transition.type = kCATransitionPush

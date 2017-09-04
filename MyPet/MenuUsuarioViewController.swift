@@ -43,8 +43,36 @@ class MenuUsuarioViewController: UIViewController
         {
         case 1:
             
-            //self.performSegue(withIdentifier: "misPublicaciones", sender: self)
-            print("En construcción")
+            modelUsuario.registroComplementario = (modelUsuario.usuario[0].datosComplementarios?[0])!
+            
+            for direccion in (modelUsuario.usuario[0].datosComplementarios?[0].direcciones)!
+            {
+                if direccion.posicion == 1
+                {
+                    modelUsuario.direccion1 = direccion
+                    modelUsuario.ubicacion1 = (direccion.ubicacion?[0])!
+                }
+                
+                if direccion.posicion == 2
+                {
+                    modelUsuario.direccion2 = direccion
+                    modelUsuario.ubicacion2 = (direccion.ubicacion?[0])!
+                }
+                
+                if direccion.posicion == 3
+                {
+                    modelUsuario.direccion3 = direccion
+                    modelUsuario.ubicacion3 = (direccion.ubicacion?[0])!
+                }
+            }
+            
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            view.window!.layer.add(transition, forKey: kCATransition)
+            
+            self.performSegue(withIdentifier: "editarPerfilUsuario", sender: self)
             
         case 2:
             //self.performSegue(withIdentifier: "misPublicaciones", sender: self)
@@ -127,14 +155,19 @@ class MenuUsuarioViewController: UIViewController
     }
     
 
-    /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if (segue.identifier == "editarPerfilUsuario")
+        {
+            let detailController = segue.destination as! RegistroUsuarioDosViewController
+            detailController.datosEditables = true
+        }
     }
-    */
 
 }

@@ -97,6 +97,7 @@ class ComandoPreguntasOferente {
                         direccionUsuario.direccion = postDictDireccion["direccion"] as? String
                         direccionUsuario.nombre = postDictDireccion["nombre"] as? String
                         direccionUsuario.porDefecto = postDictDireccion["porDefecto"] as? Bool
+                        direccionUsuario.posicion = postDictDireccion["posicion"] as? Int
                         
                         let valUbicacion = postDictDireccion["ubicacion"] as? NSDictionary
                         let ubicacionDireccion = Ubicacion()

@@ -188,6 +188,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         self.datePickerHora = UIDatePicker(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
         self.datePickerHora.backgroundColor = UIColor.white
         self.datePickerHora.datePickerMode = UIDatePickerMode.time
+        self.datePickerHora.minuteInterval = 5
         self.datePickerHora.addTarget(self, action: #selector(AlarmaViewController.actualizarHora), for: .valueChanged)
         textField.inputView = self.datePickerHora
     }
