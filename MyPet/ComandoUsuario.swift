@@ -198,6 +198,28 @@ class ComandoUsuario
                             mascotaUsuario.raza = postDictMascota["raza"] as? String
                             mascotaUsuario.tipo = postDictMascota["tipo"] as? String
                             
+                            let valAlerta = postDictMascota["alertas"] as? NSDictionary
+                            
+                            if valAlerta != nil
+                            {
+                                for (idAlerta, alerta) in valAlerta!
+                                {
+                                    let postDictAlerta = (alerta as! [String : AnyObject])
+                                    let alertaMascota = Alerta()
+                                    
+                                    alertaMascota.idAlerta = idAlerta as? String
+                                    alertaMascota.activada = postDictAlerta["activada"] as? Bool
+                                    alertaMascota.fechaFin = postDictAlerta["fechaFin"] as? String
+                                    alertaMascota.fechaInicio = postDictAlerta["fechaInicio"] as? String
+                                    alertaMascota.frecuencia = postDictAlerta["frecuencia"] as? String
+                                    alertaMascota.hora = postDictAlerta["hora"] as? String
+                                    alertaMascota.nombre = postDictAlerta["nombre"] as? String
+                                    alertaMascota.tipoRecordatorio = postDictAlerta["tipoRecordatorio"] as? String
+                                    
+                                    mascotaUsuario.alertas?.append(alertaMascota)
+                                }
+                            }
+                            
                             if mascotaUsuario.activa!
                             {
                                 model.mascotaSeleccionada = mascotaUsuario

@@ -7,18 +7,26 @@
 //
 
 import UIKit
+import FirebaseAuth
+import UserNotifications
 
 class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate
 {
     let model = Modelo.sharedInstance
     let modelUsuario = ModeloUsuario.sharedInstance
+    let  user = FIRAuth.auth()?.currentUser
     
     let pickerTipoRecordatorio = UIPickerView()
     let pickerFrecuencia = UIPickerView()
     
     var datePickerHora = UIDatePicker()
+    var horaAlarma:Date? = nil
+    
     var datePickerFechaInicio = UIDatePicker()
+    var fechaInicio:Date? = nil
+    
     var datePickerFechaFin = UIDatePicker()
+    var fechaFin:Date? = nil
     
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceTopLayoutConstraint: NSLayoutConstraint?
@@ -111,6 +119,33 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         btnAceptar.layer.cornerRadius = 10.0
         
         btnCancelar.layer.cornerRadius = 10.0
+        
+        modelUsuario.alertaMascota.idAlerta = ComandoUsuario.crearIdAlertaMascotaUsuario(uid: (user?.uid)!, idMascota: modelUsuario.tuMascota.idMascota)
+        
+        if #available(iOS 10.0, *)
+        {
+            UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+        } else
+        {
+            // Fallback on earlier versions
+        }
+    }
+    
+    func printNotificaciones()
+    {
+        if #available(iOS 10.0, *)
+        {
+            let center = UNUserNotificationCenter.current()
+            center.getPendingNotificationRequests(completionHandler: { requests in
+                for request in requests {
+                    print(request.identifier)
+                    print(request.trigger)
+                }
+            })
+        } else {
+            // Fallback on earlier versions
+        }
+        
     }
     
     func cargarDatos(_ notification: Notification)
@@ -195,6 +230,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     func actualizarHora()
     {
+        horaAlarma = datePickerHora.date
         txtHora.text = datePickerHora.date.horaString()
     }
     
@@ -211,6 +247,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     func actualizarFechaInicio()
     {
+        fechaInicio = datePickerFechaInicio.date
         txtFechaInicio.text = datePickerFechaInicio.date.fechaString()
     }
     
@@ -227,6 +264,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     func actualizarFechaFin()
     {
+        fechaFin = datePickerFechaFin.date
         txtFechaFin.text = datePickerFechaFin.date.fechaString()
     }
     
@@ -329,6 +367,175 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func crearAlarma(_ sender: Any)
+    {
+        var frecuenciaAlarma:Frecuencia? = nil
+        
+        if modelUsuario.alertaMascota.frecuencia == "Anual"
+        {
+            frecuenciaAlarma = .anual
+        }
+        
+        if modelUsuario.alertaMascota.frecuencia == "Bimensual"
+        {
+            frecuenciaAlarma = .bimensual
+        }
+        
+        if modelUsuario.alertaMascota.frecuencia == "Bimensual"
+        {
+            frecuenciaAlarma = .bimensual
+        }
+        
+        if modelUsuario.alertaMascota.frecuencia == "Mensual"
+        {
+            frecuenciaAlarma = .mensual
+        }
+        
+        if modelUsuario.alertaMascota.frecuencia == "Quincenal"
+        {
+            frecuenciaAlarma = .quincenal
+        }
+        
+        if modelUsuario.alertaMascota.frecuencia == "Semanal"
+        {
+            frecuenciaAlarma = .semanal
+        }
+        
+        crearNotificaciones(id: modelUsuario.alertaMascota.idAlerta!, inicio: combineDateAndTime(date: fechaInicio!, time: horaAlarma!), fin: combineDateAndTime(date: fechaFin!, time: horaAlarma!), titulo: "HOLA", subtitulo: "", cuerpo: "VAMOS", frecuencia: frecuenciaAlarma!)
+    }
+    
+    func crearNotificaciones(id:String, inicio:Date, fin:Date, titulo:String, subtitulo: String, cuerpo:String, frecuencia:Frecuencia)
+    {
+        let fechas = calcularFechas(inicio: inicio, fin: fin, frecuencia: frecuencia)
+        
+        let calendar = NSCalendar.current
+        
+        if #available(iOS 10.0, *)
+        {
+            let content = UNMutableNotificationContent()
+            
+            content.title = titulo
+            content.subtitle = subtitulo
+            content.body = cuerpo
+            content.sound = UNNotificationSound.default()
+            
+            print(fechas)
+            
+            var i = 0
+            for fecha in fechas
+            {
+                print(fecha)
+                let componentes = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: fecha)
+                print("dia" + String(componentes.day!))
+                
+                
+                let trigger = UNCalendarNotificationTrigger(dateMatching: componentes, repeats: false)
+                
+                let request = UNNotificationRequest(identifier: id + String(i), content: content, trigger: trigger)
+                
+                
+                UNUserNotificationCenter.current().add(request) { error in
+                    if (error != nil){
+                        
+                        print("No logró adicionar la notificación")
+                        print(error!.localizedDescription)
+                    }
+                    
+                }
+                
+                i += 1
+                
+                if i == 12
+                {
+                    break
+                }
+            }
+        } else
+        {
+            // Fallback on earlier versions
+        }
+    }
+    
+    func calcularFechas(inicio:Date, fin:Date, frecuencia:Frecuencia) -> [Date]
+    {
+        var fechas:[Date] = []
+        
+        fechas.append(inicio);
+        var fechaActual = inicio;
+        let fechafin = sumarFrecuencia(fecha: fin, frecuencia: .diaria)
+        
+        while fechaActual <= fin {
+            fechaActual = sumarFrecuencia(fecha: fechaActual, frecuencia: frecuencia)
+            if fechaActual <= fechafin {
+                fechas.append(fechaActual)
+            }
+        }
+        
+        return fechas
+    }
+    
+    func sumarFrecuencia(fecha:Date, frecuencia:Frecuencia) -> Date
+    {
+        var dateComponent = DateComponents()
+        
+        if frecuencia == .minutos {
+            dateComponent.minute = 1
+        }
+        
+        if frecuencia == .diaria {
+            dateComponent.day = 1
+        }
+        
+        if frecuencia == .semanal {
+            dateComponent.day = 7
+        }
+        
+        if frecuencia == .quincenal {
+            dateComponent.day = 14
+        }
+        
+        if frecuencia == .mensual {
+            dateComponent.month = 1
+        }
+        
+        if frecuencia == .bimensual {
+            dateComponent.month = 2
+        }
+        if frecuencia == .anual {
+            dateComponent.year = 1
+        }
+        
+        let futureDate = Calendar.current.date(byAdding: dateComponent, to: fecha)
+        
+        
+        return futureDate!
+        
+    }
+    
+    func cancelarNotificaciones(id:String)
+    {
+        var lista:[String] = []
+        
+        for i in (0...64) {
+            lista.append(id + String(i))
+        }
+        
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: lista)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
+    func cancelarTodasLasNotificaciones()
+    {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -393,4 +600,44 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
     {
         view.endEditing(true)
     }
+    
+    func combineDateAndTime(date: Date, time: Date) -> Date
+    {
+        let calendar = NSCalendar.current
+        
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+        let timeComponents = calendar.dateComponents([.hour, .minute, .second], from: time)
+        
+        var components = DateComponents()
+        components.year = dateComponents.year
+        components.month = dateComponents.month
+        components.day = dateComponents.day
+        components.hour = timeComponents.hour
+        components.minute = timeComponents.minute
+        components.second = timeComponents.second
+        
+        return calendar.date(from: components)!
+    }
+}
+
+extension ViewController: UNUserNotificationCenterDelegate
+{
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert])
+    }
+    
+}
+
+enum Frecuencia:Int
+{
+    case minutos
+    case diaria
+    case semanal
+    case quincenal
+    case mensual
+    case bimensual
+    case anual
+    
+    
 }
