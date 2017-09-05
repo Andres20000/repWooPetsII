@@ -23,11 +23,11 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet var btnCancelar: UIButton!
     @IBOutlet var viewTableViewBottom: UIView!
     
-    var tituloNegocio = ["Razón Social","NIT","Dirección", "Teléfono fijo", "Celular", "Correo electrónico", "Página web (opcional)", "Horario de atención a domicilio"]
+    var tituloNegocio = ["Razón Social","NIT","Dirección (Bogotá)", "Teléfono fijo (Bogotá)", "Celular", "Correo electrónico", "Página web (opcional)", "Horario de atención a domicilio"]
     
     var datosNegocio:NSMutableArray = NSMutableArray(array: ["","","", "", "", "", "", ""])
     
-    var tituloContacto = ["Nombre completo","Tipo de documento","Número de documento", "Teléfono fijo", "Celular", "Correo electrónico (Usuario)", "Contraseña (Usuario)"]
+    var tituloContacto = ["Nombre completo","Tipo de documento","Número de documento", "Teléfono fijo (Bogotá)", "Celular", "Correo electrónico (Usuario)", "Contraseña (Usuario)"]
     
     var datosContacto:NSMutableArray = NSMutableArray(array: ["","","", "", "", "", ""])
     
@@ -298,9 +298,9 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                 cell.btnHorario.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
                 
                 
-                if (oferenteRegistro.horario?.count)! > 0
+                if (model.oferente[0].horario?.count)! > 0
                 {
-                    for horario in (oferenteRegistro.horario)!
+                    for horario in (model.oferente[0].horario)!
                     {
                         if horario.nombreArbol == "Semana"
                         {
@@ -836,45 +836,84 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
         oferenteRegistro.contactoPrincipal?.removeAll()
         oferenteRegistro.contactoPrincipal?.append(contactoRegistro)
         
+        print("valor: \(model.horarioSemana.dias)")
         if model.horarioSemana.dias != ""
         {
+            print("count horario despues validación semana: \((oferenteRegistro.horario?.count)!)")
             if oferenteRegistro.horario?.count == 0
             {
                 oferenteRegistro.horario?.append(model.horarioSemana)
             } else
             {
-                oferenteRegistro.horario?[0].dias = model.horarioSemana.dias
-                oferenteRegistro.horario?[0].horaInicio = model.horarioSemana.horaInicio
-                oferenteRegistro.horario?[0].horaCierre = model.horarioSemana.horaCierre
-                oferenteRegistro.horario?[0].nombreArbol = "Semana"
-                oferenteRegistro.horario?[0].sinJornadaContinua = model.horarioSemana.sinJornadaContinua
+                var i = 0
+                
+                for horario in oferenteRegistro.horario!
+                {
+                    if horario.nombreArbol == "Semana"
+                    {
+                        horario.dias = model.horarioSemana.dias
+                        horario.horaInicio = model.horarioSemana.horaInicio
+                        horario.horaCierre = model.horarioSemana.horaCierre
+                        horario.nombreArbol = "Semana"
+                        horario.sinJornadaContinua = model.horarioSemana.sinJornadaContinua
+                        
+                        oferenteRegistro.horario?.remove(at: i)
+                        oferenteRegistro.horario?.append(horario)
+                    }
+                    
+                    i = i + 1
+                }
             }
         }else
         {
             oferenteRegistro.horario?.removeAll()
         }
         
+        print("valor: \(model.horarioFestivo.dias)")
+        
         if model.horarioFestivo.dias != ""
         {
+            print("count horario despues validación fin semana: \((oferenteRegistro.horario?.count)!)")
             if oferenteRegistro.horario?.count == 1
             {
                 oferenteRegistro.horario?.append(model.horarioFestivo)
             } else
             {
-                oferenteRegistro.horario?[1].dias = model.horarioFestivo.dias
-                oferenteRegistro.horario?[1].horaInicio = model.horarioFestivo.horaInicio
-                oferenteRegistro.horario?[1].horaCierre = model.horarioFestivo.horaCierre
-                oferenteRegistro.horario?[1].nombreArbol = "FinDeSemana"
-                oferenteRegistro.horario?[1].sinJornadaContinua = model.horarioFestivo.sinJornadaContinua
+                var i = 0
+                
+                for horario in oferenteRegistro.horario!
+                {
+                    if horario.nombreArbol == "FinDeSemana"
+                    {
+                        horario.dias = model.horarioFestivo.dias
+                        horario.horaInicio = model.horarioFestivo.horaInicio
+                        horario.horaCierre = model.horarioFestivo.horaCierre
+                        horario.nombreArbol = "FinDeSemana"
+                        horario.sinJornadaContinua = model.horarioFestivo.sinJornadaContinua
+                        
+                        oferenteRegistro.horario?.remove(at: i)
+                        oferenteRegistro.horario?.append(horario)
+                    }
+                    
+                    i = i + 1
+                }
             }
         }else
         {
-            if oferenteRegistro.horario?.count == 2
+            var i = 0
+            
+            for horario in oferenteRegistro.horario!
             {
-                oferenteRegistro.horario?.remove(at: 1)
+                if horario.nombreArbol == "FinDeSemana"
+                {
+                    oferenteRegistro.horario?.remove(at: i)
+                }
+                
+                i = i + 1
             }
         }
         
+        print("count horario: \((oferenteRegistro.horario?.count)!)")
         model.oferente.append(oferenteRegistro)
         
         tableRegistroOferente .reloadData()
@@ -950,7 +989,7 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
         
         // Adding Button ToolBar
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Ocultar", style: .plain, target: self, action: #selector(RegistroOferenteViewController.cancelClick))
+        let cancelButton = UIBarButtonItem(title: "Ok", style: .plain, target: self, action: #selector(RegistroOferenteViewController.cancelClick))
         toolBar.setItems([spaceButton, cancelButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         textField.inputAccessoryView = toolBar

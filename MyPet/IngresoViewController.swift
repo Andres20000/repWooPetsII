@@ -26,6 +26,9 @@ struct DeviceType
 
 class IngresoViewController: UIViewController
 {
+    var modelOferente  = ModeloOferente.sharedInstance
+    var modelUsuario  = ModeloUsuario.sharedInstance
+    
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceTopLayoutConstraint: NSLayoutConstraint?
     @IBOutlet var horizontalSpaceConstraint: NSLayoutConstraint?
@@ -39,6 +42,9 @@ class IngresoViewController: UIViewController
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        modelOferente.oferente.removeAll()
+        modelUsuario.usuario.removeAll()
     }
     
     @IBAction func omitirIngresoRegistro(_ sender: Any)

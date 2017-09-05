@@ -7,18 +7,20 @@
 //
 
 import UIKit
+import FirebaseAuth
 
-class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate
+class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
 {
     var modelUsuario  = ModeloUsuario.sharedInstance
+    let  user = FIRAuth.auth()?.currentUser
     
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceTopLayoutConstraint: NSLayoutConstraint?
-    
-    @IBOutlet var scrollContent: UIScrollView!
-    var contentSizeScroll:CGFloat = 0.0
+    @IBOutlet var heightViewLayoutConstraint: NSLayoutConstraint?
     
     @IBOutlet var imgFondo: UIImageView!
+    
+    @IBOutlet var scrollContent: UIScrollView!
     
     @IBOutlet var btnClose: UIButton!
     @IBOutlet var imgMailFB: UIImageView!
@@ -51,12 +53,21 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
     @IBOutlet var btnContinuar: UIButton!
     
     var tieneDireccionDos:Bool = false
+    var idDireccion2 = ""
+    
     var tieneDireccionTres:Bool = false
+    var idDireccion3 = ""
+    
     var direccionParaUbicar:Int?
     
     var datosEditables:Bool = false
     
     @IBAction func closeView(_ sender: Any)
+    {
+        self.goBack()
+    }
+    
+    func goBack()
     {
         modelUsuario.registroComplementario.apellido = ""
         modelUsuario.registroComplementario.celular = ""
@@ -93,6 +104,11 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        scrollContent.bounces = true
+        scrollContent.isScrollEnabled = true
+        
+        scrollContent.frame = CGRect.init(x: 0.0, y: 0.0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         
         if Comando.validarTipoIngreso()
         {
@@ -178,29 +194,109 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         
         btnContinuar.layer.cornerRadius = 10.0
         
-        modelUsuario.ubicacion1.latitud = 0
-        modelUsuario.ubicacion1.longitud = 0
-        
-        modelUsuario.direccion1.ubicacion?.removeAll()
-        modelUsuario.direccion1.ubicacion?.append(modelUsuario.ubicacion1)
-        
-        modelUsuario.ubicacion2.latitud = 0
-        modelUsuario.ubicacion2.longitud = 0
-        
-        modelUsuario.direccion2.ubicacion?.removeAll()
-        modelUsuario.direccion2.ubicacion?.append(modelUsuario.ubicacion2)
-        
-        modelUsuario.ubicacion3.latitud = 0
-        modelUsuario.ubicacion3.longitud = 0
-        
-        modelUsuario.direccion3.ubicacion?.removeAll()
-        modelUsuario.direccion3.ubicacion?.append(modelUsuario.ubicacion3)
+        modelUsuario.direccion1.posicion = 1
+        modelUsuario.direccion2.posicion = 2
+        modelUsuario.direccion3.posicion = 3
         
         if datosEditables
         {
+            if modelUsuario.usuario[0].datosComplementarios?[0].direcciones?.count == 1
+            {
+                modelUsuario.ubicacion2.latitud = 0
+                modelUsuario.ubicacion2.longitud = 0
+                
+                modelUsuario.direccion2.ubicacion?.removeAll()
+                modelUsuario.direccion2.ubicacion?.append(modelUsuario.ubicacion2)
+                
+                modelUsuario.ubicacion3.latitud = 0
+                modelUsuario.ubicacion3.longitud = 0
+                
+                modelUsuario.direccion3.ubicacion?.removeAll()
+                modelUsuario.direccion3.ubicacion?.append(modelUsuario.ubicacion3)
+                
+                tieneDireccionDos = false
+                tieneDireccionTres = false
+                
+                self.heightViewLayoutConstraint?.constant = UIScreen.main.bounds.height
+                
+                self.spaceTopLayoutConstraint?.constant = 344 - 140 - 140 + 10
+                
+                viewDireccion2.isHidden = true
+                viewDireccion3.isHidden = true
+                
+                btnAgregar.isHidden = true
+                btnAgregar2.isHidden = false
+                btnAgregar3.isHidden = true
+            }
+            
+            if modelUsuario.usuario[0].datosComplementarios?[0].direcciones?.count == 2
+            {
+                modelUsuario.ubicacion3.latitud = 0
+                modelUsuario.ubicacion3.longitud = 0
+                
+                modelUsuario.direccion3.ubicacion?.removeAll()
+                modelUsuario.direccion3.ubicacion?.append(modelUsuario.ubicacion3)
+                
+                tieneDireccionDos = true
+                tieneDireccionTres = false
+                
+                if DeviceType.IS_IPHONE_6P
+                {
+                    self.heightViewLayoutConstraint?.constant = 845.0 - 140.0 + 31
+                }else
+                {
+                    self.heightViewLayoutConstraint?.constant = 845.0 - 140.0
+                }
+                
+                self.spaceTopLayoutConstraint?.constant = 344 - 140
+                
+                viewDireccion2.isHidden = false
+                viewDireccion3.isHidden = true
+                
+                btnAgregar.isHidden = true
+                btnAgregar2.isHidden = true
+                btnAgregar3.isHidden = false
+            }
+            
+            if modelUsuario.usuario[0].datosComplementarios?[0].direcciones?.count == 3
+            {
+                tieneDireccionDos = true
+                tieneDireccionTres = true
+                
+                self.heightViewLayoutConstraint?.constant = 845.0
+                
+                self.spaceTopLayoutConstraint?.constant = 344
+                
+                viewDireccion2.isHidden = false
+                viewDireccion3.isHidden = false
+                
+                btnAgregar.isHidden = false
+                btnAgregar2.isHidden = true
+                btnAgregar3.isHidden = true
+            }
+            
             btnContinuar.setTitle("Editar", for: .normal)
+            
         } else
         {
+            modelUsuario.ubicacion1.latitud = 0
+            modelUsuario.ubicacion1.longitud = 0
+            
+            modelUsuario.direccion1.ubicacion?.removeAll()
+            modelUsuario.direccion1.ubicacion?.append(modelUsuario.ubicacion1)
+            
+            modelUsuario.ubicacion2.latitud = 0
+            modelUsuario.ubicacion2.longitud = 0
+            
+            modelUsuario.direccion2.ubicacion?.removeAll()
+            modelUsuario.direccion2.ubicacion?.append(modelUsuario.ubicacion2)
+            
+            modelUsuario.ubicacion3.latitud = 0
+            modelUsuario.ubicacion3.longitud = 0
+            
+            modelUsuario.direccion3.ubicacion?.removeAll()
+            modelUsuario.direccion3.ubicacion?.append(modelUsuario.ubicacion3)
+            
             btnContinuar.setTitle("Ok, continuar", for: .normal)
         }
     }
@@ -282,11 +378,22 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
             self.mostrarAlerta(titulo: "Advertencia", mensaje: "Si deseas agregar una nueva dirección debes diligenciar los campos de la primera")
         } else
         {
+            if datosEditables
+            {
+                idDireccion2 = ""
+            }
+            
             tieneDireccionDos = true
             
-            contentSizeScroll = 845.0 - 140.0
+            if DeviceType.IS_IPHONE_6P
+            {
+                self.heightViewLayoutConstraint?.constant = 845.0 - 140.0 + 31
+            }else
+            {
+                self.heightViewLayoutConstraint?.constant = 845.0 - 140.0
+            }
             
-            self.spaceTopLayoutConstraint?.constant = 440 - 140
+            self.spaceTopLayoutConstraint?.constant = 344 - 140
             
             viewDireccion2.isHidden = false
             viewDireccion3.isHidden = true
@@ -305,38 +412,52 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         
         if tieneDireccionTres
         {
-            self.mostrarAlerta(titulo: "Advertencia", mensaje: "No puedes borrar la dirección 2 porque tienes activado la dirección 3")
+            self.mostrarAlerta(titulo: "Advertencia", mensaje: "No puedes borrar la dirección 2 porque tienes diligenciado la dirección 3")
         } else
         {
-            tieneDireccionDos = false
+            let alert:UIAlertController = UIAlertController(title: "Confirmar", message: "¿Estás seguro de eliminar ésta dirección?", preferredStyle: .alert)
             
-            txtDireccion2.text = ""
-            txtNombreDireccion2.text = ""
-            
-            modelUsuario.direccion2.direccion = ""
-            modelUsuario.direccion2.nombre = ""
-            
-            modelUsuario.ubicacion2.latitud = 0.0
-            modelUsuario.ubicacion2.longitud = 0.0
-
-            contentSizeScroll = UIScreen.main.bounds.height
-            
-            if DeviceType.IS_IPHONE_5
-            {
-                self.spaceTopLayoutConstraint?.constant = 150
-            }else
-            {
-                self.spaceTopLayoutConstraint?.constant = 200
+            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                
+                if self.datosEditables
+                {
+                    self.idDireccion2 = self.modelUsuario.direccion2.idDireccion!
+                }
+                
+                self.txtDireccion2.text = ""
+                self.txtNombreDireccion2.text = ""
+                
+                self.modelUsuario.direccion2.direccion = ""
+                self.modelUsuario.direccion2.nombre = ""
+                
+                self.modelUsuario.ubicacion2.latitud = 0.0
+                self.modelUsuario.ubicacion2.longitud = 0.0
+                
+                self.tieneDireccionDos = false
+                
+                self.heightViewLayoutConstraint?.constant = UIScreen.main.bounds.height
+                
+                self.spaceTopLayoutConstraint?.constant = 344 - 140 - 140 + 10
+                
+                self.viewDireccion2.isHidden = true
+                self.viewDireccion3.isHidden = true
+                
+                self.btnAgregar.isHidden = true
+                self.btnAgregar2.isHidden = false
+                self.btnAgregar3.isHidden = true
+                
+                self .refreshView()
             }
             
-            viewDireccion2.isHidden = true
-            viewDireccion3.isHidden = true
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+            {
+                UIAlertAction in
+            }
             
-            btnAgregar.isHidden = true
-            btnAgregar2.isHidden = false
-            btnAgregar3.isHidden = true
-            
-            self .refreshView()
+            // Add the actions
+            alert.addAction(continuarAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -349,11 +470,16 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
             self.mostrarAlerta(titulo: "Advertencia", mensaje: "Si deseas agregar una nueva dirección debes diligenciar los campos de la segunda")
         } else
         {
+            if datosEditables
+            {
+                idDireccion3 = ""
+            }
+            
             tieneDireccionTres = true
             
-            contentSizeScroll = 845.0
+            self.heightViewLayoutConstraint?.constant = 845.0
             
-            self.spaceTopLayoutConstraint?.constant = 440
+            self.spaceTopLayoutConstraint?.constant = 344
             
             viewDireccion2.isHidden = false
             viewDireccion3.isHidden = false
@@ -370,29 +496,49 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
     {
         self.view.endEditing(true)
         
-        tieneDireccionTres = false
+        let alert:UIAlertController = UIAlertController(title: "Confirmar", message: "¿Estás seguro de eliminar ésta dirección?", preferredStyle: .alert)
         
-        txtDireccion3.text = ""
-        txtNombreDireccion3.text = ""
+        let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+            
+            if self.datosEditables
+            {
+                self.idDireccion3 = self.modelUsuario.direccion3.idDireccion!
+            }
+            
+            self.txtDireccion3.text = ""
+            self.txtNombreDireccion3.text = ""
+            
+            self.modelUsuario.direccion3.direccion = ""
+            self.modelUsuario.direccion3.nombre = ""
+            
+            self.modelUsuario.ubicacion3.latitud = 0.0
+            self.modelUsuario.ubicacion3.longitud = 0.0
+            
+            self.tieneDireccionTres = false
+            
+            self.heightViewLayoutConstraint?.constant = 845.0 - 140.0
+            
+            self.spaceTopLayoutConstraint?.constant = 344 - 140
+            
+            self.viewDireccion2.isHidden = false
+            self.viewDireccion3.isHidden = true
+            
+            self.btnAgregar.isHidden = true
+            self.btnAgregar2.isHidden = true
+            self.btnAgregar3.isHidden = false
+            
+            self .refreshView()
+        }
         
-        modelUsuario.direccion3.direccion = ""
-        modelUsuario.direccion3.nombre = ""
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+        {
+            UIAlertAction in
+        }
         
-        modelUsuario.ubicacion3.latitud = 0.0
-        modelUsuario.ubicacion3.longitud = 0.0
-        
-        contentSizeScroll = 845.0 - 140.0
-        
-        self.spaceTopLayoutConstraint?.constant = 440 - 140
-        
-        viewDireccion2.isHidden = false
-        viewDireccion3.isHidden = true
-        
-        btnAgregar.isHidden = true
-        btnAgregar2.isHidden = true
-        btnAgregar3.isHidden = false
-        
-        self .refreshView()
+        // Add the actions
+        alert.addAction(continuarAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func cargarDireccion(_ sender: Any)
@@ -413,55 +559,68 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
     {
         self.view.endEditing(true)
         
-        if datosEditables
+        if modelUsuario.registroComplementario.apellido == "" || modelUsuario.registroComplementario.celular == "" || modelUsuario.registroComplementario.documento == "" || modelUsuario.registroComplementario.nombre == "" || modelUsuario.direccion1.direccion == "" || modelUsuario.direccion1.nombre == ""
         {
-            print("Editar")
-        } else
+            self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
+            
+            return
+        }
+        
+        if tieneDireccionDos
         {
-            if modelUsuario.registroComplementario.apellido == "" || modelUsuario.registroComplementario.celular == "" || modelUsuario.registroComplementario.documento == "" || modelUsuario.registroComplementario.nombre == "" || modelUsuario.direccion1.direccion == "" || modelUsuario.direccion1.nombre == ""
+            if modelUsuario.direccion2.direccion == "" || modelUsuario.direccion2.nombre == ""
             {
                 self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
                 
                 return
             }
-            
-            if tieneDireccionDos
+        }
+        
+        if tieneDireccionTres
+        {
+            if modelUsuario.direccion3.direccion == "" || modelUsuario.direccion3.nombre == ""
             {
-                if modelUsuario.direccion2.direccion == "" || modelUsuario.direccion2.nombre == ""
-                {
-                    self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
-                    
-                    return
-                }
+                self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
+                
+                return
+            }
+        }
+        
+        modelUsuario.registroComplementario.direcciones?.removeAll()
+        
+        modelUsuario.direccion1.porDefecto = true
+        modelUsuario.registroComplementario.direcciones?.append(modelUsuario.direccion1)
+        
+        if tieneDireccionDos
+        {
+            modelUsuario.direccion2.porDefecto = false
+            modelUsuario.registroComplementario.direcciones?.append(modelUsuario.direccion2)
+        }
+        
+        if tieneDireccionTres
+        {
+            modelUsuario.direccion3.porDefecto = false
+            modelUsuario.registroComplementario.direcciones?.append(modelUsuario.direccion3)
+        }
+        
+        if datosEditables
+        {
+            if idDireccion2 != ""
+            {
+                ComandoUsuario.eliminarDireccion(uid: (user?.uid)!, idDireccion: idDireccion2)
             }
             
-            if tieneDireccionTres
+            if idDireccion3 != ""
             {
-                if modelUsuario.direccion3.direccion == "" || modelUsuario.direccion3.nombre == ""
-                {
-                    self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
-                    
-                    return
-                }
+                ComandoUsuario.eliminarDireccion(uid: (user?.uid)!, idDireccion: idDireccion3)
             }
             
-            modelUsuario.registroComplementario.direcciones?.removeAll()
+            ComandoUsuario.editarDatosPerfil(uid: (user?.uid)!, datos: modelUsuario.registroComplementario)
             
-            modelUsuario.direccion1.porDefecto = true
-            modelUsuario.registroComplementario.direcciones?.append(modelUsuario.direccion1)
+            self.goBack()
             
-            if tieneDireccionDos
-            {
-                modelUsuario.direccion2.porDefecto = false
-                modelUsuario.registroComplementario.direcciones?.append(modelUsuario.direccion2)
-            }
-            
-            if tieneDireccionTres
-            {
-                modelUsuario.direccion3.porDefecto = false
-                modelUsuario.registroComplementario.direcciones?.append(modelUsuario.direccion3)
-            }
-            
+        } else
+        {
             self.performSegue(withIdentifier: "completarRegistroTresDesdecompletarRegistroDos", sender: self)
         }
     }
@@ -473,14 +632,11 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         txtCedula.text = modelUsuario.registroComplementario.documento
         txtNombre.text = modelUsuario.registroComplementario.nombre
         
-        txtDireccion1.text = modelUsuario.direccion1.direccion
-        txtNombreDireccion1.text = modelUsuario.direccion1.nombre
-        
-        txtDireccion2.text = modelUsuario.direccion2.direccion
-        txtNombreDireccion2.text = modelUsuario.direccion2.nombre
-        
-        txtDireccion3.text = modelUsuario.direccion3.direccion
-        txtNombreDireccion3.text = modelUsuario.direccion3.nombre
+        if modelUsuario.direccion1.direccion != ""
+        {
+            txtDireccion1.text = modelUsuario.direccion1.direccion
+            txtNombreDireccion1.text = modelUsuario.direccion1.nombre
+        }
         
         if modelUsuario.direccion1.ubicacion?[0].latitud == 0
         {
@@ -490,12 +646,24 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
             btnUbicacion1.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
         }
         
+        if modelUsuario.direccion2.direccion != ""
+        {
+            txtDireccion2.text = modelUsuario.direccion2.direccion
+            txtNombreDireccion2.text = modelUsuario.direccion2.nombre
+        }
+        
         if modelUsuario.direccion2.ubicacion?[0].latitud == 0
         {
             btnUbicacion2.setImage(UIImage(named: "btnGeolocalizar"), for: UIControlState.normal)
         } else
         {
             btnUbicacion2.setImage(UIImage(named: "btnGeolocalizarOk"), for: UIControlState.normal)
+        }
+        
+        if modelUsuario.direccion3.direccion != ""
+        {
+            txtDireccion3.text = modelUsuario.direccion3.direccion
+            txtNombreDireccion3.text = modelUsuario.direccion3.nombre
         }
         
         if modelUsuario.direccion3.ubicacion?[0].latitud == 0
@@ -508,15 +676,9 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         
         if txtDireccion1.text == "" || txtNombreDireccion1.text == ""
         {
-            contentSizeScroll = UIScreen.main.bounds.height
+            self.heightViewLayoutConstraint?.constant = UIScreen.main.bounds.height
             
-            if DeviceType.IS_IPHONE_5
-            {
-                self.spaceTopLayoutConstraint?.constant = 150
-            }else
-            {
-                self.spaceTopLayoutConstraint?.constant = 200
-            }
+            self.spaceTopLayoutConstraint?.constant = 344 - 140 - 140 + 10
             
             viewDireccion2.isHidden = true
             viewDireccion3.isHidden = true
@@ -525,13 +687,13 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
             btnAgregar2.isHidden = false
             btnAgregar3.isHidden = true
         }
+    }
+    
+    override func viewDidLayoutSubviews()
+    {
+        super.viewDidLayoutSubviews()
         
-        scrollContent.bounces = false
-        scrollContent.isScrollEnabled = true
-        
-        scrollContent.frame = CGRect.init(x: 0.0, y: 0.0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        scrollContent.contentSize = CGSize.init(width: scrollContent.frame.width, height: contentSizeScroll)
-        
+        scrollContent.contentSize = CGSize.init(width: scrollContent.frame.width, height: (self.heightViewLayoutConstraint?.constant)!)
         imgFondo.frame = CGRect.init(x: 0.0, y: 0.0, width: scrollContent.contentSize.width, height: scrollContent.contentSize.height)
     }
     
@@ -541,7 +703,6 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         
         self .refreshView()
     }
-    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
@@ -600,7 +761,7 @@ class RegistroUsuarioDosViewController: UIViewController, UIScrollViewDelegate, 
         
         // Adding Button ToolBar
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Ocultar", style: .plain, target: self, action: #selector(RegistroOferenteViewController.cancelClick))
+        let cancelButton = UIBarButtonItem(title: "Ok", style: .plain, target: self, action: #selector(RegistroOferenteViewController.cancelClick))
         toolBar.setItems([spaceButton, cancelButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         textField.inputAccessoryView = toolBar

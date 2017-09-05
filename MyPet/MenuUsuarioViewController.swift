@@ -29,6 +29,8 @@ class MenuUsuarioViewController: UIViewController
 
         // Do any additional setup after loading the view.
         
+        ComandoUsuario.getUsuario(uid: (user?.uid)!)
+        
         if DeviceType.IS_IPHONE_5
         {
             self.spaceBottomLayoutConstraint?.constant = 15.0
@@ -43,36 +45,21 @@ class MenuUsuarioViewController: UIViewController
         {
         case 1:
             
-            modelUsuario.registroComplementario = (modelUsuario.usuario[0].datosComplementarios?[0])!
-            
-            for direccion in (modelUsuario.usuario[0].datosComplementarios?[0].direcciones)!
+            if modelUsuario.usuario.count == 0
             {
-                if direccion.posicion == 1
+                self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Aún no te has registrado")
+            } else
+            {
+                if modelUsuario.usuario[0].datosComplementarios?.count == 0
                 {
-                    modelUsuario.direccion1 = direccion
-                    modelUsuario.ubicacion1 = (direccion.ubicacion?[0])!
-                }
-                
-                if direccion.posicion == 2
+                    self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Aún no te has completado tu registro")
+                } else
                 {
-                    modelUsuario.direccion2 = direccion
-                    modelUsuario.ubicacion2 = (direccion.ubicacion?[0])!
-                }
-                
-                if direccion.posicion == 3
-                {
-                    modelUsuario.direccion3 = direccion
-                    modelUsuario.ubicacion3 = (direccion.ubicacion?[0])!
+                    ComandoUsuario.getUsuario(uid: (user?.uid)!)
+                    
+                    NotificationCenter.default.addObserver(self, selector: #selector(MenuUsuarioViewController.cargarDatosPerfil(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
                 }
             }
-            
-            let transition = CATransition()
-            transition.duration = 0.5
-            transition.type = kCATransitionPush
-            transition.subtype = kCATransitionFromRight
-            view.window!.layer.add(transition, forKey: kCATransition)
-            
-            self.performSegue(withIdentifier: "editarPerfilUsuario", sender: self)
             
         case 2:
             //self.performSegue(withIdentifier: "misPublicaciones", sender: self)
@@ -113,6 +100,40 @@ class MenuUsuarioViewController: UIViewController
         default:
             print("Nothing")
         }
+    }
+    
+    func cargarDatosPerfil(_ notification: Notification)
+    {
+        modelUsuario.registroComplementario = (modelUsuario.usuario[0].datosComplementarios?[0])!
+        
+        for direccion in (modelUsuario.usuario[0].datosComplementarios?[0].direcciones)!
+        {
+            if direccion.posicion == 1
+            {
+                modelUsuario.direccion1 = direccion
+                modelUsuario.ubicacion1 = (direccion.ubicacion?[0])!
+            }
+            
+            if direccion.posicion == 2
+            {
+                modelUsuario.direccion2 = direccion
+                modelUsuario.ubicacion2 = (direccion.ubicacion?[0])!
+            }
+            
+            if direccion.posicion == 3
+            {
+                modelUsuario.direccion3 = direccion
+                modelUsuario.ubicacion3 = (direccion.ubicacion?[0])!
+            }
+        }
+        
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
+        
+        self.performSegue(withIdentifier: "editarPerfilUsuario", sender: self)
     }
     
     func cerrarSesion()
@@ -169,5 +190,18 @@ class MenuUsuarioViewController: UIViewController
             detailController.datosEditables = true
         }
     }
-
+    
+    func mostrarAlerta(titulo:String, mensaje:String)
+    {
+        let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            
+            return
+        }
+        
+        alerta.addAction(OKAction)
+        present(alerta, animated: true, completion: { return })
+    }
+    
 }

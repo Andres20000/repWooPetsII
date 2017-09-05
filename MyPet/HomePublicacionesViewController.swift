@@ -253,7 +253,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         
         // Configurar scrollview
         
-        scrollContent.bounces = false
+        scrollContent.bounces = true
         scrollContent.isScrollEnabled = true
         
         scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: contentSizeScroll)

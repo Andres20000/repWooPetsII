@@ -153,6 +153,14 @@
 		845326891F0C9B11007A4776 /* AlertaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845326861F0C9B11007A4776 /* AlertaTableViewCell.swift */; };
 		8453268A1F0C9B11007A4776 /* AlertaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845326871F0C9B11007A4776 /* AlertaTableViewCell.xib */; };
 		8453268B1F0C9B11007A4776 /* AlertaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845326871F0C9B11007A4776 /* AlertaTableViewCell.xib */; };
+		846C925E1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C925C1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift */; };
+		846C925F1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C925C1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift */; };
+		846C92601F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C925D1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib */; };
+		846C92611F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C925D1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib */; };
+		846C92641F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92621F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift */; };
+		846C92651F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92621F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift */; };
+		846C92661F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C92631F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib */; };
+		846C92671F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C92631F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib */; };
 		847838CD1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847838CB1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift */; };
 		847838CE1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847838CB1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift */; };
 		847838CF1F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847838CC1F1699EC006A41F8 /* PublicacionCollectionViewCell.xib */; };
@@ -366,6 +374,10 @@
 		845326821F0C9015007A4776 /* AdministrarAlarmasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdministrarAlarmasViewController.swift; sourceTree = "<group>"; };
 		845326861F0C9B11007A4776 /* AlertaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertaTableViewCell.swift; sourceTree = "<group>"; };
 		845326871F0C9B11007A4776 /* AlertaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertaTableViewCell.xib; sourceTree = "<group>"; };
+		846C925C1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelefonoRegistroTableViewCell.swift; sourceTree = "<group>"; };
+		846C925D1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TelefonoRegistroTableViewCell.xib; sourceTree = "<group>"; };
+		846C92621F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompraFinalizadaTableViewCell.swift; sourceTree = "<group>"; };
+		846C92631F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompraFinalizadaTableViewCell.xib; sourceTree = "<group>"; };
 		847838CB1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicacionCollectionViewCell.swift; sourceTree = "<group>"; };
 		847838CC1F1699EC006A41F8 /* PublicacionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublicacionCollectionViewCell.xib; sourceTree = "<group>"; };
 		847FDC0D1ED34029002F9530 /* DetalleEstandarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalleEstandarTableViewCell.swift; sourceTree = "<group>"; };
@@ -540,6 +552,8 @@
 				844860121F4B3F2300DF5D9D /* MiCompraPendienteTableViewCell.xib */,
 				84AF00661F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.swift */,
 				84AF00671F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib */,
+				846C92621F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift */,
+				846C92631F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib */,
 			);
 			name = "Cell Carrito";
 			sourceTree = "<group>";
@@ -553,6 +567,8 @@
 				84417B901EB2CAE800A70ABC /* DireccionRegistroTableViewCell.xib */,
 				84417B951EB93D0D00A70ABC /* HorarioTableViewCell.swift */,
 				84417B961EB93D0D00A70ABC /* HorarioTableViewCell.xib */,
+				846C925C1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift */,
+				846C925D1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib */,
 			);
 			name = "Cell Registro Oferente";
 			sourceTree = "<group>";
@@ -987,10 +1003,12 @@
 				8451A38D1EFB7A6200B59E46 /* UbicacionTableViewCell.xib in Resources */,
 				8448600F1F4644A600DF5D9D /* ServicioCompradoTableViewCell.xib in Resources */,
 				8453268A1F0C9B11007A4776 /* AlertaTableViewCell.xib in Resources */,
+				846C92601F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib in Resources */,
 				84818C571F411CC1001011BA /* CarritoTableViewCell.xib in Resources */,
 				847FDC321ED545A6002F9530 /* Media.xcassets in Resources */,
 				4126C96A1F44F5B600BC4413 /* CeldaVentaProducto.xib in Resources */,
 				84F4FA501EAA955900F3E69A /* Main.storyboard in Resources */,
+				846C92661F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib in Resources */,
 				84A5A4D61F3CD1A600429500 /* CompraTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -999,6 +1017,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846C92611F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib in Resources */,
 				84417B941EB2CAE800A70ABC /* DireccionRegistroTableViewCell.xib in Resources */,
 				84A5A4D71F3CD1A600429500 /* CompraTableViewCell.xib in Resources */,
 				84A3E1D31EC4335B0013E4DD /* PublicacionTableViewCell.xib in Resources */,
@@ -1016,6 +1035,7 @@
 				840B1B3D1F339B2900423832 /* ResenaTableViewCell.xib in Resources */,
 				84F4FA701EAAAF6900F3E69A /* LaunchScreen.storyboard in Resources */,
 				847838D01F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
+				846C92671F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib in Resources */,
 				8448600A1F46447300DF5D9D /* ProductoCompradoTableViewCell.xib in Resources */,
 				84B1A8B71F5081D000BFC805 /* GoogleService-Info.plist in Resources */,
 				844860161F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.xib in Resources */,
@@ -1175,6 +1195,7 @@
 				4126C9601F449F7200BC4413 /* ComandoCompras.swift in Sources */,
 				84A3E1D71EC66EA80013E4DD /* CategoriaCollectionViewCell.swift in Sources */,
 				845326831F0C9015007A4776 /* AdministrarAlarmasViewController.swift in Sources */,
+				846C925E1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift in Sources */,
 				840B1B501F34217600423832 /* AgendarServicioViewController.swift in Sources */,
 				411E20FD1F4BB2D400D2484F /* IngresoTarjetaOferente.swift in Sources */,
 				84BD206F1EF0922B001422E7 /* Modelo.swift in Sources */,
@@ -1223,6 +1244,7 @@
 				84F4FA7C1EAB1A2800F3E69A /* InicioSesionOferenteViewController.swift in Sources */,
 				84D5AC0C1EE7A74700A18D7E /* RegistroUsuarioViewController.swift in Sources */,
 				84B451511EC9553E001282B4 /* PublicacionOferenteCuatroViewController.swift in Sources */,
+				846C92641F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift in Sources */,
 				8446CC401EE905FD005BA3D4 /* AvisoAppViewController.swift in Sources */,
 				4126C9661F44EE1900BC4413 /* MisVentasXProducto.swift in Sources */,
 				4126C96D1F45017800BC4413 /* CeldaVentaProducto.swift in Sources */,
@@ -1287,6 +1309,7 @@
 				4126C9611F449F7200BC4413 /* ComandoCompras.swift in Sources */,
 				84A3E1D81EC66EA80013E4DD /* CategoriaCollectionViewCell.swift in Sources */,
 				845326841F0C9015007A4776 /* AdministrarAlarmasViewController.swift in Sources */,
+				846C925F1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift in Sources */,
 				840B1B511F34217600423832 /* AgendarServicioViewController.swift in Sources */,
 				411E20FE1F4BB2D400D2484F /* IngresoTarjetaOferente.swift in Sources */,
 				84BD20701EF0922B001422E7 /* Modelo.swift in Sources */,
@@ -1335,6 +1358,7 @@
 				84F4FA7D1EAB1A2800F3E69A /* InicioSesionOferenteViewController.swift in Sources */,
 				84D5AC0D1EE7A74700A18D7E /* RegistroUsuarioViewController.swift in Sources */,
 				84B451521EC9553E001282B4 /* PublicacionOferenteCuatroViewController.swift in Sources */,
+				846C92651F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift in Sources */,
 				8446CC411EE905FD005BA3D4 /* AvisoAppViewController.swift in Sources */,
 				4126C9671F44EE1900BC4413 /* MisVentasXProducto.swift in Sources */,
 				4126C96E1F45017800BC4413 /* CeldaVentaProducto.swift in Sources */,

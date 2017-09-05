@@ -300,18 +300,54 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
     
     func confirmarCompra(sender: UIButton!)
     {
-        if self.readStringFromFile() == ""
+        modelUsuario.compra = modelUsuario.misComprasCompleto[sender.tag]
+        
+        if modelUsuario.compra.pedido?[0].estado == "Cerrado"
         {
-            self.performSegue(withIdentifier: "avisoCalificacionDesdeCarrito", sender: self)
+            if self.readStringFromFile() == ""
+            {
+                self.performSegue(withIdentifier: "avisoCalificacionDesdeCarrito", sender: self)
+            } else
+            {
+                self.performSegue(withIdentifier: "calificacionPublicacionDesdeCarrito", sender: self)
+            }
         } else
         {
-            self.performSegue(withIdentifier: "calificacionPublicacionDesdeCarrito", sender: self)
+            self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Tu compra no ha sido cerrada.")
         }
     }
     
     func rechazarCompra(sender: UIButton!)
     {
-        print("Esperando acción")
+        let alert:UIAlertController = UIAlertController(title: "", message: "¿Cuál es el motivo de tu rechazo?", preferredStyle: .actionSheet)
+        
+        let enviarRechazoUno = UIAlertAction(title: "El producto/servicio no ha llegado", style: .default) { (_) -> Void in
+            
+            print("Esperando acción")
+            //UIAlertAction in self .editarTipo()
+        }
+        
+        let enviarRechazoDos = UIAlertAction(title: "El producto no concuerda", style: .default) { (_) -> Void in
+            print("Esperando acción")
+            //UIAlertAction in self .editarArticulo()
+        }
+        
+        let enviarRechazoTres = UIAlertAction(title: "El producto está en mal estado", style: .default) { (_) -> Void in
+            print("Esperando acción")
+            //UIAlertAction in self .editarFotos()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+        {
+            UIAlertAction in
+        }
+        
+        // Add the actions
+        alert.addAction(enviarRechazoUno)
+        alert.addAction(enviarRechazoDos)
+        alert.addAction(enviarRechazoTres)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
@@ -354,54 +390,6 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
     {
         self.performSegue(withIdentifier: "compraExitosaDesdeMisCompras", sender: self)
     }
-    
-    /*func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
-    {
-        // Return false if you do not want the specified item to be editable.
-        
-        if segCtrlCarrito.selectedSegmentIndex == 0
-        {
-            return true
-        }
-        
-        return false
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
-    {
-        if segCtrlCarrito.selectedSegmentIndex == 0
-        {
-            let alert:UIAlertController = UIAlertController(title: "Confirmar", message: "¿Estás seguro de remover de tu carrito ésta compra?", preferredStyle: .alert)
-            
-            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
-                ComandoUsuario.eliminarPublicacionCarrito(uid: (self.user?.uid)!, idPublicacionCarrito: self.model.publicacionesEnCarrito[indexPath.row].idCarrito!)
-                
-                if self.user?.uid != nil
-                {
-                    ComandoUsuario.getUsuario(uid: (self.user?.uid)!)
-                }
-                
-                NotificationCenter.default.addObserver(self, selector: #selector(CarritoComprasViewController.refrescarUsuario(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
-            }
-            
-            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
-            {
-                UIAlertAction in
-            }
-            
-            // Add the actions
-            alert.addAction(continuarAction)
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func refrescarUsuario(_ notification: Notification)
-    {
-        Comando.getPublicaciones()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(CarritoComprasViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoPublicaciones"), object: nil)
-    }*/
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
@@ -446,6 +434,19 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
             let detailController = segue.destination as! CompraExitosaViewController
             detailController.vistoDesdeMisCompras = true
         }
+    }
+    
+    func mostrarAlerta(titulo:String, mensaje:String)
+    {
+        let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            
+            return
+        }
+        
+        alerta.addAction(OKAction)
+        present(alerta, animated: true, completion: { return })
     }
     
     // Leer texto de archivo .txt

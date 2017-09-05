@@ -59,7 +59,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
         
         // Configurar scrollview
         
-        scrollContent.bounces = false
+        scrollContent.bounces = true
         scrollContent.isScrollEnabled = true
         
         scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: 720.0)

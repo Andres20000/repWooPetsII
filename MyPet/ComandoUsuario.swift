@@ -54,7 +54,16 @@ class ComandoUsuario
         
         for direccion in datos.direcciones!
         {
-            let refHandle = ref.child("direcciones").childByAutoId()
+            var refHandle:FIRDatabaseReference! = nil
+            
+            if direccion.idDireccion == ""
+            {
+                refHandle = ref.child("direcciones").childByAutoId()
+                
+            }else
+            {
+                refHandle = ref.child("direcciones/" + direccion.idDireccion!)
+            }
             
             refHandle.child("/direccion").setValue(direccion.direccion)
             refHandle.child("/nombre").setValue(direccion.nombre)
@@ -69,25 +78,24 @@ class ComandoUsuario
         }
     }
     
+    class func eliminarDireccion(uid:String?, idDireccion:String?)
+    {
+        let refHandle  = FIRDatabase.database().reference().child("clientes/" + uid! + "/direcciones/" + idDireccion!)
+        // Remove the post from the DB
+        refHandle.removeValue()
+    }
+    
     class func getUsuario(uid:String?)
     {
-        
-        print(uid!)
-        
-        if uid == nil {
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoUsuario"), object: nil)
-        }
-        
         let model  = ModeloUsuario.sharedInstance
         model.usuario.removeAll()
-        
-        let datosUsuario = Usuario()
         
         let ref  = FIRDatabase.database().reference().child("clientes/" + uid!)
         
         ref.observeSingleEvent(of: .value, with: {snap in
             
             let value = snap.value as? NSDictionary
+            let datosUsuario = Usuario()
             
             datosUsuario.correo = value?["correo"] as? String
             
@@ -211,9 +219,7 @@ class ComandoUsuario
             }
             
             NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoUsuario"), object: nil)
-        }) { (error) in
-            print(error.localizedDescription)
-        }
+        })
     }
     
     
@@ -555,6 +561,46 @@ class ComandoUsuario
             
             NotificationCenter.default.post(name: Notification.Name("cargoMisComprasUsuario"), object: nil)
         })
+    }
+    
+    class func  getCalificacionesPublicaciones()
+    {
+        let modelUsuario = ModeloUsuario.sharedInstance
+        
+        let refHandle:FIRDatabaseReference! = FIRDatabase.database().reference().child("calificaciones")
+        
+        refHandle.observe(.childAdded, with: {(snap) -> Void in
+            
+            let calificacion = Calificacion()
+            let value = snap.value as! [String : AnyObject]
+            
+            calificacion.calificacion = value["calificacion"] as! Int
+            calificacion.comentario = value["comentario"] as! String
+            calificacion.fecha = value["fecha"] as! String
+            calificacion.idCalificacion = snap.key
+            calificacion.idCliente = value["idCliente"] as! String
+            calificacion.idCompra = value["idCompra"] as! String
+            calificacion.idOferente = value["idOferente"] as! String
+            calificacion.idPublicacion = value["idPublicacion"] as! String
+            
+            modelUsuario.calificacionesPublicaciones.append(calificacion)
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoCalificacionesPublicaciones"), object: nil)
+            
+        })
+    }
+    
+    class func calificarCompra(calificacionCompra:Calificacion)
+    {
+        let refHandle  = FIRDatabase.database().reference().child("calificaciones").childByAutoId()
+        
+        refHandle.child("/calificacion").setValue(calificacionCompra.calificacion)
+        refHandle.child("/comentario").setValue(calificacionCompra.comentario)
+        refHandle.child("/fecha").setValue(calificacionCompra.fecha)
+        refHandle.child("/idCliente").setValue(calificacionCompra.idCliente)
+        refHandle.child("/idCompra").setValue(calificacionCompra.idCompra)
+        refHandle.child("/idOferente").setValue(calificacionCompra.idOferente)
+        refHandle.child("/idPublicacion").setValue(calificacionCompra.idPublicacion)
     }
 }
 
