@@ -2918,13 +2918,13 @@
                                         <rect key="frame" x="-0.5" y="-0.5" width="375" height="233.5"/>
                                     </imageView>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xb-kA-Vgt">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgDestacado" translatesAutoresizingMaskIntoConstraints="NO" id="C1D-G4-Vgx">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Wiu-t2-WYA">
-                                                <rect key="frame" x="16" y="8" width="343" height="25"/>
+                                                <rect key="frame" x="16" y="1" width="343" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="c8K-Um-ywj"/>
                                                 </constraints>
@@ -2933,7 +2933,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Precio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="er8-ZD-MQo">
-                                                <rect key="frame" x="16" y="33" width="343" height="25"/>
+                                                <rect key="frame" x="16" y="26" width="343" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="lbf-4k-Ker"/>
                                                 </constraints>
@@ -2948,11 +2948,11 @@
                                             <constraint firstItem="C1D-G4-Vgx" firstAttribute="leading" secondItem="7Xb-kA-Vgt" secondAttribute="leading" id="GYy-jH-ZcN"/>
                                             <constraint firstItem="Wiu-t2-WYA" firstAttribute="leading" secondItem="7Xb-kA-Vgt" secondAttribute="leading" constant="16" id="KeA-PU-PYm"/>
                                             <constraint firstAttribute="bottom" secondItem="C1D-G4-Vgx" secondAttribute="bottom" id="LBG-Pl-bPW"/>
-                                            <constraint firstItem="Wiu-t2-WYA" firstAttribute="top" secondItem="7Xb-kA-Vgt" secondAttribute="top" constant="8" id="Tak-vZ-rzf"/>
+                                            <constraint firstItem="Wiu-t2-WYA" firstAttribute="top" secondItem="7Xb-kA-Vgt" secondAttribute="top" constant="1" id="Tak-vZ-rzf"/>
                                             <constraint firstItem="C1D-G4-Vgx" firstAttribute="top" secondItem="7Xb-kA-Vgt" secondAttribute="top" id="fQz-lZ-13c"/>
                                             <constraint firstItem="er8-ZD-MQo" firstAttribute="top" secondItem="Wiu-t2-WYA" secondAttribute="bottom" id="goj-ge-dFD"/>
                                             <constraint firstAttribute="trailing" secondItem="C1D-G4-Vgx" secondAttribute="trailing" id="rBB-j7-okl"/>
-                                            <constraint firstAttribute="height" constant="117" id="rCe-p1-fQO"/>
+                                            <constraint firstAttribute="height" constant="52" id="rCe-p1-fQO"/>
                                             <constraint firstAttribute="trailing" secondItem="er8-ZD-MQo" secondAttribute="trailing" constant="16" id="ys5-wh-hOl"/>
                                             <constraint firstItem="er8-ZD-MQo" firstAttribute="leading" secondItem="7Xb-kA-Vgt" secondAttribute="leading" constant="16" id="z3q-bb-2SO"/>
                                         </constraints>
@@ -5376,7 +5376,7 @@
     </scenes>
     <resources>
         <image name="bgDegradado" width="375" height="667"/>
-        <image name="bgDestacado" width="375" height="117"/>
+        <image name="bgDestacado" width="375" height="52"/>
         <image name="btnActivoAzul" width="42" height="42"/>
         <image name="btnAdelante" width="12" height="16"/>
         <image name="btnAtras" width="15" height="21"/>
@@ -5407,7 +5407,7 @@
         <image name="imgDestacadoBlanco" width="50" height="50"/>
         <image name="imgDireccion" width="19" height="19"/>
         <image name="imgEstrellaVacia" width="23" height="23"/>
-        <image name="imgMuestraDestacado" width="750" height="551"/>
+        <image name="imgMuestraDestacado" width="375" height="275"/>
         <image name="imgNotificacionBlanco" width="50" height="50"/>
         <image name="imgPregunta" width="28" height="23"/>
         <image name="imgTarjeta" width="40" height="40"/>

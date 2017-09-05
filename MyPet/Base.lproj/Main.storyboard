@@ -6234,13 +6234,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgDestacado" translatesAutoresizingMaskIntoConstraints="NO" id="WVD-Sc-eeB">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="117"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="117" id="pb6-An-OX7"/>
+                                    <constraint firstAttribute="height" constant="52" id="pb6-An-OX7"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="37N-jW-aau">
-                                <rect key="frame" x="16" y="8" width="343" height="25"/>
+                                <rect key="frame" x="16" y="1" width="343" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="xpv-l2-A1V"/>
                                 </constraints>
@@ -6249,7 +6249,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Precio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QDw-Dp-ydO">
-                                <rect key="frame" x="16" y="33" width="343" height="25"/>
+                                <rect key="frame" x="16" y="26" width="343" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="vqO-hI-176"/>
                                 </constraints>
@@ -6266,7 +6266,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="37N-jW-aau" firstAttribute="top" secondItem="JPz-xR-I9R" secondAttribute="bottom" constant="8" id="1wY-8y-1oj"/>
+                            <constraint firstItem="37N-jW-aau" firstAttribute="top" secondItem="JPz-xR-I9R" secondAttribute="bottom" constant="1" id="1wY-8y-1oj"/>
                             <constraint firstItem="QDw-Dp-ydO" firstAttribute="leading" secondItem="ort-ew-bFy" secondAttribute="leadingMargin" id="7nJ-cQ-Km9"/>
                             <constraint firstItem="gAZ-ky-uVv" firstAttribute="top" secondItem="JPz-xR-I9R" secondAttribute="bottom" id="DFW-0q-Fak"/>
                             <constraint firstItem="t3W-mV-cLQ" firstAttribute="top" secondItem="gAZ-ky-uVv" secondAttribute="bottom" id="FFd-aP-ex4"/>
@@ -6335,7 +6335,7 @@
         <image name="avisoCalificar" width="375" height="667"/>
         <image name="avisoCarrito" width="375" height="667"/>
         <image name="bgDegradado" width="375" height="667"/>
-        <image name="bgDestacado" width="375" height="117"/>
+        <image name="bgDestacado" width="375" height="52"/>
         <image name="bgInvitacion" width="375" height="667"/>
         <image name="bgTexturaBlanco" width="375" height="117"/>
         <image name="bgTexturaBlancoCompleto" width="375" height="667"/>
@@ -6395,14 +6395,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="95r-G0-w3V"/>
-        <segue reference="5AM-1p-jx9"/>
-        <segue reference="bgn-VA-ZLh"/>
-        <segue reference="a1h-2i-JbW"/>
-        <segue reference="KSr-oI-4G4"/>
-        <segue reference="c64-eH-oia"/>
-        <segue reference="g9o-0N-P4D"/>
-        <segue reference="bVH-Q1-m3n"/>
-        <segue reference="rzp-TS-BC7"/>
+        <segue reference="ZN1-nn-YBd"/>
+        <segue reference="OYj-aD-Dz2"/>
         <segue reference="aNJ-m2-0I0"/>
         <segue reference="ebI-ph-1Ok"/>
         <segue reference="FW0-BB-RT8"/>
@@ -6411,5 +6405,11 @@
         <segue reference="aiq-DQ-SKV"/>
         <segue reference="IRx-Jv-GCZ"/>
         <segue reference="oQN-Js-Es1"/>
+        <segue reference="bgn-VA-ZLh"/>
+        <segue reference="g9o-0N-P4D"/>
+        <segue reference="rzp-TS-BC7"/>
+        <segue reference="KSr-oI-4G4"/>
+        <segue reference="c64-eH-oia"/>
+        <segue reference="a1h-2i-JbW"/>
     </inferredMetricsTieBreakers>
 </document>

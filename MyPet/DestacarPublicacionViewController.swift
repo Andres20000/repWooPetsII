@@ -62,6 +62,14 @@ class DestacarPublicacionViewController: UIViewController, UIImagePickerControll
         if publicacion!.destacado!  {
             imagen.image =  publicacion?.imagenDestacado?.getImagen(msnNoti: nil)
             
+            print("Imagen: \(publicacion?.imagenDestacado?.folderStorage)")
+            viewImage.isHidden = false
+            lblTitulo.text = publicacion?.nombre
+            if let amountString = publicacion?.precio?.currencyInputFormatting()
+            {
+                lblPrecio.text = amountString
+            }
+            
             examinar.setTitle("Editar", for: .normal)
             
         }
