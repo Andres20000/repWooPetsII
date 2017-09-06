@@ -88,12 +88,13 @@ class Mascota
 
 class Alerta
 {
-    var idAlerta:String?  = ""
     var activada:Bool?
     var fechaFin:String?  = ""
     var fechaInicio:String?  = ""
     var frecuencia:String?  = ""
     var hora:String?  = ""
+    var idAlerta:String?  = ""
+    var idMascota:String?  = ""
     var nombre:String?  = ""
     var tipoRecordatorio:String?  = ""
 }

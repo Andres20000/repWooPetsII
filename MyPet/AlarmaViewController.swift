@@ -120,7 +120,10 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         
         btnCancelar.layer.cornerRadius = 10.0
         
-        modelUsuario.alertaMascota.idAlerta = ComandoUsuario.crearIdAlertaMascotaUsuario(uid: (user?.uid)!, idMascota: modelUsuario.tuMascota.idMascota)
+        modelUsuario.alertaMascota.activada = true
+        modelUsuario.alertaMascota.idMascota = modelUsuario.tuMascota.idMascota
+        
+        modelUsuario.alertaMascota.idAlerta = ComandoUsuario.crearIdAlertaMascotaUsuario(uid: (user?.uid)!, idMascota: modelUsuario.alertaMascota.idMascota)
         
         if #available(iOS 10.0, *)
         {
@@ -129,6 +132,8 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         {
             // Fallback on earlier versions
         }
+        
+        //cancelarTodasLasNotificaciones()
     }
     
     func printNotificaciones()
@@ -145,7 +150,6 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         } else {
             // Fallback on earlier versions
         }
-        
     }
     
     func cargarDatos(_ notification: Notification)
@@ -212,6 +216,10 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         if pickerView.tag == 2
         {
             txtFrecuencia.text = model.frecuenciasRecordatorio[row].nombreFrecuencia
+            
+            txtFechaFin.text = ""
+            
+            modelUsuario.alertaMascota.fechaFin = txtFechaFin.text
         }
     }
     
@@ -231,7 +239,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
     func actualizarHora()
     {
         horaAlarma = datePickerHora.date
-        txtHora.text = datePickerHora.date.horaString()
+        txtHora.text = horaAlarma?.horaString()
     }
     
     func pickUpDateFechaInicio(_ textField : UITextField)
@@ -248,7 +256,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
     func actualizarFechaInicio()
     {
         fechaInicio = datePickerFechaInicio.date
-        txtFechaInicio.text = datePickerFechaInicio.date.fechaString()
+        txtFechaInicio.text = fechaInicio?.fechaString()
     }
     
     func pickUpDateFechaFin(_ textField : UITextField)
@@ -265,7 +273,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
     func actualizarFechaFin()
     {
         fechaFin = datePickerFechaFin.date
-        txtFechaFin.text = datePickerFechaFin.date.fechaString()
+        txtFechaFin.text = fechaFin?.fechaString()
     }
     
     // #pragma mark - textField
@@ -284,7 +292,21 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         {
             if textField.text == ""
             {
-                textField.text = model.tiposRecordatorio[0].nombreTipo
+                modelUsuario.alertaMascota.tipoRecordatorio = model.tiposRecordatorio[0].nombreTipo
+                
+                textField.text = modelUsuario.alertaMascota.tipoRecordatorio
+            }
+        }
+        
+        if textField.tag == 3
+        {
+            if textField.text == ""
+            {
+                horaAlarma = datePickerHora.date
+                
+                textField.text = horaAlarma?.horaString()
+                
+                modelUsuario.alertaMascota.hora = textField.text
             }
         }
         
@@ -292,7 +314,33 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         {
             if textField.text == ""
             {
-                textField.text = model.frecuenciasRecordatorio[0].nombreFrecuencia
+                modelUsuario.alertaMascota.frecuencia = model.frecuenciasRecordatorio[0].nombreFrecuencia
+                
+                textField.text = modelUsuario.alertaMascota.frecuencia
+            }
+        }
+        
+        if textField.tag == 5
+        {
+            if textField.text == ""
+            {
+                fechaInicio = datePickerFechaInicio.date
+                
+                textField.text = fechaInicio?.fechaString()
+                
+                modelUsuario.alertaMascota.fechaInicio = textField.text
+            }
+        }
+        
+        if textField.tag == 6
+        {
+            if textField.text == ""
+            {
+                fechaFin = datePickerFechaFin.date
+                
+                textField.text = fechaFin?.fechaString()
+                
+                modelUsuario.alertaMascota.fechaFin = textField.text
             }
         }
         
@@ -329,7 +377,114 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         
         if textField.tag == 6
         {
-            modelUsuario.alertaMascota.fechaFin = textField.text
+            if modelUsuario.alertaMascota.frecuencia == "" || modelUsuario.alertaMascota.fechaInicio == ""
+            {
+                mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes diligenciar la Frecuencia y Fecha de inicio de la alarma")
+                
+                textField.text = ""
+                
+                modelUsuario.alertaMascota.fechaFin = textField.text
+                
+            } else
+            {
+                if modelUsuario.alertaMascota.frecuencia == "Anual"
+                {
+                    let yearDate = Comando.calcularFechaEnAños(fecha1: fechaFin! as NSDate, fecha2: fechaInicio! as NSDate)
+                    
+                    if yearDate < 1
+                    {
+                        mostrarAlerta(titulo: "¡Advertencia!", mensaje: "El tiempo entre la fecha inicio y la fecha fin debe ser mayor o igual a 1 año")
+                        
+                        textField.text = ""
+                        
+                        modelUsuario.alertaMascota.fechaFin = textField.text
+                        
+                        return
+                    }
+                }
+                
+                if modelUsuario.alertaMascota.frecuencia == "Bimensual"
+                {
+                    let monthDate = Comando.calcularFechaEnMeses(fecha1: fechaFin! as NSDate, fecha2: fechaInicio! as NSDate)
+                    
+                    if monthDate < 2
+                    {
+                        mostrarAlerta(titulo: "¡Advertencia!", mensaje: "El tiempo entre la fecha inicio y la fecha fin debe ser mayor o igual a 2 meses")
+                        
+                        textField.text = ""
+                        
+                        modelUsuario.alertaMascota.fechaFin = textField.text
+                        
+                        return
+                    }
+                }
+                
+                if modelUsuario.alertaMascota.frecuencia == "Diaria"
+                {
+                    let dayDate = Comando.calcularFechaEnDias(fecha1: fechaFin! as NSDate, fecha2: fechaInicio! as NSDate)
+                    
+                    if dayDate < 1
+                    {
+                        mostrarAlerta(titulo: "¡Advertencia!", mensaje: "El tiempo entre la fecha inicio y la fecha fin debe ser mayor o igual a 1 día")
+                        
+                        textField.text = ""
+                        
+                        modelUsuario.alertaMascota.fechaFin = textField.text
+                        
+                        return
+                    }
+                }
+                
+                if modelUsuario.alertaMascota.frecuencia == "Mensual"
+                {
+                    let monthDate = Comando.calcularFechaEnMeses(fecha1: fechaFin! as NSDate, fecha2: fechaInicio! as NSDate)
+                    
+                    if monthDate < 1
+                    {
+                        mostrarAlerta(titulo: "¡Advertencia!", mensaje: "El tiempo entre la fecha inicio y la fecha fin debe ser mayor o igual a 1 mes")
+                        
+                        textField.text = ""
+                        
+                        modelUsuario.alertaMascota.fechaFin = textField.text
+                        
+                        return
+                    }
+                }
+                
+                if modelUsuario.alertaMascota.frecuencia == "Quincenal"
+                {
+                    let dayDate = Comando.calcularFechaEnDias(fecha1: fechaFin! as NSDate, fecha2: fechaInicio! as NSDate)
+                    
+                    if dayDate < 14
+                    {
+                        mostrarAlerta(titulo: "¡Advertencia!", mensaje: "El tiempo entre la fecha inicio y la fecha fin debe ser mayor o igual a 15 días")
+                        
+                        textField.text = ""
+                        
+                        modelUsuario.alertaMascota.fechaFin = textField.text
+                        
+                        return
+                    }
+                }
+                
+                if modelUsuario.alertaMascota.frecuencia == "Semanal"
+                {
+                    let dayDate = Comando.calcularFechaEnDias(fecha1: fechaFin! as NSDate, fecha2: fechaInicio! as NSDate)
+                    
+                    if dayDate < 7
+                    {
+                        mostrarAlerta(titulo: "¡Advertencia!", mensaje: "El tiempo entre la fecha inicio y la fecha fin debe ser mayor o igual a 7 días")
+                        
+                        textField.text = ""
+                        
+                        modelUsuario.alertaMascota.fechaFin = textField.text
+                        
+                        return
+                    }
+                }
+                
+                modelUsuario.alertaMascota.fechaFin = textField.text
+            }
         }
     }
     
@@ -361,6 +516,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         modelUsuario.alertaMascota.frecuencia = ""
         modelUsuario.alertaMascota.hora = ""
         modelUsuario.alertaMascota.idAlerta = ""
+        modelUsuario.alertaMascota.idMascota = ""
         modelUsuario.alertaMascota.nombre = ""
         modelUsuario.alertaMascota.tipoRecordatorio = ""
         
@@ -369,39 +525,55 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     @IBAction func crearAlarma(_ sender: Any)
     {
-        var frecuenciaAlarma:Frecuencia? = nil
+        view.endEditing(true)
         
-        if modelUsuario.alertaMascota.frecuencia == "Anual"
+        print("\(modelUsuario.alertaMascota.activada!) - \(modelUsuario.alertaMascota.fechaFin!) - \(modelUsuario.alertaMascota.fechaInicio!) - \(modelUsuario.alertaMascota.frecuencia!) - \(modelUsuario.alertaMascota.hora!) - \(modelUsuario.alertaMascota.idAlerta!) - \(modelUsuario.alertaMascota.nombre!) - \(modelUsuario.alertaMascota.tipoRecordatorio!) - \(modelUsuario.alertaMascota.idMascota!)")
+        
+        if modelUsuario.alertaMascota.fechaFin == "" || modelUsuario.alertaMascota.fechaInicio == "" || modelUsuario.alertaMascota.frecuencia == "" || modelUsuario.alertaMascota.hora == "" || modelUsuario.alertaMascota.nombre == "" || modelUsuario.alertaMascota.tipoRecordatorio == ""
         {
-            frecuenciaAlarma = .anual
-        }
-        
-        if modelUsuario.alertaMascota.frecuencia == "Bimensual"
+            mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes completar todos los campos para poder continuar")
+        } else
         {
-            frecuenciaAlarma = .bimensual
+            ComandoUsuario.crearEditarAlertaMascota(uid: (user?.uid)!, alerta: modelUsuario.alertaMascota)
+            
+            var frecuenciaAlarma:Frecuencia? = nil
+            
+            if modelUsuario.alertaMascota.frecuencia == "Anual"
+            {
+                frecuenciaAlarma = .anual
+            }
+            
+            if modelUsuario.alertaMascota.frecuencia == "Bimensual"
+            {
+                frecuenciaAlarma = .bimensual
+            }
+            
+            if modelUsuario.alertaMascota.frecuencia == "Diaria"
+            {
+                frecuenciaAlarma = .diaria
+            }
+            
+            if modelUsuario.alertaMascota.frecuencia == "Mensual"
+            {
+                frecuenciaAlarma = .mensual
+            }
+            
+            if modelUsuario.alertaMascota.frecuencia == "Quincenal"
+            {
+                frecuenciaAlarma = .quincenal
+            }
+            
+            if modelUsuario.alertaMascota.frecuencia == "Semanal"
+            {
+                frecuenciaAlarma = .semanal
+            }
+            
+            crearNotificaciones(id: modelUsuario.alertaMascota.idAlerta!, inicio: combineDateAndTime(date: fechaInicio!, time: horaAlarma!), fin: combineDateAndTime(date: fechaFin!, time: horaAlarma!), titulo: modelUsuario.alertaMascota.tipoRecordatorio!, subtitulo: "", cuerpo: modelUsuario.alertaMascota.nombre!, frecuencia: frecuenciaAlarma!)
+            
+            printNotificaciones()
+            
+            self .abandonar()
         }
-        
-        if modelUsuario.alertaMascota.frecuencia == "Bimensual"
-        {
-            frecuenciaAlarma = .bimensual
-        }
-        
-        if modelUsuario.alertaMascota.frecuencia == "Mensual"
-        {
-            frecuenciaAlarma = .mensual
-        }
-        
-        if modelUsuario.alertaMascota.frecuencia == "Quincenal"
-        {
-            frecuenciaAlarma = .quincenal
-        }
-        
-        if modelUsuario.alertaMascota.frecuencia == "Semanal"
-        {
-            frecuenciaAlarma = .semanal
-        }
-        
-        crearNotificaciones(id: modelUsuario.alertaMascota.idAlerta!, inicio: combineDateAndTime(date: fechaInicio!, time: horaAlarma!), fin: combineDateAndTime(date: fechaFin!, time: horaAlarma!), titulo: "HOLA", subtitulo: "", cuerpo: "VAMOS", frecuencia: frecuenciaAlarma!)
     }
     
     func crearNotificaciones(id:String, inicio:Date, fin:Date, titulo:String, subtitulo: String, cuerpo:String, frecuencia:Frecuencia)
@@ -564,7 +736,20 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    func mostrarAlerta(titulo:String, mensaje:String)
+    {
+        let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            
+            return
+        }
+        
+        alerta.addAction(OKAction)
+        present(alerta, animated: true, completion: { return })
+    }
+    
     // Move show/hide Keypoard
     func animateViewMoving (up:Bool, moveValue :CGFloat)
     {

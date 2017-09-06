@@ -207,12 +207,13 @@ class ComandoUsuario
                                     let postDictAlerta = (alerta as! [String : AnyObject])
                                     let alertaMascota = Alerta()
                                     
-                                    alertaMascota.idAlerta = idAlerta as? String
                                     alertaMascota.activada = postDictAlerta["activada"] as? Bool
                                     alertaMascota.fechaFin = postDictAlerta["fechaFin"] as? String
                                     alertaMascota.fechaInicio = postDictAlerta["fechaInicio"] as? String
                                     alertaMascota.frecuencia = postDictAlerta["frecuencia"] as? String
                                     alertaMascota.hora = postDictAlerta["hora"] as? String
+                                    alertaMascota.idAlerta = idAlerta as? String
+                                    alertaMascota.idMascota = mascotaUsuario.idMascota
                                     alertaMascota.nombre = postDictAlerta["nombre"] as? String
                                     alertaMascota.tipoRecordatorio = postDictAlerta["tipoRecordatorio"] as? String
                                     
@@ -351,9 +352,9 @@ class ComandoUsuario
         return ref.key
     }
     
-    class func crearEditarAlertaMascota(uid:String?, idMascota:String?, alerta:Alerta)
+    class func crearEditarAlertaMascota(uid:String?, alerta:Alerta)
     {
-        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + idMascota! + "/alertas/" + alerta.idAlerta!)
+        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + alerta.idMascota! + "/alertas/" + alerta.idAlerta!)
         
         refHandle.child("/activada").setValue(alerta.activada)
         refHandle.child("/fechaFin").setValue(alerta.fechaFin)
@@ -364,15 +365,15 @@ class ComandoUsuario
         refHandle.child("/tipoRecordatorio").setValue(alerta.tipoRecordatorio)
     }
     
-    class func desactivarAlertaMascota(uid:String?, idMascota:String?, alerta:Alerta)
+    class func desactivarAlertaMascota(uid:String?, alerta:Alerta)
     {
-        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + idMascota! + "/alertas/" + alerta.idAlerta!)
+        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + alerta.idMascota! + "/alertas/" + alerta.idAlerta!)
         refHandle.child("/activada").setValue(false)
     }
     
-    class func eliminarAlertaMascota(uid:String?, idMascota:String?, alerta:Alerta)
+    class func eliminarAlertaMascota(uid:String?, alerta:Alerta)
     {
-        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + idMascota! + "/alertas/" + alerta.idAlerta!)
+        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + alerta.idMascota! + "/alertas/" + alerta.idAlerta!)
         // Remove the post from the DB
         refHandle.removeValue()
     }

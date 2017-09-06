@@ -119,6 +119,18 @@ class AdministrarAlarmasViewController: UIViewController, UITableViewDelegate, U
         self.performSegue(withIdentifier: "alarmaDesdeAdministrarAlarmas", sender: self)
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        if user != nil
+        {
+            ComandoUsuario.getUsuario(uid: (user?.uid)!)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(AdministrarAlarmasViewController.cargarAlertasMascota(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
+        }
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()

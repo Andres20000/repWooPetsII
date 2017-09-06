@@ -109,7 +109,10 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         
-        let yearDate = Comando.calcularEdadEnAños(birthday: dateFormatter.date(from: model.mascotas[indexPath.row].fechaNacimiento!)! as NSDate)
+        let now: NSDate! = NSDate()
+        
+        let yearDate = Comando.calcularFechaEnAños(fecha1: now, fecha2: dateFormatter.date(from: model.mascotas[indexPath.row].fechaNacimiento!)! as NSDate)
+        
         var textYear:String?
         
         if yearDate == 1
@@ -120,7 +123,8 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
             textYear = "años"
         }
         
-        let monthDate = Comando.calcularEdadEnMeses(birthday: dateFormatter.date(from: model.mascotas[indexPath.row].fechaNacimiento!)! as NSDate) - (yearDate * 12)
+        let monthDate = Comando.calcularFechaEnMeses(fecha1: now, fecha2: dateFormatter.date(from: model.mascotas[indexPath.row].fechaNacimiento!)! as NSDate) - (yearDate * 12)
+        
         var textMonth:String?
         
         if monthDate == 1
