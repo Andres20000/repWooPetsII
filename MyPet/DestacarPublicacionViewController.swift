@@ -72,6 +72,10 @@ class DestacarPublicacionViewController: UIViewController, UIImagePickerControll
             
             examinar.setTitle("Editar", for: .normal)
             
+            aceptar.isHidden = true
+            cancelar.isHidden = true
+
+            
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.actualizoImagen), name:NSNotification.Name(rawValue: (publicacion?.imagenDestacado?.pathEnStorage)!), object: nil)
@@ -214,9 +218,6 @@ class DestacarPublicacionViewController: UIViewController, UIImagePickerControll
             return
         }
 
-        
-        
-        
         performSegue(withIdentifier: "metodoPago", sender: nil)
         
       

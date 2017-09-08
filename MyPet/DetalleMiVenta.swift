@@ -128,6 +128,8 @@ class DetalleMiVenta: UIViewController {
         
         if item!.servicio {
             
+            vistaServcio.isHidden = false
+            vistaProducto.isHidden = true
             conAltoProducto.constant = 0
             servicioFecha.text = item?.fechaServicio!
             servicioHora.text = "18 AM"
@@ -135,6 +137,9 @@ class DetalleMiVenta: UIViewController {
             estado.text = item?.estado
             botonEntregado.setTitle("Servicio Entregado", for: .normal)
         }else {
+            vistaServcio.isHidden = true
+            vistaProducto.isHidden = false
+            
             conAltoServico.constant = 0
             productoFecha.text = item?.fechaServicio!
             productoEstado.text = item?.estado
@@ -182,7 +187,7 @@ class DetalleMiVenta: UIViewController {
             
         }
         else {
-            vistaServcio.isHidden = true
+            //vistaServcio.isHidden = true
             comentarioCali.text = ""
             fechaCali.text = ""
             conAltoEstrellas.constant = 0

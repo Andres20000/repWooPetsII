@@ -82,7 +82,7 @@ class IngresoTarjetaOferente: UIViewController,  UITextFieldDelegate{
     
     @IBAction func didTapFinalizar(_ sender: Any) {
         
-        /// Validar si el usuaio hizo cambios 
+        /// Validar si el usuario hizo cambios 
         if noHuboCambios() {
             
              dismiss(animated: true, completion: nil)

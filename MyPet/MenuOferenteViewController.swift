@@ -21,6 +21,9 @@ class MenuOferenteViewController: UIViewController
     
     @IBOutlet weak var circuloRojo: UIImageView!
     
+    @IBOutlet weak var numeroVentas: UILabel!
+    
+    @IBOutlet weak var circuloRojoVentas: UIImageView!
     
     
     override func viewDidLoad()
@@ -28,7 +31,10 @@ class MenuOferenteViewController: UIViewController
         super.viewDidLoad()
         
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.repintarXPregunta), name:NSNotification.Name(rawValue:"cargoPregunta"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.repintarXPreguntaVenta), name:NSNotification.Name(rawValue:"cargoPregunta"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.repintarXPreguntaVenta), name:NSNotification.Name(rawValue:"cargoVenta"), object: nil)
+    
     }
     
     
@@ -49,6 +55,21 @@ class MenuOferenteViewController: UIViewController
         
         
     }
+    
+    func refrescarVentas() {
+        let ventas = model.misVentas.count
+        if   ventas == 0 {
+            circuloRojoVentas.isHidden = true
+        }
+        else {
+            circuloRojoVentas.isHidden = false
+            numeroVentas.text = String(ventas)
+        }
+        
+        
+    }
+
+    
     
     
     func cargarDatosOferente(_ notification: Notification)
@@ -151,8 +172,9 @@ class MenuOferenteViewController: UIViewController
     }
     
 
-    func repintarXPregunta(){
+    func repintarXPreguntaVenta(){
         refrescarPreguntas()
+        refrescarVentas()
         
     }
     

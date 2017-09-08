@@ -63,6 +63,7 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
         tableMisPublicaciones.reloadData()
     }
     
+    
     func repintarXPregunta(){
         if estadoPublicacion == "activas"
         {
@@ -144,16 +145,17 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
         cell.lblNombreProducto.text = model.publicacion.nombre
         
         
-        //Pintamos si numero de preguntas sin contestar
-        let preguntas = model.numeroPreguntasSinRespuesta(idPublicacion: model.publicacion.idPublicacion!)
+        //Pintamos si numero de preguntas sin contestar  --- 
+        // Nota como el dibujo de las peguntas y el de las ventas es el mismo entonces aca en publicaciones no se pone nada.
+        //let preguntas = model.numeroPreguntasSinRespuesta(idPublicacion: model.publicacion.idPublicacion!)
         
-        if  preguntas == 0 {
+        //if  preguntas == 0 {
             cell.imgCirculo.isHidden = true
-        }
-        else {
-            cell.imgCirculo.isHidden = false
-            cell.numeroPreguntas.text = String(preguntas)
-        }
+        //}
+        //else {
+          //  cell.imgCirculo.isHidden = false
+            //cell.numeroPreguntas.text = String(preguntas)
+        //}
 
         
         

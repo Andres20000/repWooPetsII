@@ -542,6 +542,11 @@ class DetallePublicacionOferenteViewController: UIViewController, UITableViewDel
     {
         return 0
     }
+    
+    @IBAction func unwindToDetallePublicacion(segue: UIStoryboardSegue) {
+    }
+    
+    
 }
 
 class UIPageViewControllerWithOverlayIndicator: UIPageViewController

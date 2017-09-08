@@ -13,7 +13,9 @@ import Firebase
 class Parametros {
     
 
-    var valorDestacado = 0
+    var valorDestacado = 20000
+    var impresionesDestacado = 30
+    
     
 }
 
@@ -32,8 +34,8 @@ class ComandoParametros {
             let value = snap.value as! NSDictionary
                 
             model.params.valorDestacado = value["valorDestacado"] as! Int
+            model.params.impresionesDestacado = value["impresionesDestacado"] as! Int
                 
-            
         })
         
     }
