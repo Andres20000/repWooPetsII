@@ -108,6 +108,7 @@ class UbicacionGoogleMaps
 
 class CompraUsuario
 {
+    var calificacion:[Calificacion]? = []
     var fecha:String?  = ""
     var idCompra:String?  = ""
     var idCliente:String?  = ""
@@ -158,6 +159,22 @@ class ModeloUsuario
     var alertasMascotaSeleccionada = [Alerta]()
     var alertaMascota = Alerta()
     
+    func getAlarmasMascota(idMascota:String)
+    {
+        alertasMascotaSeleccionada.removeAll()
+        
+        for mascota in (usuario[0].datosComplementarios?[0].mascotas)!
+        {
+            if mascota.idMascota == idMascota
+            {
+                for alerta in mascota.alertas!
+                {
+                    alertasMascotaSeleccionada.append(alerta)
+                }
+            }
+        }
+    }
+    
     var publicacionCarrito = Carrito()
     
     var misCompras = [CompraUsuario]()
@@ -167,17 +184,16 @@ class ModeloUsuario
     var calificacionMiCompra = Calificacion()
     var calificacionesPublicaciones = [Calificacion]()
     
-    func getCalificacionesPublicacion(idPublicacion:String)  -> Calificacion?
+    func getCalificacionCompra(posicion:Int)
     {
-        for calificacion in calificacionesPublicaciones {
-            
-            if calificacion.idPublicacion == idPublicacion
+        for calificacion in calificacionesPublicaciones
+        {
+            if calificacion.idCompra == misComprasCompleto[posicion].idCompra
             {
-                return calificacion
+                misComprasCompleto[posicion].calificacion?.removeAll()
+                misComprasCompleto[posicion].calificacion?.append(calificacion)
             }
         }
-        
-        return nil
     }
 }
 

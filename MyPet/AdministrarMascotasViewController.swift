@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
 import FirebaseAuth
+import UserNotifications
 
 class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -28,6 +28,25 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
         
         let nib = UINib(nibName: "MascotaTableViewCell", bundle: nil)
         tableMascotas.register(nib, forCellReuseIdentifier: "mascotaTableViewCell")
+        
+        printNotificaciones()
+    }
+    
+    func printNotificaciones()
+    {
+        if #available(iOS 10.0, *)
+        {
+            let center = UNUserNotificationCenter.current()
+            center.getPendingNotificationRequests(completionHandler: { requests in
+                for request in requests {
+                    
+                    print("print 1: \(request.identifier)")
+                    print("print 2: \(request.trigger)")
+                }
+            })
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     @IBAction func goHome(_ sender: Any)
@@ -194,7 +213,7 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
         
         if (editingStyle == .delete)
         {
-            let alertController = UIAlertController (title: "Eliminar Mascota", message: "Está seguro(a) de eliminar el perfil de la mascota seleccionada?", preferredStyle: .alert)
+            let alertController = UIAlertController (title: "Eliminar Mascota", message: "Estás seguro(a) de eliminar el perfil de la mascota seleccionada?", preferredStyle: .alert)
             
             let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
                 
@@ -203,6 +222,14 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
                     self.mostrarAlerta(titulo: "Advertencia", mensaje: "Este perfil se encuentra como principal y no es es posible eliminar")
                 } else
                 {
+                    if self.model.usuario[0].datosComplementarios?[0].mascotas?[indexPath.row].alertas?.count != 0
+                    {
+                        for alerta in (self.model.usuario[0].datosComplementarios?[0].mascotas?[indexPath.row].alertas)!
+                        {
+                            self.cancelarNotificaciones(id: alerta.idAlerta!)
+                        }
+                    }
+                    
                     if self.model.mascotas[indexPath.row].foto != ""
                     {
                         ComandoUsuario.deleteFotoMascota(uid: (self.user?.uid)!, idMascota: self.model.mascotas[indexPath.row].idMascota!, nombreFoto: self.model.mascotas[indexPath.row].foto!)
@@ -293,5 +320,43 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
         
         alerta.addAction(OKAction)
         present(alerta, animated: true, completion: { return })
+    }
+    
+    // Alarmas
+    
+    func cancelarNotificaciones(id:String)
+    {
+        var lista:[String] = []
+        
+        for i in (0...64) {
+            lista.append(id + String(i))
+        }
+        
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: lista)
+        } else
+        {
+            // Fallback on earlier versions
+            for i in (0...64) {
+                removeNotification(taskTypeId: (id + String(i)))
+            }
+        }
+    }
+    
+    func removeNotification(taskTypeId: String)
+    {
+        // loop through the pending notifications
+        for notification in UIApplication.shared.scheduledLocalNotifications! as [UILocalNotification]
+        {
+            // Cancel the notification that corresponds to this task entry instance (matched by taskTypeId)
+            if (notification.userInfo!["taskObjectId"] as? String == String(taskTypeId))
+            {
+                UIApplication.shared.cancelLocalNotification(notification)
+                
+                print("Notification deleted for taskTypeID: \(taskTypeId)")
+                
+                break
+            }
+        }
     }
 }

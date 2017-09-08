@@ -24,6 +24,8 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
     
     @IBOutlet var btnClose: UIButton!
     @IBOutlet var imgMailFB: UIImageView!
+    @IBOutlet var imgUbicacion: UIImageView!
+    @IBOutlet var imgTarjeta: UIImageView!
     
     @IBOutlet var txtNombre: UITextField!
     @IBOutlet var txtApellido: UITextField!
@@ -116,6 +118,16 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
         }else
         {
             imgMailFB.image = UIImage(named: "imgMailOk")
+        }
+        
+        if datosEditables
+        {
+            imgUbicacion.image = UIImage(named: "imgUbicacionOk")
+            imgTarjeta.image = UIImage(named: "imgTarjetaOk")
+        } else
+        {
+            imgUbicacion.image = UIImage(named: "imgUbicacionNok")
+            imgTarjeta.image = UIImage(named: "imgTarjetaNok")
         }
         
         let spacerViewTxtNombre = UIView(frame:CGRect(x:0, y:0, width:5, height:5))

@@ -67,6 +67,7 @@ class PreCargaDatosViewController: UIViewController
         
         Comando.getCategorias()
         Comando.getPublicaciones()
+        //ComandoUsuario.getCalificacionesPublicaciones()
         
         NotificationCenter.default.addObserver(self, selector: #selector(PreCargaDatosViewController.validarIngreso(_:)), name:NSNotification.Name(rawValue:"cargoCategorias"), object: nil)
     }

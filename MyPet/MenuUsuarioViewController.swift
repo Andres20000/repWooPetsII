@@ -23,6 +23,8 @@ class MenuUsuarioViewController: UIViewController
     @IBOutlet var lblCerrarSesion: UILabel!
     @IBOutlet var btnCerrarSesion: UIButton!
     
+    var editarDatosPersonales:Bool = false
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -55,6 +57,8 @@ class MenuUsuarioViewController: UIViewController
                     self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Aún no te has completado tu registro")
                 } else
                 {
+                    editarDatosPersonales = true
+                    
                     ComandoUsuario.getUsuario(uid: (user?.uid)!)
                     
                     NotificationCenter.default.addObserver(self, selector: #selector(MenuUsuarioViewController.cargarDatosPerfil(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
@@ -104,36 +108,44 @@ class MenuUsuarioViewController: UIViewController
     
     func cargarDatosPerfil(_ notification: Notification)
     {
-        modelUsuario.registroComplementario = (modelUsuario.usuario[0].datosComplementarios?[0])!
-        
-        for direccion in (modelUsuario.usuario[0].datosComplementarios?[0].direcciones)!
+        if modelUsuario.usuario[0].datosComplementarios?.count != 0
         {
-            if direccion.posicion == 1
+            modelUsuario.registroComplementario = (modelUsuario.usuario[0].datosComplementarios?[0])!
+            
+            for direccion in (modelUsuario.usuario[0].datosComplementarios?[0].direcciones)!
             {
-                modelUsuario.direccion1 = direccion
-                modelUsuario.ubicacion1 = (direccion.ubicacion?[0])!
+                if direccion.posicion == 1
+                {
+                    modelUsuario.direccion1 = direccion
+                    modelUsuario.ubicacion1 = (direccion.ubicacion?[0])!
+                }
+                
+                if direccion.posicion == 2
+                {
+                    modelUsuario.direccion2 = direccion
+                    modelUsuario.ubicacion2 = (direccion.ubicacion?[0])!
+                }
+                
+                if direccion.posicion == 3
+                {
+                    modelUsuario.direccion3 = direccion
+                    modelUsuario.ubicacion3 = (direccion.ubicacion?[0])!
+                }
             }
             
-            if direccion.posicion == 2
+            if editarDatosPersonales
             {
-                modelUsuario.direccion2 = direccion
-                modelUsuario.ubicacion2 = (direccion.ubicacion?[0])!
-            }
-            
-            if direccion.posicion == 3
-            {
-                modelUsuario.direccion3 = direccion
-                modelUsuario.ubicacion3 = (direccion.ubicacion?[0])!
+                editarDatosPersonales = false
+                
+                let transition = CATransition()
+                transition.duration = 0.5
+                transition.type = kCATransitionPush
+                transition.subtype = kCATransitionFromRight
+                view.window!.layer.add(transition, forKey: kCATransition)
+                
+                self.performSegue(withIdentifier: "editarPerfilUsuario", sender: self)
             }
         }
-        
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromRight
-        view.window!.layer.add(transition, forKey: kCATransition)
-        
-        self.performSegue(withIdentifier: "editarPerfilUsuario", sender: self)
     }
     
     func cerrarSesion()

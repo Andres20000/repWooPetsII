@@ -7,12 +7,12 @@
 //
 
 import UIKit
-
 import FirebaseAuth
+import UserNotifications
 
 class AdministrarAlarmasViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    let model = ModeloUsuario.sharedInstance
+    let modelUsuario = ModeloUsuario.sharedInstance
     
     let  user = FIRAuth.auth()?.currentUser
     
@@ -34,11 +34,30 @@ class AdministrarAlarmasViewController: UIViewController, UITableViewDelegate, U
         
         let nib = UINib(nibName: "AlertaTableViewCell", bundle: nil)
         tableAlertasMascota.register(nib, forCellReuseIdentifier: "alertaTableViewCell")
+        
+        printNotificaciones()
     }
-
+    
+    func printNotificaciones()
+    {
+        if #available(iOS 10.0, *)
+        {
+            let center = UNUserNotificationCenter.current()
+            center.getPendingNotificationRequests(completionHandler: { requests in
+                for request in requests {
+                    
+                    print("print 1: \(request.identifier)")
+                    print("print 2: \(request.trigger)")
+                }
+            })
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
     func cargarAlertasMascota(_ notification: Notification)
     {
-        model.alertasMascotaSeleccionada = model.tuMascota.alertas!
+        modelUsuario.getAlarmasMascota(idMascota: modelUsuario.tuMascota.idMascota!)
         
         tableAlertasMascota.reloadData()
     }
@@ -47,7 +66,7 @@ class AdministrarAlarmasViewController: UIViewController, UITableViewDelegate, U
     
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        if model.alertasMascotaSeleccionada.count > 0
+        if modelUsuario.alertasMascotaSeleccionada.count > 0
         {
             lblAviso.isHidden = false
             
@@ -83,7 +102,7 @@ class AdministrarAlarmasViewController: UIViewController, UITableViewDelegate, U
         lbl.font = UIFont (name: "HelveticaNeue-Light", size: 17.0)
         lbl.textColor = UIColor.white
         
-        lbl.text = "  \(model.tuMascota.nombre!)"
+        lbl.text = "  \(modelUsuario.tuMascota.nombre!)"
         
         vw .addSubview(lbl)
         vw.backgroundColor = UIColor.init(red: 0.980392156862745, green: 0.407843137254902, blue: 0.380392156862745, alpha: 1.0)
@@ -93,19 +112,104 @@ class AdministrarAlarmasViewController: UIViewController, UITableViewDelegate, U
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return model.alertasMascotaSeleccionada.count
+        return modelUsuario.alertasMascotaSeleccionada.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "alertaTableViewCell")  as! AlertaTableViewCell
         
+        cell.lblFechaHora.text = "\(modelUsuario.alertasMascotaSeleccionada[indexPath.row].fechaInicio!)     \(modelUsuario.alertasMascotaSeleccionada[indexPath.row].hora!)"
+        
+        cell.lblTipo.text = modelUsuario.alertasMascotaSeleccionada[indexPath.row].tipoRecordatorio
+        
+        cell.lblTitulo.text = modelUsuario.alertasMascotaSeleccionada[indexPath.row].nombre
+        
+        cell.swEstadoAlarma.tag = indexPath.row
+        cell.swEstadoAlarma .addTarget(self, action: #selector(AdministrarAlarmasViewController.stateChanged(_:)), for: .valueChanged)
+        cell.swEstadoAlarma.setOn(modelUsuario.alertasMascotaSeleccionada[indexPath.row].activada!, animated: true)
+        
         return cell;
+    }
+    
+    func stateChanged(_ sender: UISwitch)
+    {
+        modelUsuario.alertaMascota = modelUsuario.alertasMascotaSeleccionada[sender.tag]
+        
+        if sender.isOn
+        {
+            editarDatos = true
+            self.performSegue(withIdentifier: "alarmaDesdeAdministrarAlarmas", sender: self)
+            
+        } else
+        {
+            let alertController = UIAlertController (title: "Desactivar Alarma", message: "Estás seguro(a) de desactivar la alarma seleccionada?", preferredStyle: .alert)
+            
+            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                
+                ComandoUsuario.desactivarAlertaMascota(uid: (self.user?.uid)!, alerta: self.modelUsuario.alertaMascota)
+                self.cancelarNotificaciones(id: self.modelUsuario.alertaMascota.idAlerta!)
+                
+                ComandoUsuario.getUsuario(uid: (self.user?.uid)!)
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(AdministrarAlarmasViewController.cargarAlertasMascota(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .default) {
+                UIAlertAction in
+            }
+            
+            alertController.addAction(continuarAction)
+            alertController.addAction(cancelAction)
+            
+            present(alertController, animated: true, completion: nil)
+            
+            tableAlertasMascota.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        print("Seleccionada")
+        modelUsuario.alertaMascota = modelUsuario.alertasMascotaSeleccionada[indexPath.row]
+        
+        editarDatos = true
+        self.performSegue(withIdentifier: "alarmaDesdeAdministrarAlarmas", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    {
+        modelUsuario.alertaMascota = modelUsuario.alertasMascotaSeleccionada[indexPath.row]
+        
+        if (editingStyle == .delete)
+        {
+            let alertController = UIAlertController (title: "Eliminar Alarma", message: "Estás seguro(a) de eliminar la alarma seleccionada?", preferredStyle: .alert)
+            
+            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                
+                ComandoUsuario.eliminarAlertaMascota(uid: (self.user?.uid)!, alerta: self.modelUsuario.alertaMascota)
+                self.cancelarNotificaciones(id: self.modelUsuario.alertaMascota.idAlerta!)
+                
+                ComandoUsuario.getUsuario(uid: (self.user?.uid)!)
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(AdministrarAlarmasViewController.cargarAlertasMascota(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .default) {
+                UIAlertAction in
+            }
+            
+            alertController.addAction(continuarAction)
+            alertController.addAction(cancelAction)
+            
+            present(alertController, animated: true, completion: nil)
+            // handle delete (by removing the data from your array and updating the tableview)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
@@ -152,5 +256,42 @@ class AdministrarAlarmasViewController: UIViewController, UITableViewDelegate, U
             detailController.datosEditables = editarDatos
         }
     }
-
+    
+    // Alarmas 
+    
+    func cancelarNotificaciones(id:String)
+    {
+        var lista:[String] = []
+        
+        for i in (0...64) {
+            lista.append(id + String(i))
+        }
+        
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: lista)
+        } else
+        {
+            // Fallback on earlier versions
+            for i in (0...64) {
+                removeNotification(taskTypeId: (id + String(i)))
+            }
+        }
+    }
+    
+    func removeNotification(taskTypeId: String)
+    {
+        // loop through the pending notifications
+        for notification in UIApplication.shared.scheduledLocalNotifications! as [UILocalNotification]
+        {
+            // Cancel the notification that corresponds to this task entry instance (matched by taskTypeId)
+            if (notification.userInfo!["taskObjectId"] as? String == String(taskTypeId))
+            {
+                UIApplication.shared.cancelLocalNotification(notification)
+                
+                print("Notification deleted for taskTypeID: \(taskTypeId)")
+                
+                break
+            }
+        }
+    }
 }

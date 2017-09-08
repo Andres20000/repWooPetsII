@@ -120,10 +120,42 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         
         btnCancelar.layer.cornerRadius = 10.0
         
-        modelUsuario.alertaMascota.activada = true
-        modelUsuario.alertaMascota.idMascota = modelUsuario.tuMascota.idMascota
-        
-        modelUsuario.alertaMascota.idAlerta = ComandoUsuario.crearIdAlertaMascotaUsuario(uid: (user?.uid)!, idMascota: modelUsuario.alertaMascota.idMascota)
+        if datosEditables
+        {
+            txtTipoRecordatorio.text = modelUsuario.alertaMascota.tipoRecordatorio
+            txtNombreRecordatorio.text = modelUsuario.alertaMascota.nombre
+            txtHora.text = modelUsuario.alertaMascota.hora
+            txtFrecuencia.text = modelUsuario.alertaMascota.frecuencia
+            txtFechaInicio.text = modelUsuario.alertaMascota.fechaInicio
+            txtFechaFin.text = modelUsuario.alertaMascota.fechaFin
+            
+            if modelUsuario.alertaMascota.activada!
+            {
+                let dateFormatterHora = DateFormatter()
+                dateFormatterHora.dateFormat = "h:mm a"
+                horaAlarma = dateFormatterHora.date(from: modelUsuario.alertaMascota.hora!)
+                datePickerHora.date = horaAlarma!
+                
+                let dateFormaterFecha = DateFormatter()
+                dateFormaterFecha.dateFormat = "dd/MM/yyyy"
+                
+                fechaInicio = dateFormaterFecha.date(from: modelUsuario.alertaMascota.fechaInicio!)
+                datePickerFechaInicio.date = fechaInicio!
+                
+                fechaFin = dateFormaterFecha.date(from: modelUsuario.alertaMascota.fechaFin!)
+                datePickerFechaFin.date = fechaFin!
+            }
+            
+            btnAceptar.setTitle("Editar", for: .normal)
+            
+        } else
+        {
+            modelUsuario.alertaMascota.idMascota = modelUsuario.tuMascota.idMascota
+            
+            modelUsuario.alertaMascota.idAlerta = ComandoUsuario.crearIdAlertaMascotaUsuario(uid: (user?.uid)!, idMascota: modelUsuario.alertaMascota.idMascota)
+            
+            btnAceptar.setTitle("Aceptar", for: .normal)
+        }
         
         if #available(iOS 10.0, *)
         {
@@ -131,6 +163,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         } else
         {
             // Fallback on earlier versions
+            
         }
         
         //cancelarTodasLasNotificaciones()
@@ -147,7 +180,8 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
                     print(request.trigger)
                 }
             })
-        } else {
+        } else
+        {
             // Fallback on earlier versions
         }
     }
@@ -534,6 +568,8 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
             mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes completar todos los campos para poder continuar")
         } else
         {
+            modelUsuario.alertaMascota.activada = true
+            
             ComandoUsuario.crearEditarAlertaMascota(uid: (user?.uid)!, alerta: modelUsuario.alertaMascota)
             
             var frecuenciaAlarma:Frecuencia? = nil
@@ -566,6 +602,11 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
             if modelUsuario.alertaMascota.frecuencia == "Semanal"
             {
                 frecuenciaAlarma = .semanal
+            }
+            
+            if datosEditables
+            {
+                cancelarNotificaciones(id: modelUsuario.alertaMascota.idAlerta!)
             }
             
             crearNotificaciones(id: modelUsuario.alertaMascota.idAlerta!, inicio: combineDateAndTime(date: fechaInicio!, time: horaAlarma!), fin: combineDateAndTime(date: fechaFin!, time: horaAlarma!), titulo: modelUsuario.alertaMascota.tipoRecordatorio!, subtitulo: "", cuerpo: modelUsuario.alertaMascota.nombre!, frecuencia: frecuenciaAlarma!)
@@ -625,6 +666,26 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         } else
         {
             // Fallback on earlier versions
+            
+            var i = 0
+            for fecha in fechas
+            {
+                print(fecha)
+                let notification = UILocalNotification()
+                notification.fireDate = fecha
+                notification.alertBody = cuerpo
+                notification.alertAction = titulo
+                notification.soundName = UILocalNotificationDefaultSoundName
+                notification.userInfo = ["taskObjectId": id + String(i)]
+                UIApplication.shared.scheduleLocalNotification(notification)
+                
+                i += 1
+                
+                if i == 12
+                {
+                    break
+                }
+            }
         }
     }
     
@@ -694,8 +755,29 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: lista)
-        } else {
+        } else
+        {
             // Fallback on earlier versions
+            for i in (0...64) {
+                removeNotification(taskTypeId: (id + String(i)))
+            }
+        }
+    }
+    
+    func removeNotification(taskTypeId: String)
+    {
+        // loop through the pending notifications
+        for notification in UIApplication.shared.scheduledLocalNotifications! as [UILocalNotification]
+        {
+            // Cancel the notification that corresponds to this task entry instance (matched by taskTypeId)
+            if (notification.userInfo!["taskObjectId"] as? String == String(taskTypeId))
+            {
+                UIApplication.shared.cancelLocalNotification(notification)
+                
+                print("Notification deleted for taskTypeID: \(taskTypeId)")
+                
+                break
+            }
         }
     }
     
@@ -703,8 +785,10 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
     {
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        } else {
+        } else
+        {
             // Fallback on earlier versions
+            UIApplication.shared.cancelAllLocalNotifications()
         }
     }
     
@@ -805,13 +889,18 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
     }
 }
 
+@available(iOS 10.0, *)
 extension ViewController: UNUserNotificationCenterDelegate
 {
-    @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert])
     }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
 }
 
 enum Frecuencia:Int

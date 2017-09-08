@@ -10,6 +10,8 @@ import UIKit
 
 class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDelegate, UITextViewDelegate
 {
+    var modelUsuario  = ModeloUsuario.sharedInstance
+    
     @IBOutlet var floatRatingView: FloatRatingView!
     @IBOutlet var textComentario: UITextView!
     @IBOutlet var btnEnviar: UIButton!
@@ -53,12 +55,12 @@ class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDe
         self.floatRatingView.contentMode = UIViewContentMode.scaleAspectFit
         self.floatRatingView.minRating = 0
         self.floatRatingView.maxRating = 5
-        self.floatRatingView.rating = 0
+        //self.floatRatingView.rating = 0
         self.floatRatingView.editable = true
         self.floatRatingView.halfRatings = false
         self.floatRatingView.floatRatings = false
         
-        textComentario.text = "Escribe aquí tus observaciones"
+        textComentario.text = "Escribe aquí tu comentario"
         
         textComentario.layer.cornerRadius = 5.0
         textComentario.layer.borderWidth = 0.5
@@ -67,6 +69,14 @@ class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDe
         self .toolBarTextView(textComentario)
         
         btnEnviar.layer.cornerRadius = 10.0
+        
+        modelUsuario.calificacionMiCompra.calificacion = 0
+        modelUsuario.calificacionMiCompra.comentario = ""
+        modelUsuario.calificacionMiCompra.fecha = ""
+        modelUsuario.calificacionMiCompra.idCliente = ""
+        modelUsuario.calificacionMiCompra.idCompra = ""
+        modelUsuario.calificacionMiCompra.idOferente = ""
+        modelUsuario.calificacionMiCompra.idPublicacion = ""
     }
     
     // MARK: FloatRatingViewDelegate
@@ -74,7 +84,10 @@ class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDe
     func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float)
     {
         self.view.endEditing(true)
+        
         print(NSString(format: "%.f", self.floatRatingView.rating) as String)
+        modelUsuario.calificacionMiCompra.calificacion = Int(self.floatRatingView.rating)
+        print(NSString(format: "Enviado%.d ", modelUsuario.calificacionMiCompra.calificacion) as String)
         //self.liveLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
     }
     
@@ -82,6 +95,8 @@ class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDe
     {
         self.view.endEditing(true)
         print(NSString(format: "%.f", self.floatRatingView.rating) as String)
+        modelUsuario.calificacionMiCompra.calificacion = Int(self.floatRatingView.rating)
+        print(NSString(format: "Enviado%.d ", modelUsuario.calificacionMiCompra.calificacion) as String)
         //self.updatedLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
     }
     
@@ -91,7 +106,7 @@ class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDe
     {
         animateViewMoving(up: true, moveValue: 100)
         
-        if textView.text == "Escribe aquí tus observaciones"
+        if textView.text == "Escribe aquí tu comentario"
         {
             textView.text = ""
             //textView.textColor = UIColor.init(red: 0.301960784313725, green: 0.301960784313725, blue: 0.301960784313725, alpha: 1.0)
@@ -104,14 +119,58 @@ class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDe
         
         if (textView.text.characters.count) < 15
         {
-            self.mostrarAlerta(titulo: "!Advertencia!", mensaje: "Tu observación debe ser mínimo de 15 caracteres")
+            self.mostrarAlerta(titulo: "!Advertencia!", mensaje: "Tu comentario debe ser mínimo de 15 caracteres")
             
-            textView.text = "Escribe aquí tus observaciones"
-            
+        }
+        
+        modelUsuario.calificacionMiCompra.comentario = textView.text
+    }
+    
+    @IBAction func enviarCalificacion(_ sender: Any)
+    {
+        modelUsuario.calificacionMiCompra.idCliente = modelUsuario.compra.idCliente!
+        modelUsuario.calificacionMiCompra.idCompra = modelUsuario.compra.idCompra!
+        modelUsuario.calificacionMiCompra.idOferente = modelUsuario.compra.idOferente!
+        modelUsuario.calificacionMiCompra.idPublicacion = (modelUsuario.compra.pedido?[0].idPublicacion)!
+        
+        var comentario = "¿Estás seguro(a) de no enviar ningún comentario? Tu opinión es importante para nosotros."
+        
+        if modelUsuario.calificacionMiCompra.comentario != ""
+        {
+            if (modelUsuario.calificacionMiCompra.comentario.characters.count) < 15
+            {
+                self.mostrarAlerta(titulo: "!Advertencia!", mensaje: "Tu comentario debe ser mínimo de 15 caracteres")
+                return
+            }else
+            {
+                comentario = modelUsuario.calificacionMiCompra.comentario
+            }
         }else
         {
-            print("Guardar observación")
+            modelUsuario.calificacionMiCompra.comentario = "Sin comentarios."
         }
+        
+        let alert:UIAlertController = UIAlertController(title: "¡Confirmación!", message: "¿Confirmas el envío de los siguientes datos?\nCalificación: \(NSString(format: "%.1f", (Float(self.modelUsuario.calificacionMiCompra.calificacion))) as String)\nComentario: \(NSString(format: "%@", comentario) as String)", preferredStyle: .alert)
+        
+        let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+            
+            let nowDate = NSDate() as Date
+            
+            self.modelUsuario.calificacionMiCompra.fecha = nowDate.fechaString()
+            ComandoUsuario.calificarCompra(calificacionCompra: self.modelUsuario.calificacionMiCompra)
+            
+            self.performSegue(withIdentifier: "precargarPublicacionesDesdeCalificacionPublicacion", sender: self)
+        }
+        
+        let cancelAction = UIAlertAction(title: "No", style: .cancel)
+        {
+            UIAlertAction in
+        }
+        
+        // Add the actions
+        alert.addAction(continuarAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning()

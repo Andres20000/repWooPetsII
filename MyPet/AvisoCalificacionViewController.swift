@@ -10,6 +10,10 @@ import UIKit
 
 class AvisoCalificacionViewController: UIViewController
 {
+    // This constraint ties an element at zero points from the top layout guide
+    @IBOutlet var spaceBottomLayoutConstraint: NSLayoutConstraint?
+    @IBOutlet var heightLayoutConstraint: NSLayoutConstraint?
+    
     @IBOutlet var btnCalificar: UIButton!
     
     override func viewDidLoad()
@@ -19,6 +23,17 @@ class AvisoCalificacionViewController: UIViewController
         // Do any additional setup after loading the view.
         
         btnCalificar.layer.cornerRadius = 10.0
+        
+        if DeviceType.IS_IPHONE_5
+        {
+            self.spaceBottomLayoutConstraint?.constant = 45.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            self.spaceBottomLayoutConstraint?.constant = 75.0
+            self.heightLayoutConstraint?.constant = 45.0
+        }
     }
     
     @IBAction func calificar(_ sender: Any)

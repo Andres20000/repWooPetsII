@@ -1,14 +1,14 @@
 //
-//  CompraFinalizadaTableViewCell.swift
+//  MiCompraFinalizadaTableViewCell.swift
 //  MyPet
 //
-//  Created by Jose Aguilar on 4/09/17.
+//  Created by Jose Aguilar on 8/09/17.
 //  Copyright © 2017 Jose Aguilar. All rights reserved.
 //
 
 import UIKit
 
-class CompraFinalizadaTableViewCell: UITableViewCell
+class MiCompraFinalizadaTableViewCell: UITableViewCell
 {
     @IBOutlet var imgPublicacion: UIImageView!
     @IBOutlet var lblTextoInfo: UILabel!
@@ -41,11 +41,11 @@ class CompraFinalizadaTableViewCell: UITableViewCell
         self.floatRatingView.halfRatings = false
         self.floatRatingView.floatRatings = false
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
