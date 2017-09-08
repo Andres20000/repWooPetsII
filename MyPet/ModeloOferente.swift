@@ -236,8 +236,6 @@ class PublicacionOferente
             imagenPrincipal!.extenci = ".png"
             imagenPrincipal!.prefijo = ""
             imagenPrincipal!.folderStorage = "productos/" + idPublicacion!
-            
-            
         }
     }
     var activo:Bool?

@@ -32,8 +32,8 @@ class ImageFire {
     var imageData: Data? {
         willSet {
             if newValue != nil {
-                print("guardando: " + "\(nombreImagen + ".dat")")
-                let filename = getDocumentsDirectory().appendingPathComponent(nombreImagen + ".dat" )
+                print("guardando: " + folderStorage + "/" + "\(nombreImagen + ".dat")")
+                let filename = getDocumentsDirectory().appendingPathComponent(folderStorage + "/" + nombreImagen + ".dat" )
                 try? newValue!.write(to: filename)
                 
             }
@@ -69,7 +69,7 @@ class ImageFire {
             
         }
         
-        var imagen = loadImageFromPath(path: nombreImagen + ".dat")
+        var imagen = loadImageFromPath(path: folderStorage + "/"  + nombreImagen + ".dat")
         
         if imagen != nil {
             
@@ -240,7 +240,7 @@ class ImageFire {
         
         if image == nil {
             
-            //print("missing image at: \(path)")
+            print("missing image at: \(path)")
         }
         //print("Loading image from path: \(path)") // this is just for you to see the path in case you want to go to the directory, using Finder.
         return image

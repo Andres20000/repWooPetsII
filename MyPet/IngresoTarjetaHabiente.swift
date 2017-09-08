@@ -19,8 +19,7 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
     
     @IBOutlet weak var telefono: UITextField!
     
-    
-    
+        
     @IBOutlet weak var nombre: UITextField!
     
     @IBOutlet weak var apellido: UITextField!
@@ -547,6 +546,8 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
         
     }
 
+    
+    
     
     func finalizarYaRedAsegurada(){
         

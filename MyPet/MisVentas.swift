@@ -109,6 +109,9 @@ class MisVentas: UIViewController, UITableViewDelegate, UITableViewDataSource
         cargarPublicaciones()
     }
     
+    
+    
+    
     // #pragma mark - Table View
     
     func numberOfSections(in tableView: UITableView) -> Int
@@ -149,15 +152,24 @@ class MisVentas: UIViewController, UITableViewDelegate, UITableViewDataSource
         cell.lblNombreProducto.text = publi.nombre
         
         
-        //Pintamos si numero de preguntas sin contestar
-        let preguntas = model.numeroPreguntasSinRespuesta(idPublicacion: publi.idPublicacion!)
         
-        if  preguntas == 0 {
+        var ventas = 0
+        
+        //Pintamos si numero de preguntas sin contestar
+        if estadoPublicacion == "abiertas" {
+        
+            ventas = model.getMisVentasDeUnaPublicacion(abiertas: true, idPublicacion: publi.idPublicacion!).count
+        }
+        else {
+            ventas = model.getMisVentasDeUnaPublicacion(abiertas: false, idPublicacion: publi.idPublicacion!).count
+        }
+        
+        if  ventas == 0 {
             cell.imgCirculo.isHidden = true
         }
         else {
             cell.imgCirculo.isHidden = false
-            cell.numeroPreguntas.text = String(preguntas)
+            cell.numeroPreguntas.text = String(ventas)  // en realidad  es numero de ventas
         }
         
         
