@@ -5502,7 +5502,7 @@
         <image name="imgDestacadoBlanco" width="50" height="50"/>
         <image name="imgDireccion" width="19" height="19"/>
         <image name="imgEstrellaVacia" width="23" height="23"/>
-        <image name="imgMuestraDestacado" width="375" height="275"/>
+        <image name="imgMuestraDestacado" width="750" height="551"/>
         <image name="imgNotificacionBlanco" width="50" height="50"/>
         <image name="imgPregunta" width="28" height="23"/>
         <image name="imgTarjeta" width="40" height="40"/>
