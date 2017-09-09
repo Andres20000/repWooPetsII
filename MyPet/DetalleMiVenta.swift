@@ -157,7 +157,7 @@ class DetalleMiVenta: UIViewController {
             preguntas.text = String(pregun) + " preguntas"
         }
         
-        if item?.estado == "pendiente" {
+        if item?.estado == "Pendiente" {
             
             botonEntregado.isHidden = false
             labelEspera.text = ""
@@ -166,13 +166,13 @@ class DetalleMiVenta: UIViewController {
             estado.textColor = UIColor(red: 237.0/255.0, green: 28/255.0, blue: 36.0/255.0, alpha: 1.0)
             productoEstado.textColor = UIColor(red: 237.0/255.0, green: 28/255.0, blue: 36.0/255.0, alpha: 1.0)
             
-        } else if item?.estado == "entregado" {
+        } else if item?.estado == "Entregada" {
             
             botonEntregado.isHidden = true
             productoEstado.text = "Entregado"
             productoEstado.textColor = UIColor(red: 0/255.0, green: 146/255.0, blue: 69/255.0, alpha: 1.0)
             
-        } else if item?.estado == "cerrada" {
+        } else if item?.estado == "Cerrada" {
             
             botonEntregado.isHidden = true
             labelEspera.text = ""
@@ -248,7 +248,7 @@ class DetalleMiVenta: UIViewController {
         productoEstado.text = "Entregado"
         productoEstado.textColor = UIColor(red: 0/255.0, green: 146/255.0, blue: 69/255.0, alpha: 1.0)
         
-        ComandoCompras.setEstadoCompraAbierta(item: item!, estado: "entregado")
+        ComandoCompras.setEstadoCompraAbierta(item: item!, estado: "Entregada")
         
         
         
