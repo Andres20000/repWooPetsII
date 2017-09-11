@@ -192,6 +192,12 @@
 		84818C581F411CC1001011BA /* CarritoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84818C541F411CC1001011BA /* CarritoTableViewCell.xib */; };
 		848E318F1F26601200D35C6D /* PublicacionServicioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E318E1F26601200D35C6D /* PublicacionServicioViewController.swift */; };
 		848E31901F26601200D35C6D /* PublicacionServicioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848E318E1F26601200D35C6D /* PublicacionServicioViewController.swift */; };
+		849C8A2A1F66FB1F004A9714 /* PreguntaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C8A281F66FB1F004A9714 /* PreguntaTableViewCell.swift */; };
+		849C8A2B1F66FB1F004A9714 /* PreguntaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C8A281F66FB1F004A9714 /* PreguntaTableViewCell.swift */; };
+		849C8A2C1F66FB1F004A9714 /* PreguntaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849C8A291F66FB1F004A9714 /* PreguntaTableViewCell.xib */; };
+		849C8A2D1F66FB1F004A9714 /* PreguntaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849C8A291F66FB1F004A9714 /* PreguntaTableViewCell.xib */; };
+		849C8A2F1F672556004A9714 /* BuscarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C8A2E1F672556004A9714 /* BuscarViewController.swift */; };
+		849C8A301F672556004A9714 /* BuscarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C8A2E1F672556004A9714 /* BuscarViewController.swift */; };
 		84A3E1B61EC1850F0013E4DD /* ComandoOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3E1B51EC1850F0013E4DD /* ComandoOferente.swift */; };
 		84A3E1B71EC1850F0013E4DD /* ComandoOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3E1B51EC1850F0013E4DD /* ComandoOferente.swift */; };
 		84A3E1B91EC29DD40013E4DD /* HomeOferenteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3E1B81EC29DD40013E4DD /* HomeOferenteViewController.swift */; };
@@ -396,6 +402,9 @@
 		84818C531F411CC1001011BA /* CarritoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarritoTableViewCell.swift; sourceTree = "<group>"; };
 		84818C541F411CC1001011BA /* CarritoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarritoTableViewCell.xib; sourceTree = "<group>"; };
 		848E318E1F26601200D35C6D /* PublicacionServicioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicacionServicioViewController.swift; sourceTree = "<group>"; };
+		849C8A281F66FB1F004A9714 /* PreguntaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreguntaTableViewCell.swift; sourceTree = "<group>"; };
+		849C8A291F66FB1F004A9714 /* PreguntaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreguntaTableViewCell.xib; sourceTree = "<group>"; };
+		849C8A2E1F672556004A9714 /* BuscarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuscarViewController.swift; sourceTree = "<group>"; };
 		84A3E1B51EC1850F0013E4DD /* ComandoOferente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComandoOferente.swift; sourceTree = "<group>"; };
 		84A3E1B81EC29DD40013E4DD /* HomeOferenteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOferenteViewController.swift; sourceTree = "<group>"; };
 		84A3E1BB1EC3BD090013E4DD /* MenuOferenteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuOferenteViewController.swift; sourceTree = "<group>"; };
@@ -538,6 +547,8 @@
 		840B1B3E1F33C43A00423832 /* Cell Pregunta Respuesta */ = {
 			isa = PBXGroup;
 			children = (
+				849C8A281F66FB1F004A9714 /* PreguntaTableViewCell.swift */,
+				849C8A291F66FB1F004A9714 /* PreguntaTableViewCell.xib */,
 				840B1B451F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift */,
 				840B1B461F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib */,
 			);
@@ -763,6 +774,7 @@
 				844860171F4BE27900DF5D9D /* AvisoCalificacionViewController.swift */,
 				8448601A1F4BE9C700DF5D9D /* CalificacionPublicacionViewController.swift */,
 				84BD20801EF0A58F001422E7 /* MenuUsuarioViewController.swift */,
+				849C8A2E1F672556004A9714 /* BuscarViewController.swift */,
 			);
 			name = Usuario;
 			sourceTree = "<group>";
@@ -993,6 +1005,7 @@
 				4124FE551F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib in Resources */,
 				84AF006A1F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib in Resources */,
 				847838CF1F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
+				849C8A2C1F66FB1F004A9714 /* PreguntaTableViewCell.xib in Resources */,
 				840B1B3C1F339B2900423832 /* ResenaTableViewCell.xib in Resources */,
 				847FDC171ED3469F002F9530 /* DetalleHorarioTableViewCell.xib in Resources */,
 				84417B991EB93D0D00A70ABC /* HorarioTableViewCell.xib in Resources */,
@@ -1026,6 +1039,7 @@
 				84417B941EB2CAE800A70ABC /* DireccionRegistroTableViewCell.xib in Resources */,
 				84A5A4D71F3CD1A600429500 /* CompraTableViewCell.xib in Resources */,
 				84A3E1D31EC4335B0013E4DD /* PublicacionTableViewCell.xib in Resources */,
+				849C8A2D1F66FB1F004A9714 /* PreguntaTableViewCell.xib in Resources */,
 				84CA9EFF1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
 				840B1B4A1F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */,
 				84F4FA781EAAEF0300F3E69A /* Main.storyboard in Resources */,
@@ -1187,6 +1201,7 @@
 				843B56261F13E46B007297CB /* AlarmaViewController.swift in Sources */,
 				847FDC151ED3469F002F9530 /* DetalleHorarioTableViewCell.swift in Sources */,
 				4124FE581F3D394200C9A1C5 /* HeaderPreguntaCeldaTableViewCell.swift in Sources */,
+				849C8A2F1F672556004A9714 /* BuscarViewController.swift in Sources */,
 				843449151EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift in Sources */,
 				84A5A4D41F3CD1A600429500 /* CompraTableViewCell.swift in Sources */,
 				84A5A4CF1F3CCB2800429500 /* ConfirmacionUnoViewController.swift in Sources */,
@@ -1240,6 +1255,7 @@
 				84A5A4CC1F3BB98E00429500 /* AvisoCarritoViewController.swift in Sources */,
 				41572E871F4CE17D00F3878D /* RespuestaVC.swift in Sources */,
 				843A4AFA1F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.swift in Sources */,
+				849C8A2A1F66FB1F004A9714 /* PreguntaTableViewCell.swift in Sources */,
 				41160B5F1F49BC6B00FF4765 /* ComandoCalificacion.swift in Sources */,
 				4126C9631F44AA3D00BC4413 /* Compra.swift in Sources */,
 				4101EEEE1F434BC500F161DE /* ComandoDestacados.swift in Sources */,
@@ -1302,6 +1318,7 @@
 				843B56271F13E46B007297CB /* AlarmaViewController.swift in Sources */,
 				847FDC161ED3469F002F9530 /* DetalleHorarioTableViewCell.swift in Sources */,
 				4124FE591F3D394200C9A1C5 /* HeaderPreguntaCeldaTableViewCell.swift in Sources */,
+				849C8A301F672556004A9714 /* BuscarViewController.swift in Sources */,
 				843449161EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift in Sources */,
 				84A5A4D51F3CD1A600429500 /* CompraTableViewCell.swift in Sources */,
 				84A5A4D01F3CCB2800429500 /* ConfirmacionUnoViewController.swift in Sources */,
@@ -1355,6 +1372,7 @@
 				84A5A4CD1F3BB98E00429500 /* AvisoCarritoViewController.swift in Sources */,
 				41572E881F4CE17D00F3878D /* RespuestaVC.swift in Sources */,
 				843A4AFB1F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.swift in Sources */,
+				849C8A2B1F66FB1F004A9714 /* PreguntaTableViewCell.swift in Sources */,
 				41160B601F49BC6B00FF4765 /* ComandoCalificacion.swift in Sources */,
 				4126C9641F44AA3D00BC4413 /* Compra.swift in Sources */,
 				4101EEEF1F434BC500F161DE /* ComandoDestacados.swift in Sources */,
