@@ -520,7 +520,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="KS0-1Q-a7d" id="jQU-Ms-l02"/>
                                                 </connections>
@@ -533,7 +533,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="KS0-1Q-a7d" id="Ome-AQ-qdg"/>
                                                 </connections>
@@ -546,7 +546,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="KS0-1Q-a7d" id="ecw-od-NNH"/>
                                                 </connections>
@@ -559,7 +559,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="phonePad"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardType="phonePad"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="KS0-1Q-a7d" id="Sgd-00-GHG"/>
                                                 </connections>
@@ -584,7 +584,7 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="KS0-1Q-a7d" id="NhL-BL-G9C"/>
                                                         </connections>
@@ -608,7 +608,7 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="KS0-1Q-a7d" id="CID-lP-wOT"/>
                                                         </connections>
@@ -689,7 +689,7 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="KS0-1Q-a7d" id="utW-oT-FMi"/>
                                                         </connections>
@@ -713,7 +713,7 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="KS0-1Q-a7d" id="EQR-Ms-iNQ"/>
                                                         </connections>
@@ -768,7 +768,7 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="KS0-1Q-a7d" id="h98-4l-g88"/>
                                                         </connections>
@@ -792,7 +792,7 @@
                                                         </constraints>
                                                         <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="KS0-1Q-a7d" id="dmf-V9-X36"/>
                                                         </connections>
@@ -1027,7 +1027,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="DLl-fB-1Ko" id="2Wu-VN-56j"/>
                                 </connections>
@@ -4359,7 +4359,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.30196078431372547" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="ueq-d9-g2S" id="1yc-jO-Phl"/>
                                 </connections>
@@ -4977,7 +4977,7 @@
                                 </constraints>
                                 <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="V0R-Bf-sCT" id="yoK-sz-qXY"/>
                                 </connections>
@@ -5565,6 +5565,7 @@
                         <outlet property="btnComprar" destination="xtD-7Z-7h7" id="Fmz-zF-bgA"/>
                         <outlet property="btnPreguntar" destination="Al5-vU-szc" id="QD1-fE-tdf"/>
                         <outlet property="floatRatingView" destination="F7Z-5F-ncz" id="KJt-al-WlO"/>
+                        <outlet property="lblDuracion" destination="MbY-H9-HxZ" id="yhi-Jx-yUU"/>
                         <outlet property="lblFechaHoraReserva" destination="rxj-Ff-c0A" id="77u-3t-KWc"/>
                         <outlet property="lblNombre" destination="3vU-N9-H2e" id="6EQ-jh-5K3"/>
                         <outlet property="lblPrecio" destination="8Qf-E5-S6T" id="nYt-2q-reK"/>
@@ -5620,7 +5621,7 @@
                                 <color key="barTintColor" red="0.0" green="0.75686274509999996" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Puedes seleccionar la fecha y horario deseada para hacer efectivo el servicio." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VlA-0Q-pwl">
-                                <rect key="frame" x="16" y="76" width="343" height="50"/>
+                                <rect key="frame" x="16" y="64" width="343" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="aEX-8o-xcb"/>
                                 </constraints>
@@ -5628,8 +5629,17 @@
                                 <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recibirás una notificación para confirmar la cita programada." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qfo-rs-Dgx">
+                                <rect key="frame" x="16" y="397" width="343" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="RGP-xC-ic2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recuerda, la duración de este servicio es de:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nar-yn-7Bh">
-                                <rect key="frame" x="16" y="145" width="343" height="20"/>
+                                <rect key="frame" x="16" y="129" width="343" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="umB-YE-iaz"/>
                                 </constraints>
@@ -5638,7 +5648,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duración" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WXM-Eg-BBu">
-                                <rect key="frame" x="16" y="165" width="343" height="20"/>
+                                <rect key="frame" x="16" y="149" width="343" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="da3-BQ-6s3"/>
                                 </constraints>
@@ -5647,7 +5657,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="yH8-ER-4Pn">
-                                <rect key="frame" x="16" y="205" width="343" height="216"/>
+                                <rect key="frame" x="16" y="184" width="343" height="216"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="216" id="PPm-e3-lRV"/>
                                 </constraints>
@@ -5656,7 +5666,7 @@
                                 </date>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pc-yf-Y6j">
-                                <rect key="frame" x="16" y="459" width="343" height="40"/>
+                                <rect key="frame" x="16" y="456" width="343" height="40"/>
                                 <color key="backgroundColor" red="0.050980392159999999" green="0.43921568630000002" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="yPJ-kJ-SXL"/>
@@ -5670,7 +5680,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Fz-fp-yYZ">
-                                <rect key="frame" x="16" y="513" width="343" height="40"/>
+                                <rect key="frame" x="16" y="510" width="343" height="40"/>
                                 <color key="backgroundColor" red="0.97647058819999999" green="0.25882352939999997" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="r82-Z3-2Fz"/>
@@ -5686,21 +5696,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VlA-0Q-pwl" firstAttribute="top" secondItem="IRz-ve-x0e" secondAttribute="bottom" constant="32" id="0kI-R3-iet"/>
+                            <constraint firstItem="VlA-0Q-pwl" firstAttribute="top" secondItem="IRz-ve-x0e" secondAttribute="bottom" constant="20" id="0kI-R3-iet"/>
                             <constraint firstItem="3Pc-yf-Y6j" firstAttribute="trailing" secondItem="4ge-h2-YJe" secondAttribute="trailingMargin" id="2Na-ad-Sqn"/>
-                            <constraint firstItem="nar-yn-7Bh" firstAttribute="top" secondItem="VlA-0Q-pwl" secondAttribute="bottom" constant="19" id="3iI-Id-tPz"/>
+                            <constraint firstItem="nar-yn-7Bh" firstAttribute="top" secondItem="VlA-0Q-pwl" secondAttribute="bottom" constant="15" id="3iI-Id-tPz"/>
                             <constraint firstItem="yH8-ER-4Pn" firstAttribute="trailing" secondItem="4ge-h2-YJe" secondAttribute="trailingMargin" id="5qz-LB-1mg"/>
                             <constraint firstItem="WXM-Eg-BBu" firstAttribute="trailing" secondItem="4ge-h2-YJe" secondAttribute="trailingMargin" id="CDE-ZU-phs"/>
+                            <constraint firstItem="qfo-rs-Dgx" firstAttribute="trailing" secondItem="4ge-h2-YJe" secondAttribute="trailingMargin" id="F6D-ey-TqZ"/>
                             <constraint firstItem="IRz-ve-x0e" firstAttribute="leading" secondItem="4ge-h2-YJe" secondAttribute="leading" id="JJR-t7-qjX"/>
-                            <constraint firstItem="yH8-ER-4Pn" firstAttribute="top" secondItem="WXM-Eg-BBu" secondAttribute="bottom" constant="20" id="KwA-z0-FbM"/>
+                            <constraint firstItem="yH8-ER-4Pn" firstAttribute="top" secondItem="WXM-Eg-BBu" secondAttribute="bottom" constant="15" id="KwA-z0-FbM"/>
                             <constraint firstItem="WXM-Eg-BBu" firstAttribute="leading" secondItem="4ge-h2-YJe" secondAttribute="leadingMargin" id="N57-Wd-gdu"/>
                             <constraint firstItem="3Pc-yf-Y6j" firstAttribute="leading" secondItem="4ge-h2-YJe" secondAttribute="leadingMargin" id="UFW-Ff-tM3"/>
                             <constraint firstItem="nar-yn-7Bh" firstAttribute="leading" secondItem="4ge-h2-YJe" secondAttribute="leadingMargin" id="Ude-fn-Vhm"/>
                             <constraint firstItem="nar-yn-7Bh" firstAttribute="trailing" secondItem="4ge-h2-YJe" secondAttribute="trailingMargin" id="W2D-xz-FHM"/>
                             <constraint firstItem="WXM-Eg-BBu" firstAttribute="top" secondItem="nar-yn-7Bh" secondAttribute="bottom" id="WHy-vz-Zth"/>
                             <constraint firstItem="IRz-ve-x0e" firstAttribute="top" secondItem="F5c-xI-vuN" secondAttribute="bottom" id="d6r-yF-9Gu"/>
-                            <constraint firstItem="3Pc-yf-Y6j" firstAttribute="top" secondItem="yH8-ER-4Pn" secondAttribute="bottom" constant="38" id="eSH-P6-tmQ"/>
+                            <constraint firstItem="3Pc-yf-Y6j" firstAttribute="top" secondItem="yH8-ER-4Pn" secondAttribute="bottom" constant="56" id="eSH-P6-tmQ"/>
+                            <constraint firstItem="qfo-rs-Dgx" firstAttribute="leading" secondItem="4ge-h2-YJe" secondAttribute="leadingMargin" id="fR5-fX-79h"/>
                             <constraint firstItem="yH8-ER-4Pn" firstAttribute="leading" secondItem="4ge-h2-YJe" secondAttribute="leadingMargin" id="fjx-pa-UDy"/>
+                            <constraint firstItem="3Pc-yf-Y6j" firstAttribute="top" secondItem="qfo-rs-Dgx" secondAttribute="bottom" constant="9" id="fzg-qm-YFY"/>
                             <constraint firstItem="3Fz-fp-yYZ" firstAttribute="trailing" secondItem="4ge-h2-YJe" secondAttribute="trailingMargin" id="lFe-hx-3QY"/>
                             <constraint firstItem="VlA-0Q-pwl" firstAttribute="leading" secondItem="4ge-h2-YJe" secondAttribute="leadingMargin" id="mUe-2U-YXr"/>
                             <constraint firstItem="3Fz-fp-yYZ" firstAttribute="top" secondItem="3Pc-yf-Y6j" secondAttribute="bottom" constant="14" id="miL-YG-Yfc"/>
@@ -6310,6 +6323,75 @@
             </objects>
             <point key="canvasLocation" x="6868" y="-2431"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="F0n-Gp-4OZ">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6mj-Vi-u64" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="eGH-BE-V02" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DZT-aA-Tfn"/>
+                        <viewControllerLayoutGuide type="bottom" id="roX-nZ-Z1u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Af-pY-WC7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1N-TG-AcJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="u9A-Ng-j1G"/>
+                                </constraints>
+                                <color key="tintColor" red="0.40387445688247681" green="0.40394866466522217" blue="0.40386977791786194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Buscar..." id="LMQ-J8-Ksr">
+                                        <barButtonItem key="leftBarButtonItem" image="btnAtras" id="3sg-wK-udT"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Th-Rd-GE0">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="m1N-TG-AcJ" firstAttribute="top" secondItem="DZT-aA-Tfn" secondAttribute="bottom" id="G1c-6A-AOw"/>
+                            <constraint firstAttribute="trailing" secondItem="1Th-Rd-GE0" secondAttribute="trailing" id="Ii8-QU-PwG"/>
+                            <constraint firstItem="1Th-Rd-GE0" firstAttribute="leading" secondItem="9Af-pY-WC7" secondAttribute="leading" id="LqQ-0l-pJx"/>
+                            <constraint firstItem="m1N-TG-AcJ" firstAttribute="leading" secondItem="9Af-pY-WC7" secondAttribute="leading" id="Yd7-q9-M4i"/>
+                            <constraint firstAttribute="trailing" secondItem="m1N-TG-AcJ" secondAttribute="trailing" id="m1O-YV-g7X"/>
+                            <constraint firstItem="roX-nZ-Z1u" firstAttribute="top" secondItem="1Th-Rd-GE0" secondAttribute="bottom" id="nJq-Ko-eTb"/>
+                            <constraint firstItem="1Th-Rd-GE0" firstAttribute="top" secondItem="m1N-TG-AcJ" secondAttribute="bottom" id="nqg-FY-WMF"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="0Yx-9E-F9S" id="5MP-Nf-8p4"/>
+                    </connections>
+                </viewController>
+                <searchDisplayController id="rPY-LR-kmk">
+                    <connections>
+                        <outlet property="delegate" destination="eGH-BE-V02" id="uig-jw-MhR"/>
+                        <outlet property="searchContentsController" destination="eGH-BE-V02" id="h96-T0-YHy"/>
+                        <outlet property="searchResultsDataSource" destination="eGH-BE-V02" id="CXv-a2-JeM"/>
+                        <outlet property="searchResultsDelegate" destination="eGH-BE-V02" id="NuT-sj-OdQ"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="0Yx-9E-F9S">
+                    <connections>
+                        <outlet property="delegate" destination="eGH-BE-V02" id="SEb-a8-z5k"/>
+                        <outlet property="searchContentsController" destination="eGH-BE-V02" id="lLP-1d-C03"/>
+                        <outlet property="searchResultsDataSource" destination="eGH-BE-V02" id="2Zy-nI-sJ9"/>
+                        <outlet property="searchResultsDelegate" destination="eGH-BE-V02" id="NmY-DV-VRn"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="7637.6000000000004" y="-2257.4212893553226"/>
+        </scene>
         <!--Page View Controller With Overlay Indicator-->
         <scene sceneID="TFd-Yx-1Qj">
             <objects>
@@ -6402,22 +6484,22 @@
         <image name="textura_Ingreso" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="g9o-0N-P4D"/>
         <segue reference="4dZ-15-YtV"/>
         <segue reference="c64-eH-oia"/>
         <segue reference="KSr-oI-4G4"/>
-        <segue reference="a1h-2i-JbW"/>
+        <segue reference="A6W-wT-hwa"/>
+        <segue reference="g9o-0N-P4D"/>
+        <segue reference="bVH-Q1-m3n"/>
+        <segue reference="5AM-1p-jx9"/>
         <segue reference="rzp-TS-BC7"/>
-        <segue reference="IRx-Jv-GCZ"/>
-        <segue reference="ZN1-nn-YBd"/>
-        <segue reference="OYj-aD-Dz2"/>
-        <segue reference="ebI-ph-1Ok"/>
-        <segue reference="FW0-BB-RT8"/>
-        <segue reference="qav-fg-sdY"/>
-        <segue reference="aiq-DQ-SKV"/>
-        <segue reference="gNs-38-JWS"/>
-        <segue reference="95r-G0-w3V"/>
-        <segue reference="aNJ-m2-0I0"/>
+        <segue reference="UlJ-My-ATf"/>
         <segue reference="oQN-Js-Es1"/>
+        <segue reference="B7O-E2-n1O"/>
+        <segue reference="7hU-I0-I2k"/>
+        <segue reference="Sxi-cS-EGb"/>
+        <segue reference="i9R-bi-MDr"/>
+        <segue reference="pQ7-FT-sEN"/>
+        <segue reference="ZfC-qD-0SX"/>
+        <segue reference="a1h-2i-JbW"/>
     </inferredMetricsTieBreakers>
 </document>

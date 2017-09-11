@@ -38,6 +38,32 @@ class AgendarServicioViewController: UIViewController
 
         // Do any additional setup after loading the view.
         
+        var textoDuracionMedida = ""
+        
+        if modelUsuario.publicacionCarrito.publicacionCompra.duracion! > 1
+        {
+            textoDuracionMedida = modelUsuario.publicacionCarrito.publicacionCompra.duracionMedida!
+            
+        } else
+        {
+            if modelUsuario.publicacionCarrito.publicacionCompra.duracionMedida! == "Minutos"
+            {
+                textoDuracionMedida = "Minuto"
+            }
+            
+            if modelUsuario.publicacionCarrito.publicacionCompra.duracionMedida! == "Horas"
+            {
+                textoDuracionMedida = "Hora"
+            }
+            
+            if modelUsuario.publicacionCarrito.publicacionCompra.duracionMedida! == "Días"
+            {
+                textoDuracionMedida = "Día"
+            }
+        }
+        
+        lblDuracion.text = "\(modelUsuario.publicacionCarrito.publicacionCompra.duracion!) \(textoDuracionMedida)"
+        
         btnAceptar.layer.cornerRadius = 10.0
         
         btnCancelar.layer.cornerRadius = 10.0

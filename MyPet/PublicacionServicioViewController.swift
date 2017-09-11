@@ -31,6 +31,7 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     @IBOutlet var lblPrecio: UILabel!
     @IBOutlet var floatRatingView: FloatRatingView!
     @IBOutlet var txtDescripcion: UITextView!
+    @IBOutlet var lblDuracion: UILabel!
     @IBOutlet var lblFechaHoraReserva: UILabel!
     @IBOutlet var lblPreguntas: UILabel!
     
@@ -83,6 +84,33 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
         
         txtDescripcion.text = modelOferente.publicacion.descripcion
         
+        modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
+        
+        var textoDuracionMedida = ""
+        
+        if modelUsuario.publicacionCarrito.publicacionCompra.duracion! > 1
+        {
+            textoDuracionMedida = modelUsuario.publicacionCarrito.publicacionCompra.duracionMedida!
+            
+        } else
+        {
+            if modelUsuario.publicacionCarrito.publicacionCompra.duracionMedida! == "Minutos"
+            {
+                textoDuracionMedida = "Minuto"
+            }
+            
+            if modelUsuario.publicacionCarrito.publicacionCompra.duracionMedida! == "Horas"
+            {
+                textoDuracionMedida = "Hora"
+            }
+            
+            if modelUsuario.publicacionCarrito.publicacionCompra.duracionMedida! == "Días"
+            {
+                textoDuracionMedida = "Día"
+            }
+        }
+        
+        lblDuracion.text = "Duración del servicio: \(modelOferente.publicacion.duracion!) \(textoDuracionMedida)"
         btnComprar.layer.cornerRadius = 10.0
         
         btnPreguntar.layer.cornerRadius = 10.0
@@ -127,7 +155,6 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
                             modelUsuario.publicacionCarrito.fechaHoraReserva = publicacionCarrito.fechaHoraReserva
                             modelUsuario.publicacionCarrito.idCarrito = publicacionCarrito.idCarrito
                             modelUsuario.publicacionCarrito.idPublicacion = publicacionCarrito.idPublicacion
-                            modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
                             modelUsuario.publicacionCarrito.servicio = modelOferente.publicacion.servicio
                         }
                     }

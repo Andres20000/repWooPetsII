@@ -60,14 +60,9 @@ class PreguntarViewController: UIViewController, UITextViewDelegate
         if (textView.text.characters.count) < 10
         {
             self.mostrarAlerta(titulo: "!Advertencia!", mensaje: "La pregunta debe ser mínimo de 10 caracteres")
-            
-            textView.text = "¿Cuál es tu duda? Escribe aquí."
-            preguntaFormulada.pregunta = ""
-            
-        }else
-        {
-            preguntaFormulada.pregunta = textView.text
         }
+        
+        preguntaFormulada.pregunta = textView.text
     }
     
     @IBAction func enviarPregunta(_ sender: Any)
@@ -77,34 +72,40 @@ class PreguntarViewController: UIViewController, UITextViewDelegate
         if preguntaFormulada.pregunta == ""
         {
             self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Formula tu pregunta para poder enviarla")
-        } else
-        {
-            let  user = FIRAuth.auth()?.currentUser
-            let nowDate = NSDate()
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy h:mm a"
-            let dateString = dateFormatter.string(from: nowDate as Date)
-            
-            preguntaFormulada.fechaPregunta = dateString
-            preguntaFormulada.idCliente = (user?.uid)!
-            preguntaFormulada.idOferente = modelOferente.publicacion.idOferente
-            preguntaFormulada.idPublicacion = modelOferente.publicacion.idPublicacion
-            
-            ComandoUsuario.preguntarEnPublicacion(pregunta: preguntaFormulada)
-            
-            let alert:UIAlertController = UIAlertController(title: "¡Envío exitoso!", message: "Tu pregunta ha sido enviada a la persona encargada. Mas adelante te llegará una notificación informándote su respuesta", preferredStyle: .alert)
-            
-            let continuarAction = UIAlertAction(title: "OK", style: .default)
-            {
-                UIAlertAction in self.avisoPreguntaEnviada()
-            }
-            
-            // Add the actions
-            alert.addAction(continuarAction)
-            
-            self.present(alert, animated: true, completion: nil)
+            return
         }
+        
+        if (preguntaFormulada.pregunta?.characters.count)! < 10
+        {
+            self.mostrarAlerta(titulo: "!Advertencia!", mensaje: "La pregunta debe ser mínimo de 10 caracteres")
+            return
+        }
+        
+        let  user = FIRAuth.auth()?.currentUser
+        let nowDate = NSDate()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy h:mm a"
+        let dateString = dateFormatter.string(from: nowDate as Date)
+        
+        preguntaFormulada.fechaPregunta = dateString
+        preguntaFormulada.idCliente = (user?.uid)!
+        preguntaFormulada.idOferente = modelOferente.publicacion.idOferente
+        preguntaFormulada.idPublicacion = modelOferente.publicacion.idPublicacion
+        
+        ComandoUsuario.preguntarEnPublicacion(pregunta: preguntaFormulada)
+        
+        let alert:UIAlertController = UIAlertController(title: "¡Envío exitoso!", message: "Tu pregunta ha sido enviada a la persona encargada. Mas adelante te llegará una notificación informándote su respuesta", preferredStyle: .alert)
+        
+        let continuarAction = UIAlertAction(title: "OK", style: .default)
+        {
+            UIAlertAction in self.avisoPreguntaEnviada()
+        }
+        
+        // Add the actions
+        alert.addAction(continuarAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     func avisoPreguntaEnviada()
