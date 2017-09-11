@@ -127,17 +127,34 @@ class ConfirmacionDosViewController: UIViewController
         
         if modelUsuario.publicacionCarrito.publicacionCompra.servicio!
         {
-            lblTextoDireccion.text = "Dirección del servicio"
-            lblDireccion.text = "   \(modelOferente.oferente[0].direccion!)"
-            
-            lblTextoTelefono.text = "Teléfono contacto servicio"
-            lblTelefono.text = "   \((modelOferente.oferente[0].telefono)!)"
-            
-            lblCambiar.isHidden = true
-            imgAdelante.isHidden = true
-            btnCambiar.isHidden = true
-            
-            self.trailingSpaceConstraint?.constant = -75.0
+            if modelUsuario.publicacionCarrito.publicacionCompra.servicioEnDomicilio!
+            {
+                lblTextoDireccion.text = "Dirección del servicio (tienda)"
+                lblDireccion.text = "   \(modelOferente.oferente[0].direccion!)"
+                
+                lblTextoTelefono.text = "Teléfono contacto del servicio"
+                lblTelefono.text = "   \((modelOferente.oferente[0].telefono)!)"
+                
+                lblCambiar.isHidden = true
+                imgAdelante.isHidden = true
+                btnCambiar.isHidden = true
+                
+                self.trailingSpaceConstraint?.constant = -75.0
+            } else
+            {
+                lblTextoDireccion.text = "Dirección del servicio (domicilio)"
+                
+                for direccion in (modelUsuario.usuario[0].datosComplementarios?[0].direcciones)!
+                {
+                    if direccion.porDefecto!
+                    {
+                        lblDireccion.text = "   \(direccion.direccion!)"
+                    }
+                }
+                
+                lblTextoTelefono.text = "Teléfono contacto"
+                lblTelefono.text = "   \((modelUsuario.usuario[0].datosComplementarios?[0].celular)!)"
+            }
             
         } else
         {
