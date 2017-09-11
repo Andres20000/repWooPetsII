@@ -113,6 +113,7 @@ class ViewController: UIViewController
             ComandoOferente.getDatosTPaga(uid: user!.uid)
             ComandoOferente.getTarjetas(uid: user!.uid)
             ComandoParametros.getParametros()
+            ComandoPreguntasOferente.getPreguntasFrecuentes()
             
             model.yaPrecargo = true
         }

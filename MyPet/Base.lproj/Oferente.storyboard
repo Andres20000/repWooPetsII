@@ -2362,11 +2362,12 @@
                         <segue destination="4mn-XI-9Y3" kind="presentation" identifier="misPublicaciones" animates="NO" id="kEB-1u-cLh"/>
                         <segue destination="GGn-Yq-OOD" kind="presentation" identifier="misPreguntas" id="Fb3-n8-vyK"/>
                         <segue destination="9vR-hU-M6e" kind="presentation" identifier="misVentas" id="JR9-Vu-G1n"/>
+                        <segue destination="bJX-d7-PLi" kind="presentation" identifier="preguntasFrecuentes" id="RhC-eE-wPq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctK-9q-Tfy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3820" y="525"/>
+            <point key="canvasLocation" x="3742" y="510"/>
         </scene>
         <!--Mis Publicaciones View Controller-->
         <scene sceneID="Vdh-Tt-nex">
@@ -4740,6 +4741,82 @@
             </objects>
             <point key="canvasLocation" x="5142" y="2032"/>
         </scene>
+        <!--Preguntas Frecuentes-->
+        <scene sceneID="fXp-3l-YRd">
+            <objects>
+                <viewController id="bJX-d7-PLi" customClass="PreguntasFrecuentes" customModule="MyPet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bur-Fi-u44"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qq2-XJ-WTm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fZg-hA-gD1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="diS-jE-vVi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="tEr-yS-1v4"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="btnAtrasBlanco" id="QOa-Oj-Ajf">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="backView:" destination="bJX-d7-PLi" id="DJ8-3q-V7i"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="F1B-GP-cC9"/>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Ob5-vf-HNV"/>
+                                    <barButtonItem title="Preguntas Frecuentes" id="d3I-9O-KG2">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="backView:" destination="bJX-d7-PLi" id="Ftm-ha-mnw"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" red="0.0" green="0.75686274509999996" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kMn-GF-Eki">
+                                <rect key="frame" x="0.0" y="88" width="375" height="612"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="bJX-d7-PLi" id="7DQ-7n-2Z9"/>
+                                    <outlet property="delegate" destination="bJX-d7-PLi" id="ULk-lY-1EM"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Ic4-rc-RES">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bJX-d7-PLi" id="QW8-Jh-vQW"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ic4-rc-RES" firstAttribute="top" secondItem="diS-jE-vVi" secondAttribute="bottom" id="6BG-2E-9jF"/>
+                            <constraint firstItem="diS-jE-vVi" firstAttribute="width" secondItem="fZg-hA-gD1" secondAttribute="width" id="Gda-Oz-hbh"/>
+                            <constraint firstItem="diS-jE-vVi" firstAttribute="centerX" secondItem="fZg-hA-gD1" secondAttribute="centerX" id="IFF-RT-7bK"/>
+                            <constraint firstItem="Qq2-XJ-WTm" firstAttribute="top" secondItem="kMn-GF-Eki" secondAttribute="bottom" id="Icv-4n-lmu"/>
+                            <constraint firstItem="kMn-GF-Eki" firstAttribute="leading" secondItem="fZg-hA-gD1" secondAttribute="leading" id="MvA-Iz-aao"/>
+                            <constraint firstItem="Ic4-rc-RES" firstAttribute="width" secondItem="fZg-hA-gD1" secondAttribute="width" id="TEQ-GH-1d2"/>
+                            <constraint firstItem="kMn-GF-Eki" firstAttribute="top" secondItem="Ic4-rc-RES" secondAttribute="bottom" id="W3Y-gt-wgC"/>
+                            <constraint firstItem="Ic4-rc-RES" firstAttribute="centerX" secondItem="fZg-hA-gD1" secondAttribute="centerX" id="anl-Ed-7nE"/>
+                            <constraint firstItem="diS-jE-vVi" firstAttribute="top" secondItem="bur-Fi-u44" secondAttribute="bottom" id="eIu-wd-xuV"/>
+                            <constraint firstAttribute="trailing" secondItem="kMn-GF-Eki" secondAttribute="trailing" id="pKF-x9-JGx"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="700"/>
+                    <connections>
+                        <outlet property="search" destination="Ic4-rc-RES" id="k9h-Bv-c7m"/>
+                        <outlet property="tabla" destination="kMn-GF-Eki" id="UED-GP-wLd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bsH-uf-Ko7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3414" y="2122"/>
+        </scene>
         <!--Ingreso Tarjeta Habiente-->
         <scene sceneID="eNN-Ue-moj">
             <objects>
@@ -5502,7 +5579,7 @@
         <image name="imgDestacadoBlanco" width="50" height="50"/>
         <image name="imgDireccion" width="19" height="19"/>
         <image name="imgEstrellaVacia" width="23" height="23"/>
-        <image name="imgMuestraDestacado" width="375" height="275"/>
+        <image name="imgMuestraDestacado" width="750" height="551"/>
         <image name="imgNotificacionBlanco" width="50" height="50"/>
         <image name="imgPregunta" width="28" height="23"/>
         <image name="imgTarjeta" width="40" height="40"/>

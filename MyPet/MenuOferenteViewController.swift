@@ -101,8 +101,7 @@ class MenuOferenteViewController: UIViewController
             self.performSegue(withIdentifier: "misPreguntas", sender: self)
             
         case 3:
-            //self.performSegue(withIdentifier: "misPublicaciones", sender: self)
-            print("En construcción")
+            self.performSegue(withIdentifier: "preguntasFrecuentes", sender: self)
             
         case 4:
             self.performSegue(withIdentifier: "misVentas", sender: self)

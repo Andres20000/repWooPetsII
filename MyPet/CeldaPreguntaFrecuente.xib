@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CeldaPreguntaFrecuente" rowHeight="59" id="VfX-Xh-o7Y" customClass="CeldaPreguntaFrecuente" customModule="MyPet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="384" height="59"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VfX-Xh-o7Y" id="CVE-MN-s0f">
+                <rect key="frame" x="0.0" y="0.0" width="384" height="58.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QuY-SO-fzp">
+                        <rect key="frame" x="11.5" y="8" width="361" height="17"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0py-rE-eca">
+                        <rect key="frame" x="11.5" y="33" width="361" height="17"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="topMargin" secondItem="QuY-SO-fzp" secondAttribute="top" id="3ac-7r-OlR"/>
+                    <constraint firstItem="0py-rE-eca" firstAttribute="width" secondItem="QuY-SO-fzp" secondAttribute="width" id="MXW-pm-h7C"/>
+                    <constraint firstItem="0py-rE-eca" firstAttribute="centerX" secondItem="QuY-SO-fzp" secondAttribute="centerX" id="NDG-U6-xJR"/>
+                    <constraint firstItem="QuY-SO-fzp" firstAttribute="centerX" secondItem="CVE-MN-s0f" secondAttribute="centerX" id="fXw-u6-wil"/>
+                    <constraint firstItem="QuY-SO-fzp" firstAttribute="width" secondItem="CVE-MN-s0f" secondAttribute="width" multiplier="0.94" id="hyf-lY-csK"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="0py-rE-eca" secondAttribute="bottom" constant="0.5" id="qef-Me-j1c"/>
+                    <constraint firstItem="0py-rE-eca" firstAttribute="top" secondItem="QuY-SO-fzp" secondAttribute="bottom" constant="8" id="qix-mS-gLa"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="pregunta" destination="QuY-SO-fzp" id="t6U-C2-Sz5"/>
+                <outlet property="respuesta" destination="0py-rE-eca" id="qiz-94-kdC"/>
+            </connections>
+            <point key="canvasLocation" x="-117" y="-403.5"/>
+        </tableViewCell>
+    </objects>
+</document>

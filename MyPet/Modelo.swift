@@ -69,6 +69,19 @@ class Pregunta
 }
 
 
+class PreguntaFrecuente
+{
+    
+    var pregunta:String = ""
+    var respuesta:String = ""
+    
+    var cadenaBusqueda:String  {
+        return pregunta + " " + respuesta
+    }
+
+}
+
+
 
 
 

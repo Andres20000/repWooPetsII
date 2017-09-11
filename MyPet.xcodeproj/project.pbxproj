@@ -69,6 +69,13 @@
 		41D9E45C1F4E465100923B2B /* Parametros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D9E45A1F4E465000923B2B /* Parametros.swift */; };
 		41ED810F1F61A40200A60EEE /* PagoExitosoDestacado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED810E1F61A40200A60EEE /* PagoExitosoDestacado.swift */; };
 		41ED81101F61A40200A60EEE /* PagoExitosoDestacado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED810E1F61A40200A60EEE /* PagoExitosoDestacado.swift */; };
+		41F6CDB01F6451EA0070DA46 /* PreguntasFrecuentes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F6CDAF1F6451EA0070DA46 /* PreguntasFrecuentes.swift */; };
+		41F6CDB11F6451EA0070DA46 /* PreguntasFrecuentes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F6CDAF1F6451EA0070DA46 /* PreguntasFrecuentes.swift */; };
+		41F6CDB41F6589630070DA46 /* CeldaPreguntaFrecuente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F6CDB31F6589630070DA46 /* CeldaPreguntaFrecuente.swift */; };
+		41F6CDB51F6589630070DA46 /* CeldaPreguntaFrecuente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F6CDB31F6589630070DA46 /* CeldaPreguntaFrecuente.swift */; };
+		41F6CDB71F658B610070DA46 /* CeldaPreguntaFrecuente.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F6CDB61F658B610070DA46 /* CeldaPreguntaFrecuente.xib */; };
+		41F6CDB81F658B610070DA46 /* CeldaPreguntaFrecuente.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F6CDB61F658B610070DA46 /* CeldaPreguntaFrecuente.xib */; };
+		41F6CDBA1F6593190070DA46 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41F6CDB91F6593190070DA46 /* GoogleService-Info.plist */; };
 		840B1B3A1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
 		840B1B3B1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
 		840B1B3C1F339B2900423832 /* ResenaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840B1B391F339B2900423832 /* ResenaTableViewCell.xib */; };
@@ -332,6 +339,10 @@
 		41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestacarPublicacionViewController.swift; sourceTree = "<group>"; };
 		41D9E45A1F4E465000923B2B /* Parametros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parametros.swift; sourceTree = "<group>"; };
 		41ED810E1F61A40200A60EEE /* PagoExitosoDestacado.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagoExitosoDestacado.swift; sourceTree = "<group>"; };
+		41F6CDAF1F6451EA0070DA46 /* PreguntasFrecuentes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreguntasFrecuentes.swift; sourceTree = "<group>"; };
+		41F6CDB31F6589630070DA46 /* CeldaPreguntaFrecuente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CeldaPreguntaFrecuente.swift; sourceTree = "<group>"; };
+		41F6CDB61F658B610070DA46 /* CeldaPreguntaFrecuente.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CeldaPreguntaFrecuente.xib; sourceTree = "<group>"; };
+		41F6CDB91F6593190070DA46 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49E7A6DA1136AACD9514E46A /* Pods-MyPetPruebas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPetPruebas.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyPetPruebas/Pods-MyPetPruebas.release.xcconfig"; sourceTree = "<group>"; };
 		840B1B381F339B2900423832 /* ResenaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResenaTableViewCell.swift; sourceTree = "<group>"; };
 		840B1B391F339B2900423832 /* ResenaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResenaTableViewCell.xib; sourceTree = "<group>"; };
@@ -522,6 +533,15 @@
 				4126C96C1F45017800BC4413 /* CeldaVentaProducto.swift */,
 			);
 			name = "Cell Mis Ventas";
+			sourceTree = "<group>";
+		};
+		41F6CDB21F6588060070DA46 /* Cell Detalle Pregunta Frecuente */ = {
+			isa = PBXGroup;
+			children = (
+				41F6CDB31F6589630070DA46 /* CeldaPreguntaFrecuente.swift */,
+				41F6CDB61F658B610070DA46 /* CeldaPreguntaFrecuente.xib */,
+			);
+			name = "Cell Detalle Pregunta Frecuente";
 			sourceTree = "<group>";
 		};
 		840B1B371F3398AC00423832 /* Cell Resena */ = {
@@ -851,6 +871,8 @@
 				41572E891F4CE33000F3878D /* DestacarPublicacionViewController.swift */,
 				41ED810E1F61A40200A60EEE /* PagoExitosoDestacado.swift */,
 				84A3E1C71EC3C4530013E4DD /* NotificacionOferenteViewController.swift */,
+				41F6CDAF1F6451EA0070DA46 /* PreguntasFrecuentes.swift */,
+				41F6CDB21F6588060070DA46 /* Cell Detalle Pregunta Frecuente */,
 			);
 			name = Oferente;
 			sourceTree = "<group>";
@@ -861,6 +883,7 @@
 				84F4FA651EAAAF6900F3E69A /* AppDelegate.swift */,
 				84F4FA6E1EAAAF6900F3E69A /* LaunchScreen.storyboard */,
 				84F4FA711EAAAF6900F3E69A /* Info.plist */,
+				41F6CDB91F6593190070DA46 /* GoogleService-Info.plist */,
 				847FDC2D1ED54336002F9530 /* Media.xcassets */,
 			);
 			path = MyPetPruebas;
@@ -984,6 +1007,7 @@
 				847FDC2F1ED54342002F9530 /* Assets.xcassets in Resources */,
 				84A3E1D21EC4335B0013E4DD /* PublicacionTableViewCell.xib in Resources */,
 				84F4FA551EAA955900F3E69A /* LaunchScreen.storyboard in Resources */,
+				41F6CDB71F658B610070DA46 /* CeldaPreguntaFrecuente.xib in Resources */,
 				847FDC111ED34029002F9530 /* DetalleEstandarTableViewCell.xib in Resources */,
 				844860091F46447300DF5D9D /* ProductoCompradoTableViewCell.xib in Resources */,
 				840B1B5D1F36612500423832 /* Oferente.storyboard in Resources */,
@@ -1023,6 +1047,7 @@
 				84A5A4D71F3CD1A600429500 /* CompraTableViewCell.xib in Resources */,
 				84A3E1D31EC4335B0013E4DD /* PublicacionTableViewCell.xib in Resources */,
 				84CA9EFF1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
+				41F6CDB81F658B610070DA46 /* CeldaPreguntaFrecuente.xib in Resources */,
 				840B1B4A1F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */,
 				84F4FA781EAAEF0300F3E69A /* Main.storyboard in Resources */,
 				84AF006B1F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib in Resources */,
@@ -1043,6 +1068,7 @@
 				84818C581F411CC1001011BA /* CarritoTableViewCell.xib in Resources */,
 				4124FE561F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib in Resources */,
 				8451A38E1EFB7A6200B59E46 /* UbicacionTableViewCell.xib in Resources */,
+				41F6CDBA1F6593190070DA46 /* GoogleService-Info.plist in Resources */,
 				840B1B5E1F36612500423832 /* Oferente.storyboard in Resources */,
 				411A85FC1F41E27A00BDC788 /* ChatCeldaSinRespuesta.xib in Resources */,
 				847FDC181ED3469F002F9530 /* DetalleHorarioTableViewCell.xib in Resources */,
@@ -1175,6 +1201,7 @@
 				840B1B3A1F339B2900423832 /* ResenaTableViewCell.swift in Sources */,
 				4134D51A1F46033400DB43DA /* DetalleMiVenta.swift in Sources */,
 				84417B971EB93D0D00A70ABC /* HorarioTableViewCell.swift in Sources */,
+				41F6CDB01F6451EA0070DA46 /* PreguntasFrecuentes.swift in Sources */,
 				84417B9E1EBACB2400A70ABC /* HorarioViewController.swift in Sources */,
 				8448600D1F4644A600DF5D9D /* ServicioCompradoTableViewCell.swift in Sources */,
 				84417B701EB04F6900A70ABC /* RegistroOferenteViewController.swift in Sources */,
@@ -1191,6 +1218,7 @@
 				8451A38B1EFB7A6200B59E46 /* UbicacionTableViewCell.swift in Sources */,
 				84E4CF2D1F22EAFF009DC256 /* FloatRatingView.swift in Sources */,
 				41572E8A1F4CE33000F3878D /* DestacarPublicacionViewController.swift in Sources */,
+				41F6CDB41F6589630070DA46 /* CeldaPreguntaFrecuente.swift in Sources */,
 				84417BA31EBD1EA100A70ABC /* ModeloOferente.swift in Sources */,
 				4126C9601F449F7200BC4413 /* ComandoCompras.swift in Sources */,
 				84A3E1D71EC66EA80013E4DD /* CategoriaCollectionViewCell.swift in Sources */,
@@ -1290,6 +1318,7 @@
 				840B1B3B1F339B2900423832 /* ResenaTableViewCell.swift in Sources */,
 				4134D51B1F46033400DB43DA /* DetalleMiVenta.swift in Sources */,
 				84417B981EB93D0D00A70ABC /* HorarioTableViewCell.swift in Sources */,
+				41F6CDB11F6451EA0070DA46 /* PreguntasFrecuentes.swift in Sources */,
 				84417B9F1EBACB2400A70ABC /* HorarioViewController.swift in Sources */,
 				8448600E1F4644A600DF5D9D /* ServicioCompradoTableViewCell.swift in Sources */,
 				84417B711EB04F6900A70ABC /* RegistroOferenteViewController.swift in Sources */,
@@ -1306,6 +1335,7 @@
 				8451A38C1EFB7A6200B59E46 /* UbicacionTableViewCell.swift in Sources */,
 				84E4CF2E1F22EAFF009DC256 /* FloatRatingView.swift in Sources */,
 				41572E8B1F4CE33000F3878D /* DestacarPublicacionViewController.swift in Sources */,
+				41F6CDB51F6589630070DA46 /* CeldaPreguntaFrecuente.swift in Sources */,
 				84417BA41EBD1EA100A70ABC /* ModeloOferente.swift in Sources */,
 				4126C9611F449F7200BC4413 /* ComandoCompras.swift in Sources */,
 				84A3E1D81EC66EA80013E4DD /* CategoriaCollectionViewCell.swift in Sources */,
