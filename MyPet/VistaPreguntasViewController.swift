@@ -41,6 +41,8 @@ class VistaPreguntasViewController: UIViewController, UITableViewDelegate, UITab
         let nib = UINib(nibName: "PreguntaRespuestaTableViewCell", bundle: nil)
         tablePreguntasRespuestas.register(nib, forCellReuseIdentifier: "preguntaRespuestaTableViewCell")
         
+        tablePreguntasRespuestas.rowHeight = UITableViewAutomaticDimension
+        tablePreguntasRespuestas.estimatedRowHeight = 120
     }
     
     func refrescarVista(_ notification: Notification)

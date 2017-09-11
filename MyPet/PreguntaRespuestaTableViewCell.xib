@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,83 +18,51 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Cwo-YK-bd6">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fecha" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Cwo-YK-bd6">
                         <rect key="frame" x="8" y="8" width="297" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="L5R-PP-E3p"/>
-                        </constraints>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fecha" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8OP-jm-xWc">
-                        <rect key="frame" x="8" y="71" width="297" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="tnx-yv-Tdr"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
-                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pregunta" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DOx-I5-afJ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pregunta" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DOx-I5-afJ">
                         <rect key="frame" x="8" y="23" width="304" height="10"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="10" id="i6j-mU-LMF"/>
-                        </constraints>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="8"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pregunta Usuario" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7pZ-K4-0LJ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pregunta Usuario" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7pZ-K4-0LJ">
                         <rect key="frame" x="8" y="33" width="304" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="VRQ-F9-uSB"/>
-                        </constraints>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Respuesta" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gE2-fk-CKu">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Respuesta" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gE2-fk-CKu">
                         <rect key="frame" x="8" y="53" width="297" height="10"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="10" id="3K6-vG-PJj"/>
-                        </constraints>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="8"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="nTD-EN-o88">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fecha" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8OP-jm-xWc">
+                        <rect key="frame" x="8" y="71" width="297" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="nTD-EN-o88">
                         <rect key="frame" x="8" y="88" width="304" height="59"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="59" id="ViJ-lI-BFw"/>
-                        </constraints>
                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="DOx-I5-afJ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="23b-E8-dyl"/>
-                    <constraint firstItem="nTD-EN-o88" firstAttribute="top" secondItem="8OP-jm-xWc" secondAttribute="bottom" constant="2" id="8VY-mi-sYK"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="gE2-fk-CKu" secondAttribute="trailing" constant="7" id="AJM-oO-itq"/>
-                    <constraint firstItem="Cwo-YK-bd6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Bco-AE-xki"/>
-                    <constraint firstAttribute="trailing" secondItem="nTD-EN-o88" secondAttribute="trailing" constant="8" id="IiT-ms-sls"/>
-                    <constraint firstItem="DOx-I5-afJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Nyp-Ex-jeA"/>
-                    <constraint firstItem="Cwo-YK-bd6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="PJC-1k-HHs"/>
-                    <constraint firstItem="7pZ-K4-0LJ" firstAttribute="top" secondItem="DOx-I5-afJ" secondAttribute="bottom" id="Qyi-8F-xpj"/>
-                    <constraint firstItem="7pZ-K4-0LJ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="WFj-Ba-5Pg"/>
-                    <constraint firstItem="8OP-jm-xWc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="X62-w9-4Ww"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="8OP-jm-xWc" secondAttribute="trailing" constant="7" id="XoX-GM-Adj"/>
-                    <constraint firstItem="8OP-jm-xWc" firstAttribute="top" secondItem="gE2-fk-CKu" secondAttribute="bottom" constant="8" id="cCA-aU-RIQ"/>
-                    <constraint firstItem="gE2-fk-CKu" firstAttribute="top" secondItem="7pZ-K4-0LJ" secondAttribute="bottom" id="h30-io-QtI"/>
-                    <constraint firstItem="DOx-I5-afJ" firstAttribute="top" secondItem="Cwo-YK-bd6" secondAttribute="bottom" id="kCM-yA-70n"/>
-                    <constraint firstItem="gE2-fk-CKu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="mpj-ne-39d"/>
-                    <constraint firstItem="nTD-EN-o88" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="prj-lq-3XU"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Cwo-YK-bd6" secondAttribute="trailing" constant="7" id="rRP-7h-SfJ"/>
-                    <constraint firstItem="7pZ-K4-0LJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="z4g-v3-gHc"/>
-                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="lblEstadoPregunta" destination="gE2-fk-CKu" id="Tdd-CC-1oO"/>
