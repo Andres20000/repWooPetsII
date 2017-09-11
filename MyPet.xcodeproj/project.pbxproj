@@ -97,6 +97,11 @@
 		8410A77C1F1870CE0069912F /* PublicacionesPorCategoriaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8410A77A1F1870CE0069912F /* PublicacionesPorCategoriaViewController.swift */; };
 		843449151EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843449141EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift */; };
 		843449161EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843449141EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift */; };
+		843A4AFA1F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A4AF81F62F0770064C1C9 /* MiCompraFinalizadaTableViewCell.swift */; };
+		843A4AFB1F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843A4AF81F62F0770064C1C9 /* MiCompraFinalizadaTableViewCell.swift */; };
+		843A4AFC1F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843A4AF91F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.xib */; };
+		843A4AFD1F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843A4AF91F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.xib */; };
+		843A4B011F635DD10064C1C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 843A4B001F635DD10064C1C9 /* GoogleService-Info.plist */; };
 		843B56261F13E46B007297CB /* AlarmaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B56251F13E46B007297CB /* AlarmaViewController.swift */; };
 		843B56271F13E46B007297CB /* AlarmaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B56251F13E46B007297CB /* AlarmaViewController.swift */; };
 		84417B6D1EB0334400A70ABC /* AvisoOferenteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84417B6C1EB0334400A70ABC /* AvisoOferenteViewController.swift */; };
@@ -165,10 +170,6 @@
 		846C925F1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C925C1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift */; };
 		846C92601F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C925D1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib */; };
 		846C92611F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C925D1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib */; };
-		846C92641F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92621F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift */; };
-		846C92651F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92621F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift */; };
-		846C92661F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C92631F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib */; };
-		846C92671F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C92631F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib */; };
 		847838CD1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847838CB1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift */; };
 		847838CE1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847838CB1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift */; };
 		847838CF1F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847838CC1F1699EC006A41F8 /* PublicacionCollectionViewCell.xib */; };
@@ -353,6 +354,9 @@
 		840BD1801ED1339500AAD2AE /* DetallePublicacionOferenteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetallePublicacionOferenteViewController.swift; sourceTree = "<group>"; };
 		8410A77A1F1870CE0069912F /* PublicacionesPorCategoriaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicacionesPorCategoriaViewController.swift; sourceTree = "<group>"; };
 		843449141EC81079000FC2A9 /* PublicacionOferenteTresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicacionOferenteTresViewController.swift; sourceTree = "<group>"; };
+		843A4AF81F62F0770064C1C9 /* MiCompraFinalizadaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiCompraFinalizadaTableViewCell.swift; sourceTree = "<group>"; };
+		843A4AF91F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiCompraFinalizadaTableViewCell.xib; sourceTree = "<group>"; };
+		843A4B001F635DD10064C1C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		843B56251F13E46B007297CB /* AlarmaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmaViewController.swift; sourceTree = "<group>"; };
 		84417B6C1EB0334400A70ABC /* AvisoOferenteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvisoOferenteViewController.swift; sourceTree = "<group>"; };
 		84417B6F1EB04F6900A70ABC /* RegistroOferenteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistroOferenteViewController.swift; sourceTree = "<group>"; };
@@ -387,8 +391,6 @@
 		845326871F0C9B11007A4776 /* AlertaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertaTableViewCell.xib; sourceTree = "<group>"; };
 		846C925C1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelefonoRegistroTableViewCell.swift; sourceTree = "<group>"; };
 		846C925D1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TelefonoRegistroTableViewCell.xib; sourceTree = "<group>"; };
-		846C92621F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompraFinalizadaTableViewCell.swift; sourceTree = "<group>"; };
-		846C92631F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompraFinalizadaTableViewCell.xib; sourceTree = "<group>"; };
 		847838CB1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicacionCollectionViewCell.swift; sourceTree = "<group>"; };
 		847838CC1F1699EC006A41F8 /* PublicacionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublicacionCollectionViewCell.xib; sourceTree = "<group>"; };
 		847FDC0D1ED34029002F9530 /* DetalleEstandarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalleEstandarTableViewCell.swift; sourceTree = "<group>"; };
@@ -571,8 +573,8 @@
 				844860121F4B3F2300DF5D9D /* MiCompraPendienteTableViewCell.xib */,
 				84AF00661F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.swift */,
 				84AF00671F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib */,
-				846C92621F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift */,
-				846C92631F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib */,
+				843A4AF81F62F0770064C1C9 /* MiCompraFinalizadaTableViewCell.swift */,
+				843A4AF91F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.xib */,
 			);
 			name = "Cell Carrito";
 			sourceTree = "<group>";
@@ -881,6 +883,7 @@
 				84F4FA651EAAAF6900F3E69A /* AppDelegate.swift */,
 				84F4FA6E1EAAAF6900F3E69A /* LaunchScreen.storyboard */,
 				84F4FA711EAAAF6900F3E69A /* Info.plist */,
+				843A4B001F635DD10064C1C9 /* GoogleService-Info.plist */,
 				847FDC2D1ED54336002F9530 /* Media.xcassets */,
 			);
 			path = MyPetPruebas;
@@ -1015,6 +1018,7 @@
 				847FDC171ED3469F002F9530 /* DetalleHorarioTableViewCell.xib in Resources */,
 				84417B991EB93D0D00A70ABC /* HorarioTableViewCell.xib in Resources */,
 				411A85FB1F41E27A00BDC788 /* ChatCeldaSinRespuesta.xib in Resources */,
+				843A4AFC1F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.xib in Resources */,
 				84417B8D1EB2AA0600A70ABC /* EstandarRegistroTableViewCell.xib in Resources */,
 				840B1B591F3594AD00423832 /* FavoritoTableViewCell.xib in Resources */,
 				84A3E1D91EC66EA80013E4DD /* CategoriaCollectionViewCell.xib in Resources */,
@@ -1030,7 +1034,6 @@
 				847FDC321ED545A6002F9530 /* Media.xcassets in Resources */,
 				4126C96A1F44F5B600BC4413 /* CeldaVentaProducto.xib in Resources */,
 				84F4FA501EAA955900F3E69A /* Main.storyboard in Resources */,
-				846C92661F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib in Resources */,
 				84A5A4D61F3CD1A600429500 /* CompraTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1039,6 +1042,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843A4AFD1F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.xib in Resources */,
 				846C92611F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib in Resources */,
 				84417B941EB2CAE800A70ABC /* DireccionRegistroTableViewCell.xib in Resources */,
 				84A5A4D71F3CD1A600429500 /* CompraTableViewCell.xib in Resources */,
@@ -1047,6 +1051,7 @@
 				41F6CDB81F658B610070DA46 /* CeldaPreguntaFrecuente.xib in Resources */,
 				840B1B4A1F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */,
 				84F4FA781EAAEF0300F3E69A /* Main.storyboard in Resources */,
+				843A4B011F635DD10064C1C9 /* GoogleService-Info.plist in Resources */,
 				84AF006B1F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib in Resources */,
 				8453268B1F0C9B11007A4776 /* AlertaTableViewCell.xib in Resources */,
 				84417B9A1EB93D0D00A70ABC /* HorarioTableViewCell.xib in Resources */,
@@ -1058,7 +1063,6 @@
 				840B1B3D1F339B2900423832 /* ResenaTableViewCell.xib in Resources */,
 				84F4FA701EAAAF6900F3E69A /* LaunchScreen.storyboard in Resources */,
 				847838D01F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
-				846C92671F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.xib in Resources */,
 				8448600A1F46447300DF5D9D /* ProductoCompradoTableViewCell.xib in Resources */,
 				844860161F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.xib in Resources */,
 				84A3E1DA1EC66EA80013E4DD /* CategoriaCollectionViewCell.xib in Resources */,
@@ -1259,6 +1263,7 @@
 				84A3E1C81EC3C4530013E4DD /* NotificacionOferenteViewController.swift in Sources */,
 				84A5A4CC1F3BB98E00429500 /* AvisoCarritoViewController.swift in Sources */,
 				41572E871F4CE17D00F3878D /* RespuestaVC.swift in Sources */,
+				843A4AFA1F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.swift in Sources */,
 				41160B5F1F49BC6B00FF4765 /* ComandoCalificacion.swift in Sources */,
 				4126C9631F44AA3D00BC4413 /* Compra.swift in Sources */,
 				4101EEEE1F434BC500F161DE /* ComandoDestacados.swift in Sources */,
@@ -1268,7 +1273,6 @@
 				84F4FA7C1EAB1A2800F3E69A /* InicioSesionOferenteViewController.swift in Sources */,
 				84D5AC0C1EE7A74700A18D7E /* RegistroUsuarioViewController.swift in Sources */,
 				84B451511EC9553E001282B4 /* PublicacionOferenteCuatroViewController.swift in Sources */,
-				846C92641F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift in Sources */,
 				8446CC401EE905FD005BA3D4 /* AvisoAppViewController.swift in Sources */,
 				4126C9661F44EE1900BC4413 /* MisVentasXProducto.swift in Sources */,
 				4126C96D1F45017800BC4413 /* CeldaVentaProducto.swift in Sources */,
@@ -1376,6 +1380,7 @@
 				84A3E1C91EC3C4530013E4DD /* NotificacionOferenteViewController.swift in Sources */,
 				84A5A4CD1F3BB98E00429500 /* AvisoCarritoViewController.swift in Sources */,
 				41572E881F4CE17D00F3878D /* RespuestaVC.swift in Sources */,
+				843A4AFB1F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.swift in Sources */,
 				41160B601F49BC6B00FF4765 /* ComandoCalificacion.swift in Sources */,
 				4126C9641F44AA3D00BC4413 /* Compra.swift in Sources */,
 				4101EEEF1F434BC500F161DE /* ComandoDestacados.swift in Sources */,
@@ -1385,7 +1390,6 @@
 				84F4FA7D1EAB1A2800F3E69A /* InicioSesionOferenteViewController.swift in Sources */,
 				84D5AC0D1EE7A74700A18D7E /* RegistroUsuarioViewController.swift in Sources */,
 				84B451521EC9553E001282B4 /* PublicacionOferenteCuatroViewController.swift in Sources */,
-				846C92651F5E606B00DACBC6 /* CompraFinalizadaTableViewCell.swift in Sources */,
 				8446CC411EE905FD005BA3D4 /* AvisoAppViewController.swift in Sources */,
 				4126C9671F44EE1900BC4413 /* MisVentasXProducto.swift in Sources */,
 				4126C96E1F45017800BC4413 /* CeldaVentaProducto.swift in Sources */,

@@ -90,6 +90,12 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         
         let nib3 = UINib(nibName: "MiCompraPendienteTableViewCell", bundle: nil)
         tableProductosServicios.register(nib3, forCellReuseIdentifier: "miCompraPendienteTableViewCell")
+        
+        let nib4 = UINib(nibName: "MiCompraConfirmadaTableViewCell", bundle: nil)
+        tableProductosServicios.register(nib4, forCellReuseIdentifier: "miCompraConfirmadaTableViewCell")
+        
+        let nib5 = UINib(nibName: "MiCompraFinalizadaTableViewCell", bundle: nil)
+        tableProductosServicios.register(nib5, forCellReuseIdentifier: "miCompraFinalizadaTableViewCell")
     }
     
     func refrescarVista(_ notification: Notification)
@@ -245,30 +251,98 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
             
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "miCompraPendienteTableViewCell")  as! MiCompraPendienteTableViewCell
             
-            let path = "productos/" + (modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].idPublicacion)! + "/" + (modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].publicacionCompra.fotos?[0].nombreFoto)!
-            
-            cell.imgPublicacion.loadImageUsingCacheWithUrlString(pathString: path)
-            
-            if (modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].servicio)!
+            if modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].estado == "Pendiente"
             {
-                cell.lblTextoInfo.text = "Tu servicio ha sido efectivo"
-            }else
-            {
-                cell.lblTextoInfo.text = "Tu producto ha llegado"
+                let cell = tableView.dequeueReusableCell(withIdentifier: "miCompraPendienteTableViewCell")  as! MiCompraPendienteTableViewCell
+                
+                let path = "productos/" + (modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].idPublicacion)! + "/" + (modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].publicacionCompra.fotos?[0].nombreFoto)!
+                
+                cell.imgPublicacion.loadImageUsingCacheWithUrlString(pathString: path)
+                
+                cell.lblTextoInfo.text = "Compra en proceso..."
+                
+                cell.lblNombrePublicacion.text = modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].publicacionCompra.nombre
+                
+                cell.bottomSpaceConstraint?.constant = 15.0
+                
+                cell.btnConfirmar.isHidden = true
+                cell.btnRechazar.isHidden = true
+                
+                return cell
             }
             
-            cell.lblNombrePublicacion.text = modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].publicacionCompra.nombre
+            if modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].estado == "Entregada"
+            {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "miCompraPendienteTableViewCell")  as! MiCompraPendienteTableViewCell
+                
+                let path = "productos/" + (modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].idPublicacion)! + "/" + (modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].publicacionCompra.fotos?[0].nombreFoto)!
+                
+                cell.imgPublicacion.loadImageUsingCacheWithUrlString(pathString: path)
+                
+                if (modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].servicio)!
+                {
+                    cell.lblTextoInfo.text = "¿Tu servicio ha sido efectivo?"
+                }else
+                {
+                    cell.lblTextoInfo.text = "¿Tu producto ha llegado?"
+                }
+                
+                cell.lblNombrePublicacion.text = modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].publicacionCompra.nombre
+                
+                cell.btnConfirmar.tag = indexPath.row
+                cell.btnConfirmar.addTarget(self, action: #selector(confirmarCompra), for: .touchUpInside)
+                
+                cell.btnRechazar.tag = indexPath.row
+                //cell.btnRechazar.addTarget(self, action: #selector(rechazarCompra), for: .touchUpInside)
+                
+                return cell
+            }
             
-            cell.btnConfirmar.tag = indexPath.row
-            cell.btnConfirmar.addTarget(self, action: #selector(confirmarCompra), for: .touchUpInside)
+            if modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].estado == "Cerrada"
+            {
+                modelUsuario.getCalificacionCompra(posicion: indexPath.row)
+                
+                if modelUsuario.misComprasCompleto[indexPath.row].calificacion?.count == 0
+                {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "miCompraConfirmadaTableViewCell")  as! MiCompraConfirmadaTableViewCell
+                    
+                    let path = "productos/" + (modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].idPublicacion)! + "/" + (modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].publicacionCompra.fotos?[0].nombreFoto)!
+                    
+                    cell.imgPublicacion.loadImageUsingCacheWithUrlString(pathString: path)
+                    
+                    cell.lblTextoInfo.text = "Compra finalizada"
+                    
+                    cell.lblNombrePublicacion.text = modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].publicacionCompra.nombre
+                    
+                    cell.btnCalificar.tag = indexPath.row
+                    cell.btnCalificar.addTarget(self, action: #selector(calificarCompra), for: .touchUpInside)
+                    
+                    return cell
+                    
+                } else
+                {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "miCompraFinalizadaTableViewCell")  as! MiCompraFinalizadaTableViewCell
+                    
+                    let path = "productos/" + (modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].idPublicacion)! + "/" + (modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].publicacionCompra.fotos?[0].nombreFoto)!
+                    
+                    cell.imgPublicacion.loadImageUsingCacheWithUrlString(pathString: path)
+                    
+                    cell.lblTextoInfo.text = "Compra finalizada"
+                    
+                    cell.lblNombrePublicacion.text = modelUsuario.misComprasCompleto[indexPath.row].pedido?[0].publicacionCompra.nombre
+                    
+                    cell.ratingValue = (modelUsuario.misComprasCompleto[indexPath.row].calificacion?[0].calificacion)!
+                    cell.floatRatingView.rating = Float(cell.ratingValue)
+                    
+                    return cell
+                }
+            }
             
-            cell.btnRechazar.tag = indexPath.row
-            cell.btnRechazar.addTarget(self, action: #selector(rechazarCompra), for: .touchUpInside)
-            
-            return cell
         case 2:
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "favoritoTableViewCell")  as! FavoritoTableViewCell
+            
             if let amountString = model.publicacionesFavoritas[indexPath.row].precio?.currencyInputFormatting()
             {
                 cell.lblPrecio.text = amountString
@@ -282,6 +356,8 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
                 
                 cell.imgProducto.loadImageUsingCacheWithUrlString(pathString: path)
             }
+            
+            return cell
             
         default:
             break
@@ -302,8 +378,14 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
     {
         modelUsuario.compra = modelUsuario.misComprasCompleto[sender.tag]
         
-        if modelUsuario.compra.pedido?[0].estado == "Cerrado"
-        {
+        let alert:UIAlertController = UIAlertController(title: "¡Confirmación!", message: "¿Confirmas dar por cerrada la compra?", preferredStyle: .alert)
+        
+        let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+            
+            ComandoUsuario.eliminarCompraDeAbierta(compra: self.modelUsuario.compra)
+            self.modelUsuario.compra.pedido?[0].estado = "Cerrada"
+            ComandoUsuario.confirmarCompra(compra: self.modelUsuario.compra)
+            
             if self.readStringFromFile() == ""
             {
                 self.performSegue(withIdentifier: "avisoCalificacionDesdeCarrito", sender: self)
@@ -311,10 +393,17 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
             {
                 self.performSegue(withIdentifier: "calificacionPublicacionDesdeCarrito", sender: self)
             }
-        } else
-        {
-            self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Tu compra no ha sido cerrada.")
         }
+        
+        let cancelAction = UIAlertAction(title: "No", style: .cancel)
+        {
+            UIAlertAction in
+        }
+        
+        // Add the actions
+        alert.addAction(continuarAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func rechazarCompra(sender: UIButton!)
@@ -348,6 +437,19 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         alert.addAction(enviarRechazoTres)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func calificarCompra(sender: UIButton!)
+    {
+        modelUsuario.compra = modelUsuario.misComprasCompleto[sender.tag]
+        
+        if self.readStringFromFile() == ""
+        {
+            self.performSegue(withIdentifier: "avisoCalificacionDesdeCarrito", sender: self)
+        } else
+        {
+            self.performSegue(withIdentifier: "calificacionPublicacionDesdeCarrito", sender: self)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)

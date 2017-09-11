@@ -79,13 +79,14 @@
                     <constraint firstItem="Yqi-Lb-u1r" firstAttribute="leading" secondItem="G1u-Vx-WpS" secondAttribute="trailing" constant="8" id="0cl-7b-wRS"/>
                     <constraint firstItem="G1u-Vx-WpS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="5Pa-kW-MZR"/>
                     <constraint firstItem="HrP-Za-R29" firstAttribute="top" secondItem="Yqi-Lb-u1r" secondAttribute="bottom" id="BVY-V1-NwN"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zkH-Fc-mxd" secondAttribute="bottom" constant="5.5" id="CBE-K5-Ynv"/>
                     <constraint firstItem="zqk-0x-wQJ" firstAttribute="leading" secondItem="G1u-Vx-WpS" secondAttribute="trailing" constant="8" id="DuE-r1-zdx"/>
-                    <constraint firstItem="zkH-Fc-mxd" firstAttribute="top" secondItem="HrP-Za-R29" secondAttribute="bottom" constant="8" id="Kki-Yu-Yc4"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="HrP-Za-R29" secondAttribute="bottom" constant="33.5" id="F1b-CY-3t2"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Yqi-Lb-u1r" secondAttribute="trailing" constant="18" id="OhC-6h-uXN"/>
                     <constraint firstItem="xvv-Pi-AeV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="24" id="Ooq-FX-hJp"/>
                     <constraint firstItem="xvv-Pi-AeV" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="bVU-2d-YhW"/>
                     <constraint firstItem="xvv-Pi-AeV" firstAttribute="leading" secondItem="HrP-Za-R29" secondAttribute="trailing" constant="8" id="fOh-if-Fx0"/>
-                    <constraint firstItem="zqk-0x-wQJ" firstAttribute="top" secondItem="HrP-Za-R29" secondAttribute="bottom" constant="8" id="lVV-uQ-nLI"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zqk-0x-wQJ" secondAttribute="bottom" constant="5.5" id="hh6-Lm-ph1"/>
                     <constraint firstItem="HrP-Za-R29" firstAttribute="leading" secondItem="G1u-Vx-WpS" secondAttribute="trailing" constant="8" id="lyK-h1-Pwk"/>
                     <constraint firstItem="G1u-Vx-WpS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="11" id="mlV-qf-ZCC"/>
                     <constraint firstItem="Yqi-Lb-u1r" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="qCa-oW-MGV"/>
@@ -97,6 +98,7 @@
                 <constraint firstItem="zkH-Fc-mxd" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="width" multiplier="0.31" id="z3r-xz-04k"/>
             </constraints>
             <connections>
+                <outlet property="bottomSpaceConstraint" destination="F1b-CY-3t2" id="MCt-4z-fWp"/>
                 <outlet property="btnConfirmar" destination="zqk-0x-wQJ" id="FWP-4m-aBz"/>
                 <outlet property="btnRechazar" destination="zkH-Fc-mxd" id="LDt-xZ-tKM"/>
                 <outlet property="imgPublicacion" destination="G1u-Vx-WpS" id="JTC-oz-AgK"/>

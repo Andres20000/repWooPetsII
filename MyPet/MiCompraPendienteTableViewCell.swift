@@ -10,6 +10,9 @@ import UIKit
 
 class MiCompraPendienteTableViewCell: UITableViewCell
 {
+    // This constraint ties an element at zero points from the top layout guide
+    @IBOutlet var bottomSpaceConstraint: NSLayoutConstraint?
+    
     @IBOutlet var imgPublicacion: UIImageView!
     @IBOutlet var lblTextoInfo: UILabel!
     @IBOutlet var lblNombrePublicacion: UILabel!

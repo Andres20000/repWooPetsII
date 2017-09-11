@@ -86,7 +86,7 @@ class ConfirmacionDosViewController: UIViewController
         pedido.servicio = modelUsuario.publicacionCarrito.publicacionCompra.servicio
         pedido.publicacionCompra = modelUsuario.publicacionCarrito.publicacionCompra
         pedido.cantidadCompra = modelUsuario.publicacionCarrito.cantidadCompra
-        pedido.estado = "pendiente"
+        pedido.estado = "Pendiente"
         
         if modelUsuario.publicacionCarrito.publicacionCompra.servicio!
         {

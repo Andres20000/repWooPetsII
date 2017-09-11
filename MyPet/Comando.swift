@@ -961,22 +961,28 @@ class Comando
         
     }
     
-    class func calcularEdadEnAños(birthday:NSDate) -> Int
+    class func calcularFechaEnAños(fecha1:NSDate, fecha2:NSDate) -> Int
     {
         let calendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
-        let now: NSDate! = NSDate()
-        let calcAge = calendar.components(.year, from: birthday as Date, to: now as Date, options: [])
+        let calcAge = calendar.components(.year, from: fecha2 as Date, to: fecha1 as Date, options: [])
         let age = calcAge.year
         return age!
     }
     
-    class func calcularEdadEnMeses(birthday:NSDate) -> Int
+    class func calcularFechaEnMeses(fecha1:NSDate, fecha2:NSDate) -> Int
     {
         let calendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
-        let now: NSDate! = NSDate()
-        let calcAge = calendar.components(.month, from: birthday as Date, to: now as Date, options: [])
-        let month = calcAge.month
+        let calcMonth = calendar.components(.month, from: fecha2 as Date, to: fecha1 as Date, options: [])
+        let month = calcMonth.month
         return month!
+    }
+    
+    class func calcularFechaEnDias(fecha1:NSDate, fecha2:NSDate) -> Int
+    {
+        let calendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
+        let calcDay = calendar.components(.day, from: fecha2 as Date, to: fecha1 as Date, options: [])
+        let day = calcDay.day
+        return day!
     }
     
     // Internet Vaidation Helper...

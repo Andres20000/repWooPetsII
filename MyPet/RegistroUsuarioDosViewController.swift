@@ -24,6 +24,8 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
     
     @IBOutlet var btnClose: UIButton!
     @IBOutlet var imgMailFB: UIImageView!
+    @IBOutlet var imgUbicacion: UIImageView!
+    @IBOutlet var imgTarjeta: UIImageView!
     
     @IBOutlet var txtNombre: UITextField!
     @IBOutlet var txtApellido: UITextField!
@@ -116,6 +118,16 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
         }else
         {
             imgMailFB.image = UIImage(named: "imgMailOk")
+        }
+        
+        if datosEditables
+        {
+            imgUbicacion.image = UIImage(named: "imgUbicacionOk")
+            imgTarjeta.image = UIImage(named: "imgTarjetaOk")
+        } else
+        {
+            imgUbicacion.image = UIImage(named: "imgUbicacionNok")
+            imgTarjeta.image = UIImage(named: "imgTarjetaNok")
         }
         
         let spacerViewTxtNombre = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
@@ -561,7 +573,7 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
         
         if modelUsuario.registroComplementario.apellido == "" || modelUsuario.registroComplementario.celular == "" || modelUsuario.registroComplementario.documento == "" || modelUsuario.registroComplementario.nombre == "" || modelUsuario.direccion1.direccion == "" || modelUsuario.direccion1.nombre == ""
         {
-            self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
+            self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes completar todos los campos para poder continuar")
             
             return
         }
@@ -570,7 +582,7 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
         {
             if modelUsuario.direccion2.direccion == "" || modelUsuario.direccion2.nombre == ""
             {
-                self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
+                self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes completar todos los campos para poder continuar")
                 
                 return
             }
@@ -580,7 +592,7 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
         {
             if modelUsuario.direccion3.direccion == "" || modelUsuario.direccion3.nombre == ""
             {
-                self.mostrarAlerta(titulo: "Advertencia", mensaje: "Debes completar todos los campos para poder continuar")
+                self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes completar todos los campos para poder continuar")
                 
                 return
             }

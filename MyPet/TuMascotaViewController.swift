@@ -115,7 +115,9 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
             let birthdayDate = dateFormater.date(from: modelUsuario.tuMascota.fechaNacimiento!)
             self.datePicker.date = birthdayDate!
             
-            let yearDate = Comando.calcularEdadEnAños(birthday: datePicker.date as NSDate)
+            let now: NSDate! = NSDate()
+            
+            let yearDate = Comando.calcularFechaEnAños(fecha1: now, fecha2: datePicker.date as NSDate)
             var textYear:String?
             
             if yearDate == 1
@@ -126,7 +128,7 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
                 textYear = "años"
             }
             
-            let monthDate = Comando.calcularEdadEnMeses(birthday: datePicker.date as NSDate) - (yearDate * 12)
+            let monthDate = Comando.calcularFechaEnMeses(fecha1: now, fecha2: datePicker.date as NSDate) - (yearDate * 12)
             var textMonth:String?
             
             if monthDate == 1
@@ -415,7 +417,9 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
     {
         txtFechaNacimiento.text = datePicker.date.fechaString()
         
-        let yearDate = Comando.calcularEdadEnAños(birthday: datePicker.date as NSDate)
+        let now: NSDate! = NSDate()
+        
+        let yearDate = Comando.calcularFechaEnAños(fecha1: now, fecha2: datePicker.date as NSDate)
         var textYear:String?
         
         if yearDate == 1
@@ -426,7 +430,7 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
             textYear = "años"
         }
         
-        let monthDate = Comando.calcularEdadEnMeses(birthday: datePicker.date as NSDate) - (yearDate * 12)
+        let monthDate = Comando.calcularFechaEnMeses(fecha1: now, fecha2: datePicker.date as NSDate) - (yearDate * 12)
         var textMonth:String?
         
         if monthDate == 1
