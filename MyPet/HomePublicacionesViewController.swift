@@ -319,6 +319,11 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         self.performSegue(withIdentifier: "administrarMascotasDesdeHomePublicaciones", sender: self)
     }
     
+    @IBAction func buscarPublicaciones(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "buscarDesdeHomePublicaciones", sender: self)
+    }
+    
     // #pragma mark - Collection View
     
     // 1
@@ -900,6 +905,12 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
             detailController.nombreIconoCategoria = iconoCategoria
             detailController.fixedSpaceWidth = widthFixedSpace
             detailController.tituloPublicacionesCategoria = textoPublicacionesCategoria
+        }
+        
+        if (segue.identifier == "buscarDesdeHomePublicaciones")
+        {
+            let detailController = segue.destination as! BuscarViewController
+            detailController.publicaciones = modelPublicacion.publicacionesPopulares
         }
     }
 

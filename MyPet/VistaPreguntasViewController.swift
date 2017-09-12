@@ -38,11 +38,11 @@ class VistaPreguntasViewController: UIViewController, UITableViewDelegate, UITab
         
         barItemTitulo.title = tituloVista
         
-        let nib2 = UINib(nibName: "PreguntaTableViewCell", bundle: nil)
-        tablePreguntasRespuestas.register(nib2, forCellReuseIdentifier: "preguntaTableViewCell")
-        
         let nib = UINib(nibName: "PreguntaRespuestaTableViewCell", bundle: nil)
         tablePreguntasRespuestas.register(nib, forCellReuseIdentifier: "preguntaRespuestaTableViewCell")
+        
+        let nib2 = UINib(nibName: "PreguntaTableViewCell", bundle: nil)
+        tablePreguntasRespuestas.register(nib2, forCellReuseIdentifier: "preguntaTableViewCell")
         
         tablePreguntasRespuestas.rowHeight = UITableViewAutomaticDimension
         tablePreguntasRespuestas.estimatedRowHeight = 75

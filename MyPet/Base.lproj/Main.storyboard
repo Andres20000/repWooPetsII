@@ -1496,6 +1496,9 @@
                                             <constraint firstAttribute="width" constant="40" id="2Kz-em-2qM"/>
                                             <constraint firstAttribute="height" constant="40" id="cAI-UI-51o"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="buscarPublicaciones:" destination="IIB-fd-EUG" eventType="touchUpInside" id="BlC-di-hMH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -1700,7 +1703,11 @@
                                     </barButtonItem>
                                     <barButtonItem image="imgAccesorios" id="N8q-gr-2AO"/>
                                     <barButtonItem width="147" style="plain" systemItem="fixedSpace" id="1zc-j9-r1o"/>
-                                    <barButtonItem image="btnBuscarBlanco" id="4oH-AO-LVe"/>
+                                    <barButtonItem image="btnBuscarBlanco" id="4oH-AO-LVe">
+                                        <connections>
+                                            <action selector="buscarPublicaciones:" destination="iPF-k5-kwn" id="cxA-Nr-44n"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                                 <color key="barTintColor" red="0.0" green="0.75686274509999996" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
@@ -1807,6 +1814,7 @@
                         <outlet property="spaceTopLayoutConstraint" destination="Djc-st-SrJ" id="vKl-Hn-pOy"/>
                         <segue destination="OrV-0p-8J0" kind="presentation" identifier="publicacionProductoDesdePublicacionesPorCategoria" id="MuH-BR-ujl"/>
                         <segue destination="evv-T1-4Jo" kind="presentation" identifier="publicacionServicioDesdePublicacionesPorCategoria" id="KNz-Nx-pOf"/>
+                        <segue destination="eGH-BE-V02" kind="presentation" identifier="buscarDesdePublicacionesPorCategoria" id="7RF-48-icR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ik-83-Oew" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -6356,28 +6364,46 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="RHX-Na-L0U">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="tcv-4W-Qs8"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="eGH-BE-V02" id="k9R-ro-Zol"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Th-Rd-GE0">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="579"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableFooterView" contentMode="redraw" id="RHX-Na-L0U">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
+                                <connections>
+                                    <outlet property="dataSource" destination="eGH-BE-V02" id="a0r-Ki-FRE"/>
+                                    <outlet property="delegate" destination="eGH-BE-V02" id="RNa-RF-2q9"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="roX-nZ-Z1u" firstAttribute="top" secondItem="1Th-Rd-GE0" secondAttribute="bottom" id="2Ti-5i-gg7"/>
+                            <constraint firstItem="RHX-Na-L0U" firstAttribute="top" secondItem="m1N-TG-AcJ" secondAttribute="bottom" id="DHs-Xn-MbR"/>
                             <constraint firstItem="m1N-TG-AcJ" firstAttribute="top" secondItem="DZT-aA-Tfn" secondAttribute="bottom" id="G1c-6A-AOw"/>
-                            <constraint firstAttribute="trailing" secondItem="1Th-Rd-GE0" secondAttribute="trailing" id="Ii8-QU-PwG"/>
-                            <constraint firstItem="1Th-Rd-GE0" firstAttribute="leading" secondItem="9Af-pY-WC7" secondAttribute="leading" id="LqQ-0l-pJx"/>
+                            <constraint firstAttribute="trailing" secondItem="1Th-Rd-GE0" secondAttribute="trailing" id="OtB-9y-uuH"/>
+                            <constraint firstItem="1Th-Rd-GE0" firstAttribute="top" secondItem="RHX-Na-L0U" secondAttribute="bottom" id="XCD-Ag-92d"/>
                             <constraint firstItem="m1N-TG-AcJ" firstAttribute="leading" secondItem="9Af-pY-WC7" secondAttribute="leading" id="Yd7-q9-M4i"/>
+                            <constraint firstItem="RHX-Na-L0U" firstAttribute="leading" secondItem="9Af-pY-WC7" secondAttribute="leading" id="gff-I8-7pv"/>
+                            <constraint firstAttribute="trailing" secondItem="RHX-Na-L0U" secondAttribute="trailing" id="jAF-Mf-PZP"/>
                             <constraint firstAttribute="trailing" secondItem="m1N-TG-AcJ" secondAttribute="trailing" id="m1O-YV-g7X"/>
-                            <constraint firstItem="roX-nZ-Z1u" firstAttribute="top" secondItem="1Th-Rd-GE0" secondAttribute="bottom" id="nJq-Ko-eTb"/>
-                            <constraint firstItem="1Th-Rd-GE0" firstAttribute="top" secondItem="m1N-TG-AcJ" secondAttribute="bottom" id="nqg-FY-WMF"/>
+                            <constraint firstItem="1Th-Rd-GE0" firstAttribute="leading" secondItem="9Af-pY-WC7" secondAttribute="leading" id="ygn-mR-qe9"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="searchPublicaciones" destination="RHX-Na-L0U" id="q2J-xt-46p"/>
+                        <outlet property="tableBuscar" destination="1Th-Rd-GE0" id="2hN-10-chp"/>
+                        <segue destination="OrV-0p-8J0" kind="presentation" identifier="publicacionProductoDesdeBuscar" id="TMz-tm-Mol"/>
+                        <segue destination="evv-T1-4Jo" kind="presentation" identifier="publicacionServicioDesdeBuscar" id="O0Q-mj-6dB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6mj-Vi-u64" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -6475,22 +6501,23 @@
         <image name="textura_Ingreso" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i9R-bi-MDr"/>
-        <segue reference="bVH-Q1-m3n"/>
         <segue reference="4dZ-15-YtV"/>
         <segue reference="c64-eH-oia"/>
-        <segue reference="a1h-2i-JbW"/>
         <segue reference="g9o-0N-P4D"/>
-        <segue reference="5AM-1p-jx9"/>
         <segue reference="rzp-TS-BC7"/>
-        <segue reference="UlJ-My-ATf"/>
         <segue reference="A6W-wT-hwa"/>
-        <segue reference="oQN-Js-Es1"/>
-        <segue reference="B7O-E2-n1O"/>
-        <segue reference="7hU-I0-I2k"/>
-        <segue reference="Sxi-cS-EGb"/>
-        <segue reference="pQ7-FT-sEN"/>
+        <segue reference="UlJ-My-ATf"/>
+        <segue reference="KNz-Nx-pOf"/>
+        <segue reference="7RF-48-icR"/>
+        <segue reference="MuH-BR-ujl"/>
         <segue reference="ZfC-qD-0SX"/>
+        <segue reference="7hU-I0-I2k"/>
+        <segue reference="B7O-E2-n1O"/>
+        <segue reference="pQ7-FT-sEN"/>
+        <segue reference="Sxi-cS-EGb"/>
+        <segue reference="i9R-bi-MDr"/>
         <segue reference="TnN-1C-z0q"/>
+        <segue reference="oQN-Js-Es1"/>
+        <segue reference="a1h-2i-JbW"/>
     </inferredMetricsTieBreakers>
 </document>

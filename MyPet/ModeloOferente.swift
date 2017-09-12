@@ -296,6 +296,11 @@ class PublicacionOferente
     }
     
     var target:String?  = ""
+    
+    var cadenaBusquedaPublicacion:String
+    {
+        return nombre!
+    }
 }
 
 class Foto

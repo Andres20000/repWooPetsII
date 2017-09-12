@@ -198,6 +198,10 @@
 		849C8A2D1F66FB1F004A9714 /* PreguntaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849C8A291F66FB1F004A9714 /* PreguntaTableViewCell.xib */; };
 		849C8A2F1F672556004A9714 /* BuscarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C8A2E1F672556004A9714 /* BuscarViewController.swift */; };
 		849C8A301F672556004A9714 /* BuscarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C8A2E1F672556004A9714 /* BuscarViewController.swift */; };
+		849C8A341F674089004A9714 /* BusquedaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C8A321F674089004A9714 /* BusquedaTableViewCell.swift */; };
+		849C8A351F674089004A9714 /* BusquedaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C8A321F674089004A9714 /* BusquedaTableViewCell.swift */; };
+		849C8A361F674089004A9714 /* BusquedaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849C8A331F674089004A9714 /* BusquedaTableViewCell.xib */; };
+		849C8A371F674089004A9714 /* BusquedaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 849C8A331F674089004A9714 /* BusquedaTableViewCell.xib */; };
 		84A3E1B61EC1850F0013E4DD /* ComandoOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3E1B51EC1850F0013E4DD /* ComandoOferente.swift */; };
 		84A3E1B71EC1850F0013E4DD /* ComandoOferente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3E1B51EC1850F0013E4DD /* ComandoOferente.swift */; };
 		84A3E1B91EC29DD40013E4DD /* HomeOferenteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A3E1B81EC29DD40013E4DD /* HomeOferenteViewController.swift */; };
@@ -405,6 +409,8 @@
 		849C8A281F66FB1F004A9714 /* PreguntaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreguntaTableViewCell.swift; sourceTree = "<group>"; };
 		849C8A291F66FB1F004A9714 /* PreguntaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreguntaTableViewCell.xib; sourceTree = "<group>"; };
 		849C8A2E1F672556004A9714 /* BuscarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuscarViewController.swift; sourceTree = "<group>"; };
+		849C8A321F674089004A9714 /* BusquedaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusquedaTableViewCell.swift; sourceTree = "<group>"; };
+		849C8A331F674089004A9714 /* BusquedaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusquedaTableViewCell.xib; sourceTree = "<group>"; };
 		84A3E1B51EC1850F0013E4DD /* ComandoOferente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComandoOferente.swift; sourceTree = "<group>"; };
 		84A3E1B81EC29DD40013E4DD /* HomeOferenteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeOferenteViewController.swift; sourceTree = "<group>"; };
 		84A3E1BB1EC3BD090013E4DD /* MenuOferenteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuOferenteViewController.swift; sourceTree = "<group>"; };
@@ -674,6 +680,15 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		849C8A311F673665004A9714 /* Cell Buscar */ = {
+			isa = PBXGroup;
+			children = (
+				849C8A321F674089004A9714 /* BusquedaTableViewCell.swift */,
+				849C8A331F674089004A9714 /* BusquedaTableViewCell.xib */,
+			);
+			name = "Cell Buscar";
+			sourceTree = "<group>";
+		};
 		84A3E1CD1EC424390013E4DD /* Cell Mis Publicaciones */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +790,7 @@
 				8448601A1F4BE9C700DF5D9D /* CalificacionPublicacionViewController.swift */,
 				84BD20801EF0A58F001422E7 /* MenuUsuarioViewController.swift */,
 				849C8A2E1F672556004A9714 /* BuscarViewController.swift */,
+				849C8A311F673665004A9714 /* Cell Buscar */,
 			);
 			name = Usuario;
 			sourceTree = "<group>";
@@ -1005,6 +1021,7 @@
 				4124FE551F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib in Resources */,
 				84AF006A1F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib in Resources */,
 				847838CF1F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
+				849C8A361F674089004A9714 /* BusquedaTableViewCell.xib in Resources */,
 				849C8A2C1F66FB1F004A9714 /* PreguntaTableViewCell.xib in Resources */,
 				840B1B3C1F339B2900423832 /* ResenaTableViewCell.xib in Resources */,
 				847FDC171ED3469F002F9530 /* DetalleHorarioTableViewCell.xib in Resources */,
@@ -1035,6 +1052,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				843A4AFD1F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.xib in Resources */,
+				849C8A371F674089004A9714 /* BusquedaTableViewCell.xib in Resources */,
 				846C92611F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib in Resources */,
 				84417B941EB2CAE800A70ABC /* DireccionRegistroTableViewCell.xib in Resources */,
 				84A5A4D71F3CD1A600429500 /* CompraTableViewCell.xib in Resources */,
@@ -1208,6 +1226,7 @@
 				84A3E1DF1EC6D3CF0013E4DD /* PublicacionOferenteDosViewController.swift in Sources */,
 				4134D5171F45EF8700DB43DA /* DetalleVenta.swift in Sources */,
 				8451A38B1EFB7A6200B59E46 /* UbicacionTableViewCell.swift in Sources */,
+				849C8A341F674089004A9714 /* BusquedaTableViewCell.swift in Sources */,
 				84E4CF2D1F22EAFF009DC256 /* FloatRatingView.swift in Sources */,
 				41572E8A1F4CE33000F3878D /* DestacarPublicacionViewController.swift in Sources */,
 				84417BA31EBD1EA100A70ABC /* ModeloOferente.swift in Sources */,
@@ -1325,6 +1344,7 @@
 				84A3E1E01EC6D3CF0013E4DD /* PublicacionOferenteDosViewController.swift in Sources */,
 				4134D5181F45EF8700DB43DA /* DetalleVenta.swift in Sources */,
 				8451A38C1EFB7A6200B59E46 /* UbicacionTableViewCell.swift in Sources */,
+				849C8A351F674089004A9714 /* BusquedaTableViewCell.swift in Sources */,
 				84E4CF2E1F22EAFF009DC256 /* FloatRatingView.swift in Sources */,
 				41572E8B1F4CE33000F3878D /* DestacarPublicacionViewController.swift in Sources */,
 				84417BA41EBD1EA100A70ABC /* ModeloOferente.swift in Sources */,
