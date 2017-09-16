@@ -244,7 +244,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         
         hacerMontaje()
         
-        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(HomePublicacionesViewController.advancePage), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(HomePublicacionesViewController.advancePage), userInfo: nil, repeats: true)
     }
     
     /*// #pragma mark - Scroll View
