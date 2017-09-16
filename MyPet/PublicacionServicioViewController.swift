@@ -21,7 +21,7 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     @IBOutlet var spaceLeadingLayoutConstraint: NSLayoutConstraint?
     @IBOutlet var spaceLeadingBtnPreguntarLayoutConstraint: NSLayoutConstraint?
     @IBOutlet var heightView1LayoutConstraint: NSLayoutConstraint?
-    //@IBOutlet var heightView2LayoutConstraint: NSLayoutConstraint?
+    @IBOutlet var horarioViewHeightConstraint: NSLayoutConstraint?
     
     @IBOutlet var scrollContent: UIScrollView!
     
@@ -33,6 +33,14 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     @IBOutlet var lblPrecio: UILabel!
     @IBOutlet var floatRatingView: FloatRatingView!
     @IBOutlet var lblDescripcion: UILabel!
+    
+    @IBOutlet var lblDiasSemana: UILabel!
+    @IBOutlet var lblHorarioDiasSemana: UILabel!
+    @IBOutlet var lblJornadaContinuaSemana: UILabel!
+    
+    @IBOutlet var lblDiasFestivos: UILabel!
+    @IBOutlet var lblHorarioDiasFestivos: UILabel!
+    @IBOutlet var lblJornadaContinuaFestivos: UILabel!
     
     @IBOutlet var lblDuracion: UILabel!
     @IBOutlet var lblFechaHoraReserva: UILabel!
@@ -89,7 +97,72 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
         
         self.heightView1LayoutConstraint?.constant = 70.0 + lblDescripcion.bounds.size.height
         
-        scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: (755.0 + lblDescripcion.bounds.size.height))
+        if modelOferente.publicacion.horario?.count == 1
+        {
+            self.horarioViewHeightConstraint?.constant = 90
+            
+            lblDiasSemana.isHidden = false
+            lblHorarioDiasSemana.isHidden = false
+            lblJornadaContinuaSemana.isHidden = false
+            
+            lblDiasSemana.text = modelOferente.publicacion.horario?[0].dias
+            lblHorarioDiasSemana.text = (modelOferente.publicacion.horario?[0].horaInicio)! + " - " + (modelOferente.publicacion.horario?[0].horaCierre)!
+            
+            if (modelOferente.publicacion.horario?[0].sinJornadaContinua)!
+            {
+                lblJornadaContinuaSemana.text = "Cerramos entre 12 y 2 pm"
+            } else
+            {
+                lblJornadaContinuaSemana.text = "Jornada continua"
+            }
+            
+            lblDiasFestivos.isHidden = true
+            lblHorarioDiasFestivos.isHidden = true
+            lblJornadaContinuaFestivos.isHidden = true
+            
+        }else
+        {
+            self.horarioViewHeightConstraint?.constant = 130
+            
+            lblDiasSemana.isHidden = false
+            lblHorarioDiasSemana.isHidden = false
+            lblJornadaContinuaSemana.isHidden = false
+            
+            lblDiasFestivos.isHidden = false
+            lblHorarioDiasFestivos.isHidden = false
+            lblJornadaContinuaFestivos.isHidden = false
+            
+            for horario in modelOferente.publicacion.horario!
+            {
+                if horario.nombreArbol == "Semana"
+                {
+                    lblDiasSemana.text = horario.dias
+                    lblHorarioDiasSemana.text = (horario.horaInicio)! + " - " + (horario.horaCierre)!
+                    
+                    if (horario.sinJornadaContinua)!
+                    {
+                        lblJornadaContinuaSemana.text = "Cerramos entre 12 y 2 pm"
+                    } else
+                    {
+                        lblJornadaContinuaSemana.text = "Jornada continua"
+                    }
+                }else
+                {
+                    lblDiasFestivos.text = horario.dias
+                    lblHorarioDiasFestivos.text = (horario.horaInicio)! + " - " + (horario.horaCierre)!
+                    
+                    if (horario.sinJornadaContinua)!
+                    {
+                        lblJornadaContinuaFestivos.text = "Cerramos entre 12 y 2 pm"
+                    } else
+                    {
+                        lblJornadaContinuaFestivos.text = "Jornada continua"
+                    }
+                }
+            }
+        }
+        
+        scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: (655.0 + (self.heightView1LayoutConstraint?.constant)! + (self.horarioViewHeightConstraint?.constant)!))
         
         modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
         

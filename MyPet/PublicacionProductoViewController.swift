@@ -88,7 +88,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
         
         self.heightViewLayoutConstraint?.constant = 70.0 + lblDescripcion.bounds.size.height
         
-        scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: (665.0 + lblDescripcion.bounds.size.height))
+        scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: (660.0 + lblDescripcion.bounds.size.height))
         
         lblDisponible.text = "Disponible: \(modelOferente.publicacion.stock!)"
         
