@@ -20,6 +20,8 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceLeadingLayoutConstraint: NSLayoutConstraint?
     @IBOutlet var spaceLeadingBtnPreguntarLayoutConstraint: NSLayoutConstraint?
+    @IBOutlet var heightView1LayoutConstraint: NSLayoutConstraint?
+    //@IBOutlet var heightView2LayoutConstraint: NSLayoutConstraint?
     
     @IBOutlet var scrollContent: UIScrollView!
     
@@ -30,7 +32,8 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     @IBOutlet var lblNombre: UILabel!
     @IBOutlet var lblPrecio: UILabel!
     @IBOutlet var floatRatingView: FloatRatingView!
-    @IBOutlet var txtDescripcion: UITextView!
+    @IBOutlet var lblDescripcion: UILabel!
+    
     @IBOutlet var lblDuracion: UILabel!
     @IBOutlet var lblFechaHoraReserva: UILabel!
     @IBOutlet var lblPreguntas: UILabel!
@@ -61,8 +64,6 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
         scrollContent.bounces = true
         scrollContent.isScrollEnabled = true
         
-        scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: 755.0)
-        
         lblNombre.text = modelOferente.publicacion.nombre
         
         if let amountString = modelOferente.publicacion.precio?.currencyInputFormatting()
@@ -82,7 +83,13 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
         self.floatRatingView.halfRatings = true
         self.floatRatingView.floatRatings = false
         
-        txtDescripcion.text = modelOferente.publicacion.descripcion
+        lblDescripcion.text = modelOferente.publicacion.descripcion
+        lblDescripcion.setNeedsLayout()
+        lblDescripcion.sizeToFit()
+        
+        self.heightView1LayoutConstraint?.constant = 70.0 + lblDescripcion.bounds.size.height
+        
+        scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: (755.0 + lblDescripcion.bounds.size.height))
         
         modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
         

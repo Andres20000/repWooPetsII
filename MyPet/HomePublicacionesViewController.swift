@@ -10,7 +10,7 @@ import UIKit
 
 import FirebaseAuth
 
-class HomePublicacionesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIPageViewControllerDelegate, UIPageViewControllerDataSource
+class HomePublicacionesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIPageViewControllerDelegate, UIPageViewControllerDataSource, UIScrollViewDelegate
 {
     let model = ModeloUsuario.sharedInstance
     let modelOferente = ModeloOferente.sharedInstance
@@ -37,8 +37,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
     var widthFixedSpace:CGFloat = 0.0
     var textoPublicacionesCategoria = ""
     
-    @IBOutlet var lblAvisoHome: UILabel!
-    var sizeFont : CGFloat = 0.0
+    @IBOutlet var imgAvisoHome: UIImageView!
     @IBOutlet var btnAviso: UIButton!
     
     @IBOutlet var lblProductos: UILabel!
@@ -48,21 +47,21 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
     
     @IBOutlet var collectionPublicaciones: UICollectionView!
     
+    private var timer: Timer = Timer()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
+        //collectionPublicaciones.isScrollEnabled = false
+        
         publicaciones = modelPublicacion.publicacionesPopulares
         
-        contentSizeScroll = 882
+        contentSizeScroll = 950
         
-        imgFotoMascota.isHidden = true
-        lblNombreMascota.isHidden = true
         btnAdministrarMascotas.isHidden = true
-        
-        self.spaceTopLayoutConstraint?.constant = 195
         
         lblProductos.text = "   Productos populares"
         imgNoRegistro.isHidden = false
@@ -73,30 +72,10 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         
         if user == nil
         {
-            if DeviceType.IS_IPHONE_5
-            {
-                sizeFont = 13.0
-            }else
-            {
-                if DeviceType.IS_IPHONE_6P
-                {
-                    sizeFont = 17.0
-                }else
-                {
-                    sizeFont = 15.0
-                }
-            }
+            lblNombreMascota.text = "Mascota sin registrar"
+            imgFotoMascota.image = UIImage(named: "imgMascotaSinRegistro")
             
-            //create attributed string txt bold
-            lblAvisoHome.text = "Para ver los productos sugeridos,\ningresa, completa tu registro y crea el perfil de tu mascota aquí"
-            let textAviso: NSString = lblAvisoHome.text! as NSString
-            let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: textAviso as String)
-            
-            attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: sizeFont)!], range: NSRange(location: 0, length:33))
-            attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: sizeFont)!], range: NSRange(location: 34, length: 65))
-            
-            //assign text first, then customize properties
-            lblAvisoHome.attributedText = attributedText
+            imgAvisoHome.image = UIImage(named: "btnIngresoRegistroPerfil")
             
             btnAviso.tag = 0
             btnAviso.addTarget(self, action: #selector(actionAviso), for: .touchUpInside)
@@ -105,31 +84,10 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         {
             if (model.usuario[0].datosComplementarios?.count)! == 0
             {
-                print("Entra porque falta terminar de registrarse")
-                if DeviceType.IS_IPHONE_5
-                {
-                    sizeFont = 15.0
-                }else
-                {
-                    if DeviceType.IS_IPHONE_6P
-                    {
-                        sizeFont = 18.2
-                    }else
-                    {
-                        sizeFont = 17.0
-                    }
-                }
+                lblNombreMascota.text = "Mascota sin registrar"
+                imgFotoMascota.image = UIImage(named: "imgMascotaSinRegistro")
                 
-                //create attributed string txt bold
-                lblAvisoHome.text = "Para ver los productos sugeridos,\ncompleta tu registro y crea el perfil de tu mascota aquí"
-                let textAviso: NSString = lblAvisoHome.text! as NSString
-                let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: textAviso as String)
-                
-                attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: sizeFont)!], range: NSRange(location: 0, length:33))
-                attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: sizeFont)!], range: NSRange(location: 34, length: 56))
-                
-                //assign text first, then customize properties
-                lblAvisoHome.attributedText = attributedText
+                imgAvisoHome.image = UIImage(named: "btnRegistroPerfil")
                 
                 btnAviso.tag = 1
                 btnAviso.addTarget(self, action: #selector(actionAviso), for: .touchUpInside)
@@ -137,31 +95,10 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
             {
                 if (model.usuario[0].datosComplementarios?[0].mascotas?.count)! == 0
                 {
-                    print("Entra porque falta crear mascota")
-                    if DeviceType.IS_IPHONE_5
-                    {
-                        sizeFont = 15.0
-                    }else
-                    {
-                        if DeviceType.IS_IPHONE_6P
-                        {
-                            sizeFont = 18.2
-                        }else
-                        {
-                            sizeFont = 17.0
-                        }
-                    }
+                    lblNombreMascota.text = "Mascota sin registrar"
+                    imgFotoMascota.image = UIImage(named: "imgMascotaSinRegistro")
                     
-                    //create attributed string txt bold
-                    lblAvisoHome.text = "Para ver los productos sugeridos,\ncrea un perfil para tu(s) mascota(s) aquí"
-                    let textAviso: NSString = lblAvisoHome.text! as NSString
-                    let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: textAviso as String)
-                    
-                    attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: sizeFont)!], range: NSRange(location: 0, length:33))
-                    attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: sizeFont)!], range: NSRange(location: 34, length: 41))
-                    
-                    //assign text first, then customize properties
-                    lblAvisoHome.attributedText = attributedText
+                    imgAvisoHome.image = UIImage(named: "btnPerfil")
                     
                     btnAviso.tag = 2
                     btnAviso.addTarget(self, action: #selector(actionAviso), for: .touchUpInside)
@@ -175,11 +112,23 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                     lblNombreMascota.isHidden = false
                     btnAdministrarMascotas.isHidden = false
                     
-                    self.spaceTopLayoutConstraint?.constant = 130
+                    if DeviceType.IS_IPHONE_5
+                    {
+                        self.spaceTopLayoutConstraint?.constant = -imgAvisoHome.bounds.size.height + 9
+                    } else
+                    {
+                        if DeviceType.IS_IPHONE_6
+                        {
+                            self.spaceTopLayoutConstraint?.constant = -imgAvisoHome.bounds.size.height
+                        } else
+                        {
+                            self.spaceTopLayoutConstraint?.constant = -imgAvisoHome.bounds.size.height - 9
+                        }
+                    }
                     
-                    lblAvisoHome.isHidden = true
+                    imgAvisoHome.isHidden = true
                     btnAviso.isHidden = true
-                    contentSizeScroll = 882 - 65
+                    contentSizeScroll = 950 - imgAvisoHome.bounds.size.height
                     
                     if model.mascotaSeleccionada.foto == ""
                     {
@@ -294,7 +243,36 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.init(red: 0.03921568627451, green: 0.294117647058824, blue: 0.313725490196078, alpha: 1.0)
         
         hacerMontaje()
+        
+        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(HomePublicacionesViewController.advancePage), userInfo: nil, repeats: true)
     }
+    
+    /*// #pragma mark - Scroll View
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    {
+        if decelerate
+        {
+            scrollContent.isScrollEnabled = true
+            
+            if collectionPublicaciones.isScrollEnabled
+            {
+                collectionPublicaciones.isScrollEnabled = false
+                
+            } else
+            {
+                collectionPublicaciones.isScrollEnabled = true
+                
+            }
+        }else
+        {
+            if collectionPublicaciones.isScrollEnabled
+            {
+                scrollContent.isScrollEnabled = false
+            }
+            
+        }
+    }*/
     
     func actionAviso(sender: UIButton!)
     {
@@ -921,19 +899,31 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         createPageViewController()
     }
     
+    var pos = 0
+    
+    func advancePage ()
+    {
+        let firstController = pageFotoAtIndex(pos)
+        
+        let startingViewControllers: NSArray = [firstController]
+        
+        pageViewController.setViewControllers(startingViewControllers as? [UIViewController] , direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
+        
+        if pos < (modelPublicacion.publicacionesDestacadas.count) - 1
+        {
+            pos = pos + 1
+        }else
+        {
+            pos = 0
+        }
+    }
+    
     fileprivate func createPageViewController()
     {
         let pageController = self.storyboard!.instantiateViewController(withIdentifier: "FotosPageController") as! UIPageViewControllerWithOverlayIndicator
         
         pageController.dataSource = self
         pageController.delegate = self
-        
-        
-        let firstController = pageFotoAtIndex(0)
-        
-        let startingViewControllers: NSArray = [firstController]
-        
-        pageController.setViewControllers(startingViewControllers as? [UIViewController] , direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
         
         pageViewController = pageController
         
@@ -959,6 +949,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         self.scrollContent.sendSubview(toBack: pageViewController!.view)
         
         pageViewController!.didMove(toParentViewController: self)
+        
     }
     
     // MARK: - UIPageViewControllerDataSource
@@ -1007,6 +998,10 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int
     {
-        return 0
+        return pos
     }
 }
+
+
+
+
