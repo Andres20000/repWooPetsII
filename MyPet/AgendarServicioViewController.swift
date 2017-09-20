@@ -14,6 +14,8 @@ class AgendarServicioViewController: UIViewController
     let modelUsuario = ModeloUsuario.sharedInstance
     let  user = FIRAuth.auth()?.currentUser
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
+    
     @IBOutlet var lblDuracion: UILabel!
     
     @IBOutlet var datePicker : UIDatePicker!
@@ -37,6 +39,16 @@ class AgendarServicioViewController: UIViewController
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if DeviceType.IS_IPHONE_5
+        {
+            barFixedSpace.width = 80.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            barFixedSpace.width = 130.0
+        }
         
         var textoDuracionMedida = ""
         

@@ -34,6 +34,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
     @IBOutlet var collectionCategorias: UICollectionView!
     var categoria = ""
     var iconoCategoria = ""
+    var widthFixedSpace1:CGFloat = 0.0
     var widthFixedSpace:CGFloat = 0.0
     var textoPublicacionesCategoria = ""
     
@@ -243,8 +244,6 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.init(red: 0.03921568627451, green: 0.294117647058824, blue: 0.313725490196078, alpha: 1.0)
         
         hacerMontaje()
-        
-        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(HomePublicacionesViewController.advancePage), userInfo: nil, repeats: true)
     }
     
     /*// #pragma mark - Scroll View
@@ -387,15 +386,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 100.0
+                    widthFixedSpace1 = 50.0
+                    widthFixedSpace = 60.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 150.0
+                        widthFixedSpace1 = 80.0
+                        widthFixedSpace = 90.0
                     }else
                     {
-                        widthFixedSpace = 190.0
+                        widthFixedSpace1 = 95.0
+                        widthFixedSpace = 105.0
                     }
                 }
                 
@@ -443,15 +445,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 65.0
+                    widthFixedSpace1 = 35.0
+                    widthFixedSpace = 40.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 115.0
+                        widthFixedSpace1 = 60.0
+                        widthFixedSpace = 70.0
                     }else
                     {
-                        widthFixedSpace = 150.0
+                        widthFixedSpace1 = 80.0
+                        widthFixedSpace = 90.0
                     }
                 }
                 
@@ -499,15 +504,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 30.0
+                    widthFixedSpace1 = 15.0
+                    widthFixedSpace = 25.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 80.0
+                        widthFixedSpace1 = 40.0
+                        widthFixedSpace = 50.0
                     }else
                     {
-                        widthFixedSpace = 120.0
+                        widthFixedSpace1 = 60.0
+                        widthFixedSpace = 70.0
                     }
                 }
                 
@@ -555,15 +563,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 50.0
+                    widthFixedSpace1 = 25.0
+                    widthFixedSpace = 35.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 105.0
+                        widthFixedSpace1 = 50.0
+                        widthFixedSpace = 60.0
                     }else
                     {
-                        widthFixedSpace = 135.0
+                        widthFixedSpace1 = 70.0
+                        widthFixedSpace = 80.0
                     }
                 }
                 
@@ -611,15 +622,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 75.0
+                    widthFixedSpace1 = 40.0
+                    widthFixedSpace = 50.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 120.0
+                        widthFixedSpace1 = 65.0
+                        widthFixedSpace = 75.0
                     }else
                     {
-                        widthFixedSpace = 165.0
+                        widthFixedSpace1 = 85.0
+                        widthFixedSpace = 95.0
                     }
                 }
                 
@@ -667,15 +681,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 115.0
+                    widthFixedSpace1 = 60.0
+                    widthFixedSpace = 70.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 170.0
+                        widthFixedSpace1 = 85.0
+                        widthFixedSpace = 95.0
                     }else
                     {
-                        widthFixedSpace = 200.0
+                        widthFixedSpace1 = 105.0
+                        widthFixedSpace = 115.0
                     }
                 }
                 
@@ -723,15 +740,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 110.0
+                    widthFixedSpace1 = 55.0
+                    widthFixedSpace = 65.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 160.0
+                        widthFixedSpace1 = 85.0
+                        widthFixedSpace = 95.0
                     }else
                     {
-                        widthFixedSpace = 190.0
+                        widthFixedSpace1 = 105.0
+                        widthFixedSpace = 115.0
                     }
                 }
                 
@@ -779,15 +799,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 50.0
+                    widthFixedSpace1 = 30.0
+                    widthFixedSpace = 40.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 100.0
+                        widthFixedSpace1 = 55.0
+                        widthFixedSpace = 65.0
                     }else
                     {
-                        widthFixedSpace = 130.0
+                        widthFixedSpace1 = 75.0
+                        widthFixedSpace = 85.0
                     }
                 }
                 
@@ -881,6 +904,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
             let detailController = segue.destination as! PublicacionesPorCategoriaViewController
             detailController.nombreCategoria = categoria
             detailController.nombreIconoCategoria = iconoCategoria
+            detailController.fixedSpaceWidth1 = widthFixedSpace1
             detailController.fixedSpaceWidth = widthFixedSpace
             detailController.tituloPublicacionesCategoria = textoPublicacionesCategoria
         }
@@ -900,9 +924,16 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
     }
     
     var pos = 0
+    var created = true
     
     func advancePage ()
     {
+        if created
+        {
+            pos = 1
+            created = false
+        }
+        
         let firstController = pageFotoAtIndex(pos)
         
         let startingViewControllers: NSArray = [firstController]
@@ -924,6 +955,12 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         
         pageController.dataSource = self
         pageController.delegate = self
+        
+        let firstController = pageFotoAtIndex(pos)
+        
+        let startingViewControllers: NSArray = [firstController]
+        
+        pageController.setViewControllers(startingViewControllers as? [UIViewController] , direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
         
         pageViewController = pageController
         
@@ -950,6 +987,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         
         pageViewController!.didMove(toParentViewController: self)
         
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(HomePublicacionesViewController.advancePage), userInfo: nil, repeats: true)
     }
     
     // MARK: - UIPageViewControllerDataSource

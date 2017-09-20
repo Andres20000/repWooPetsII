@@ -515,6 +515,8 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
         
         NotificationCenter.default.addObserver(self, selector: #selector(CarritoComprasViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoPublicaciones"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(CarritoComprasViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoCalificacionesPublicaciones"), object: nil)
     }
     
     override func didReceiveMemoryWarning()

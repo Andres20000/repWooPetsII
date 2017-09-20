@@ -92,7 +92,6 @@ class ViewController: UIViewController
             transition.type = kCATransitionReveal
             transition.subtype = kCATransitionFade
             view.window!.layer.add(transition, forKey: kCATransition)*/
-            ComandoUsuario.getCalificacionesPublicaciones()
             
             performSegue(withIdentifier: "precargarPublicacionesDesdeVistaDeCarga", sender: self)
         }

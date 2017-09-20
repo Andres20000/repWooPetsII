@@ -620,24 +620,31 @@ class ComandoUsuario
     class func  getCalificacionesPublicaciones()
     {
         let modelUsuario = ModeloUsuario.sharedInstance
+        modelUsuario.calificacionesPublicaciones.removeAll()
         
         let refHandle:FIRDatabaseReference! = FIRDatabase.database().reference().child("calificaciones")
         
-        refHandle.observe(.childAdded, with: {(snap) -> Void in
+        refHandle.observeSingleEvent(of: .value, with: {snap in
             
-            let value = snap.value as! [String : AnyObject]
-            let calificacionCompra = Calificacion()
+            let calificaciones = snap.children
             
-            calificacionCompra.calificacion = value["calificacion"] as! Int
-            calificacionCompra.comentario = value["comentario"] as! String
-            calificacionCompra.fecha = value["fecha"] as! String
-            calificacionCompra.idCalificacion = snap.key
-            calificacionCompra.idCliente = value["idCliente"] as! String
-            calificacionCompra.idCompra = value["idCompra"] as! String
-            calificacionCompra.idOferente = value["idOferente"] as! String
-            calificacionCompra.idPublicacion = value["idPublicacion"] as! String
-            
-            modelUsuario.calificacionesPublicaciones.append(calificacionCompra)
+            while let CalificacionChild = calificaciones.nextObject() as? FIRDataSnapshot
+            {
+                let postDict = CalificacionChild.value as! [String : AnyObject]
+                let calificacionCompra = Calificacion()
+                
+                calificacionCompra.calificacion = postDict["calificacion"] as! Int
+                calificacionCompra.comentario = postDict["comentario"] as! String
+                calificacionCompra.fecha = postDict["fecha"] as! String
+                calificacionCompra.idCalificacion = CalificacionChild.key
+                calificacionCompra.idCliente = postDict["idCliente"] as! String
+                ComandoPreguntasOferente.getMiniUsuario(uid: calificacionCompra.idCliente)
+                calificacionCompra.idCompra = postDict["idCompra"] as! String
+                calificacionCompra.idOferente = postDict["idOferente"] as! String
+                calificacionCompra.idPublicacion = postDict["idPublicacion"] as! String
+                
+                modelUsuario.calificacionesPublicaciones.append(calificacionCompra)
+            }
             
             NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoCalificacionesPublicaciones"), object: nil)
             

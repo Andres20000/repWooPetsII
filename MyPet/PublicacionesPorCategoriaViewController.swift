@@ -19,6 +19,7 @@ class PublicacionesPorCategoriaViewController: UIViewController, UICollectionVie
     @IBOutlet var barItemTitulo: UIBarButtonItem!
     @IBOutlet var barItemIcono: UIBarButtonItem!
     @IBOutlet var barItemBuscar: UIBarButtonItem!
+    @IBOutlet var barFixedSpace1: UIBarButtonItem!
     @IBOutlet var barFixedSpace: UIBarButtonItem!
     
     @IBOutlet var lblTituloPublicacionesCategoria: UILabel!
@@ -31,6 +32,7 @@ class PublicacionesPorCategoriaViewController: UIViewController, UICollectionVie
     
     var nombreCategoria = ""
     var nombreIconoCategoria = ""
+    var fixedSpaceWidth1:CGFloat = 0.0
     var fixedSpaceWidth:CGFloat = 0.0
     var tituloPublicacionesCategoria = ""
     
@@ -50,6 +52,7 @@ class PublicacionesPorCategoriaViewController: UIViewController, UICollectionVie
         
         barItemTitulo.title = nombreCategoria
         barItemIcono.image = UIImage(named: nombreIconoCategoria)?.withRenderingMode(.alwaysOriginal)
+        barFixedSpace1.width = fixedSpaceWidth1
         barFixedSpace.width = fixedSpaceWidth
         barItemBuscar.image = UIImage(named: "btnBuscarBlanco")?.withRenderingMode(.alwaysOriginal)
         

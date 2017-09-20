@@ -195,6 +195,21 @@ class ModeloUsuario
             }
         }
     }
+    
+    var calificacionesPublicacion = [Calificacion]()
+    
+    func getCalificacionesPublicacion(idPublicacion:String)
+    {
+        calificacionesPublicacion.removeAll()
+        
+        for calificacion in calificacionesPublicaciones
+        {
+            if calificacion.idPublicacion == idPublicacion
+            {
+                calificacionesPublicacion.append(calificacion)
+            }
+        }
+    }
 }
 
 

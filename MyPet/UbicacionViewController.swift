@@ -16,6 +16,8 @@ class UbicacionViewController: UIViewController, CLLocationManagerDelegate, UITa
     var model  = ModeloUsuario.sharedInstance
     var modelOferente  = ModeloOferente.sharedInstance
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
+    
     var ubicarDireccion:Int?
     var ubicacionTableView:[UbicacionGoogleMaps]? = []
     
@@ -49,6 +51,16 @@ class UbicacionViewController: UIViewController, CLLocationManagerDelegate, UITa
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if DeviceType.IS_IPHONE_5
+        {
+            barFixedSpace.width = 40.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            barFixedSpace.width = 80.0
+        }
         
         self.initializeTheLocationManager()
         

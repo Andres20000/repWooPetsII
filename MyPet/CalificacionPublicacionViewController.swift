@@ -12,6 +12,8 @@ class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDe
 {
     var modelUsuario  = ModeloUsuario.sharedInstance
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
+    
     @IBOutlet var floatRatingView: FloatRatingView!
     @IBOutlet var textComentario: UITextView!
     @IBOutlet var btnEnviar: UIButton!
@@ -46,6 +48,16 @@ class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDe
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if DeviceType.IS_IPHONE_5
+        {
+            barFixedSpace.width = 70.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            barFixedSpace.width = 110.0
+        }
         
         // Required float rating view params
         self.floatRatingView.emptyImage = UIImage(named: "imgEstrellaVacia")

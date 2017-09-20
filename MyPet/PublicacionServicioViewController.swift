@@ -79,18 +79,6 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
             lblPrecio.text = amountString
         }
         
-        // Required float rating view params
-        self.floatRatingView.emptyImage = UIImage(named: "imgEstrellaVacia")
-        self.floatRatingView.fullImage = UIImage(named: "imgEstrellaCompleta")
-        // Optional params
-        self.floatRatingView.contentMode = UIViewContentMode.scaleAspectFit
-        self.floatRatingView.minRating = 0
-        self.floatRatingView.maxRating = 5
-        self.floatRatingView.rating = 0.0
-        self.floatRatingView.editable = false
-        self.floatRatingView.halfRatings = true
-        self.floatRatingView.floatRatings = false
-        
         lblDescripcion.text = modelOferente.publicacion.descripcion
         lblDescripcion.setNeedsLayout()
         lblDescripcion.sizeToFit()
@@ -194,8 +182,35 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
         btnComprar.layer.cornerRadius = 10.0
         
         btnPreguntar.layer.cornerRadius = 10.0
+        
+        print("Q calificaciones: \(modelUsuario.calificacionesPublicaciones.count)")
+        modelUsuario.getCalificacionesPublicacion(idPublicacion: modelOferente.publicacion.idPublicacion!)
+        
+        var sumaCalificacion = 0
+        
+        for calificacion in modelUsuario.calificacionesPublicacion
+        {
+            print("calificacion: \(calificacion.calificacion)")
+            sumaCalificacion = sumaCalificacion + calificacion.calificacion
+            print("suma: \(sumaCalificacion)")
+        }
+        
+        let promedioCalificacion = Float(sumaCalificacion) / Float(modelUsuario.calificacionesPublicacion.count)
+        print("suma: \(sumaCalificacion) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion)")
+        
+        // Required float rating view params
+        self.floatRatingView.emptyImage = UIImage(named: "imgEstrellaVacia")
+        self.floatRatingView.fullImage = UIImage(named: "imgEstrellaCompleta")
+        // Optional params
+        self.floatRatingView.contentMode = UIViewContentMode.scaleAspectFit
+        self.floatRatingView.minRating = 0
+        self.floatRatingView.maxRating = 5
+        self.floatRatingView.rating = promedioCalificacion
+        self.floatRatingView.editable = false
+        self.floatRatingView.halfRatings = false
+        self.floatRatingView.floatRatings = true
     }
-
+    
     func refrescarVista(_ notification: Notification)
     {
         if modelUsuario.usuario.count != 0

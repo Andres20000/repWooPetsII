@@ -18,6 +18,8 @@ class ConfirmacionDosViewController: UIViewController
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var trailingSpaceConstraint: NSLayoutConstraint?
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
+    
     @IBOutlet var lblNombreCompleto: UILabel!
     @IBOutlet var lblCedula: UILabel!
     @IBOutlet var lblTextoDireccion: UILabel!
@@ -41,6 +43,16 @@ class ConfirmacionDosViewController: UIViewController
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if DeviceType.IS_IPHONE_5
+        {
+            barFixedSpace.width = 35.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            barFixedSpace.width = 80.0
+        }
         
         lblNombreCompleto.layer.masksToBounds = true
         lblNombreCompleto.layer.cornerRadius = 7.0

@@ -14,6 +14,7 @@ class VistaPreguntasViewController: UIViewController, UITableViewDelegate, UITab
     let modelUsuario = ModeloUsuario.sharedInstance
     let modelOferente = ModeloOferente.sharedInstance
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
     @IBOutlet var barItemTitulo: UIBarButtonItem!
     @IBOutlet var tablePreguntasRespuestas: UITableView!
 
@@ -35,6 +36,16 @@ class VistaPreguntasViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if DeviceType.IS_IPHONE_5
+        {
+            barFixedSpace.width = 20.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            barFixedSpace.width = 60.0
+        }
         
         barItemTitulo.title = tituloVista
         

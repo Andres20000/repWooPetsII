@@ -413,7 +413,7 @@
                                             <action selector="backView:" destination="2ZA-Yh-Qzd" id="QyE-EY-cYp"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="tIX-pK-Kwx"/>
+                                    <barButtonItem width="70" style="plain" systemItem="fixedSpace" id="tIX-pK-Kwx"/>
                                     <barButtonItem title="Ubicación Dirección" id="2RA-Bf-DOm">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -444,6 +444,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="barFixedSpace" destination="tIX-pK-Kwx" id="bbH-lF-FaT"/>
                         <outlet property="barItemTitulo" destination="2RA-Bf-DOm" id="sUL-93-zqf"/>
                         <outlet property="tableDirecciones" destination="tEd-St-oVQ" id="rp5-j0-kZ7"/>
                     </connections>
@@ -1690,12 +1691,12 @@
                                             <action selector="backView:" destination="iPF-k5-kwn" id="ucy-oA-OLz"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="u6m-kg-oyz"/>
+                                    <barButtonItem width="85" style="plain" systemItem="fixedSpace" id="u6m-kg-oyz"/>
                                     <barButtonItem title="Categoría" id="rAb-fe-n2E">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
                                     <barButtonItem image="imgAccesorios" id="N8q-gr-2AO"/>
-                                    <barButtonItem width="147" style="plain" systemItem="fixedSpace" id="1zc-j9-r1o"/>
+                                    <barButtonItem width="90" style="plain" systemItem="fixedSpace" id="1zc-j9-r1o"/>
                                     <barButtonItem image="btnBuscarBlanco" id="4oH-AO-LVe">
                                         <connections>
                                             <action selector="buscarPublicaciones:" destination="iPF-k5-kwn" id="cxA-Nr-44n"/>
@@ -1795,6 +1796,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="barFixedSpace" destination="1zc-j9-r1o" id="RJh-Fa-pL9"/>
+                        <outlet property="barFixedSpace1" destination="u6m-kg-oyz" id="wp4-Gd-vhJ"/>
                         <outlet property="barItemBuscar" destination="4oH-AO-LVe" id="XU8-cw-CUa"/>
                         <outlet property="barItemIcono" destination="N8q-gr-2AO" id="dXD-AC-2Md"/>
                         <outlet property="barItemTitulo" destination="rAb-fe-n2E" id="wMc-En-bbz"/>
@@ -1835,6 +1837,7 @@
                                             <action selector="backView:" destination="OrV-0p-8J0" id="uf8-1d-AiJ"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="VFg-4t-H9z"/>
                                     <barButtonItem title="Producto" id="gus-bE-h04">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -2310,7 +2313,7 @@
                                             <action selector="backView:" destination="hxH-1o-7RN" id="QmR-Pl-QGf"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="dHa-C1-m4M"/>
+                                    <barButtonItem width="55" style="plain" systemItem="fixedSpace" id="dHa-C1-m4M"/>
                                     <barButtonItem title="Reseñas de compradores" id="CCL-k4-9iB">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -2473,7 +2476,7 @@
                                     <constraint firstAttribute="height" constant="1" id="Wop-JS-ql4"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bb5-29-e5C">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bb5-29-e5C">
                                 <rect key="frame" x="0.0" y="351" width="375" height="316"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -2515,8 +2518,10 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="barFixedSpace" destination="dHa-C1-m4M" id="6mR-FI-yB7"/>
                         <outlet property="floatRatingView" destination="r0D-Du-923" id="H6i-DL-4gf"/>
                         <outlet property="lblRating" destination="4li-yz-SVe" id="ylK-B3-jlc"/>
+                        <outlet property="lblReseñas" destination="XkU-yU-byK" id="FGX-Sd-8XD"/>
                         <outlet property="tableResenas" destination="bb5-29-e5C" id="4Qp-oS-0oT"/>
                     </connections>
                 </viewController>
@@ -2545,7 +2550,7 @@
                                             <action selector="backView:" destination="sge-lL-fYn" id="8we-t6-Aib"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="tv9-S8-NSi"/>
+                                    <barButtonItem width="70" style="plain" systemItem="fixedSpace" id="tv9-S8-NSi"/>
                                     <barButtonItem title="Acerca del vendedor" id="O06-rz-Xr0">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -2583,7 +2588,7 @@
                                                 <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dirección" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mrK-kI-pVQ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dirección" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mrK-kI-pVQ">
                                                 <rect key="frame" x="43" y="109" width="316" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="DPf-Cy-hJl"/>
@@ -2856,6 +2861,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="barFixedSpace" destination="tv9-S8-NSi" id="4nV-Hd-5qS"/>
                         <outlet property="lblCelular" destination="3G6-Zd-ky2" id="7Kc-TZ-NbM"/>
                         <outlet property="lblCorreo" destination="kta-MZ-Eoh" id="KBf-vt-gII"/>
                         <outlet property="lblDiasFestivos" destination="FKK-Ng-eoX" id="qgr-pe-RxP"/>
@@ -2899,7 +2905,7 @@
                                             <action selector="backView:" destination="EyW-1z-Er8" id="bMo-Kg-7uA"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="h9u-0y-FCW"/>
+                                    <barButtonItem width="60" style="plain" systemItem="fixedSpace" id="h9u-0y-FCW"/>
                                     <barButtonItem title="Confirmación de datos" id="WIi-Bw-J1J">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -3001,6 +3007,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="barFixedSpace" destination="h9u-0y-FCW" id="XIl-gz-hJh"/>
                         <outlet property="btnSiguiente" destination="dIG-EX-749" id="SPe-M7-WxJ"/>
                         <outlet property="lblTotal" destination="vCf-SO-C6M" id="KNn-X1-dsm"/>
                         <outlet property="tableCompras" destination="zxQ-G7-JXO" id="SgL-wE-P5w"/>
@@ -3035,7 +3042,7 @@
                                             <action selector="backView:" destination="7PK-eh-FTM" id="7id-DP-f3q"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="qxS-WE-fvQ"/>
+                                    <barButtonItem width="60" style="plain" systemItem="fixedSpace" id="qxS-WE-fvQ"/>
                                     <barButtonItem title="Confirmación de datos" id="GHk-ad-8dU">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -3340,6 +3347,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="barFixedSpace" destination="qxS-WE-fvQ" id="tpj-x7-QWr"/>
                         <outlet property="btnCambiar" destination="jRY-MV-DZx" id="7im-Jg-Mdr"/>
                         <outlet property="btnFinalizar" destination="4bM-jm-KMz" id="kbR-iG-D0f"/>
                         <outlet property="imgAdelante" destination="ZHZ-UR-BfH" id="I2v-2g-IKC"/>
@@ -3672,7 +3680,7 @@
                                             <action selector="backView:" destination="Do6-zR-9tl" id="oOy-gh-6nH"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="SRN-Es-8nJ"/>
+                                    <barButtonItem width="95" style="plain" systemItem="fixedSpace" id="SRN-Es-8nJ"/>
                                     <barButtonItem title="¡Califícanos!" id="VwZ-8a-gey">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -3776,6 +3784,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="barFixedSpace" destination="SRN-Es-8nJ" id="pJM-q5-eEp"/>
                         <outlet property="btnEnviar" destination="b3B-fe-btX" id="OTP-PE-5U8"/>
                         <outlet property="floatRatingView" destination="NhM-Pc-Iau" id="Fa6-eD-nWf"/>
                         <outlet property="textComentario" destination="p7z-YG-Qas" id="5aA-r8-Kbo"/>
@@ -4326,7 +4335,7 @@
                                             <action selector="backView:" destination="ueq-d9-g2S" id="oel-gx-yx0"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="Vgk-ba-HGe"/>
+                                    <barButtonItem width="95" style="plain" systemItem="fixedSpace" id="Vgk-ba-HGe"/>
                                     <barButtonItem title="Tu mascota" id="umh-nk-Kjx">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -4565,6 +4574,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="barFixedSpace" destination="Vgk-ba-HGe" id="SLz-ro-H0j"/>
                         <outlet property="btnAceptar" destination="dBW-gh-EzE" id="Hr1-OE-Dg9"/>
                         <outlet property="btnCancelar" destination="EV0-ZR-fKo" id="Sio-Vp-WSm"/>
                         <outlet property="heightEqualsAceptarLayoutConstraint" destination="XDp-sD-uvp" id="J1V-Gr-LfD"/>
@@ -4605,6 +4615,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8r-cD-0d4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ipH-R9-6GX"/>
                                     <barButtonItem title="Administrar mascotas" id="eXq-iL-jfG">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -4767,7 +4778,7 @@
                                             <action selector="backView:" destination="1ba-nr-4UF" id="AiR-pC-RW5"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="7Au-oj-asv"/>
+                                    <barButtonItem width="110" style="plain" systemItem="fixedSpace" id="7Au-oj-asv"/>
                                     <barButtonItem title="Alarmas" id="W6r-Xn-s7h">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -4893,6 +4904,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="barFixedSpace" destination="7Au-oj-asv" id="P0d-Wm-ZYk"/>
                         <outlet property="lblAviso" destination="keC-gL-hog" id="SDS-B8-fHq"/>
                         <outlet property="tableAlertasMascota" destination="XeB-zL-rc8" id="BvQ-de-mK6"/>
                         <segue destination="V0R-Bf-sCT" kind="presentation" identifier="alarmaDesdeAdministrarAlarmas" id="kZc-TP-eXQ"/>
@@ -5156,6 +5168,7 @@
                                             <action selector="backView:" destination="evv-T1-4Jo" id="19C-V4-dAL"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0cL-5j-WFC"/>
                                     <barButtonItem title="Servicio" id="zaw-Hc-NKf">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -5750,7 +5763,7 @@
                                             <action selector="backView:" destination="h6X-hg-ui4" id="XnE-7L-68T"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="Iyb-25-YRG"/>
+                                    <barButtonItem width="110" style="plain" systemItem="fixedSpace" id="Iyb-25-YRG"/>
                                     <barButtonItem title="Agendar" id="WcX-KW-3rR">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -5861,6 +5874,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="barFixedSpace" destination="Iyb-25-YRG" id="NoM-or-4i0"/>
                         <outlet property="btnAceptar" destination="3Pc-yf-Y6j" id="DaI-AP-ZGp"/>
                         <outlet property="btnCancelar" destination="3Fz-fp-yYZ" id="b3C-Sb-75C"/>
                         <outlet property="datePicker" destination="yH8-ER-4Pn" id="97g-V0-nx3"/>
@@ -5895,7 +5909,7 @@
                                             <action selector="backView:" destination="1qp-2i-U0Y" id="jak-dE-0qg"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="C8s-mY-yoT"/>
+                                    <barButtonItem width="40" style="plain" systemItem="fixedSpace" id="C8s-mY-yoT"/>
                                     <barButtonItem title="Preguntas sobre el producto" id="Sfv-oZ-DF9">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -5958,6 +5972,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="barFixedSpace" destination="C8s-mY-yoT" id="3hk-mO-0HT"/>
                         <outlet property="barItemTitulo" destination="Sfv-oZ-DF9" id="OR0-bv-WCD"/>
                         <outlet property="tablePreguntasRespuestas" destination="7uc-9z-YmH" id="ZtV-uA-ooG"/>
                         <segue destination="hAX-UJ-oBp" kind="presentation" identifier="preguntarDesdeVistaPreguntas" animates="NO" id="Mel-NR-8B0"/>
@@ -6005,6 +6020,7 @@
                                             <action selector="backView:" destination="hAX-UJ-oBp" id="6qA-fv-bfd"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="NEa-03-yJv"/>
                                     <barButtonItem title="Preguntar" id="aq8-Uv-SMP">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
@@ -6630,23 +6646,23 @@
         <image name="textura_Ingreso" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="MuH-BR-ujl"/>
         <segue reference="4dZ-15-YtV"/>
         <segue reference="c64-eH-oia"/>
         <segue reference="a1h-2i-JbW"/>
-        <segue reference="rzp-TS-BC7"/>
-        <segue reference="skD-nx-tLG"/>
-        <segue reference="g9o-0N-P4D"/>
-        <segue reference="7hU-I0-I2k"/>
-        <segue reference="OYj-aD-Dz2"/>
-        <segue reference="ZN1-nn-YBd"/>
-        <segue reference="i9R-bi-MDr"/>
-        <segue reference="pQ7-FT-sEN"/>
-        <segue reference="ZfC-qD-0SX"/>
+        <segue reference="7RF-48-icR"/>
+        <segue reference="KNz-Nx-pOf"/>
+        <segue reference="Sxi-cS-EGb"/>
         <segue reference="BX6-fI-Ian"/>
         <segue reference="rxK-zF-aLe"/>
-        <segue reference="B7O-E2-n1O"/>
-        <segue reference="Sxi-cS-EGb"/>
-        <segue reference="TnN-1C-z0q"/>
+        <segue reference="pQ7-FT-sEN"/>
+        <segue reference="ZfC-qD-0SX"/>
+        <segue reference="7hU-I0-I2k"/>
+        <segue reference="i9R-bi-MDr"/>
+        <segue reference="Mel-NR-8B0"/>
         <segue reference="oQN-Js-Es1"/>
+        <segue reference="TnN-1C-z0q"/>
+        <segue reference="6DQ-fI-DhW"/>
+        <segue reference="rmU-qS-rqw"/>
     </inferredMetricsTieBreakers>
 </document>

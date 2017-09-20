@@ -65,6 +65,8 @@ class HomeUsuarioViewController: UITabBarController
         
         NotificationCenter.default.addObserver(self, selector: #selector(HomeUsuarioViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoPublicaciones"), object: nil)
         
+        ComandoUsuario.getCalificacionesPublicaciones()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(HomeUsuarioViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoCalificacionesPublicaciones"), object: nil)
     }
     

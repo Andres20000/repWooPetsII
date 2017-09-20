@@ -16,6 +16,8 @@ class AdministrarAlarmasViewController: UIViewController, UITableViewDelegate, U
     
     let  user = FIRAuth.auth()?.currentUser
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
+    
     @IBOutlet var tableAlertasMascota: UITableView!
     @IBOutlet var lblAviso: UILabel!
     
@@ -31,6 +33,16 @@ class AdministrarAlarmasViewController: UIViewController, UITableViewDelegate, U
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if DeviceType.IS_IPHONE_5
+        {
+            barFixedSpace.width = 85.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            barFixedSpace.width = 125.0
+        }
         
         let nib = UINib(nibName: "AlertaTableViewCell", bundle: nil)
         tableAlertasMascota.register(nib, forCellReuseIdentifier: "alertaTableViewCell")
