@@ -36,7 +36,7 @@
                         </constraints>
                         <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" autocorrectionType="yes" spellCheckingType="yes"/>
                         <connections>
                             <outlet property="delegate" destination="KGk-i7-Jjw" id="HnY-1n-uyn"/>
                         </connections>

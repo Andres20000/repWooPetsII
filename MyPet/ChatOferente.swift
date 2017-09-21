@@ -13,14 +13,18 @@ class ChatOferente:  UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     
     @IBOutlet var tabla: UITableView!
+
     
-    @IBOutlet weak var titulo: UIBarButtonItem!
+    @IBOutlet weak var titulo: UILabel!
+    
     
     let model = ModeloOferente.sharedInstance
     
     var idPublicacion = ""
     var selectedindexPath:IndexPath?
     var filtroIdCliente:String?
+    
+    
     
     
     override func viewDidLoad()
@@ -42,7 +46,7 @@ class ChatOferente:  UIViewController, UITableViewDelegate, UITableViewDataSourc
         tabla.estimatedRowHeight = 100
         
         let ofer = model.getPublicacion(idPublicacion: idPublicacion)
-        titulo.title = ofer!.nombre
+        titulo.text = ofer!.nombre
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.repintar), name:NSNotification.Name(rawValue:"cargoMiniUsuario"), object: nil)
         

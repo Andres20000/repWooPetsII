@@ -495,7 +495,7 @@ class ModeloOferente
     
     var preguntas:[Pregunta] = [] {
         didSet {
-            print("aca")
+           
         }
     }
     

@@ -70,6 +70,12 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
         let nib3 = UINib(nibName: "HorarioTableViewCell", bundle: nil)
         tableRegistroOferente.register(nib3, forCellReuseIdentifier: "horarioTableViewCell")
         
+        let nib4 = UINib(nibName: "TelefonoRegistroTableViewCell", bundle: nil)
+        tableRegistroOferente.register(nib4, forCellReuseIdentifier: "telefonoTableViewCell")
+        
+        
+        tableRegistroOferente.keyboardDismissMode = .onDrag
+        
         if model.oferente.count != 0
         {
             barItemTitulo.title = "Editar Perfil"
@@ -143,9 +149,9 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
             oferenteRegistro.aprobacionMyPet = "Pendiente"
             datosEditables = false
             
-            tituloNegocio = ["Razón Social","NIT","Dirección", "Teléfono fijo", "Celular", "Correo electrónico", "Página web (opcional)", "Horario de atención a domicilio"]
+            tituloNegocio = ["Razón Social","NIT","Dirección", "Teléfono fijo (Bogotá)", "Celular", "Correo electrónico", "Página web (opcional)", "Horario de atención a domicilio"]
             
-            tituloContacto = ["Nombre completo","Tipo de documento","Número de documento", "Teléfono fijo", "Celular", "Correo electrónico (este será tu Usuario)", "Contraseña (para tu Usuario)"]
+            tituloContacto = ["Nombre completo","Tipo de documento","Número de documento", "Teléfono fijo (Bogotá)", "Celular", "Correo electrónico (este será tu Usuario)", "Contraseña (para tu Usuario)"]
         }
         
     }
@@ -183,6 +189,7 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
+        
         let vw = UIView()
         let lbl = UILabel(frame: CGRect(x: 0, y: 0, width: 320, height: 35))
         lbl.font = UIFont (name: "HelveticaNeue-Light", size: 17.0)
@@ -229,11 +236,17 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
             cell.txtCampo.addTarget(self, action: #selector(textFieldDidEndEditing(_:)) , for: .editingDidEnd)
             cell.txtCampo.addTarget(self, action: #selector(textFieldShouldReturn(_:)) , for: .editingDidEndOnExit)
             cell.txtCampo.textAlignment = .left
-            cell.txtCampo.autocorrectionType = .no
+            cell.txtCampo.autocorrectionType = .yes
             cell.txtCampo.tag = indexPath.row
             cell.txtCampo.isSecureTextEntry = false
             cell.txtCampo.keyboardType = .default
             self .toolBarTextField(cell.txtCampo)
+            
+            
+            if indexPath.row == 1 {
+                cell.txtCampo.keyboardType = .phonePad
+                
+            }
             
             if indexPath.row == 2
             {
@@ -270,10 +283,77 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                 return cell
             }
             
-            if indexPath.row == 3 || indexPath.row == 4
-            {
+            
+            if indexPath.row == 3             {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "telefonoTableViewCell")  as! TelefonoRegistroTableViewCell
+                
+                cell.imgFlecha.isHidden = true
+                
+                cell.txtCampo.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)) , for: .editingDidBegin)
+                cell.txtCampo.addTarget(self, action: #selector(textFieldDidEndEditing(_:)) , for: .editingDidEnd)
+                cell.txtCampo.addTarget(self, action: #selector(textFieldShouldReturn(_:)) , for: .editingDidEndOnExit)
+                cell.txtCampo.tag = indexPath.row + 20
+                cell.txtCampo.textAlignment = .left
+                cell.txtCampo.autocorrectionType = .no
+                cell.txtCampo.keyboardType = .phonePad
+                cell.txtCampo.inputView = nil
+                
+                self .toolBarTextField(cell.txtCampo)
+                
+                if indexPath.row == 1
+                {
+                    cell.imgFlecha.isHidden = false
+                    
+                    pickerView.delegate = self
+                    pickerView.dataSource = self as? UIPickerViewDataSource
+                    
+                    cell.txtCampo.inputView = pickerView
+                    
+                }
+                
+                if indexPath.row == 2
+                {
+                    cell.txtCampo.keyboardType = .decimalPad
+                }
+                
+                if indexPath.row == 3 || indexPath.row == 4
+                {
+                    cell.txtCampo.keyboardType = .phonePad
+                }
+                
+                if indexPath.row == 5
+                {
+                    cell.txtCampo.keyboardType = .emailAddress
+                }
+                
+                if indexPath.row == 6
+                {
+                    cell.txtCampo.isSecureTextEntry = true
+                } else
+                {
+                    if indexPath.row != 1
+                    {
+                        cell.txtCampo.isSecureTextEntry = false
+                        cell.txtCampo.text = datosContacto[indexPath.row] as? String
+                    }
+                }
+                
+                cell.lblNombreCampo.text = tituloContacto[indexPath.row]
+                cell.txtCampo.text = datosContacto[indexPath.row] as? String
+                
+                return cell
+            
+
+                
+                
+                
+                
+            }
+            
+            if indexPath.row == 4             {
                 cell.txtCampo.keyboardType = .phonePad
             }
+            
             
             if indexPath.row == 5
             {
@@ -366,7 +446,7 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
             cell.txtCampo.addTarget(self, action: #selector(textFieldShouldReturn(_:)) , for: .editingDidEndOnExit)
             cell.txtCampo.tag = indexPath.row + 20
             cell.txtCampo.textAlignment = .left
-            cell.txtCampo.autocorrectionType = .no
+            cell.txtCampo.autocorrectionType = .yes
             cell.txtCampo.keyboardType = .default
             cell.txtCampo.inputView = nil
             
