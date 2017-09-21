@@ -20,6 +20,23 @@ class ResenaCompradoresViewController: UIViewController, UITableViewDelegate, UI
     @IBOutlet var lblReseñas: UILabel!
     @IBOutlet var tableResenas: UITableView!
     
+    var sumaCalificacion = 0
+    
+    @IBOutlet var viewCalif1: UIView!
+    var cantCalif1 = 0
+    
+    @IBOutlet var viewCalif2: UIView!
+    var cantCalif2 = 0
+    
+    @IBOutlet var viewCalif3: UIView!
+    var cantCalif3 = 0
+    
+    @IBOutlet var viewCalif4: UIView!
+    var cantCalif4 = 0
+    
+    @IBOutlet var viewCalif5: UIView!
+    var cantCalif5 = 0
+    
     @IBAction func backView(_ sender: Any)
     {
         dismiss(animated: true, completion: nil)
@@ -41,13 +58,36 @@ class ResenaCompradoresViewController: UIViewController, UITableViewDelegate, UI
             barFixedSpace.width = 70.0
         }
         
-        var sumaCalificacion = 0
-        
         for calificacion in modelUsuario.calificacionesPublicacion
         {
             print("calificacion: \(calificacion.calificacion)")
             sumaCalificacion = sumaCalificacion + calificacion.calificacion
             print("suma: \(sumaCalificacion)")
+            
+            if calificacion.calificacion == 1
+            {
+                cantCalif1 = cantCalif1 + 1
+            }
+            
+            if calificacion.calificacion == 2
+            {
+                cantCalif2 = cantCalif2 + 1
+            }
+            
+            if calificacion.calificacion == 3
+            {
+                cantCalif3 = cantCalif3 + 1
+            }
+            
+            if calificacion.calificacion == 4
+            {
+                cantCalif4 = cantCalif4 + 1
+            }
+            
+            if calificacion.calificacion == 5
+            {
+                cantCalif5 = cantCalif5 + 1
+            }
         }
         
         let promedioCalificacion = Float(sumaCalificacion) / Float(modelUsuario.calificacionesPublicacion.count)
@@ -81,6 +121,21 @@ class ResenaCompradoresViewController: UIViewController, UITableViewDelegate, UI
         self.floatRatingView.editable = false
         self.floatRatingView.halfRatings = false
         self.floatRatingView.floatRatings = true
+        
+        let promedioCalificacion1 = Float(cantCalif1) / Float(modelUsuario.calificacionesPublicacion.count)
+        print("sumaCal1: \(cantCalif1) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion1)")
+        
+        let promedioCalificacion2 = Float(cantCalif2) / Float(modelUsuario.calificacionesPublicacion.count)
+        print("sumaCal2: \(cantCalif2) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion2)")
+        
+        let promedioCalificacion3 = Float(cantCalif3) / Float(modelUsuario.calificacionesPublicacion.count)
+        print("sumaCal3: \(cantCalif3) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion3)")
+        
+        let promedioCalificacion4 = Float(cantCalif4) / Float(modelUsuario.calificacionesPublicacion.count)
+        print("sumaCal4: \(cantCalif4) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion4)")
+        
+        let promedioCalificacion5 = Float(cantCalif5) / Float(modelUsuario.calificacionesPublicacion.count)
+        print("sumaCal5: \(cantCalif5) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion5)")
         
         let nib = UINib(nibName: "ResenaTableViewCell", bundle: nil)
         tableResenas.register(nib, forCellReuseIdentifier: "resenaTableViewCell")
@@ -176,7 +231,14 @@ class ResenaCompradoresViewController: UIViewController, UITableViewDelegate, UI
             cell.imgEstrellaCinco.isHidden = false
         }
         
-        cell.lblFecha.text = modelUsuario.calificacionesPublicacion[indexPath.row].fecha
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let dateCalificacion = dateFormatter.date(from: modelUsuario.calificacionesPublicacion[indexPath.row].fecha)
+        
+        let newDateFormatter = DateFormatter()
+        newDateFormatter.dateStyle = .long
+        
+        cell.lblFecha.text = newDateFormatter.string(from: dateCalificacion!)
         
         let cliente = modelOferente.misUsuarios[modelUsuario.calificacionesPublicacion[indexPath.row].idCliente]
         

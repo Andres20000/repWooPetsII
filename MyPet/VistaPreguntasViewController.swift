@@ -23,7 +23,7 @@ class VistaPreguntasViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func backView(_ sender: Any)
     {
         let transition = CATransition()
-        transition.duration = 0.5
+        transition.duration = 0.3
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft
         view.window!.layer.add(transition, forKey: kCATransition)
@@ -147,7 +147,7 @@ class VistaPreguntasViewController: UIViewController, UITableViewDelegate, UITab
             } else
             {
                 let transition = CATransition()
-                transition.duration = 0.5
+                transition.duration = 0.3
                 transition.type = kCATransitionPush
                 transition.subtype = kCATransitionFromRight
                 view.window!.layer.add(transition, forKey: kCATransition)

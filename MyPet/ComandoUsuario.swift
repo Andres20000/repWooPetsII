@@ -356,13 +356,15 @@ class ComandoUsuario
     {
         let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + alerta.idMascota! + "/alertas/" + alerta.idAlerta!)
         
-        refHandle.child("/activada").setValue(alerta.activada)
-        refHandle.child("/fechaFin").setValue(alerta.fechaFin)
-        refHandle.child("/fechaInicio").setValue(alerta.fechaInicio)
-        refHandle.child("/frecuencia").setValue(alerta.frecuencia)
-        refHandle.child("/hora").setValue(alerta.hora)
-        refHandle.child("/nombre").setValue(alerta.nombre)
-        refHandle.child("/tipoRecordatorio").setValue(alerta.tipoRecordatorio)
+        let newItem = ["activada":alerta.activada as AnyObject,
+                       "fechaFin":alerta.fechaFin as AnyObject,
+                       "fechaInicio": alerta.fechaInicio as AnyObject,
+                       "frecuencia":alerta.frecuencia as AnyObject,
+                       "hora":alerta.hora as AnyObject,
+                       "nombre":alerta.nombre as AnyObject,
+                       "tipoRecordatorio":alerta.tipoRecordatorio as AnyObject] as [String : AnyObject]
+        
+        refHandle.updateChildValues(newItem)
     }
     
     class func desactivarAlertaMascota(uid:String?, alerta:Alerta)
@@ -391,12 +393,14 @@ class ComandoUsuario
     {
         let refHandle  = FIRDatabase.database().reference().child("preguntas").childByAutoId()
         
-        refHandle.child("/fechaPregunta").setValue(pregunta.fechaPregunta)
-        refHandle.child("/idCliente").setValue(pregunta.idCliente)
-        refHandle.child("/idOferente").setValue(pregunta.idOferente)
-        refHandle.child("/idPublicacion").setValue(pregunta.idPublicacion)
-        refHandle.child("/pregunta").setValue(pregunta.pregunta)
-        refHandle.child("/timestamp").setValue(FIRServerValue.timestamp())
+        let newItem = ["fechaPregunta":pregunta.fechaPregunta as AnyObject,
+                       "idCliente":pregunta.idCliente as AnyObject,
+                       "idOferente": pregunta.idOferente as AnyObject,
+                       "idPublicacion":pregunta.idPublicacion as AnyObject,
+                       "pregunta":pregunta.pregunta as AnyObject,
+                       "timestamp":FIRServerValue.timestamp()] as [String : AnyObject]
+        
+        refHandle.updateChildValues(newItem)
     }
     
     class func agregarAlCarrito(uid:String?, carrito:Carrito)

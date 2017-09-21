@@ -371,7 +371,7 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
         if self.validarRegistro()
         {
             let transition = CATransition()
-            transition.duration = 0.5
+            transition.duration = 0.3
             transition.type = kCATransitionPush
             transition.subtype = kCATransitionFromRight
             view.window!.layer.add(transition, forKey: kCATransition)
@@ -513,7 +513,7 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     @IBAction func verPreguntas(_ sender: Any)
     {
         let transition = CATransition()
-        transition.duration = 0.5
+        transition.duration = 0.3
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight
         view.window!.layer.add(transition, forKey: kCATransition)
@@ -534,7 +534,7 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
             } else
             {
                 let transition = CATransition()
-                transition.duration = 0.5
+                transition.duration = 0.3
                 transition.type = kCATransitionPush
                 transition.subtype = kCATransitionFromRight
                 view.window!.layer.add(transition, forKey: kCATransition)
@@ -549,7 +549,7 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
         print("id Oferente: \(modelOferente.publicacion.idOferente!)")
         
         let transition = CATransition()
-        transition.duration = 0.5
+        transition.duration = 0.3
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight
         view.window!.layer.add(transition, forKey: kCATransition)
