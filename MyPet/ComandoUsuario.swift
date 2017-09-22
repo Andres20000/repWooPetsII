@@ -628,7 +628,7 @@ class ComandoUsuario
         
         let refHandle:FIRDatabaseReference! = FIRDatabase.database().reference().child("calificaciones")
         
-        refHandle.observeSingleEvent(of: .value, with: {snap in
+        refHandle.queryOrdered(byChild: "fecha").observeSingleEvent(of: .value, with: {snap in
             
             let calificaciones = snap.children
             
@@ -648,6 +648,7 @@ class ComandoUsuario
                 calificacionCompra.idPublicacion = postDict["idPublicacion"] as! String
                 
                 modelUsuario.calificacionesPublicaciones.append(calificacionCompra)
+                modelUsuario.calificacionesPublicaciones.sort(by: {_,_ in Calificacion.init().fecha < Calificacion.init().fecha})
             }
             
             NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoCalificacionesPublicaciones"), object: nil)
