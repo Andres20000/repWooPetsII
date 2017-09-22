@@ -13,6 +13,13 @@ class ResenaCompradoresViewController: UIViewController, UITableViewDelegate, UI
     let modelUsuario = ModeloUsuario.sharedInstance
     let modelOferente = ModeloOferente.sharedInstance
     
+    // This constraint ties an element at zero points from the top layout guide
+    @IBOutlet var widthViewCalif1LayoutConstraint: NSLayoutConstraint?
+    @IBOutlet var widthViewCalif2LayoutConstraint: NSLayoutConstraint?
+    @IBOutlet var widthViewCalif3LayoutConstraint: NSLayoutConstraint?
+    @IBOutlet var widthViewCalif4LayoutConstraint: NSLayoutConstraint?
+    @IBOutlet var widthViewCalif5LayoutConstraint: NSLayoutConstraint?
+    
     @IBOutlet var barFixedSpace: UIBarButtonItem!
     
     @IBOutlet var lblRating: UILabel!
@@ -60,9 +67,7 @@ class ResenaCompradoresViewController: UIViewController, UITableViewDelegate, UI
         
         for calificacion in modelUsuario.calificacionesPublicacion
         {
-            print("calificacion: \(calificacion.calificacion)")
             sumaCalificacion = sumaCalificacion + calificacion.calificacion
-            print("suma: \(sumaCalificacion)")
             
             if calificacion.calificacion == 1
             {
@@ -91,15 +96,21 @@ class ResenaCompradoresViewController: UIViewController, UITableViewDelegate, UI
         }
         
         let promedioCalificacion = Float(sumaCalificacion) / Float(modelUsuario.calificacionesPublicacion.count)
-        print("suma: \(sumaCalificacion) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion)")
         
         if modelUsuario.calificacionesPublicacion.count == 0
         {
             lblRating.text = "0"
             lblReseñas.text = "0 reseñas"
+            
+            self.widthViewCalif1LayoutConstraint = self.widthViewCalif1LayoutConstraint?.setMultiplier(multiplier: 0.0)
+            self.widthViewCalif2LayoutConstraint = self.widthViewCalif2LayoutConstraint?.setMultiplier(multiplier: 0.0)
+            self.widthViewCalif3LayoutConstraint = self.widthViewCalif3LayoutConstraint?.setMultiplier(multiplier: 0.0)
+            self.widthViewCalif4LayoutConstraint = self.widthViewCalif4LayoutConstraint?.setMultiplier(multiplier: 0.0)
+            self.widthViewCalif5LayoutConstraint = self.widthViewCalif5LayoutConstraint?.setMultiplier(multiplier: 0.0)
+            
         } else
         {
-            lblRating.text = "\(promedioCalificacion)"
+            lblRating.text = String(format:"%.1f", promedioCalificacion)
             
             if modelUsuario.calificacionesPublicacion.count == 1
             {
@@ -108,6 +119,21 @@ class ResenaCompradoresViewController: UIViewController, UITableViewDelegate, UI
             {
                 lblReseñas.text = "\(modelUsuario.calificacionesPublicacion.count) reseñas"
             }
+            
+            let promedioCalificacion1 = Float(cantCalif1) / Float(modelUsuario.calificacionesPublicacion.count)
+            self.widthViewCalif1LayoutConstraint = self.widthViewCalif1LayoutConstraint?.setMultiplier(multiplier: CGFloat(promedioCalificacion1))
+            
+            let promedioCalificacion2 = Float(cantCalif2) / Float(modelUsuario.calificacionesPublicacion.count)
+            self.widthViewCalif2LayoutConstraint = self.widthViewCalif2LayoutConstraint?.setMultiplier(multiplier: CGFloat(promedioCalificacion2))
+            
+            let promedioCalificacion3 = Float(cantCalif3) / Float(modelUsuario.calificacionesPublicacion.count)
+            self.widthViewCalif3LayoutConstraint = self.widthViewCalif3LayoutConstraint?.setMultiplier(multiplier: CGFloat(promedioCalificacion3))
+            
+            let promedioCalificacion4 = Float(cantCalif4) / Float(modelUsuario.calificacionesPublicacion.count)
+            self.widthViewCalif4LayoutConstraint = self.widthViewCalif4LayoutConstraint?.setMultiplier(multiplier: CGFloat(promedioCalificacion4))
+            
+            let promedioCalificacion5 = Float(cantCalif5) / Float(modelUsuario.calificacionesPublicacion.count)
+            self.widthViewCalif5LayoutConstraint = self.widthViewCalif5LayoutConstraint?.setMultiplier(multiplier: CGFloat(promedioCalificacion5))
         }
         
         // Required float rating view params
@@ -122,20 +148,20 @@ class ResenaCompradoresViewController: UIViewController, UITableViewDelegate, UI
         self.floatRatingView.halfRatings = false
         self.floatRatingView.floatRatings = true
         
-        let promedioCalificacion1 = Float(cantCalif1) / Float(modelUsuario.calificacionesPublicacion.count)
-        print("sumaCal1: \(cantCalif1) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion1)")
+        viewCalif1.layer.borderWidth = 1.0
+        viewCalif1.layer.borderColor = UIColor.init(red: 0.901960784313725, green: 0.901960784313725, blue: 0.901960784313725, alpha: 1.0).cgColor
         
-        let promedioCalificacion2 = Float(cantCalif2) / Float(modelUsuario.calificacionesPublicacion.count)
-        print("sumaCal2: \(cantCalif2) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion2)")
+        viewCalif2.layer.borderWidth = 1.0
+        viewCalif2.layer.borderColor = UIColor.init(red: 0.901960784313725, green: 0.901960784313725, blue: 0.901960784313725, alpha: 1.0).cgColor
         
-        let promedioCalificacion3 = Float(cantCalif3) / Float(modelUsuario.calificacionesPublicacion.count)
-        print("sumaCal3: \(cantCalif3) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion3)")
+        viewCalif3.layer.borderWidth = 1.0
+        viewCalif3.layer.borderColor = UIColor.init(red: 0.901960784313725, green: 0.901960784313725, blue: 0.901960784313725, alpha: 1.0).cgColor
         
-        let promedioCalificacion4 = Float(cantCalif4) / Float(modelUsuario.calificacionesPublicacion.count)
-        print("sumaCal4: \(cantCalif4) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion4)")
+        viewCalif4.layer.borderWidth = 1.0
+        viewCalif4.layer.borderColor = UIColor.init(red: 0.901960784313725, green: 0.901960784313725, blue: 0.901960784313725, alpha: 1.0).cgColor
         
-        let promedioCalificacion5 = Float(cantCalif5) / Float(modelUsuario.calificacionesPublicacion.count)
-        print("sumaCal5: \(cantCalif5) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion5)")
+        viewCalif5.layer.borderWidth = 1.0
+        viewCalif5.layer.borderColor = UIColor.init(red: 0.901960784313725, green: 0.901960784313725, blue: 0.901960784313725, alpha: 1.0).cgColor
         
         let nib = UINib(nibName: "ResenaTableViewCell", bundle: nil)
         tableResenas.register(nib, forCellReuseIdentifier: "resenaTableViewCell")
@@ -278,4 +304,35 @@ class ResenaCompradoresViewController: UIViewController, UITableViewDelegate, UI
     }
     */
 
+}
+
+extension NSLayoutConstraint
+{
+    /**
+     Change multiplier constraint
+     
+     - parameter multiplier: CGFloat
+     - returns: NSLayoutConstraint
+     */
+    func setMultiplier(multiplier:CGFloat) -> NSLayoutConstraint
+    {
+        
+        NSLayoutConstraint.deactivate([self])
+        
+        let newConstraint = NSLayoutConstraint(
+            item: firstItem,
+            attribute: firstAttribute,
+            relatedBy: relation,
+            toItem: secondItem,
+            attribute: secondAttribute,
+            multiplier: multiplier,
+            constant: constant)
+        
+        newConstraint.priority = priority
+        newConstraint.shouldBeArchived = self.shouldBeArchived
+        newConstraint.identifier = self.identifier
+        
+        NSLayoutConstraint.activate([newConstraint])
+        return newConstraint
+    }
 }
