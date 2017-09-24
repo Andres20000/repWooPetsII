@@ -69,6 +69,12 @@
 		41D9E45C1F4E465100923B2B /* Parametros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D9E45A1F4E465000923B2B /* Parametros.swift */; };
 		41ED810F1F61A40200A60EEE /* PagoExitosoDestacado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED810E1F61A40200A60EEE /* PagoExitosoDestacado.swift */; };
 		41ED81101F61A40200A60EEE /* PagoExitosoDestacado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED810E1F61A40200A60EEE /* PagoExitosoDestacado.swift */; };
+		8409E2701F775F8B0095C9A5 /* DireccionesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409E26F1F775F8B0095C9A5 /* DireccionesViewController.swift */; };
+		8409E2711F775F8B0095C9A5 /* DireccionesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409E26F1F775F8B0095C9A5 /* DireccionesViewController.swift */; };
+		8409E2751F7763A30095C9A5 /* DireccionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409E2731F7763A30095C9A5 /* DireccionTableViewCell.swift */; };
+		8409E2761F7763A30095C9A5 /* DireccionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409E2731F7763A30095C9A5 /* DireccionTableViewCell.swift */; };
+		8409E2771F7763A30095C9A5 /* DireccionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8409E2741F7763A30095C9A5 /* DireccionTableViewCell.xib */; };
+		8409E2781F7763A30095C9A5 /* DireccionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8409E2741F7763A30095C9A5 /* DireccionTableViewCell.xib */; };
 		840B1B3A1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
 		840B1B3B1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
 		840B1B3C1F339B2900423832 /* ResenaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840B1B391F339B2900423832 /* ResenaTableViewCell.xib */; };
@@ -344,6 +350,9 @@
 		41D9E45A1F4E465000923B2B /* Parametros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parametros.swift; sourceTree = "<group>"; };
 		41ED810E1F61A40200A60EEE /* PagoExitosoDestacado.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagoExitosoDestacado.swift; sourceTree = "<group>"; };
 		49E7A6DA1136AACD9514E46A /* Pods-MyPetPruebas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPetPruebas.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyPetPruebas/Pods-MyPetPruebas.release.xcconfig"; sourceTree = "<group>"; };
+		8409E26F1F775F8B0095C9A5 /* DireccionesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DireccionesViewController.swift; sourceTree = "<group>"; };
+		8409E2731F7763A30095C9A5 /* DireccionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DireccionTableViewCell.swift; sourceTree = "<group>"; };
+		8409E2741F7763A30095C9A5 /* DireccionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DireccionTableViewCell.xib; sourceTree = "<group>"; };
 		840B1B381F339B2900423832 /* ResenaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResenaTableViewCell.swift; sourceTree = "<group>"; };
 		840B1B391F339B2900423832 /* ResenaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResenaTableViewCell.xib; sourceTree = "<group>"; };
 		840B1B451F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreguntaRespuestaTableViewCell.swift; sourceTree = "<group>"; };
@@ -539,6 +548,15 @@
 				4126C96C1F45017800BC4413 /* CeldaVentaProducto.swift */,
 			);
 			name = "Cell Mis Ventas";
+			sourceTree = "<group>";
+		};
+		8409E2721F7763770095C9A5 /* Cell Direccion */ = {
+			isa = PBXGroup;
+			children = (
+				8409E2731F7763A30095C9A5 /* DireccionTableViewCell.swift */,
+				8409E2741F7763A30095C9A5 /* DireccionTableViewCell.xib */,
+			);
+			name = "Cell Direccion";
 			sourceTree = "<group>";
 		};
 		840B1B371F3398AC00423832 /* Cell Resena */ = {
@@ -784,6 +802,8 @@
 				84A5A4CE1F3CCB2800429500 /* ConfirmacionUnoViewController.swift */,
 				84A5A4D11F3CCDD400429500 /* Cell Confirmacion Uno */,
 				84A5A4D81F3D5BA800429500 /* ConfirmacionDosViewController.swift */,
+				8409E26F1F775F8B0095C9A5 /* DireccionesViewController.swift */,
+				8409E2721F7763770095C9A5 /* Cell Direccion */,
 				84485FFB1F455CC500DF5D9D /* CompraExitosaViewController.swift */,
 				84485FFE1F462ED800DF5D9D /* Compra Exitosa Cell */,
 				844860171F4BE27900DF5D9D /* AvisoCalificacionViewController.swift */,
@@ -1040,6 +1060,7 @@
 				8453268A1F0C9B11007A4776 /* AlertaTableViewCell.xib in Resources */,
 				846C92601F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib in Resources */,
 				84818C571F411CC1001011BA /* CarritoTableViewCell.xib in Resources */,
+				8409E2771F7763A30095C9A5 /* DireccionTableViewCell.xib in Resources */,
 				847FDC321ED545A6002F9530 /* Media.xcassets in Resources */,
 				4126C96A1F44F5B600BC4413 /* CeldaVentaProducto.xib in Resources */,
 				84F4FA501EAA955900F3E69A /* Main.storyboard in Resources */,
@@ -1073,6 +1094,7 @@
 				840B1B3D1F339B2900423832 /* ResenaTableViewCell.xib in Resources */,
 				84F4FA701EAAAF6900F3E69A /* LaunchScreen.storyboard in Resources */,
 				847838D01F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
+				8409E2781F7763A30095C9A5 /* DireccionTableViewCell.xib in Resources */,
 				8448600A1F46447300DF5D9D /* ProductoCompradoTableViewCell.xib in Resources */,
 				844860161F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.xib in Resources */,
 				84A3E1DA1EC66EA80013E4DD /* CategoriaCollectionViewCell.xib in Resources */,
@@ -1207,6 +1229,7 @@
 				84A3E1B61EC1850F0013E4DD /* ComandoOferente.swift in Sources */,
 				84A766041F2ABB8A001708CE /* VistaPreguntasViewController.swift in Sources */,
 				84417B911EB2CAE800A70ABC /* DireccionRegistroTableViewCell.swift in Sources */,
+				8409E2751F7763A30095C9A5 /* DireccionTableViewCell.swift in Sources */,
 				4101FA511F4B7B430098F735 /* TPaga.swift in Sources */,
 				840B1B3A1F339B2900423832 /* ResenaTableViewCell.swift in Sources */,
 				4134D51A1F46033400DB43DA /* DetalleMiVenta.swift in Sources */,
@@ -1254,6 +1277,7 @@
 				840B1B571F3594AD00423832 /* FavoritoTableViewCell.swift in Sources */,
 				84BD20691EEF8753001422E7 /* ModeloUsuario.swift in Sources */,
 				84417B8B1EB2AA0600A70ABC /* EstandarRegistroTableViewCell.swift in Sources */,
+				8409E2701F775F8B0095C9A5 /* DireccionesViewController.swift in Sources */,
 				8410A77B1F1870CE0069912F /* PublicacionesPorCategoriaViewController.swift in Sources */,
 				84F4FA4D1EAA955900F3E69A /* ViewController.swift in Sources */,
 				84D5AC091EE7A64C00A18D7E /* InicioSesionUsuarioViewController.swift in Sources */,
@@ -1325,6 +1349,7 @@
 				84A3E1B71EC1850F0013E4DD /* ComandoOferente.swift in Sources */,
 				84A766051F2ABB8A001708CE /* VistaPreguntasViewController.swift in Sources */,
 				84417B921EB2CAE800A70ABC /* DireccionRegistroTableViewCell.swift in Sources */,
+				8409E2761F7763A30095C9A5 /* DireccionTableViewCell.swift in Sources */,
 				4101FA521F4B7B430098F735 /* TPaga.swift in Sources */,
 				840B1B3B1F339B2900423832 /* ResenaTableViewCell.swift in Sources */,
 				4134D51B1F46033400DB43DA /* DetalleMiVenta.swift in Sources */,
@@ -1372,6 +1397,7 @@
 				840B1B581F3594AD00423832 /* FavoritoTableViewCell.swift in Sources */,
 				84BD206A1EEF8753001422E7 /* ModeloUsuario.swift in Sources */,
 				84417B8C1EB2AA0600A70ABC /* EstandarRegistroTableViewCell.swift in Sources */,
+				8409E2711F775F8B0095C9A5 /* DireccionesViewController.swift in Sources */,
 				8410A77C1F1870CE0069912F /* PublicacionesPorCategoriaViewController.swift in Sources */,
 				84F4FA761EAAEEF700F3E69A /* ViewController.swift in Sources */,
 				84D5AC0A1EE7A64C00A18D7E /* InicioSesionUsuarioViewController.swift in Sources */,

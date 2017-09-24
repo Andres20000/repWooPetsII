@@ -76,6 +76,17 @@ class ConfirmacionDosViewController: UIViewController
         }
     }
     
+    @IBAction func cambiarDireccion(_ sender: Any)
+    {
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
+        
+        self.performSegue(withIdentifier: "direccionesDesdeConfirmacionDos", sender: self)
+    }
+    
     @IBAction func finalizarCompra(_ sender: Any)
     {
         modelUsuario.compra.idCompra = modelUsuario.publicacionCarrito.idCarrito
