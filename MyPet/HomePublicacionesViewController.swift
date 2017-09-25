@@ -273,7 +273,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         }
     }*/
     
-    func actionAviso(sender: UIButton!)
+    @objc func actionAviso(sender: UIButton!)
     {
         if sender.tag == 0
         {
@@ -926,7 +926,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
     var pos = 0
     var created = true
     
-    func advancePage ()
+    @objc func advancePage ()
     {
         if created
         {

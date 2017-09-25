@@ -21,6 +21,8 @@ class DireccionTableViewCell: UITableViewCell
         
         lblDireccion.layer.masksToBounds = true
         lblDireccion.layer.cornerRadius = 7.0
+        
+        lblDireccion.padding = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool)

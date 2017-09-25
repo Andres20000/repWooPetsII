@@ -297,12 +297,12 @@ class HorarioViewController: UIViewController, UITextFieldDelegate
         textFieldGenerico = textField
     }
     
-    func changeTimeText()
+    @objc func changeTimeText()
     {
         textFieldGenerico.text = datePicker.date.horaString()
     }
     
-    func doneClick()
+    @objc func doneClick()
     {
         textFieldGenerico.resignFirstResponder()
     }

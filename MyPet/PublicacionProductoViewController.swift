@@ -112,9 +112,9 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
         self.floatRatingView.floatRatings = true
     }
 
-    func refrescarVista(_ notification: Notification)
+    @objc func refrescarVista(_ notification: Notification)
     {
-        modelUsuario.publicacionCarrito.cantidadCompra = 0
+        modelUsuario.publicacionCarrito.cantidadCompra = 1
         modelUsuario.publicacionCarrito.idCarrito = ""
         modelUsuario.publicacionCarrito.idPublicacion = ""
         
@@ -191,7 +191,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
             btnCarrito.setTitle("Eliminar del carrito", for: .normal)
             
             btnCarrito.titleLabel?.font = UIFont (name: "HelveticaNeue-Light", size: 17.0)
-            let attributes = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+            let attributes = [NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
             let attributedText = NSAttributedString(string: btnCarrito.currentTitle!, attributes: attributes)
             
             btnCarrito.setAttributedTitle(attributedText, for: .normal)
@@ -203,7 +203,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
             btnCarrito.setTitle("Añadir al carrito", for: .normal)
             
             btnCarrito.titleLabel?.font = UIFont (name: "HelveticaNeue-Light", size: 17.0)
-            let attributes = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+            let attributes = [NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
             let attributedText = NSAttributedString(string: btnCarrito.currentTitle!, attributes: attributes)
             
             btnCarrito.setAttributedTitle(attributedText, for: .normal)
@@ -595,7 +595,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
 
     // PageViewController
     
-    func hacerMontaje(_ notification: Notification)
+    @objc func hacerMontaje(_ notification: Notification)
     {
         createPageViewController()
     }

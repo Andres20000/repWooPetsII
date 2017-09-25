@@ -274,7 +274,7 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
         dismiss(animated: true, completion: nil)
     }
     
-    func cargarDatos(_ notification: Notification)
+    @objc func cargarDatos(_ notification: Notification)
     {
         pickerTipoMascota.delegate = self
         pickerTipoMascota.dataSource = self as? UIPickerViewDataSource
@@ -417,7 +417,7 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
         textField.inputView = self.datePicker
     }
     
-    func actualizarTextField()
+    @objc func actualizarTextField()
     {
         txtFechaNacimiento.text = datePicker.date.fechaString()
         
@@ -633,7 +633,7 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
         }
     }
     
-    func cargarMascotas(_ notification: Notification)
+    @objc func cargarMascotas(_ notification: Notification)
     {
         self.performSegue(withIdentifier: "administrarMascotasDesdeTuMascota", sender: self)
     }

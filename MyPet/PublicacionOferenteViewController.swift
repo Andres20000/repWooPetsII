@@ -125,14 +125,14 @@ class PublicacionOferenteViewController: UIViewController, UICollectionViewDeleg
         view.addSubview(scrollCoachMark)
     }
     
-    func closeCoachMark(_ sender: UIButton!)
+    @objc func closeCoachMark(_ sender: UIButton!)
     {
         scrollCoachMark.removeFromSuperview()
     }
     
     // Categorias y SubCategorias
     
-    func cargarCategorias(_ notification: Notification)
+    @objc func cargarCategorias(_ notification: Notification)
     {
         collectionCategorias .reloadData()
     }

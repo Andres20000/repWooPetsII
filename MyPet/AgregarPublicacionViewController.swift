@@ -20,7 +20,7 @@ class AgregarPublicacionViewController: UIViewController
         
     }
 
-    func presentViewController()
+    @objc func presentViewController()
     {
         model.horarioSemana.dias = ""
         model.horarioFestivo.dias = ""

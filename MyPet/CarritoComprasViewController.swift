@@ -32,10 +32,10 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         
         // Configuración UISegmentedControl
         
-        let attributes = [ NSForegroundColorAttributeName : UIColor.white,
-                           NSFontAttributeName : UIFont (name: "HelveticaNeue-Light", size: 15.0)];
-        let attributesSelected = [ NSForegroundColorAttributeName : UIColor.white,
-                                   NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 15.0)];
+        let attributes = [ NSAttributedStringKey.foregroundColor : UIColor.white,
+                           NSAttributedStringKey.font : UIFont (name: "HelveticaNeue-Light", size: 15.0)];
+        let attributesSelected = [ NSAttributedStringKey.foregroundColor : UIColor.white,
+                                   NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Medium", size: 15.0)];
         
         UISegmentedControl.appearance().setTitleTextAttributes(attributes as Any as? [AnyHashable : Any], for: .normal)
         UISegmentedControl.appearance().setTitleTextAttributes(attributesSelected as Any as? [AnyHashable : Any], for: .selected)
@@ -98,7 +98,7 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         tableProductosServicios.register(nib5, forCellReuseIdentifier: "miCompraFinalizadaTableViewCell")
     }
     
-    func refrescarVista(_ notification: Notification)
+    @objc func refrescarVista(_ notification: Notification)
     {
         switch segCtrlCarrito.selectedSegmentIndex
         {
@@ -367,14 +367,14 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     // Celda con botón
-    func buttonAction(sender: UIButton!)
+    @objc func buttonAction(sender: UIButton!)
     {
         modelUsuario.publicacionCarrito = (model.publicacionesEnCarrito[sender.tag])
         
         self.performSegue(withIdentifier: "confirmacionUnoDesdeCarritoCompras", sender: self)
     }
     
-    func confirmarCompra(sender: UIButton!)
+    @objc func confirmarCompra(sender: UIButton!)
     {
         modelUsuario.compra = modelUsuario.misComprasCompleto[sender.tag]
         
@@ -439,7 +439,7 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         self.present(alert, animated: true, completion: nil)
     }
     
-    func calificarCompra(sender: UIButton!)
+    @objc func calificarCompra(sender: UIButton!)
     {
         modelUsuario.compra = modelUsuario.misComprasCompleto[sender.tag]
         
@@ -488,7 +488,7 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
-    func verCompra(_ notification: Notification)
+    @objc func verCompra(_ notification: Notification)
     {
         self.performSegue(withIdentifier: "compraExitosaDesdeMisCompras", sender: self)
     }

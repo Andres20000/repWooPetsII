@@ -60,7 +60,7 @@ class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITa
         btnSiguiente.layer.cornerRadius = 10.0
     }
     
-    func refrescarVista(_ notification: Notification)
+    @objc func refrescarVista(_ notification: Notification)
     {
         tableCompras.reloadData()
     }

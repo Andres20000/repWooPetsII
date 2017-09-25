@@ -66,7 +66,7 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
         
     }
     
-    func verificarUsuario(_ notification: Notification)
+    @objc func verificarUsuario(_ notification: Notification)
     {
         if modelUsuario.usuario.count == 0
         {
@@ -219,14 +219,14 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
         txtCorreo.leftViewMode = UITextFieldViewMode.always
         txtCorreo.leftView = spacerViewTxtUser
         txtCorreo.text = ""
-        txtCorreo.attributedPlaceholder = NSAttributedString(string:"Correo electrónico", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtCorreo.attributedPlaceholder = NSAttributedString(string:"Correo electrónico", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtPassword = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtContrasena.leftViewMode = UITextFieldViewMode.always
         txtContrasena.leftView = spacerViewTxtPassword
         txtContrasena.text = ""
-        txtContrasena.attributedPlaceholder = NSAttributedString(string:"Contraseña", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtContrasena.attributedPlaceholder = NSAttributedString(string:"Contraseña", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         btnInicioSesion.layer.cornerRadius = 10.0
         
@@ -245,8 +245,8 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
         let textBoton: NSString = btnRegistro.titleLabel!.text! as NSString
         let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: textBoton as String)
         
-        attributedText.addAttributes([NSFontAttributeName: UIFont(name: "Helvetica Neue", size: sizeFont)!], range: NSRange(location: 0, length:38))
-        attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: sizeFont)!], range: NSRange(location: 23, length: 15))
+        attributedText.addAttributes([NSAttributedStringKey.font: UIFont(name: "Helvetica Neue", size: sizeFont)!], range: NSRange(location: 0, length:38))
+        attributedText.addAttributes([NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: sizeFont)!], range: NSRange(location: 23, length: 15))
         
         //assign text first, then customize properties
         btnRegistro.titleLabel!.attributedText = attributedText

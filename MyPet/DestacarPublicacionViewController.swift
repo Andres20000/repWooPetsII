@@ -245,7 +245,7 @@ class DestacarPublicacionViewController: UIViewController, UIImagePickerControll
     }
 
 
-    func  actualizoImagen() {
+    @objc func  actualizoImagen() {
         
         DispatchQueue.main.async {
             

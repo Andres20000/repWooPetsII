@@ -67,7 +67,7 @@ class AdministrarAlarmasViewController: UIViewController, UITableViewDelegate, U
         }
     }
     
-    func cargarAlertasMascota(_ notification: Notification)
+    @objc func cargarAlertasMascota(_ notification: Notification)
     {
         modelUsuario.getAlarmasMascota(idMascota: modelUsuario.tuMascota.idMascota!)
         
@@ -144,7 +144,7 @@ class AdministrarAlarmasViewController: UIViewController, UITableViewDelegate, U
         return cell;
     }
     
-    func stateChanged(_ sender: UISwitch)
+    @objc func stateChanged(_ sender: UISwitch)
     {
         modelUsuario.alertaMascota = modelUsuario.alertasMascotaSeleccionada[sender.tag]
         

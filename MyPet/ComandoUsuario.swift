@@ -76,6 +76,9 @@ class ComandoUsuario
                 refHandle.child("/ubicacion/lon").setValue(ubicacionDireccion.longitud)
             }
         }
+        
+        ref.child("/documento").setValue(datos.documento)
+        ref.child("/nombre").setValue(datos.nombre)
     }
     
     class func eliminarDireccion(uid:String?, idDireccion:String?)
@@ -85,6 +88,22 @@ class ComandoUsuario
         refHandle.removeValue()
     }
     
+    class func activarDireccion(uid:String?, idDireccion:String?, datos:DatosComplementarios)
+    {
+        print("idDirección: \(idDireccion!)")
+        for direccion in datos.direcciones!
+        {
+            let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/direcciones/" + direccion.idDireccion!)
+            
+            if (direccion.idDireccion == idDireccion)
+            {
+                refHandle.child("/porDefecto").setValue(true)
+            } else
+            {
+                refHandle.child("/porDefecto").setValue(false)
+            }
+        }
+    }
     class func getUsuario(uid:String?)
     {
         let model  = ModeloUsuario.sharedInstance
@@ -244,8 +263,6 @@ class ComandoUsuario
             NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoUsuario"), object: nil)
         })
     }
-    
-    
     
     class func crearIdMascotaUsuario(uid:String?) -> String
     {

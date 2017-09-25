@@ -72,7 +72,7 @@ class MenuOferenteViewController: UIViewController
     
     
     
-    func cargarDatosOferente(_ notification: Notification)
+    @objc func cargarDatosOferente(_ notification: Notification)
     {
         lblRazonSocial.text = "   " + model.oferente[0].razonSocial!
     }
@@ -172,7 +172,7 @@ class MenuOferenteViewController: UIViewController
     }
     
 
-    func repintarXPreguntaVenta(){
+    @objc func repintarXPreguntaVenta(){
         refrescarPreguntas()
         refrescarVentas()
         

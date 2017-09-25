@@ -71,7 +71,7 @@ class ViewController: UIViewController
         super.viewDidAppear(animated)
     }
     
-    func validarIngreso(_ notification: Notification)
+    @objc func validarIngreso(_ notification: Notification)
     {
         if self.model.usuario.count == 0
         {

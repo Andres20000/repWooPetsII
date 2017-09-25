@@ -43,7 +43,7 @@ class RegistroExitosoViewController: UIViewController
         NotificationCenter.default.addObserver(self, selector: #selector(RegistroExitosoViewController.goAvisoApp(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
     }
     
-    func goAvisoApp(_ notification: Notification)
+    @objc func goAvisoApp(_ notification: Notification)
     {
         self.performSegue(withIdentifier: "avisoAppDesdeRegistroExitoso", sender: self)
     }

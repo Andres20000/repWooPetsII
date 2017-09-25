@@ -72,7 +72,7 @@ class MisVentas: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
-    func repintarXPregunta(){
+    @objc func repintarXPregunta(){
         if estadoPublicacion == "abiertas"
         {
             publicaciones = model.getPublicacionesDeMisVentas(abiertas: true)

@@ -163,7 +163,7 @@ class ChatOferente:  UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     
     
-    func didTapResponder(_ boton:UIButton) {
+    @objc func didTapResponder(_ boton:UIButton) {
         
         let touchPoint = boton.convert(CGPoint.zero, to: self.tabla)
         selectedindexPath = tabla.indexPathForRow(at: touchPoint)
@@ -229,7 +229,7 @@ class ChatOferente:  UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    func repintar() {
+    @objc func repintar() {
         
         tabla.reloadData()
     }

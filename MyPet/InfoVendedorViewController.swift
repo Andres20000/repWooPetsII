@@ -33,12 +33,12 @@ class InfoVendedorViewController: UIViewController
     @IBAction func backView(_ sender: Any)
     {
         let transition = CATransition()
-        transition.duration = 0.5
+        transition.duration = 0.3
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft
         view.window!.layer.add(transition, forKey: kCATransition)
         
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     override func viewDidLoad()

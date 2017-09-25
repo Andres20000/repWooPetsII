@@ -37,8 +37,8 @@ class PreguntarViewController: UIViewController, UITextViewDelegate
         // Do any additional setup after loading the view.
         
         barItemOK.setTitleTextAttributes([
-            NSFontAttributeName: UIFont(name: "Helvetica-Bold", size: 17.0)!,
-            NSForegroundColorAttributeName: UIColor.white],
+            NSAttributedStringKey.font: UIFont(name: "Helvetica-Bold", size: 17.0)!,
+            NSAttributedStringKey.foregroundColor: UIColor.white],
                                           for: UIControlState.normal)
         
         textPregunta.text = "¿Cuál es tu duda? Escribe aquí."
@@ -115,15 +115,15 @@ class PreguntarViewController: UIViewController, UITextViewDelegate
         NotificationCenter.default.addObserver(self, selector: #selector(PreguntarViewController.cargarPregunta(_:)), name:NSNotification.Name(rawValue:"cargoPreguntasRespuestasPublicacion"), object: nil)
     }
     
-    func cargarPregunta(_ notification: Notification)
+    @objc func cargarPregunta(_ notification: Notification)
     {
         let transition = CATransition()
-        transition.duration = 0.5
+        transition.duration = 0.3
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft
         view.window!.layer.add(transition, forKey: kCATransition)
         
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool)

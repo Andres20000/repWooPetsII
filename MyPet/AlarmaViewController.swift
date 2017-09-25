@@ -66,7 +66,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         txtTipoRecordatorio.leftViewMode = UITextFieldViewMode.always
         txtTipoRecordatorio.leftView = spacerViewtxtTipoRecordatorio
         txtTipoRecordatorio.text = ""
-        txtTipoRecordatorio.attributedPlaceholder = NSAttributedString(string:"Tipo de recordatorio", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtTipoRecordatorio.attributedPlaceholder = NSAttributedString(string:"Tipo de recordatorio", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         self .toolBarTextField(txtTipoRecordatorio)
         
@@ -75,14 +75,14 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         txtNombreRecordatorio.leftViewMode = UITextFieldViewMode.always
         txtNombreRecordatorio.leftView = spacerViewtxtNombreRecordatorio
         txtNombreRecordatorio.text = ""
-        txtNombreRecordatorio.attributedPlaceholder = NSAttributedString(string:"Nombre del recordatorio", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtNombreRecordatorio.attributedPlaceholder = NSAttributedString(string:"Nombre del recordatorio", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewtxtHora = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtHora.leftViewMode = UITextFieldViewMode.always
         txtHora.leftView = spacerViewtxtHora
         txtHora.text = ""
-        txtHora.attributedPlaceholder = NSAttributedString(string:"Hora", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtHora.attributedPlaceholder = NSAttributedString(string:"Hora", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         self .pickUpDateHora(txtHora)
         self .toolBarTextField(txtHora)
@@ -92,7 +92,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         txtFrecuencia.leftViewMode = UITextFieldViewMode.always
         txtFrecuencia.leftView = spacerViewtxtFrecuencia
         txtFrecuencia.text = ""
-        txtFrecuencia.attributedPlaceholder = NSAttributedString(string:"Frecuencia", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtFrecuencia.attributedPlaceholder = NSAttributedString(string:"Frecuencia", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         self .toolBarTextField(txtFrecuencia)
         
@@ -101,7 +101,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         txtFechaInicio.leftViewMode = UITextFieldViewMode.always
         txtFechaInicio.leftView = spacerViewtxtFechaInicio
         txtFechaInicio.text = ""
-        txtFechaInicio.attributedPlaceholder = NSAttributedString(string:"Fecha inicio", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtFechaInicio.attributedPlaceholder = NSAttributedString(string:"Fecha inicio", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         self .pickUpDateFechaInicio(txtFechaInicio)
         self .toolBarTextField(txtFechaInicio)
@@ -111,7 +111,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         txtFechaFin.leftViewMode = UITextFieldViewMode.always
         txtFechaFin.leftView = spacerViewtxtFechaFin
         txtFechaFin.text = ""
-        txtFechaFin.attributedPlaceholder = NSAttributedString(string:"Fecha fin", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtFechaFin.attributedPlaceholder = NSAttributedString(string:"Fecha fin", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         self .toolBarTextField(txtFechaFin)
         
@@ -185,7 +185,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         }
     }
     
-    func cargarDatos(_ notification: Notification)
+    @objc func cargarDatos(_ notification: Notification)
     {
         pickerTipoRecordatorio.delegate = self
         pickerTipoRecordatorio.dataSource = self as? UIPickerViewDataSource
@@ -269,7 +269,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         textField.inputView = self.datePickerHora
     }
     
-    func actualizarHora()
+    @objc func actualizarHora()
     {
         horaAlarma = datePickerHora.date
         txtHora.text = horaAlarma?.horaString()
@@ -286,7 +286,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         textField.inputView = self.datePickerFechaInicio
     }
     
-    func actualizarFechaInicio()
+    @objc func actualizarFechaInicio()
     {
         fechaInicio = datePickerFechaInicio.date
         txtFechaInicio.text = fechaInicio?.fechaString()
@@ -306,7 +306,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         textField.inputView = self.datePickerFechaFin
     }
     
-    func actualizarFechaFin()
+    @objc func actualizarFechaFin()
     {
         fechaFin = datePickerFechaFin.date
         txtFechaFin.text = fechaFin?.fechaString()

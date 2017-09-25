@@ -50,7 +50,7 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
         
     }
     
-    func cargarPublicaciones(_ notification: Notification)
+    @objc func cargarPublicaciones(_ notification: Notification)
     {
         if estadoPublicacion == "activas"
         {
@@ -64,7 +64,7 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     
-    func repintarXPregunta(){
+    @objc func repintarXPregunta(){
         if estadoPublicacion == "activas"
         {
             publicaciones = model.publicacionesActivas

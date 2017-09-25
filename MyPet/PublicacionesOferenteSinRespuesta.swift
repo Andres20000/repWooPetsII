@@ -209,7 +209,7 @@ class PublicacionesOferenteSinRespuesta: UIViewController, UITableViewDelegate, 
         }
     }
     
-    func repintarXPregunta(){
+    @objc func repintarXPregunta(){
         tabla.reloadData()
         
     }

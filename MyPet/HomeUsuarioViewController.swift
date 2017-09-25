@@ -39,7 +39,7 @@ class HomeUsuarioViewController: UITabBarController
         }
     }
     
-    func refrescarVista(_ notification: Notification)
+    @objc func refrescarVista(_ notification: Notification)
     {
         if model.publicacionesEnCarrito.count != 0
         {

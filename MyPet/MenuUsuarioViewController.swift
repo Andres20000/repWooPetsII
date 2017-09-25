@@ -106,7 +106,7 @@ class MenuUsuarioViewController: UIViewController
         }
     }
     
-    func cargarDatosPerfil(_ notification: Notification)
+    @objc func cargarDatosPerfil(_ notification: Notification)
     {
         if modelUsuario.usuario[0].datosComplementarios?.count != 0
         {
@@ -138,7 +138,7 @@ class MenuUsuarioViewController: UIViewController
                 editarDatosPersonales = false
                 
                 let transition = CATransition()
-                transition.duration = 0.5
+                transition.duration = 0.3
                 transition.type = kCATransitionPush
                 transition.subtype = kCATransitionFromRight
                 view.window!.layer.add(transition, forKey: kCATransition)

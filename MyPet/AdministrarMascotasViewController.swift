@@ -54,7 +54,7 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
         self.performSegue(withIdentifier: "precargarPublicacionesDesdeAdministrarMascotas", sender: self)
     }
     
-    func cargarMascotas(_ notification: Notification)
+    @objc func cargarMascotas(_ notification: Notification)
     {
         model.mascotas = (model.usuario[0].datosComplementarios?[0].mascotas!)!
         
@@ -170,7 +170,7 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
         return cell;
     }
     
-    func seleccionarMascota(sender: UIButton!)
+    @objc func seleccionarMascota(sender: UIButton!)
     {
         if model.mascotas[sender.tag].activa!
         {
@@ -185,7 +185,7 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
         }
     }
     
-    func verAlarmasMascota(sender: UIButton!)
+    @objc func verAlarmasMascota(sender: UIButton!)
     {
         model.tuMascota = model.mascotas[sender.tag]
         

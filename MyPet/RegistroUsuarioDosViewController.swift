@@ -71,31 +71,32 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
     
     func goBack()
     {
-        modelUsuario.registroComplementario.apellido = ""
-        modelUsuario.registroComplementario.celular = ""
-        modelUsuario.registroComplementario.documento = ""
-        modelUsuario.registroComplementario.nombre = ""
-        modelUsuario.registroComplementario.direcciones?.removeAll()
-        
-        modelUsuario.direccion1.direccion = ""
-        modelUsuario.direccion1.nombre = ""
-        modelUsuario.direccion1.ubicacion?.removeAll()
-        
-        modelUsuario.direccion2.direccion = ""
-        modelUsuario.direccion2.nombre = ""
-        modelUsuario.direccion2.ubicacion?.removeAll()
-        
-        modelUsuario.direccion3.direccion = ""
-        modelUsuario.direccion3.nombre = ""
-        modelUsuario.direccion3.ubicacion?.removeAll()
-        
         if datosEditables
         {
             let transition = CATransition()
-            transition.duration = 0.5
+            transition.duration = 0.3
             transition.type = kCATransitionPush
             transition.subtype = kCATransitionFromLeft
             view.window!.layer.add(transition, forKey: kCATransition)
+        }else
+        {
+            modelUsuario.registroComplementario.apellido = ""
+            modelUsuario.registroComplementario.celular = ""
+            modelUsuario.registroComplementario.documento = ""
+            modelUsuario.registroComplementario.nombre = ""
+            modelUsuario.registroComplementario.direcciones?.removeAll()
+            
+            modelUsuario.direccion1.direccion = ""
+            modelUsuario.direccion1.nombre = ""
+            modelUsuario.direccion1.ubicacion?.removeAll()
+            
+            modelUsuario.direccion2.direccion = ""
+            modelUsuario.direccion2.nombre = ""
+            modelUsuario.direccion2.ubicacion?.removeAll()
+            
+            modelUsuario.direccion3.direccion = ""
+            modelUsuario.direccion3.nombre = ""
+            modelUsuario.direccion3.ubicacion?.removeAll()
         }
         
         dismiss(animated: true, completion: nil)
@@ -135,21 +136,21 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
         txtNombre.leftViewMode = UITextFieldViewMode.always
         txtNombre.leftView = spacerViewTxtNombre
         txtNombre.text = ""
-        txtNombre.attributedPlaceholder = NSAttributedString(string:"Nombre", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtNombre.attributedPlaceholder = NSAttributedString(string:"Nombre", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtApellido = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtApellido.leftViewMode = UITextFieldViewMode.always
         txtApellido.leftView = spacerViewTxtApellido
         txtApellido.text = ""
-        txtApellido.attributedPlaceholder = NSAttributedString(string:"Apellido", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtApellido.attributedPlaceholder = NSAttributedString(string:"Apellido", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtCedula = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtCedula.leftViewMode = UITextFieldViewMode.always
         txtCedula.leftView = spacerViewTxtCedula
         txtCedula.text = ""
-        txtCedula.attributedPlaceholder = NSAttributedString(string:"No. cédula", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtCedula.attributedPlaceholder = NSAttributedString(string:"No. cédula", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         self.toolBarTextField(txtCedula)
         
@@ -158,7 +159,7 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
         txtTelefono.leftViewMode = UITextFieldViewMode.always
         txtTelefono.leftView = spacerViewTxtTelefono
         txtTelefono.text = ""
-        txtTelefono.attributedPlaceholder = NSAttributedString(string:"Teléfono celular", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtTelefono.attributedPlaceholder = NSAttributedString(string:"Teléfono celular", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         self.toolBarTextField(txtTelefono)
         
@@ -167,42 +168,42 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
         txtDireccion1.leftViewMode = UITextFieldViewMode.always
         txtDireccion1.leftView = spacerViewTxtDireccion1
         txtDireccion1.text = ""
-        txtDireccion1.attributedPlaceholder = NSAttributedString(string:"Elige tu dirección", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtDireccion1.attributedPlaceholder = NSAttributedString(string:"Elige tu dirección", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtNombreDireccion1 = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtNombreDireccion1.leftViewMode = UITextFieldViewMode.always
         txtNombreDireccion1.leftView = spacerViewTxtNombreDireccion1
         txtNombreDireccion1.text = ""
-        txtNombreDireccion1.attributedPlaceholder = NSAttributedString(string:"Asígnale un nombre al lugar", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtNombreDireccion1.attributedPlaceholder = NSAttributedString(string:"Asígnale un nombre al lugar", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtDireccion2 = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtDireccion2.leftViewMode = UITextFieldViewMode.always
         txtDireccion2.leftView = spacerViewTxtDireccion2
         txtDireccion2.text = ""
-        txtDireccion2.attributedPlaceholder = NSAttributedString(string:"Elige tu dirección", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtDireccion2.attributedPlaceholder = NSAttributedString(string:"Elige tu dirección", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtNombreDireccion2 = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtNombreDireccion2.leftViewMode = UITextFieldViewMode.always
         txtNombreDireccion2.leftView = spacerViewTxtNombreDireccion2
         txtNombreDireccion2.text = ""
-        txtNombreDireccion2.attributedPlaceholder = NSAttributedString(string:"Asígnale un nombre al lugar", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtNombreDireccion2.attributedPlaceholder = NSAttributedString(string:"Asígnale un nombre al lugar", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtDireccion3 = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtDireccion3.leftViewMode = UITextFieldViewMode.always
         txtDireccion3.leftView = spacerViewTxtDireccion3
         txtDireccion3.text = ""
-        txtDireccion3.attributedPlaceholder = NSAttributedString(string:"Elige tu dirección", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtDireccion3.attributedPlaceholder = NSAttributedString(string:"Elige tu dirección", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtNombreDireccion3 = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtNombreDireccion3.leftViewMode = UITextFieldViewMode.always
         txtNombreDireccion3.leftView = spacerViewTxtNombreDireccion3
         txtNombreDireccion3.text = ""
-        txtNombreDireccion3.attributedPlaceholder = NSAttributedString(string:"Asígnale un nombre al lugar", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtNombreDireccion3.attributedPlaceholder = NSAttributedString(string:"Asígnale un nombre al lugar", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         btnContinuar.layer.cornerRadius = 10.0
         
@@ -628,6 +629,8 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
             }
             
             ComandoUsuario.editarDatosPerfil(uid: (user?.uid)!, datos: modelUsuario.registroComplementario)
+            
+            ComandoUsuario.getUsuario(uid: (user?.uid)!)
             
             self.goBack()
             

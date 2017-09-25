@@ -337,7 +337,7 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func keyboardWasShown(notification: NSNotification){
+    @objc func keyboardWasShown(notification: NSNotification){
         //Need to calculate keyboard exact size due to Apple suggestions
         self.scrollView.isScrollEnabled = true
         var info = notification.userInfo!
@@ -356,7 +356,7 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
         }
     }
     
-    func keyboardWillBeHidden(notification: NSNotification){
+    @objc func keyboardWillBeHidden(notification: NSNotification){
         //Once keyboard disappears, restore original positions
         var info = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
@@ -617,7 +617,7 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
     }
     
     
-    func mostrarExito() {
+    @objc func mostrarExito() {
         
         
         FIRAnalytics.logEvent(withName: "Compro_Destacado", parameters: ["Valor" : model.params.valorDestacado as NSObject])
@@ -631,7 +631,7 @@ class IngresoTarjetaHabiente: UIViewController , UITextFieldDelegate {
     
     
     
-    func mostrarFracaso() {
+    @objc func mostrarFracaso() {
         
         let mensaje = "Tu pedido no se pudo enviar. Asegurate que tienes acceso a Internet e intenta nuevamente"
         

@@ -24,7 +24,7 @@ class PreCargaDatosViewController: UIViewController
         // Do any additional setup after loading the view.
     }
     
-    func validarIngreso(_ notification: Notification)
+    @objc func validarIngreso(_ notification: Notification)
     {
         if model.usuario.count != 0
         {
@@ -56,7 +56,7 @@ class PreCargaDatosViewController: UIViewController
         }
     }
     
-    func cargarDirecto(_ notification: Notification)
+    @objc func cargarDirecto(_ notification: Notification)
     {
         self.performSegue(withIdentifier: "HomeUsuario", sender: self)
     }
@@ -67,7 +67,6 @@ class PreCargaDatosViewController: UIViewController
         
         Comando.getCategorias()
         Comando.getPublicaciones()
-        //ComandoUsuario.getCalificacionesPublicaciones()
         
         NotificationCenter.default.addObserver(self, selector: #selector(PreCargaDatosViewController.validarIngreso(_:)), name:NSNotification.Name(rawValue:"cargoCategorias"), object: nil)
     }

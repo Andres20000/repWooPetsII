@@ -36,7 +36,7 @@ class CompraExitosaViewController: UIViewController, UITableViewDelegate, UITabl
         tableCompras.register(nib2, forCellReuseIdentifier: "servicioCompradoTableViewCell")
     }
     
-    func refrescarVista(_ notification: Notification)
+    @objc func refrescarVista(_ notification: Notification)
     {
         tableCompras.reloadData()
     }
@@ -134,7 +134,7 @@ class CompraExitosaViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    func irAPrecargar(_ notification: Notification)
+    @objc func irAPrecargar(_ notification: Notification)
     {
         self.performSegue(withIdentifier: "precargarPublicacionesDesdeCompraExitosa", sender: self)
     }

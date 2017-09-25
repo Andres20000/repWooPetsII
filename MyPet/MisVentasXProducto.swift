@@ -173,7 +173,7 @@ class MisVentasXProducto: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func repintarXUsuario(){
+    @objc func repintarXUsuario(){
         tabla.reloadData()
         
     }

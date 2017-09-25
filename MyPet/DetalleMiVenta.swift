@@ -199,7 +199,7 @@ class DetalleMiVenta: UIViewController {
     }
     
     
-    func  actualizoImagen() {
+    @objc func  actualizoImagen() {
         
         let publicacion = model.getPublicacion(idPublicacion: item!.idPublicacion)
         

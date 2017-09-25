@@ -89,56 +89,56 @@ class RegistroUsuarioTresViewController: UIViewController, UITextFieldDelegate
         txtNombreTarjeta.leftViewMode = UITextFieldViewMode.always
         txtNombreTarjeta.leftView = spacerViewTxtNombreTarjeta
         txtNombreTarjeta.text = ""
-        txtNombreTarjeta.attributedPlaceholder = NSAttributedString(string:"Nombre registrado en la tarjeta", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtNombreTarjeta.attributedPlaceholder = NSAttributedString(string:"Nombre registrado en la tarjeta", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtNumeroTarjeta = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtNumeroTarjeta.leftViewMode = UITextFieldViewMode.always
         txtNumeroTarjeta.leftView = spacerViewTxtNumeroTarjeta
         txtNumeroTarjeta.text = ""
-        txtNumeroTarjeta.attributedPlaceholder = NSAttributedString(string:"Número de tarjeta", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtNumeroTarjeta.attributedPlaceholder = NSAttributedString(string:"Número de tarjeta", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtAnoVencimiento = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtAnoVencimiento.leftViewMode = UITextFieldViewMode.always
         txtAnoVencimiento.leftView = spacerViewTxtAnoVencimiento
         txtAnoVencimiento.text = ""
-        txtAnoVencimiento.attributedPlaceholder = NSAttributedString(string:"Año vencimiento", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtAnoVencimiento.attributedPlaceholder = NSAttributedString(string:"Año vencimiento", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtMesVencimiento = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtMesVencimiento.leftViewMode = UITextFieldViewMode.always
         txtMesVencimiento.leftView = spacerViewTxtMesVencimiento
         txtMesVencimiento.text = ""
-        txtMesVencimiento.attributedPlaceholder = NSAttributedString(string:"Mes vencimiento", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtMesVencimiento.attributedPlaceholder = NSAttributedString(string:"Mes vencimiento", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtDireccion = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtDireccion.leftViewMode = UITextFieldViewMode.always
         txtDireccion.leftView = spacerViewTxtDireccion
         txtDireccion.text = ""
-        txtDireccion.attributedPlaceholder = NSAttributedString(string:"Dirección registrada en la tarjeta", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtDireccion.attributedPlaceholder = NSAttributedString(string:"Dirección registrada en la tarjeta", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtPais = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtPais.leftViewMode = UITextFieldViewMode.always
         txtPais.leftView = spacerViewTxtPais
         txtPais.text = ""
-        txtPais.attributedPlaceholder = NSAttributedString(string:"País", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtPais.attributedPlaceholder = NSAttributedString(string:"País", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtCiudad = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtCiudad.leftViewMode = UITextFieldViewMode.always
         txtCiudad.leftView = spacerViewTxtCiudad
         txtCiudad.text = ""
-        txtCiudad.attributedPlaceholder = NSAttributedString(string:"Ciudad", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtCiudad.attributedPlaceholder = NSAttributedString(string:"Ciudad", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         let spacerViewTxtCVC = UIView(frame:CGRect(x:0, y:0, width:5, height:5))
         
         txtCVC.leftViewMode = UITextFieldViewMode.always
         txtCVC.leftView = spacerViewTxtCVC
         txtCVC.text = ""
-        txtCVC.attributedPlaceholder = NSAttributedString(string:"CVC (Código de seguridad)", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
+        txtCVC.attributedPlaceholder = NSAttributedString(string:"CVC (Código de seguridad)", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
         btnFinalizar.layer.cornerRadius = 10.0
         
@@ -146,7 +146,7 @@ class RegistroUsuarioTresViewController: UIViewController, UITextFieldDelegate
         swiEfectivo .addTarget(self, action: #selector(RegistroUsuarioTresViewController.stateChanged(_:)), for: .valueChanged)
     }
     
-    func stateChanged(_ sender: UISwitch)
+    @objc func stateChanged(_ sender: UISwitch)
     {
         if sender.tag == 1
         {

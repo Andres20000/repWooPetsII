@@ -135,7 +135,7 @@ class ConfirmacionDosViewController: UIViewController
         NotificationCenter.default.addObserver(self, selector: #selector(ConfirmacionDosViewController.irACompraExitosa(_:)), name:NSNotification.Name(rawValue:"cargoMisComprasUsuario"), object: nil)
     }
     
-    func irACompraExitosa(_ notification: Notification)
+    @objc func irACompraExitosa(_ notification: Notification)
     {
         self.performSegue(withIdentifier: "compraExitosaDesdeConfirmacionDos", sender: self)
     }

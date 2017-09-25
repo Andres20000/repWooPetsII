@@ -200,7 +200,7 @@ class PublicacionOferenteTresViewController: UIViewController, UITextFieldDelega
         swiTienda .addTarget(self, action: #selector(PublicacionOferenteTresViewController.stateChanged(_:)), for: .valueChanged)
     }
     
-    func stateChanged(_ sender: UISwitch)
+    @objc func stateChanged(_ sender: UISwitch)
     {
         if sender.tag == 1
         {

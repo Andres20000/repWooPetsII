@@ -150,7 +150,7 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
         
     }
     
-    func continuarRegistro(_ notification: Notification)
+    @objc func continuarRegistro(_ notification: Notification)
     {
         let alert:UIAlertController = UIAlertController(title: "¡Hemos recibido tu solicitud!", message: "Tus datos serán confirmados. Mientras tanto, puedes continuar creando publicaciones y estas serán mostradas a todos los usuarios de WooPets cuando seas aprobado", preferredStyle: .alert)
         
@@ -419,7 +419,7 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     // Celda con botón
-    func buttonAction(sender: UIButton!)
+    @objc func buttonAction(sender: UIButton!)
     {
         let btnCelda:UIButton = sender!
         
@@ -996,7 +996,7 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     // Button Cancelar Keyboard
-    func cancelClick()
+    @objc func cancelClick()
     {
         view.endEditing(true)
     }
