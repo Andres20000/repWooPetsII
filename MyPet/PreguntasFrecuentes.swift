@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PreguntasFrecuentes: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate {
+class PreguntasFrecuentes: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     
     
@@ -21,7 +21,7 @@ class PreguntasFrecuentes: UIViewController, UITableViewDataSource, UITableViewD
     
     var searchActive = false {
         willSet {
-            print("pilas")
+            
         }
     }
     
@@ -42,6 +42,7 @@ class PreguntasFrecuentes: UIViewController, UITableViewDataSource, UITableViewD
         
         tabla.rowHeight = UITableViewAutomaticDimension
         tabla.estimatedRowHeight = 120
+        tabla.keyboardDismissMode = .onDrag
 
         // Do any additional setup after loading the view.
     }
@@ -97,10 +98,10 @@ class PreguntasFrecuentes: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+  /*  func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         search.resignFirstResponder()
         tabla.reloadData()
-    }
+    }*/
     
     
     

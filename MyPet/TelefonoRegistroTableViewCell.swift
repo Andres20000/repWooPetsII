@@ -11,6 +11,14 @@ import UIKit
 class TelefonoRegistroTableViewCell: UITableViewCell
 {
 
+    
+    
+    
+    @IBOutlet var txtCampo: UITextField!
+    @IBOutlet var lblNombreCampo: UILabel!
+    @IBOutlet var imgFlecha: UIImageView!
+    
+    
     override func awakeFromNib()
     {
         super.awakeFromNib()
@@ -23,5 +31,11 @@ class TelefonoRegistroTableViewCell: UITableViewCell
 
         // Configure the view for the selected state
     }
+    
+    
+    
+    
+    
+    
     
 }
