@@ -25,6 +25,7 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
     
     var sizeFont : CGFloat = 0.0
     var registroCompleto:Bool = false
+    var cargarHome:Bool = false
     
     @IBAction func backView(_ sender: Any)
     {
@@ -68,36 +69,41 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
     
     @objc func verificarUsuario(_ notification: Notification)
     {
-        if modelUsuario.usuario.count == 0
+        if cargarHome
         {
-            if Comando.validarTipoIngreso()
+            cargarHome = false
+            
+            if modelUsuario.usuario.count == 0
             {
-                let alertController = UIAlertController (title: "Ingreso fallido", message: "Para poder iniciar sesión con Facebook primero debes registrarte.", preferredStyle: .alert)
-                
-                let oKAction = UIAlertAction(title: "OK", style: .default) { (_) -> Void in
-                    FBSDKAccessToken.setCurrent(nil)
-                    try! FIRAuth.auth()!.signOut()
+                if Comando.validarTipoIngreso()
+                {
+                    let alertController = UIAlertController (title: "Ingreso fallido", message: "Para poder iniciar sesión con Facebook primero debes registrarte.", preferredStyle: .alert)
+                    
+                    let oKAction = UIAlertAction(title: "OK", style: .default) { (_) -> Void in
+                        FBSDKAccessToken.setCurrent(nil)
+                        try! FIRAuth.auth()!.signOut()
+                    }
+                    
+                    alertController.addAction(oKAction)
+                    
+                    present(alertController, animated: true, completion: nil)
+                } else
+                {
+                    let alertController = UIAlertController (title: "Ingreso fallido", message: "Tus datos están creados como Oferente. Registra uno nuevo o ingresa otros datos válidos.", preferredStyle: .alert)
+                    
+                    let oKAction = UIAlertAction(title: "OK", style: .default) { (_) -> Void in
+                        try! FIRAuth.auth()!.signOut()
+                    }
+                    
+                    alertController.addAction(oKAction)
+                    
+                    present(alertController, animated: true, completion: nil)
                 }
                 
-                alertController.addAction(oKAction)
-                
-                present(alertController, animated: true, completion: nil)
             } else
             {
-                let alertController = UIAlertController (title: "Ingreso fallido", message: "Tus datos están creados como Oferente. Registra uno nuevo o ingresa otros datos válidos.", preferredStyle: .alert)
-                
-                let oKAction = UIAlertAction(title: "OK", style: .default) { (_) -> Void in
-                    try! FIRAuth.auth()!.signOut()
-                }
-                
-                alertController.addAction(oKAction)
-                
-                present(alertController, animated: true, completion: nil)
+                self.performSegue(withIdentifier: "precargarPublicacionesDesdeInicioSesionUsuario", sender: self)
             }
-            
-        } else
-        {
-            self.performSegue(withIdentifier: "precargarPublicacionesDesdeInicioSesionUsuario", sender: self)
         }
     }
     
@@ -127,6 +133,7 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
                 }else
                 {
                     print("Ingreso para Usuario con usuario \((user?.uid)!)")
+                    self.cargarHome = true
                     
                     ComandoUsuario.getUsuario(uid: (user?.uid)!)
                     
@@ -194,7 +201,9 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
                 if testMail != nil {
                     email = testMail!
                     
-                    print("Ingreso para Usuario con usuario \((user?.uid)!)")
+                    print("Ingreso para Usuario con FB \((user?.uid)!)")
+                    
+                    self.cargarHome = true
                     
                     ComandoUsuario.getUsuario(uid: (user?.uid)!)
                     

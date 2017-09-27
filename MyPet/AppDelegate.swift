@@ -222,7 +222,7 @@ extension AppDelegate : MessagingDelegate {
                 print("FCM token: \(token ?? "")")
                 // [END log_fcm_reg_token]
                 
-                ComandoPasajero.sendTokenDevice(uid: (user?.uid)!, token: token!)
+                ComandoUsuario.sendTokenDevice(uid: (user?.uid)!, token: token!)
             }
         }
     }

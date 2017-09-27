@@ -17,6 +17,12 @@ class ComandoUsuario
         ref.child("/correo").setValue(correo)
     }
     
+    class func sendTokenDevice(uid:String, token:String)
+    {
+        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid)
+        refHandle.child("/tokenDevice").setValue(token)
+    }
+    
     class func completarRegistro(uid:String, datos:DatosComplementarios)
     {
         let ref  = FIRDatabase.database().reference().child("clientes/" + uid)
