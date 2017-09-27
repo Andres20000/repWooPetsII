@@ -191,6 +191,35 @@ class ComandoPreguntasOferente {
     }
     
     
+    class func getPreguntasFrecuentes() {
+        
+       
+        let model  = ModeloOferente.sharedInstance
+
+        let ref  = FIRDatabase.database().reference().child("preguntasFrecuentes/")
+        
+        
+        ref.observeSingleEvent(of: .value, with: {snap in
+        
+            let children = snap.children
+            while let child = children.nextObject() as? FIRDataSnapshot {
+                
+                let info =  child.value as! NSDictionary
+                
+                let newItem = PreguntaFrecuente()
+                newItem.pregunta = info["pregunta"] as! String
+                newItem.respuesta = info["respuesta"] as! String
+                model.preguntasFrecuentes.append(newItem)
+                
+            
+            }
+        
+        })
+        
+
+    }
+    
+    
     
     
 }

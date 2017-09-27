@@ -41,6 +41,9 @@ class Ubicacion
     var longitud:Double? = 0
 }
 
+
+
+
 enum Dias:Int
 {
     case domingo = 1
@@ -510,6 +513,8 @@ class ModeloOferente
     var params = Parametros()
     
     
+    var preguntasFrecuentes:[PreguntaFrecuente] = []
+
     
     func numeroPreguntasSinRespuesta() -> Int {
         
