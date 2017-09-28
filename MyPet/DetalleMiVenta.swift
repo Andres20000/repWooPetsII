@@ -45,7 +45,7 @@ class DetalleMiVenta: UIViewController {
     @IBOutlet weak var total: UILabel!
     @IBOutlet weak var preguntas: UILabel!
     
-    @IBOutlet weak var botonBarraTitulo: UIBarButtonItem!
+
     
     @IBOutlet weak var botonEntregado: UIButton!
     
@@ -58,6 +58,7 @@ class DetalleMiVenta: UIViewController {
     @IBOutlet weak var star4: UIImageView!
     @IBOutlet weak var star5: UIImageView!
     
+    @IBOutlet weak var titulo: UILabel!
     
     
     @IBOutlet weak var vistaCalificacion: UIView!
@@ -120,7 +121,7 @@ class DetalleMiVenta: UIViewController {
         if complemento != nil {
             direccion.text = complemento!.direcciones?[0].direccion
             telefono.text = complemento!.celular
-            botonBarraTitulo.title = (complemento?.nombre)! + " " +  (complemento?.apellido)!
+            titulo.text = (complemento?.nombre)! + " " +  (complemento?.apellido)!
         }
         precioUnidad.text = publicacion!.precio!.convertToMoney()
         cantidad.text = String(item!.cantidad)

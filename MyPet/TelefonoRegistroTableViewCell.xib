@@ -1,19 +1,91 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="TelefonoRegistroTableViewCell" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="telefonoTableViewCell" id="ilN-mM-6f6" customClass="TelefonoRegistroTableViewCell" customModule="MyPet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="43"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ilN-mM-6f6" id="TIp-Xo-SqY">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sg-wd-VqV">
+                        <rect key="frame" x="13" y="8" width="294" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="1mi-fg-6DN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tjn-RA-YZa" customClass="Te">
+                        <rect key="frame" x="70" y="29" width="237" height="30"/>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="99i-aX-r6A"/>
+                        </constraints>
+                        <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                        <connections>
+                            <outlet property="delegate" destination="ilN-mM-6f6" id="RlR-FR-R0x"/>
+                        </connections>
+                    </textField>
+                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="031" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WDR-AX-8kV">
+                        <rect key="frame" x="13" y="29" width="47" height="30"/>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="47" id="L5R-29-OhU"/>
+                            <constraint firstAttribute="height" constant="30" id="fVk-EW-PkS"/>
+                        </constraints>
+                        <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        <connections>
+                            <outlet property="delegate" destination="ilN-mM-6f6" id="lGN-Qb-BZe"/>
+                        </connections>
+                    </textField>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnLista" translatesAutoresizingMaskIntoConstraints="NO" id="hdC-Q7-J3N">
+                        <rect key="frame" x="285" y="38" width="16" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="XpZ-mf-CtS"/>
+                            <constraint firstAttribute="height" constant="12" id="fhd-U4-OJN"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4sg-wd-VqV" firstAttribute="top" secondItem="TIp-Xo-SqY" secondAttribute="topMargin" id="0uA-Gi-biA"/>
+                    <constraint firstItem="WDR-AX-8kV" firstAttribute="baseline" secondItem="Tjn-RA-YZa" secondAttribute="baseline" id="5Nx-tg-glA"/>
+                    <constraint firstItem="WDR-AX-8kV" firstAttribute="leading" secondItem="4sg-wd-VqV" secondAttribute="leading" id="7n2-Ks-3ue"/>
+                    <constraint firstItem="Tjn-RA-YZa" firstAttribute="leading" secondItem="WDR-AX-8kV" secondAttribute="trailing" constant="10" id="804-PD-Jx3"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="hdC-Q7-J3N" secondAttribute="bottom" constant="11.5" id="BxZ-ae-T3y"/>
+                    <constraint firstItem="4sg-wd-VqV" firstAttribute="leading" secondItem="TIp-Xo-SqY" secondAttribute="leadingMargin" constant="5" id="DBo-5x-uqM"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="4sg-wd-VqV" secondAttribute="trailing" constant="5" id="Rol-oa-LzG"/>
+                    <constraint firstItem="Tjn-RA-YZa" firstAttribute="top" secondItem="4sg-wd-VqV" secondAttribute="bottom" id="fEg-dh-HBV"/>
+                    <constraint firstItem="Tjn-RA-YZa" firstAttribute="top" secondItem="4sg-wd-VqV" secondAttribute="bottom" id="mmm-eA-7JD"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Tjn-RA-YZa" secondAttribute="trailing" constant="5" id="nRQ-R1-XAF"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="hdC-Q7-J3N" secondAttribute="trailing" constant="11" id="r0P-J4-rbf"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="imgFlecha" destination="hdC-Q7-J3N" id="740-oA-lhZ"/>
+                <outlet property="lblNombreCampo" destination="4sg-wd-VqV" id="yIk-NF-dIS"/>
+                <outlet property="txtCampo" destination="Tjn-RA-YZa" id="eyK-gx-PHI"/>
+            </connections>
+            <point key="canvasLocation" x="-86" y="37"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="btnLista" width="16" height="12"/>
+    </resources>
 </document>
