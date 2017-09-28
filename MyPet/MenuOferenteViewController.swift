@@ -81,6 +81,15 @@ class MenuOferenteViewController: UIViewController
     {
         let btnMenu:UIButton = sender as! UIButton
         
+        
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
+        
+        
+        
         switch btnMenu.tag
         {
         case 1:
@@ -89,11 +98,7 @@ class MenuOferenteViewController: UIViewController
             model.horarioFestivo.dias = ""
             model.oferente.removeAll()
             
-            let transition = CATransition()
-            transition.duration = 0.5
-            transition.type = kCATransitionPush
-            transition.subtype = kCATransitionFromRight
-            view.window!.layer.add(transition, forKey: kCATransition)
+            
             
             self.performSegue(withIdentifier: "misPublicaciones", sender: self)
             
@@ -108,11 +113,7 @@ class MenuOferenteViewController: UIViewController
             
         case 5:
             
-            let transition = CATransition()
-            transition.duration = 0.5
-            transition.type = kCATransitionPush
-            transition.subtype = kCATransitionFromRight
-            view.window!.layer.add(transition, forKey: kCATransition)
+            
             
             self.performSegue(withIdentifier: "editarOferente", sender: self)
             
@@ -121,6 +122,13 @@ class MenuOferenteViewController: UIViewController
             print("En construcción")
             
         case 7:
+            let transition = CATransition()
+            transition.duration = 0.0
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            view.window!.layer.add(transition, forKey: kCATransition)
+            view.window!.layer.removeAllAnimations()
+
             
             let alert:UIAlertController = UIAlertController(title: "¡Atención!", message: "¿Seguro deseas cerrar sesión?", preferredStyle: .alert)
             
