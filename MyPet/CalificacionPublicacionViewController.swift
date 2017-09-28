@@ -12,6 +12,8 @@ class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDe
 {
     var modelUsuario  = ModeloUsuario.sharedInstance
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
+    
     @IBOutlet var floatRatingView: FloatRatingView!
     @IBOutlet var textComentario: UITextView!
     @IBOutlet var btnEnviar: UIButton!
@@ -44,8 +46,18 @@ class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDe
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        
+        if DeviceType.IS_IPHONE_5
+        {
+            barFixedSpace.width = 70.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            barFixedSpace.width = 110.0
+        }
         
         // Required float rating view params
         self.floatRatingView.emptyImage = UIImage(named: "imgEstrellaVacia")
@@ -179,16 +191,16 @@ class CalificacionPublicacionViewController: UIViewController, FloatRatingViewDe
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     func mostrarAlerta(titulo:String, mensaje:String)
     {

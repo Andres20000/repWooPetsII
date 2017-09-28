@@ -12,6 +12,8 @@ class InfoVendedorViewController: UIViewController
 {
     let modelOferente = ModeloOferente.sharedInstance
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
+    
     @IBOutlet var scrollContent: UIScrollView!
     
     @IBOutlet var lblNombre: UILabel!
@@ -36,7 +38,7 @@ class InfoVendedorViewController: UIViewController
         transition.subtype = kCATransitionFromLeft
         view.window!.layer.add(transition, forKey: kCATransition)
         
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     override func viewDidLoad()
@@ -44,6 +46,16 @@ class InfoVendedorViewController: UIViewController
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if DeviceType.IS_IPHONE_5
+        {
+            barFixedSpace.width = 45.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            barFixedSpace.width = 85.0
+        }
         
         scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: 623.0)
         

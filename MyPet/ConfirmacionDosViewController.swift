@@ -18,6 +18,8 @@ class ConfirmacionDosViewController: UIViewController
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var trailingSpaceConstraint: NSLayoutConstraint?
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
+    
     @IBOutlet var lblNombreCompleto: UILabel!
     @IBOutlet var lblCedula: UILabel!
     @IBOutlet var lblTextoDireccion: UILabel!
@@ -42,6 +44,16 @@ class ConfirmacionDosViewController: UIViewController
 
         // Do any additional setup after loading the view.
         
+        if DeviceType.IS_IPHONE_5
+        {
+            barFixedSpace.width = 35.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            barFixedSpace.width = 80.0
+        }
+        
         lblNombreCompleto.layer.masksToBounds = true
         lblNombreCompleto.layer.cornerRadius = 7.0
         
@@ -62,6 +74,17 @@ class ConfirmacionDosViewController: UIViewController
         {
             lblTotal.text = amountString
         }
+    }
+    
+    @IBAction func cambiarDireccion(_ sender: Any)
+    {
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        view.window!.layer.add(transition, forKey: kCATransition)
+        
+        self.performSegue(withIdentifier: "direccionesDesdeConfirmacionDos", sender: self)
     }
     
     @IBAction func finalizarCompra(_ sender: Any)
@@ -127,17 +150,34 @@ class ConfirmacionDosViewController: UIViewController
         
         if modelUsuario.publicacionCarrito.publicacionCompra.servicio!
         {
-            lblTextoDireccion.text = "Dirección del servicio"
-            lblDireccion.text = "   \(modelOferente.oferente[0].direccion!)"
-            
-            lblTextoTelefono.text = "Teléfono contacto servicio"
-            lblTelefono.text = "   \((modelOferente.oferente[0].telefono)!)"
-            
-            lblCambiar.isHidden = true
-            imgAdelante.isHidden = true
-            btnCambiar.isHidden = true
-            
-            self.trailingSpaceConstraint?.constant = -75.0
+            if modelUsuario.publicacionCarrito.publicacionCompra.servicioEnDomicilio!
+            {
+                lblTextoDireccion.text = "Dirección del servicio (tienda)"
+                lblDireccion.text = "   \(modelOferente.oferente[0].direccion!)"
+                
+                lblTextoTelefono.text = "Teléfono contacto del servicio"
+                lblTelefono.text = "   \((modelOferente.oferente[0].telefono)!)"
+                
+                lblCambiar.isHidden = true
+                imgAdelante.isHidden = true
+                btnCambiar.isHidden = true
+                
+                self.trailingSpaceConstraint?.constant = -75.0
+            } else
+            {
+                lblTextoDireccion.text = "Dirección del servicio (domicilio)"
+                
+                for direccion in (modelUsuario.usuario[0].datosComplementarios?[0].direcciones)!
+                {
+                    if direccion.porDefecto!
+                    {
+                        lblDireccion.text = "   \(direccion.direccion!)"
+                    }
+                }
+                
+                lblTextoTelefono.text = "Teléfono contacto"
+                lblTelefono.text = "   \((modelUsuario.usuario[0].datosComplementarios?[0].celular)!)"
+            }
             
         } else
         {

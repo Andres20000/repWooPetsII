@@ -281,6 +281,8 @@
 		84D5AC0A1EE7A64C00A18D7E /* InicioSesionUsuarioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5AC081EE7A64C00A18D7E /* InicioSesionUsuarioViewController.swift */; };
 		84D5AC0C1EE7A74700A18D7E /* RegistroUsuarioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5AC0B1EE7A74700A18D7E /* RegistroUsuarioViewController.swift */; };
 		84D5AC0D1EE7A74700A18D7E /* RegistroUsuarioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5AC0B1EE7A74700A18D7E /* RegistroUsuarioViewController.swift */; };
+		84E328851F7D612C00E068C8 /* DireccionesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E328841F7D612C00E068C8 /* DireccionesViewController.swift */; };
+		84E328861F7D612C00E068C8 /* DireccionesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E328841F7D612C00E068C8 /* DireccionesViewController.swift */; };
 		84E4CF291F22EADA009DC256 /* PublicacionProductoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4CF281F22EADA009DC256 /* PublicacionProductoViewController.swift */; };
 		84E4CF2A1F22EADA009DC256 /* PublicacionProductoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4CF281F22EADA009DC256 /* PublicacionProductoViewController.swift */; };
 		84E4CF2D1F22EAFF009DC256 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4CF2C1F22EAFF009DC256 /* FloatRatingView.swift */; };
@@ -448,6 +450,9 @@
 		84CA9EFB1F02E6ED000F6F72 /* MascotaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MascotaTableViewCell.xib; sourceTree = "<group>"; };
 		84D5AC081EE7A64C00A18D7E /* InicioSesionUsuarioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InicioSesionUsuarioViewController.swift; sourceTree = "<group>"; };
 		84D5AC0B1EE7A74700A18D7E /* RegistroUsuarioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistroUsuarioViewController.swift; sourceTree = "<group>"; };
+		84E328841F7D612C00E068C8 /* DireccionesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DireccionesViewController.swift; sourceTree = "<group>"; };
+		84E328881F7D615100E068C8 /* DireccionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DireccionTableViewCell.xib; sourceTree = "<group>"; };
+		84E328891F7D615200E068C8 /* DireccionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DireccionTableViewCell.swift; sourceTree = "<group>"; };
 		84E4CF281F22EADA009DC256 /* PublicacionProductoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicacionProductoViewController.swift; sourceTree = "<group>"; };
 		84E4CF2C1F22EAFF009DC256 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
 		84F4FA471EAA955900F3E69A /* MyPet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -786,6 +791,8 @@
 				84A5A4CE1F3CCB2800429500 /* ConfirmacionUnoViewController.swift */,
 				84A5A4D11F3CCDD400429500 /* Cell Confirmacion Uno */,
 				84A5A4D81F3D5BA800429500 /* ConfirmacionDosViewController.swift */,
+				84E328841F7D612C00E068C8 /* DireccionesViewController.swift */,
+				84E328871F7D613A00E068C8 /* Cell Direccion */,
 				84485FFB1F455CC500DF5D9D /* CompraExitosaViewController.swift */,
 				84485FFE1F462ED800DF5D9D /* Compra Exitosa Cell */,
 				844860171F4BE27900DF5D9D /* AvisoCalificacionViewController.swift */,
@@ -795,6 +802,15 @@
 				846005AF1F7CA65500A44BA5 /* Cell Buscar */,
 			);
 			name = Usuario;
+			sourceTree = "<group>";
+		};
+		84E328871F7D613A00E068C8 /* Cell Direccion */ = {
+			isa = PBXGroup;
+			children = (
+				84E328891F7D615200E068C8 /* DireccionTableViewCell.swift */,
+				84E328881F7D615100E068C8 /* DireccionTableViewCell.xib */,
+			);
+			name = "Cell Direccion";
 			sourceTree = "<group>";
 		};
 		84E4CF2B1F22EAE3009DC256 /* FloatRatingView */ = {
@@ -1284,6 +1300,7 @@
 				4126C9661F44EE1900BC4413 /* MisVentasXProducto.swift in Sources */,
 				4126C96D1F45017800BC4413 /* CeldaVentaProducto.swift in Sources */,
 				84CA9EFC1F02E6ED000F6F72 /* MascotaTableViewCell.swift in Sources */,
+				84E328851F7D612C00E068C8 /* DireccionesViewController.swift in Sources */,
 				4101FA471F4B76880098F735 /* IngresoTarjetaHabiente.swift in Sources */,
 				84A7660A1F2AE9CE001708CE /* InfoVendedorViewController.swift in Sources */,
 				411A86071F426EA200BDC788 /* CoachMarkDestacarImagen.swift in Sources */,
@@ -1400,6 +1417,7 @@
 				4126C9671F44EE1900BC4413 /* MisVentasXProducto.swift in Sources */,
 				4126C96E1F45017800BC4413 /* CeldaVentaProducto.swift in Sources */,
 				84CA9EFD1F02E6ED000F6F72 /* MascotaTableViewCell.swift in Sources */,
+				84E328861F7D612C00E068C8 /* DireccionesViewController.swift in Sources */,
 				4101FA481F4B76880098F735 /* IngresoTarjetaHabiente.swift in Sources */,
 				84A7660B1F2AE9CE001708CE /* InfoVendedorViewController.swift in Sources */,
 				411A86081F426EA200BDC788 /* CoachMarkDestacarImagen.swift in Sources */,

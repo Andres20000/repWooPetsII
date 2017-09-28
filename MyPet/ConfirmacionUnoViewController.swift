@@ -16,6 +16,8 @@ class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITa
     
     let  user = FIRAuth.auth()?.currentUser
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
+    
     @IBOutlet var tableCompras: UITableView!
     
     @IBOutlet var lblTotal: UILabel!
@@ -31,6 +33,16 @@ class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITa
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if DeviceType.IS_IPHONE_5
+        {
+            barFixedSpace.width = 35.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            barFixedSpace.width = 80.0
+        }
         
         let nib = UINib(nibName: "CompraTableViewCell", bundle: nil)
         tableCompras.register(nib, forCellReuseIdentifier: "compraTableViewCell")
