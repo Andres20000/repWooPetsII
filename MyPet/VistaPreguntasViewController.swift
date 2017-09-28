@@ -14,6 +14,7 @@ class VistaPreguntasViewController: UIViewController, UITableViewDelegate, UITab
     let modelUsuario = ModeloUsuario.sharedInstance
     let modelOferente = ModeloOferente.sharedInstance
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
     @IBOutlet var barItemTitulo: UIBarButtonItem!
     @IBOutlet var tablePreguntasRespuestas: UITableView!
 
@@ -27,20 +28,35 @@ class VistaPreguntasViewController: UIViewController, UITableViewDelegate, UITab
         transition.subtype = kCATransitionFromLeft
         view.window!.layer.add(transition, forKey: kCATransition)
         
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        
+        if DeviceType.IS_IPHONE_5
+        {
+            barFixedSpace.width = 20.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            barFixedSpace.width = 60.0
+        }
         
         barItemTitulo.title = tituloVista
         
         let nib = UINib(nibName: "PreguntaRespuestaTableViewCell", bundle: nil)
         tablePreguntasRespuestas.register(nib, forCellReuseIdentifier: "preguntaRespuestaTableViewCell")
         
+        let nib2 = UINib(nibName: "PreguntaTableViewCell", bundle: nil)
+        tablePreguntasRespuestas.register(nib2, forCellReuseIdentifier: "preguntaTableViewCell")
+        
+        tablePreguntasRespuestas.rowHeight = UITableViewAutomaticDimension
+        tablePreguntasRespuestas.estimatedRowHeight = 75
     }
     
     func refrescarVista(_ notification: Notification)
@@ -77,52 +93,45 @@ class VistaPreguntasViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "preguntaRespuestaTableViewCell")  as! PreguntaRespuestaTableViewCell
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy h:mm a"
-        let datePregunta = dateFormatter.date(from: model.preguntasPublicacion[indexPath.row].fechaPregunta!)
-        
-        cell.lblFechaPregunta.text = self.timeAgoSinceDate(datePregunta!, numericDates: true)
-        
-        cell.lblPreguntaUsuario.text = model.preguntasPublicacion[indexPath.row].pregunta
         
         if model.preguntasPublicacion[indexPath.row].respuesta == ""
         {
-            cell.lblEstadoPregunta.text = "Aún sin respuesta"
-            
-            cell.lblFechaRespuesta.isHidden = true
-            cell.textRespuestaOferente.isHidden = true
-        } else
-        {
-            cell.lblEstadoPregunta.text = "Respuesta"
+            let cell = tableView.dequeueReusableCell(withIdentifier: "preguntaTableViewCell")  as! PreguntaTableViewCell
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy h:mm a"
-            let datePregunta = dateFormatter.date(from: model.preguntasPublicacion[indexPath.row].fechaRespuesta!)
+            let datePregunta = dateFormatter.date(from: model.preguntasPublicacion[indexPath.row].fechaPregunta!)
             
-            cell.lblFechaRespuesta.text = self.timeAgoSinceDate(datePregunta!, numericDates: true)
+            cell.lblFechaPregunta.text = self.timeAgoSinceDate(datePregunta!, numericDates: true)
             
-            cell.textRespuestaOferente.text = model.preguntasPublicacion[indexPath.row].respuesta
+            cell.lblPreguntaUsuario.text = model.preguntasPublicacion[indexPath.row].pregunta
+            
+            return cell
+            
+        } else
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "preguntaRespuestaTableViewCell")  as! PreguntaRespuestaTableViewCell
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy h:mm a"
+            let datePregunta = dateFormatter.date(from: model.preguntasPublicacion[indexPath.row].fechaPregunta!)
+            
+            cell.lblFechaPregunta.text = self.timeAgoSinceDate(datePregunta!, numericDates: true)
+            
+            cell.lblPreguntaUsuario.text = model.preguntasPublicacion[indexPath.row].pregunta
+            
+            let dateRespuesta = dateFormatter.date(from: model.preguntasPublicacion[indexPath.row].fechaRespuesta!)
+            cell.lblFechaRespuesta.text = self.timeAgoSinceDate(dateRespuesta!, numericDates: true)
+            
+            cell.lblRespuestaOferente.text = model.preguntasPublicacion[indexPath.row].respuesta
+            
+            return cell
         }
-        
-        return cell;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         print("Seleccionada")
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        if model.preguntasPublicacion[indexPath.row].respuesta == ""
-        {
-            return 71
-        } else
-        {
-            return 150
-        }
     }
     
     @IBAction func preguntar(_ sender: Any)

@@ -71,24 +71,6 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
     
     func goBack()
     {
-        modelUsuario.registroComplementario.apellido = ""
-        modelUsuario.registroComplementario.celular = ""
-        modelUsuario.registroComplementario.documento = ""
-        modelUsuario.registroComplementario.nombre = ""
-        modelUsuario.registroComplementario.direcciones?.removeAll()
-        
-        modelUsuario.direccion1.direccion = ""
-        modelUsuario.direccion1.nombre = ""
-        modelUsuario.direccion1.ubicacion?.removeAll()
-        
-        modelUsuario.direccion2.direccion = ""
-        modelUsuario.direccion2.nombre = ""
-        modelUsuario.direccion2.ubicacion?.removeAll()
-        
-        modelUsuario.direccion3.direccion = ""
-        modelUsuario.direccion3.nombre = ""
-        modelUsuario.direccion3.ubicacion?.removeAll()
-        
         if datosEditables
         {
             let transition = CATransition()
@@ -96,6 +78,25 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
             transition.type = kCATransitionPush
             transition.subtype = kCATransitionFromLeft
             view.window!.layer.add(transition, forKey: kCATransition)
+        }else
+        {
+            modelUsuario.registroComplementario.apellido = ""
+            modelUsuario.registroComplementario.celular = ""
+            modelUsuario.registroComplementario.documento = ""
+            modelUsuario.registroComplementario.nombre = ""
+            modelUsuario.registroComplementario.direcciones?.removeAll()
+            
+            modelUsuario.direccion1.direccion = ""
+            modelUsuario.direccion1.nombre = ""
+            modelUsuario.direccion1.ubicacion?.removeAll()
+            
+            modelUsuario.direccion2.direccion = ""
+            modelUsuario.direccion2.nombre = ""
+            modelUsuario.direccion2.ubicacion?.removeAll()
+            
+            modelUsuario.direccion3.direccion = ""
+            modelUsuario.direccion3.nombre = ""
+            modelUsuario.direccion3.ubicacion?.removeAll()
         }
         
         dismiss(animated: true, completion: nil)
@@ -628,6 +629,8 @@ class RegistroUsuarioDosViewController: UIViewController, UITextFieldDelegate
             }
             
             ComandoUsuario.editarDatosPerfil(uid: (user?.uid)!, datos: modelUsuario.registroComplementario)
+            
+            ComandoUsuario.getUsuario(uid: (user?.uid)!)
             
             self.goBack()
             

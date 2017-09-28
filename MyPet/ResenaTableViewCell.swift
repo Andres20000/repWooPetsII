@@ -18,7 +18,7 @@ class ResenaTableViewCell: UITableViewCell
     
     @IBOutlet var lblFecha: UILabel!
     @IBOutlet var lblUsuario: UILabel!
-    @IBOutlet var textResena: UITextView!
+    @IBOutlet var lblResena: UILabel!
     
     override func awakeFromNib()
     {

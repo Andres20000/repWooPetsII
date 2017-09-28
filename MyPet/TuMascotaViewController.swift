@@ -17,6 +17,8 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
     
     let  user = FIRAuth.auth()?.currentUser
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
+    
     let pickerTipoMascota = UIPickerView()
     let pickerRazaMascota = UIPickerView()
     let pickerGenero = UIPickerView()
@@ -68,6 +70,7 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
         
         if DeviceType.IS_IPHONE_5
         {
+            barFixedSpace.width = 65.0
             imgFotoMascota.layer.cornerRadius = 60
         }else
         {
@@ -76,6 +79,7 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
                 imgFotoMascota.layer.cornerRadius = imgFotoMascota.frame.height / 2
             }else
             {
+                barFixedSpace.width = 115.0
                 imgFotoMascota.layer.cornerRadius = 80
             }
         }

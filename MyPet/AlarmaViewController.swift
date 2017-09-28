@@ -113,7 +113,6 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         txtFechaFin.text = ""
         txtFechaFin.attributedPlaceholder = NSAttributedString(string:"Fecha fin", attributes:[NSForegroundColorAttributeName: UIColor.init(red: 0.188235294117647, green: 0.188235294117647, blue: 0.188235294117647, alpha: 1.0)])
         
-        self .pickUpDateFechaFin(txtFechaFin)
         self .toolBarTextField(txtFechaFin)
         
         btnAceptar.layer.cornerRadius = 10.0
@@ -299,7 +298,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         self.datePickerFechaFin = UIDatePicker(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
         self.datePickerFechaFin.backgroundColor = UIColor.white
         self.datePickerFechaFin.datePickerMode = UIDatePickerMode.date
-        self.datePickerFechaFin.minimumDate = NSDate() as Date
+        self.datePickerFechaFin.minimumDate = fechaInicio
         self.datePickerFechaFin.addTarget(self, action: #selector(AlarmaViewController.actualizarFechaFin), for: .valueChanged)
         textField.inputView = self.datePickerFechaFin
     }
@@ -368,13 +367,26 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         
         if textField.tag == 6
         {
-            if textField.text == ""
+            if modelUsuario.alertaMascota.frecuencia == "" || modelUsuario.alertaMascota.fechaInicio == ""
             {
-                fechaFin = datePickerFechaFin.date
+                mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes diligenciar la Frecuencia y Fecha de inicio de la alarma")
                 
-                textField.text = fechaFin?.fechaString()
+                textField.text = ""
                 
                 modelUsuario.alertaMascota.fechaFin = textField.text
+                
+            }else
+            {
+                if textField.text == ""
+                {
+                    self .pickUpDateFechaFin(txtFechaFin)
+                    
+                    fechaFin = datePickerFechaFin.date
+                    
+                    textField.text = fechaFin?.fechaString()
+                    
+                    modelUsuario.alertaMascota.fechaFin = textField.text
+                }
             }
         }
         
@@ -411,114 +423,7 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
         
         if textField.tag == 6
         {
-            if modelUsuario.alertaMascota.frecuencia == "" || modelUsuario.alertaMascota.fechaInicio == ""
-            {
-                mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes diligenciar la Frecuencia y Fecha de inicio de la alarma")
-                
-                textField.text = ""
-                
-                modelUsuario.alertaMascota.fechaFin = textField.text
-                
-            } else
-            {
-                if modelUsuario.alertaMascota.frecuencia == "Anual"
-                {
-                    let yearDate = Comando.calcularFechaEnAños(fecha1: fechaFin! as NSDate, fecha2: fechaInicio! as NSDate)
-                    
-                    if yearDate < 1
-                    {
-                        mostrarAlerta(titulo: "¡Advertencia!", mensaje: "El tiempo entre la fecha inicio y la fecha fin debe ser mayor o igual a 1 año")
-                        
-                        textField.text = ""
-                        
-                        modelUsuario.alertaMascota.fechaFin = textField.text
-                        
-                        return
-                    }
-                }
-                
-                if modelUsuario.alertaMascota.frecuencia == "Bimensual"
-                {
-                    let monthDate = Comando.calcularFechaEnMeses(fecha1: fechaFin! as NSDate, fecha2: fechaInicio! as NSDate)
-                    
-                    if monthDate < 2
-                    {
-                        mostrarAlerta(titulo: "¡Advertencia!", mensaje: "El tiempo entre la fecha inicio y la fecha fin debe ser mayor o igual a 2 meses")
-                        
-                        textField.text = ""
-                        
-                        modelUsuario.alertaMascota.fechaFin = textField.text
-                        
-                        return
-                    }
-                }
-                
-                if modelUsuario.alertaMascota.frecuencia == "Diaria"
-                {
-                    let dayDate = Comando.calcularFechaEnDias(fecha1: fechaFin! as NSDate, fecha2: fechaInicio! as NSDate)
-                    
-                    if dayDate < 1
-                    {
-                        mostrarAlerta(titulo: "¡Advertencia!", mensaje: "El tiempo entre la fecha inicio y la fecha fin debe ser mayor o igual a 1 día")
-                        
-                        textField.text = ""
-                        
-                        modelUsuario.alertaMascota.fechaFin = textField.text
-                        
-                        return
-                    }
-                }
-                
-                if modelUsuario.alertaMascota.frecuencia == "Mensual"
-                {
-                    let monthDate = Comando.calcularFechaEnMeses(fecha1: fechaFin! as NSDate, fecha2: fechaInicio! as NSDate)
-                    
-                    if monthDate < 1
-                    {
-                        mostrarAlerta(titulo: "¡Advertencia!", mensaje: "El tiempo entre la fecha inicio y la fecha fin debe ser mayor o igual a 1 mes")
-                        
-                        textField.text = ""
-                        
-                        modelUsuario.alertaMascota.fechaFin = textField.text
-                        
-                        return
-                    }
-                }
-                
-                if modelUsuario.alertaMascota.frecuencia == "Quincenal"
-                {
-                    let dayDate = Comando.calcularFechaEnDias(fecha1: fechaFin! as NSDate, fecha2: fechaInicio! as NSDate)
-                    
-                    if dayDate < 14
-                    {
-                        mostrarAlerta(titulo: "¡Advertencia!", mensaje: "El tiempo entre la fecha inicio y la fecha fin debe ser mayor o igual a 15 días")
-                        
-                        textField.text = ""
-                        
-                        modelUsuario.alertaMascota.fechaFin = textField.text
-                        
-                        return
-                    }
-                }
-                
-                if modelUsuario.alertaMascota.frecuencia == "Semanal"
-                {
-                    let dayDate = Comando.calcularFechaEnDias(fecha1: fechaFin! as NSDate, fecha2: fechaInicio! as NSDate)
-                    
-                    if dayDate < 7
-                    {
-                        mostrarAlerta(titulo: "¡Advertencia!", mensaje: "El tiempo entre la fecha inicio y la fecha fin debe ser mayor o igual a 7 días")
-                        
-                        textField.text = ""
-                        
-                        modelUsuario.alertaMascota.fechaFin = textField.text
-                        
-                        return
-                    }
-                }
-                
-                modelUsuario.alertaMascota.fechaFin = textField.text
-            }
+            modelUsuario.alertaMascota.fechaFin = textField.text
         }
     }
     
@@ -560,8 +465,6 @@ class AlarmaViewController: UIViewController, UIPickerViewDelegate, UITextFieldD
     @IBAction func crearAlarma(_ sender: Any)
     {
         view.endEditing(true)
-        
-        print("\(modelUsuario.alertaMascota.activada!) - \(modelUsuario.alertaMascota.fechaFin!) - \(modelUsuario.alertaMascota.fechaInicio!) - \(modelUsuario.alertaMascota.frecuencia!) - \(modelUsuario.alertaMascota.hora!) - \(modelUsuario.alertaMascota.idAlerta!) - \(modelUsuario.alertaMascota.nombre!) - \(modelUsuario.alertaMascota.tipoRecordatorio!) - \(modelUsuario.alertaMascota.idMascota!)")
         
         if modelUsuario.alertaMascota.fechaFin == "" || modelUsuario.alertaMascota.fechaInicio == "" || modelUsuario.alertaMascota.frecuencia == "" || modelUsuario.alertaMascota.hora == "" || modelUsuario.alertaMascota.nombre == "" || modelUsuario.alertaMascota.tipoRecordatorio == ""
         {

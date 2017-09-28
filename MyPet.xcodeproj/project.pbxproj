@@ -75,14 +75,6 @@
 		41F6CDB51F6589630070DA46 /* CeldaPreguntaFrecuente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F6CDB31F6589630070DA46 /* CeldaPreguntaFrecuente.swift */; };
 		41F6CDB71F658B610070DA46 /* CeldaPreguntaFrecuente.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F6CDB61F658B610070DA46 /* CeldaPreguntaFrecuente.xib */; };
 		41F6CDB81F658B610070DA46 /* CeldaPreguntaFrecuente.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F6CDB61F658B610070DA46 /* CeldaPreguntaFrecuente.xib */; };
-		840B1B3A1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
-		840B1B3B1F339B2900423832 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B381F339B2900423832 /* ResenaTableViewCell.swift */; };
-		840B1B3C1F339B2900423832 /* ResenaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840B1B391F339B2900423832 /* ResenaTableViewCell.xib */; };
-		840B1B3D1F339B2900423832 /* ResenaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840B1B391F339B2900423832 /* ResenaTableViewCell.xib */; };
-		840B1B471F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B451F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift */; };
-		840B1B481F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B451F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift */; };
-		840B1B491F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840B1B461F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib */; };
-		840B1B4A1F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840B1B461F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib */; };
 		840B1B501F34217600423832 /* AgendarServicioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B4F1F34217600423832 /* AgendarServicioViewController.swift */; };
 		840B1B511F34217600423832 /* AgendarServicioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B4F1F34217600423832 /* AgendarServicioViewController.swift */; };
 		840B1B571F3594AD00423832 /* FavoritoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840B1B551F3594AD00423832 /* FavoritoTableViewCell.swift */; };
@@ -166,6 +158,8 @@
 		845326891F0C9B11007A4776 /* AlertaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845326861F0C9B11007A4776 /* AlertaTableViewCell.swift */; };
 		8453268A1F0C9B11007A4776 /* AlertaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845326871F0C9B11007A4776 /* AlertaTableViewCell.xib */; };
 		8453268B1F0C9B11007A4776 /* AlertaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845326871F0C9B11007A4776 /* AlertaTableViewCell.xib */; };
+		846005AD1F7CA62100A44BA5 /* BuscarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846005AB1F7CA61E00A44BA5 /* BuscarViewController.swift */; };
+		846005AE1F7CA62100A44BA5 /* BuscarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846005AB1F7CA61E00A44BA5 /* BuscarViewController.swift */; };
 		846C925E1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C925C1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift */; };
 		846C925F1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C925C1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift */; };
 		846C92601F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846C925D1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib */; };
@@ -343,10 +337,6 @@
 		41F6CDB31F6589630070DA46 /* CeldaPreguntaFrecuente.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CeldaPreguntaFrecuente.swift; sourceTree = "<group>"; };
 		41F6CDB61F658B610070DA46 /* CeldaPreguntaFrecuente.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CeldaPreguntaFrecuente.xib; sourceTree = "<group>"; };
 		49E7A6DA1136AACD9514E46A /* Pods-MyPetPruebas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyPetPruebas.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyPetPruebas/Pods-MyPetPruebas.release.xcconfig"; sourceTree = "<group>"; };
-		840B1B381F339B2900423832 /* ResenaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResenaTableViewCell.swift; sourceTree = "<group>"; };
-		840B1B391F339B2900423832 /* ResenaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResenaTableViewCell.xib; sourceTree = "<group>"; };
-		840B1B451F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreguntaRespuestaTableViewCell.swift; sourceTree = "<group>"; };
-		840B1B461F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreguntaRespuestaTableViewCell.xib; sourceTree = "<group>"; };
 		840B1B4F1F34217600423832 /* AgendarServicioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendarServicioViewController.swift; sourceTree = "<group>"; };
 		840B1B551F3594AD00423832 /* FavoritoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritoTableViewCell.swift; sourceTree = "<group>"; };
 		840B1B561F3594AD00423832 /* FavoritoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritoTableViewCell.xib; sourceTree = "<group>"; };
@@ -389,6 +379,15 @@
 		845326821F0C9015007A4776 /* AdministrarAlarmasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdministrarAlarmasViewController.swift; sourceTree = "<group>"; };
 		845326861F0C9B11007A4776 /* AlertaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertaTableViewCell.swift; sourceTree = "<group>"; };
 		845326871F0C9B11007A4776 /* AlertaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertaTableViewCell.xib; sourceTree = "<group>"; };
+		846005AB1F7CA61E00A44BA5 /* BuscarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuscarViewController.swift; sourceTree = "<group>"; };
+		846005B01F7CA66800A44BA5 /* BusquedaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusquedaTableViewCell.swift; sourceTree = "<group>"; };
+		846005B11F7CA66800A44BA5 /* BusquedaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusquedaTableViewCell.xib; sourceTree = "<group>"; };
+		846005B21F7CB19100A44BA5 /* ResenaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResenaTableViewCell.swift; sourceTree = "<group>"; };
+		846005B31F7CB19200A44BA5 /* ResenaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResenaTableViewCell.xib; sourceTree = "<group>"; };
+		846005B41F7CB2B800A44BA5 /* PreguntaRespuestaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreguntaRespuestaTableViewCell.xib; sourceTree = "<group>"; };
+		846005B51F7CB2B800A44BA5 /* PreguntaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreguntaTableViewCell.swift; sourceTree = "<group>"; };
+		846005B61F7CB2B900A44BA5 /* PreguntaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreguntaTableViewCell.xib; sourceTree = "<group>"; };
+		846005B71F7CB2B900A44BA5 /* PreguntaRespuestaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreguntaRespuestaTableViewCell.swift; sourceTree = "<group>"; };
 		846C925C1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelefonoRegistroTableViewCell.swift; sourceTree = "<group>"; };
 		846C925D1F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TelefonoRegistroTableViewCell.xib; sourceTree = "<group>"; };
 		847838CB1F1699EC006A41F8 /* PublicacionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicacionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -547,8 +546,8 @@
 		840B1B371F3398AC00423832 /* Cell Resena */ = {
 			isa = PBXGroup;
 			children = (
-				840B1B381F339B2900423832 /* ResenaTableViewCell.swift */,
-				840B1B391F339B2900423832 /* ResenaTableViewCell.xib */,
+				846005B21F7CB19100A44BA5 /* ResenaTableViewCell.swift */,
+				846005B31F7CB19200A44BA5 /* ResenaTableViewCell.xib */,
 			);
 			name = "Cell Resena";
 			sourceTree = "<group>";
@@ -556,8 +555,10 @@
 		840B1B3E1F33C43A00423832 /* Cell Pregunta Respuesta */ = {
 			isa = PBXGroup;
 			children = (
-				840B1B451F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift */,
-				840B1B461F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib */,
+				846005B71F7CB2B900A44BA5 /* PreguntaRespuestaTableViewCell.swift */,
+				846005B41F7CB2B800A44BA5 /* PreguntaRespuestaTableViewCell.xib */,
+				846005B51F7CB2B800A44BA5 /* PreguntaTableViewCell.swift */,
+				846005B61F7CB2B900A44BA5 /* PreguntaTableViewCell.xib */,
 			);
 			name = "Cell Pregunta Respuesta";
 			sourceTree = "<group>";
@@ -649,6 +650,15 @@
 				845326871F0C9B11007A4776 /* AlertaTableViewCell.xib */,
 			);
 			name = "Cell Alerta";
+			sourceTree = "<group>";
+		};
+		846005AF1F7CA65500A44BA5 /* Cell Buscar */ = {
+			isa = PBXGroup;
+			children = (
+				846005B01F7CA66800A44BA5 /* BusquedaTableViewCell.swift */,
+				846005B11F7CA66800A44BA5 /* BusquedaTableViewCell.xib */,
+			);
+			name = "Cell Buscar";
 			sourceTree = "<group>";
 		};
 		847838CA1F1699BB006A41F8 /* Cell Publicacion */ = {
@@ -781,6 +791,8 @@
 				844860171F4BE27900DF5D9D /* AvisoCalificacionViewController.swift */,
 				8448601A1F4BE9C700DF5D9D /* CalificacionPublicacionViewController.swift */,
 				84BD20801EF0A58F001422E7 /* MenuUsuarioViewController.swift */,
+				846005AB1F7CA61E00A44BA5 /* BuscarViewController.swift */,
+				846005AF1F7CA65500A44BA5 /* Cell Buscar */,
 			);
 			name = Usuario;
 			sourceTree = "<group>";
@@ -1014,7 +1026,6 @@
 				4124FE551F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib in Resources */,
 				84AF006A1F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib in Resources */,
 				847838CF1F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
-				840B1B3C1F339B2900423832 /* ResenaTableViewCell.xib in Resources */,
 				847FDC171ED3469F002F9530 /* DetalleHorarioTableViewCell.xib in Resources */,
 				84417B991EB93D0D00A70ABC /* HorarioTableViewCell.xib in Resources */,
 				411A85FB1F41E27A00BDC788 /* ChatCeldaSinRespuesta.xib in Resources */,
@@ -1022,7 +1033,6 @@
 				84417B8D1EB2AA0600A70ABC /* EstandarRegistroTableViewCell.xib in Resources */,
 				840B1B591F3594AD00423832 /* FavoritoTableViewCell.xib in Resources */,
 				84A3E1D91EC66EA80013E4DD /* CategoriaCollectionViewCell.xib in Resources */,
-				840B1B491F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */,
 				844860151F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.xib in Resources */,
 				84CA9EFE1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
 				4124FE5B1F3D3D6800C9A1C5 /* ChatCelda.xib in Resources */,
@@ -1049,7 +1059,6 @@
 				84A3E1D31EC4335B0013E4DD /* PublicacionTableViewCell.xib in Resources */,
 				84CA9EFF1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
 				41F6CDB81F658B610070DA46 /* CeldaPreguntaFrecuente.xib in Resources */,
-				840B1B4A1F33C6D700423832 /* PreguntaRespuestaTableViewCell.xib in Resources */,
 				84F4FA781EAAEF0300F3E69A /* Main.storyboard in Resources */,
 				843A4B031F635E7D0064C1C9 /* GoogleService-Info.plist in Resources */,
 				84AF006B1F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib in Resources */,
@@ -1060,7 +1069,6 @@
 				844860101F4644A600DF5D9D /* ServicioCompradoTableViewCell.xib in Resources */,
 				847FDC301ED54353002F9530 /* Assets.xcassets in Resources */,
 				4126C96B1F44F5B600BC4413 /* CeldaVentaProducto.xib in Resources */,
-				840B1B3D1F339B2900423832 /* ResenaTableViewCell.xib in Resources */,
 				84F4FA701EAAAF6900F3E69A /* LaunchScreen.storyboard in Resources */,
 				847838D01F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
 				8448600A1F46447300DF5D9D /* ProductoCompradoTableViewCell.xib in Resources */,
@@ -1198,7 +1206,6 @@
 				84A766041F2ABB8A001708CE /* VistaPreguntasViewController.swift in Sources */,
 				84417B911EB2CAE800A70ABC /* DireccionRegistroTableViewCell.swift in Sources */,
 				4101FA511F4B7B430098F735 /* TPaga.swift in Sources */,
-				840B1B3A1F339B2900423832 /* ResenaTableViewCell.swift in Sources */,
 				4134D51A1F46033400DB43DA /* DetalleMiVenta.swift in Sources */,
 				84417B971EB93D0D00A70ABC /* HorarioTableViewCell.swift in Sources */,
 				41F6CDB01F6451EA0070DA46 /* PreguntasFrecuentes.swift in Sources */,
@@ -1232,7 +1239,6 @@
 				84BD207E1EF0A56C001422E7 /* CarritoComprasViewController.swift in Sources */,
 				8446CC3D1EE8F927005BA3D4 /* IngresoExitosoViewController.swift in Sources */,
 				4126C95D1F44877D00BC4413 /* MisVentas.swift in Sources */,
-				840B1B471F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift in Sources */,
 				84A766071F2AE0F1001708CE /* PreguntarViewController.swift in Sources */,
 				411A85FE1F41E5F500BDC788 /* ChatCeldaSinRespuesta.swift in Sources */,
 				8446CC501EEB8650005BA3D4 /* RegistroUsuarioTresViewController.swift in Sources */,
@@ -1257,6 +1263,7 @@
 				84A3E1D01EC4335B0013E4DD /* PublicacionTableViewCell.swift in Sources */,
 				84B1B4791EDCF96E00F838C3 /* FotoViewController.swift in Sources */,
 				4101EEEB1F43483700F161DE /* Adiciones.swift in Sources */,
+				846005AD1F7CA62100A44BA5 /* BuscarViewController.swift in Sources */,
 				8451A3861EFB227200B59E46 /* UbicacionViewController.swift in Sources */,
 				844860071F46447300DF5D9D /* ProductoCompradoTableViewCell.swift in Sources */,
 				4124FE5E1F3D4DAB00C9A1C5 /* ChatCelda.swift in Sources */,
@@ -1315,7 +1322,6 @@
 				84A766051F2ABB8A001708CE /* VistaPreguntasViewController.swift in Sources */,
 				84417B921EB2CAE800A70ABC /* DireccionRegistroTableViewCell.swift in Sources */,
 				4101FA521F4B7B430098F735 /* TPaga.swift in Sources */,
-				840B1B3B1F339B2900423832 /* ResenaTableViewCell.swift in Sources */,
 				4134D51B1F46033400DB43DA /* DetalleMiVenta.swift in Sources */,
 				84417B981EB93D0D00A70ABC /* HorarioTableViewCell.swift in Sources */,
 				41F6CDB11F6451EA0070DA46 /* PreguntasFrecuentes.swift in Sources */,
@@ -1349,7 +1355,6 @@
 				84BD207F1EF0A56C001422E7 /* CarritoComprasViewController.swift in Sources */,
 				8446CC3E1EE8F927005BA3D4 /* IngresoExitosoViewController.swift in Sources */,
 				4126C95E1F44877D00BC4413 /* MisVentas.swift in Sources */,
-				840B1B481F33C6D700423832 /* PreguntaRespuestaTableViewCell.swift in Sources */,
 				84A766081F2AE0F1001708CE /* PreguntarViewController.swift in Sources */,
 				411A85FF1F41E5F500BDC788 /* ChatCeldaSinRespuesta.swift in Sources */,
 				8446CC511EEB8650005BA3D4 /* RegistroUsuarioTresViewController.swift in Sources */,
@@ -1374,6 +1379,7 @@
 				84A3E1D11EC4335B0013E4DD /* PublicacionTableViewCell.swift in Sources */,
 				84B1B47A1EDCF96E00F838C3 /* FotoViewController.swift in Sources */,
 				4101EEEC1F43483700F161DE /* Adiciones.swift in Sources */,
+				846005AE1F7CA62100A44BA5 /* BuscarViewController.swift in Sources */,
 				8451A3871EFB227200B59E46 /* UbicacionViewController.swift in Sources */,
 				844860081F46447300DF5D9D /* ProductoCompradoTableViewCell.swift in Sources */,
 				4124FE5F1F3D4DAB00C9A1C5 /* ChatCelda.swift in Sources */,

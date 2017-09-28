@@ -20,6 +20,8 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceLeadingLayoutConstraint: NSLayoutConstraint?
     @IBOutlet var spaceLeadingBtnPreguntarLayoutConstraint: NSLayoutConstraint?
+    @IBOutlet var heightView1LayoutConstraint: NSLayoutConstraint?
+    @IBOutlet var horarioViewHeightConstraint: NSLayoutConstraint?
     
     @IBOutlet var scrollContent: UIScrollView!
     
@@ -30,7 +32,17 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     @IBOutlet var lblNombre: UILabel!
     @IBOutlet var lblPrecio: UILabel!
     @IBOutlet var floatRatingView: FloatRatingView!
-    @IBOutlet var txtDescripcion: UITextView!
+    @IBOutlet var lblDescripcion: UILabel!
+    
+    @IBOutlet var lblDiasSemana: UILabel!
+    @IBOutlet var lblHorarioDiasSemana: UILabel!
+    @IBOutlet var lblJornadaContinuaSemana: UILabel!
+    
+    @IBOutlet var lblDiasFestivos: UILabel!
+    @IBOutlet var lblHorarioDiasFestivos: UILabel!
+    @IBOutlet var lblJornadaContinuaFestivos: UILabel!
+    
+    @IBOutlet var lblDuracion: UILabel!
     @IBOutlet var lblFechaHoraReserva: UILabel!
     @IBOutlet var lblPreguntas: UILabel!
     
@@ -52,15 +64,13 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         // Configurar scrollview
         
         scrollContent.bounces = true
         scrollContent.isScrollEnabled = true
-        
-        scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: 755.0)
         
         lblNombre.text = modelOferente.publicacion.nombre
         
@@ -69,6 +79,125 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
             lblPrecio.text = amountString
         }
         
+        lblDescripcion.text = modelOferente.publicacion.descripcion
+        lblDescripcion.setNeedsLayout()
+        lblDescripcion.sizeToFit()
+        
+        self.heightView1LayoutConstraint?.constant = 70.0 + lblDescripcion.bounds.size.height
+        
+        if modelOferente.publicacion.horario?.count == 1
+        {
+            self.horarioViewHeightConstraint?.constant = 90
+            
+            lblDiasSemana.isHidden = false
+            lblHorarioDiasSemana.isHidden = false
+            lblJornadaContinuaSemana.isHidden = false
+            
+            lblDiasSemana.text = modelOferente.publicacion.horario?[0].dias
+            lblHorarioDiasSemana.text = (modelOferente.publicacion.horario?[0].horaInicio)! + " - " + (modelOferente.publicacion.horario?[0].horaCierre)!
+            
+            if (modelOferente.publicacion.horario?[0].sinJornadaContinua)!
+            {
+                lblJornadaContinuaSemana.text = "Cerramos entre 12 y 2 pm"
+            } else
+            {
+                lblJornadaContinuaSemana.text = "Jornada continua"
+            }
+            
+            lblDiasFestivos.isHidden = true
+            lblHorarioDiasFestivos.isHidden = true
+            lblJornadaContinuaFestivos.isHidden = true
+            
+        }else
+        {
+            self.horarioViewHeightConstraint?.constant = 130
+            
+            lblDiasSemana.isHidden = false
+            lblHorarioDiasSemana.isHidden = false
+            lblJornadaContinuaSemana.isHidden = false
+            
+            lblDiasFestivos.isHidden = false
+            lblHorarioDiasFestivos.isHidden = false
+            lblJornadaContinuaFestivos.isHidden = false
+            
+            for horario in modelOferente.publicacion.horario!
+            {
+                if horario.nombreArbol == "Semana"
+                {
+                    lblDiasSemana.text = horario.dias
+                    lblHorarioDiasSemana.text = (horario.horaInicio)! + " - " + (horario.horaCierre)!
+                    
+                    if (horario.sinJornadaContinua)!
+                    {
+                        lblJornadaContinuaSemana.text = "Cerramos entre 12 y 2 pm"
+                    } else
+                    {
+                        lblJornadaContinuaSemana.text = "Jornada continua"
+                    }
+                }else
+                {
+                    lblDiasFestivos.text = horario.dias
+                    lblHorarioDiasFestivos.text = (horario.horaInicio)! + " - " + (horario.horaCierre)!
+                    
+                    if (horario.sinJornadaContinua)!
+                    {
+                        lblJornadaContinuaFestivos.text = "Cerramos entre 12 y 2 pm"
+                    } else
+                    {
+                        lblJornadaContinuaFestivos.text = "Jornada continua"
+                    }
+                }
+            }
+        }
+        
+        scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: (655.0 + (self.heightView1LayoutConstraint?.constant)! + (self.horarioViewHeightConstraint?.constant)!))
+        
+        modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
+        
+        var textoDuracionMedida = ""
+        
+        if modelUsuario.publicacionCarrito.publicacionCompra.duracion! > 1
+        {
+            textoDuracionMedida = modelUsuario.publicacionCarrito.publicacionCompra.duracionMedida!
+            
+        } else
+        {
+            if modelUsuario.publicacionCarrito.publicacionCompra.duracionMedida! == "Minutos"
+            {
+                textoDuracionMedida = "Minuto"
+            }
+            
+            if modelUsuario.publicacionCarrito.publicacionCompra.duracionMedida! == "Horas"
+            {
+                textoDuracionMedida = "Hora"
+            }
+            
+            if modelUsuario.publicacionCarrito.publicacionCompra.duracionMedida! == "Días"
+            {
+                textoDuracionMedida = "Día"
+            }
+        }
+        
+        lblDuracion.text = "Duración del servicio: \(modelOferente.publicacion.duracion!) \(textoDuracionMedida)"
+        btnComprar.layer.cornerRadius = 10.0
+        
+        btnPreguntar.layer.cornerRadius = 10.0
+        
+        print("Q calificaciones: \(modelUsuario.calificacionesPublicaciones.count)")
+        modelUsuario.getCalificacionesPublicacion(idPublicacion: modelOferente.publicacion.idPublicacion!)
+        
+        var sumaCalificacion = 0
+        
+        for calificacion in modelUsuario.calificacionesPublicacion
+        {
+            print("calificacion: \(calificacion.calificacion)")
+            sumaCalificacion = sumaCalificacion + calificacion.calificacion
+            print("suma: \(sumaCalificacion)")
+        }
+        
+        let promedioCalificacion = Float(sumaCalificacion) / Float(modelUsuario.calificacionesPublicacion.count)
+        print("suma: \(sumaCalificacion) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion)")
+        
         // Required float rating view params
         self.floatRatingView.emptyImage = UIImage(named: "imgEstrellaVacia")
         self.floatRatingView.fullImage = UIImage(named: "imgEstrellaCompleta")
@@ -76,16 +205,10 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
         self.floatRatingView.contentMode = UIViewContentMode.scaleAspectFit
         self.floatRatingView.minRating = 0
         self.floatRatingView.maxRating = 5
-        self.floatRatingView.rating = 0.0
+        self.floatRatingView.rating = promedioCalificacion
         self.floatRatingView.editable = false
-        self.floatRatingView.halfRatings = true
-        self.floatRatingView.floatRatings = false
-        
-        txtDescripcion.text = modelOferente.publicacion.descripcion
-        
-        btnComprar.layer.cornerRadius = 10.0
-        
-        btnPreguntar.layer.cornerRadius = 10.0
+        self.floatRatingView.halfRatings = false
+        self.floatRatingView.floatRatings = true
     }
 
     func refrescarVista(_ notification: Notification)
@@ -127,7 +250,6 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
                             modelUsuario.publicacionCarrito.fechaHoraReserva = publicacionCarrito.fechaHoraReserva
                             modelUsuario.publicacionCarrito.idCarrito = publicacionCarrito.idCarrito
                             modelUsuario.publicacionCarrito.idPublicacion = publicacionCarrito.idPublicacion
-                            modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
                             modelUsuario.publicacionCarrito.servicio = modelOferente.publicacion.servicio
                         }
                     }

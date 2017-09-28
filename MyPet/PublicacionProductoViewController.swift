@@ -20,6 +20,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceLeadingLayoutConstraint: NSLayoutConstraint?
     @IBOutlet var spaceLeadingBtnPreguntarLayoutConstraint: NSLayoutConstraint?
+    @IBOutlet var heightViewLayoutConstraint: NSLayoutConstraint?
     
     @IBOutlet var scrollContent: UIScrollView!
     
@@ -30,7 +31,7 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     @IBOutlet var lblNombre: UILabel!
     @IBOutlet var lblPrecio: UILabel!
     @IBOutlet var floatRatingView: FloatRatingView!
-    @IBOutlet var txtDescripcion: UITextView!
+    @IBOutlet var lblDescripcion: UILabel!
     
     @IBOutlet var lblDisponible: UILabel!
     @IBOutlet var lblQCompra: UILabel!
@@ -54,15 +55,13 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         // Configurar scrollview
         
         scrollContent.bounces = true
         scrollContent.isScrollEnabled = true
-        
-        scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: 720.0)
         
         lblNombre.text = modelOferente.publicacion.nombre
         
@@ -71,6 +70,35 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
             lblPrecio.text = amountString
         }
         
+        lblDescripcion.text = modelOferente.publicacion.descripcion
+        lblDescripcion.setNeedsLayout()
+        lblDescripcion.sizeToFit()
+        
+        self.heightViewLayoutConstraint?.constant = 70.0 + lblDescripcion.bounds.size.height
+        
+        scrollContent.contentSize = CGSize.init(width: UIScreen.main.bounds.width, height: (660.0 + lblDescripcion.bounds.size.height))
+        
+        lblDisponible.text = "Disponible: \(modelOferente.publicacion.stock!)"
+        
+        btnComprar.layer.cornerRadius = 10.0
+        
+        btnPreguntar.layer.cornerRadius = 10.0
+        
+        print("Q calificaciones: \(modelUsuario.calificacionesPublicaciones.count)")
+        modelUsuario.getCalificacionesPublicacion(idPublicacion: modelOferente.publicacion.idPublicacion!)
+        
+        var sumaCalificacion = 0
+        
+        for calificacion in modelUsuario.calificacionesPublicacion
+        {
+            print("calificacion: \(calificacion.calificacion)")
+            sumaCalificacion = sumaCalificacion + calificacion.calificacion
+            print("suma: \(sumaCalificacion)")
+        }
+        
+        let promedioCalificacion = Float(sumaCalificacion) / Float(modelUsuario.calificacionesPublicacion.count)
+        print("suma: \(sumaCalificacion) - Q Calificación: \(modelUsuario.calificacionesPublicacion.count) - promedio: \(promedioCalificacion)")
+        
         // Required float rating view params
         self.floatRatingView.emptyImage = UIImage(named: "imgEstrellaVacia")
         self.floatRatingView.fullImage = UIImage(named: "imgEstrellaCompleta")
@@ -78,23 +106,15 @@ class PublicacionProductoViewController: UIViewController, UIPageViewControllerD
         self.floatRatingView.contentMode = UIViewContentMode.scaleAspectFit
         self.floatRatingView.minRating = 0
         self.floatRatingView.maxRating = 5
-        self.floatRatingView.rating = 0.0
+        self.floatRatingView.rating = promedioCalificacion
         self.floatRatingView.editable = false
-        self.floatRatingView.halfRatings = true
-        self.floatRatingView.floatRatings = false
-        
-        txtDescripcion.text = modelOferente.publicacion.descripcion
-        
-        lblDisponible.text = "Disponible: \(modelOferente.publicacion.stock!)"
-        
-        btnComprar.layer.cornerRadius = 10.0
-        
-        btnPreguntar.layer.cornerRadius = 10.0
+        self.floatRatingView.halfRatings = false
+        self.floatRatingView.floatRatings = true
     }
 
     func refrescarVista(_ notification: Notification)
     {
-        modelUsuario.publicacionCarrito.cantidadCompra = 0
+        modelUsuario.publicacionCarrito.cantidadCompra = 1
         modelUsuario.publicacionCarrito.idCarrito = ""
         modelUsuario.publicacionCarrito.idPublicacion = ""
         

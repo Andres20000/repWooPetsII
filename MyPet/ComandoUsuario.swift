@@ -17,6 +17,12 @@ class ComandoUsuario
         ref.child("/correo").setValue(correo)
     }
     
+    class func sendTokenDevice(uid:String, token:String)
+    {
+        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid)
+        refHandle.child("/tokenDevice").setValue(token)
+    }
+    
     class func completarRegistro(uid:String, datos:DatosComplementarios)
     {
         let ref  = FIRDatabase.database().reference().child("clientes/" + uid)
@@ -76,6 +82,9 @@ class ComandoUsuario
                 refHandle.child("/ubicacion/lon").setValue(ubicacionDireccion.longitud)
             }
         }
+        
+        ref.child("/documento").setValue(datos.documento)
+        ref.child("/nombre").setValue(datos.nombre)
     }
     
     class func eliminarDireccion(uid:String?, idDireccion:String?)
@@ -85,6 +94,22 @@ class ComandoUsuario
         refHandle.removeValue()
     }
     
+    class func activarDireccion(uid:String?, idDireccion:String?, datos:DatosComplementarios)
+    {
+        print("idDirección: \(idDireccion!)")
+        for direccion in datos.direcciones!
+        {
+            let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/direcciones/" + direccion.idDireccion!)
+            
+            if (direccion.idDireccion == idDireccion)
+            {
+                refHandle.child("/porDefecto").setValue(true)
+            } else
+            {
+                refHandle.child("/porDefecto").setValue(false)
+            }
+        }
+    }
     class func getUsuario(uid:String?)
     {
         let model  = ModeloUsuario.sharedInstance
@@ -245,8 +270,6 @@ class ComandoUsuario
         })
     }
     
-    
-    
     class func crearIdMascotaUsuario(uid:String?) -> String
     {
         let refHandle  = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas")
@@ -356,13 +379,15 @@ class ComandoUsuario
     {
         let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + alerta.idMascota! + "/alertas/" + alerta.idAlerta!)
         
-        refHandle.child("/activada").setValue(alerta.activada)
-        refHandle.child("/fechaFin").setValue(alerta.fechaFin)
-        refHandle.child("/fechaInicio").setValue(alerta.fechaInicio)
-        refHandle.child("/frecuencia").setValue(alerta.frecuencia)
-        refHandle.child("/hora").setValue(alerta.hora)
-        refHandle.child("/nombre").setValue(alerta.nombre)
-        refHandle.child("/tipoRecordatorio").setValue(alerta.tipoRecordatorio)
+        let newItem = ["activada":alerta.activada as AnyObject,
+                       "fechaFin":alerta.fechaFin as AnyObject,
+                       "fechaInicio": alerta.fechaInicio as AnyObject,
+                       "frecuencia":alerta.frecuencia as AnyObject,
+                       "hora":alerta.hora as AnyObject,
+                       "nombre":alerta.nombre as AnyObject,
+                       "tipoRecordatorio":alerta.tipoRecordatorio as AnyObject] as [String : AnyObject]
+        
+        refHandle.updateChildValues(newItem)
     }
     
     class func desactivarAlertaMascota(uid:String?, alerta:Alerta)
@@ -391,12 +416,14 @@ class ComandoUsuario
     {
         let refHandle  = FIRDatabase.database().reference().child("preguntas").childByAutoId()
         
-        refHandle.child("/fechaPregunta").setValue(pregunta.fechaPregunta)
-        refHandle.child("/idCliente").setValue(pregunta.idCliente)
-        refHandle.child("/idOferente").setValue(pregunta.idOferente)
-        refHandle.child("/idPublicacion").setValue(pregunta.idPublicacion)
-        refHandle.child("/pregunta").setValue(pregunta.pregunta)
-        refHandle.child("/timestamp").setValue(FIRServerValue.timestamp())
+        let newItem = ["fechaPregunta":pregunta.fechaPregunta as AnyObject,
+                       "idCliente":pregunta.idCliente as AnyObject,
+                       "idOferente": pregunta.idOferente as AnyObject,
+                       "idPublicacion":pregunta.idPublicacion as AnyObject,
+                       "pregunta":pregunta.pregunta as AnyObject,
+                       "timestamp":FIRServerValue.timestamp()] as [String : AnyObject]
+        
+        refHandle.updateChildValues(newItem)
     }
     
     class func agregarAlCarrito(uid:String?, carrito:Carrito)
@@ -620,24 +647,32 @@ class ComandoUsuario
     class func  getCalificacionesPublicaciones()
     {
         let modelUsuario = ModeloUsuario.sharedInstance
+        modelUsuario.calificacionesPublicaciones.removeAll()
         
         let refHandle:FIRDatabaseReference! = FIRDatabase.database().reference().child("calificaciones")
         
-        refHandle.observe(.childAdded, with: {(snap) -> Void in
+        refHandle.queryOrdered(byChild: "fecha").observeSingleEvent(of: .value, with: {snap in
             
-            let value = snap.value as! [String : AnyObject]
-            let calificacionCompra = Calificacion()
+            let calificaciones = snap.children
             
-            calificacionCompra.calificacion = value["calificacion"] as! Int
-            calificacionCompra.comentario = value["comentario"] as! String
-            calificacionCompra.fecha = value["fecha"] as! String
-            calificacionCompra.idCalificacion = snap.key
-            calificacionCompra.idCliente = value["idCliente"] as! String
-            calificacionCompra.idCompra = value["idCompra"] as! String
-            calificacionCompra.idOferente = value["idOferente"] as! String
-            calificacionCompra.idPublicacion = value["idPublicacion"] as! String
-            
-            modelUsuario.calificacionesPublicaciones.append(calificacionCompra)
+            while let CalificacionChild = calificaciones.nextObject() as? FIRDataSnapshot
+            {
+                let postDict = CalificacionChild.value as! [String : AnyObject]
+                let calificacionCompra = Calificacion()
+                
+                calificacionCompra.calificacion = postDict["calificacion"] as! Int
+                calificacionCompra.comentario = postDict["comentario"] as! String
+                calificacionCompra.fecha = postDict["fecha"] as! String
+                calificacionCompra.idCalificacion = CalificacionChild.key
+                calificacionCompra.idCliente = postDict["idCliente"] as! String
+                ComandoPreguntasOferente.getMiniUsuario(uid: calificacionCompra.idCliente)
+                calificacionCompra.idCompra = postDict["idCompra"] as! String
+                calificacionCompra.idOferente = postDict["idOferente"] as! String
+                calificacionCompra.idPublicacion = postDict["idPublicacion"] as! String
+                
+                modelUsuario.calificacionesPublicaciones.append(calificacionCompra)
+                modelUsuario.calificacionesPublicaciones.sort(by: {_,_ in Calificacion.init().fecha < Calificacion.init().fecha})
+            }
             
             NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoCalificacionesPublicaciones"), object: nil)
             

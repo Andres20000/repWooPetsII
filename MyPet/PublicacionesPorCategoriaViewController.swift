@@ -19,6 +19,7 @@ class PublicacionesPorCategoriaViewController: UIViewController, UICollectionVie
     @IBOutlet var barItemTitulo: UIBarButtonItem!
     @IBOutlet var barItemIcono: UIBarButtonItem!
     @IBOutlet var barItemBuscar: UIBarButtonItem!
+    @IBOutlet var barFixedSpace1: UIBarButtonItem!
     @IBOutlet var barFixedSpace: UIBarButtonItem!
     
     @IBOutlet var lblTituloPublicacionesCategoria: UILabel!
@@ -31,6 +32,7 @@ class PublicacionesPorCategoriaViewController: UIViewController, UICollectionVie
     
     var nombreCategoria = ""
     var nombreIconoCategoria = ""
+    var fixedSpaceWidth1:CGFloat = 0.0
     var fixedSpaceWidth:CGFloat = 0.0
     var tituloPublicacionesCategoria = ""
     
@@ -50,6 +52,7 @@ class PublicacionesPorCategoriaViewController: UIViewController, UICollectionVie
         
         barItemTitulo.title = nombreCategoria
         barItemIcono.image = UIImage(named: nombreIconoCategoria)?.withRenderingMode(.alwaysOriginal)
+        barFixedSpace1.width = fixedSpaceWidth1
         barFixedSpace.width = fixedSpaceWidth
         barItemBuscar.image = UIImage(named: "btnBuscarBlanco")?.withRenderingMode(.alwaysOriginal)
         
@@ -112,6 +115,11 @@ class PublicacionesPorCategoriaViewController: UIViewController, UICollectionVie
         }
     }
 
+    @IBAction func buscarPublicaciones(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "buscarDesdePublicacionesPorCategoria", sender: self)
+    }
+    
     // #pragma mark - Collection View
     
     // 1
@@ -231,14 +239,19 @@ class PublicacionesPorCategoriaViewController: UIViewController, UICollectionVie
     }
     
 
-    /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if (segue.identifier == "buscarDesdePublicacionesPorCategoria")
+        {
+            let detailController = segue.destination as! BuscarViewController
+            detailController.publicaciones = model.publicacionesPorCategoria
+        }
     }
-    */
 
 }

@@ -34,10 +34,11 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
     @IBOutlet var collectionCategorias: UICollectionView!
     var categoria = ""
     var iconoCategoria = ""
+    var widthFixedSpace1:CGFloat = 0.0
     var widthFixedSpace:CGFloat = 0.0
     var textoPublicacionesCategoria = ""
     
-    @IBOutlet var lblAvisoHome: UILabel!
+    @IBOutlet var imgAvisoHome: UIImageView!
     var sizeFont : CGFloat = 0.0
     @IBOutlet var btnAviso: UIButton!
     
@@ -48,21 +49,21 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
     
     @IBOutlet var collectionPublicaciones: UICollectionView!
     
+    private var timer: Timer = Timer()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
+        //collectionPublicaciones.isScrollEnabled = false
+        
         publicaciones = modelPublicacion.publicacionesPopulares
         
-        contentSizeScroll = 882
+        contentSizeScroll = 950
         
-        imgFotoMascota.isHidden = true
-        lblNombreMascota.isHidden = true
         btnAdministrarMascotas.isHidden = true
-        
-        self.spaceTopLayoutConstraint?.constant = 195
         
         lblProductos.text = "   Productos populares"
         imgNoRegistro.isHidden = false
@@ -73,30 +74,10 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         
         if user == nil
         {
-            if DeviceType.IS_IPHONE_5
-            {
-                sizeFont = 13.0
-            }else
-            {
-                if DeviceType.IS_IPHONE_6P
-                {
-                    sizeFont = 17.0
-                }else
-                {
-                    sizeFont = 15.0
-                }
-            }
+            lblNombreMascota.text = "Mascota sin registrar"
+            imgFotoMascota.image = UIImage(named: "imgMascotaSinRegistro")
             
-            //create attributed string txt bold
-            lblAvisoHome.text = "Para ver los productos sugeridos,\ningresa, completa tu registro y crea el perfil de tu mascota aquí"
-            let textAviso: NSString = lblAvisoHome.text! as NSString
-            let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: textAviso as String)
-            
-            attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: sizeFont)!], range: NSRange(location: 0, length:33))
-            attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: sizeFont)!], range: NSRange(location: 34, length: 65))
-            
-            //assign text first, then customize properties
-            lblAvisoHome.attributedText = attributedText
+            imgAvisoHome.image = UIImage(named: "btnIngresoRegistroPerfil")
             
             btnAviso.tag = 0
             btnAviso.addTarget(self, action: #selector(actionAviso), for: .touchUpInside)
@@ -105,31 +86,10 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         {
             if (model.usuario[0].datosComplementarios?.count)! == 0
             {
-                print("Entra porque falta terminar de registrarse")
-                if DeviceType.IS_IPHONE_5
-                {
-                    sizeFont = 15.0
-                }else
-                {
-                    if DeviceType.IS_IPHONE_6P
-                    {
-                        sizeFont = 18.2
-                    }else
-                    {
-                        sizeFont = 17.0
-                    }
-                }
+                lblNombreMascota.text = "Mascota sin registrar"
+                imgFotoMascota.image = UIImage(named: "imgMascotaSinRegistro")
                 
-                //create attributed string txt bold
-                lblAvisoHome.text = "Para ver los productos sugeridos,\ncompleta tu registro y crea el perfil de tu mascota aquí"
-                let textAviso: NSString = lblAvisoHome.text! as NSString
-                let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: textAviso as String)
-                
-                attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: sizeFont)!], range: NSRange(location: 0, length:33))
-                attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: sizeFont)!], range: NSRange(location: 34, length: 56))
-                
-                //assign text first, then customize properties
-                lblAvisoHome.attributedText = attributedText
+                imgAvisoHome.image = UIImage(named: "btnRegistroPerfil")
                 
                 btnAviso.tag = 1
                 btnAviso.addTarget(self, action: #selector(actionAviso), for: .touchUpInside)
@@ -137,31 +97,10 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
             {
                 if (model.usuario[0].datosComplementarios?[0].mascotas?.count)! == 0
                 {
-                    print("Entra porque falta crear mascota")
-                    if DeviceType.IS_IPHONE_5
-                    {
-                        sizeFont = 15.0
-                    }else
-                    {
-                        if DeviceType.IS_IPHONE_6P
-                        {
-                            sizeFont = 18.2
-                        }else
-                        {
-                            sizeFont = 17.0
-                        }
-                    }
+                    lblNombreMascota.text = "Mascota sin registrar"
+                    imgFotoMascota.image = UIImage(named: "imgMascotaSinRegistro")
                     
-                    //create attributed string txt bold
-                    lblAvisoHome.text = "Para ver los productos sugeridos,\ncrea un perfil para tu(s) mascota(s) aquí"
-                    let textAviso: NSString = lblAvisoHome.text! as NSString
-                    let attributedText: NSMutableAttributedString = NSMutableAttributedString(string: textAviso as String)
-                    
-                    attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: sizeFont)!], range: NSRange(location: 0, length:33))
-                    attributedText.addAttributes([NSFontAttributeName: UIFont(name: "HelveticaNeue-Medium", size: sizeFont)!], range: NSRange(location: 34, length: 41))
-                    
-                    //assign text first, then customize properties
-                    lblAvisoHome.attributedText = attributedText
+                    imgAvisoHome.image = UIImage(named: "btnPerfil")
                     
                     btnAviso.tag = 2
                     btnAviso.addTarget(self, action: #selector(actionAviso), for: .touchUpInside)
@@ -175,11 +114,23 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                     lblNombreMascota.isHidden = false
                     btnAdministrarMascotas.isHidden = false
                     
-                    self.spaceTopLayoutConstraint?.constant = 130
+                    if DeviceType.IS_IPHONE_5
+                    {
+                        self.spaceTopLayoutConstraint?.constant = -imgAvisoHome.bounds.size.height + 9
+                    } else
+                    {
+                        if DeviceType.IS_IPHONE_6
+                        {
+                            self.spaceTopLayoutConstraint?.constant = -imgAvisoHome.bounds.size.height
+                        } else
+                        {
+                            self.spaceTopLayoutConstraint?.constant = -imgAvisoHome.bounds.size.height - 9
+                        }
+                    }
                     
-                    lblAvisoHome.isHidden = true
+                    imgAvisoHome.isHidden = true
                     btnAviso.isHidden = true
-                    contentSizeScroll = 882 - 65
+                    contentSizeScroll = 950 - imgAvisoHome.bounds.size.height
                     
                     if model.mascotaSeleccionada.foto == ""
                     {
@@ -296,6 +247,33 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         hacerMontaje()
     }
     
+    /*// #pragma mark - Scroll View
+     
+     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+     {
+     if decelerate
+     {
+     scrollContent.isScrollEnabled = true
+     
+     if collectionPublicaciones.isScrollEnabled
+     {
+     collectionPublicaciones.isScrollEnabled = false
+     
+     } else
+     {
+     collectionPublicaciones.isScrollEnabled = true
+     
+     }
+     }else
+     {
+     if collectionPublicaciones.isScrollEnabled
+     {
+     scrollContent.isScrollEnabled = false
+     }
+     
+     }
+     }*/
+    
     func actionAviso(sender: UIButton!)
     {
         if sender.tag == 0
@@ -317,6 +295,11 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
     @IBAction func administrarMascotas(_ sender: Any)
     {
         self.performSegue(withIdentifier: "administrarMascotasDesdeHomePublicaciones", sender: self)
+    }
+    
+    @IBAction func buscarPublicaciones(_ sender: Any)
+    {
+        self.performSegue(withIdentifier: "buscarDesdeHomePublicaciones", sender: self)
     }
     
     // #pragma mark - Collection View
@@ -404,15 +387,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 100.0
+                    widthFixedSpace1 = 50.0
+                    widthFixedSpace = 60.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 150.0
+                        widthFixedSpace1 = 80.0
+                        widthFixedSpace = 90.0
                     }else
                     {
-                        widthFixedSpace = 190.0
+                        widthFixedSpace1 = 95.0
+                        widthFixedSpace = 105.0
                     }
                 }
                 
@@ -460,15 +446,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 65.0
+                    widthFixedSpace1 = 35.0
+                    widthFixedSpace = 40.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 115.0
+                        widthFixedSpace1 = 60.0
+                        widthFixedSpace = 70.0
                     }else
                     {
-                        widthFixedSpace = 150.0
+                        widthFixedSpace1 = 80.0
+                        widthFixedSpace = 90.0
                     }
                 }
                 
@@ -516,15 +505,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 30.0
+                    widthFixedSpace1 = 15.0
+                    widthFixedSpace = 25.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 80.0
+                        widthFixedSpace1 = 40.0
+                        widthFixedSpace = 50.0
                     }else
                     {
-                        widthFixedSpace = 120.0
+                        widthFixedSpace1 = 60.0
+                        widthFixedSpace = 70.0
                     }
                 }
                 
@@ -572,15 +564,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 50.0
+                    widthFixedSpace1 = 25.0
+                    widthFixedSpace = 35.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 105.0
+                        widthFixedSpace1 = 50.0
+                        widthFixedSpace = 60.0
                     }else
                     {
-                        widthFixedSpace = 135.0
+                        widthFixedSpace1 = 70.0
+                        widthFixedSpace = 80.0
                     }
                 }
                 
@@ -628,15 +623,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 75.0
+                    widthFixedSpace1 = 40.0
+                    widthFixedSpace = 50.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 120.0
+                        widthFixedSpace1 = 65.0
+                        widthFixedSpace = 75.0
                     }else
                     {
-                        widthFixedSpace = 165.0
+                        widthFixedSpace1 = 85.0
+                        widthFixedSpace = 95.0
                     }
                 }
                 
@@ -684,15 +682,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 115.0
+                    widthFixedSpace1 = 60.0
+                    widthFixedSpace = 70.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 170.0
+                        widthFixedSpace1 = 85.0
+                        widthFixedSpace = 95.0
                     }else
                     {
-                        widthFixedSpace = 200.0
+                        widthFixedSpace1 = 105.0
+                        widthFixedSpace = 115.0
                     }
                 }
                 
@@ -740,15 +741,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 110.0
+                    widthFixedSpace1 = 55.0
+                    widthFixedSpace = 65.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 160.0
+                        widthFixedSpace1 = 85.0
+                        widthFixedSpace = 95.0
                     }else
                     {
-                        widthFixedSpace = 190.0
+                        widthFixedSpace1 = 105.0
+                        widthFixedSpace = 115.0
                     }
                 }
                 
@@ -796,15 +800,18 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
                 
                 if DeviceType.IS_IPHONE_5
                 {
-                    widthFixedSpace = 50.0
+                    widthFixedSpace1 = 30.0
+                    widthFixedSpace = 40.0
                 }else
                 {
                     if DeviceType.IS_IPHONE_6
                     {
-                        widthFixedSpace = 100.0
+                        widthFixedSpace1 = 55.0
+                        widthFixedSpace = 65.0
                     }else
                     {
-                        widthFixedSpace = 130.0
+                        widthFixedSpace1 = 75.0
+                        widthFixedSpace = 85.0
                     }
                 }
                 
@@ -898,8 +905,15 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
             let detailController = segue.destination as! PublicacionesPorCategoriaViewController
             detailController.nombreCategoria = categoria
             detailController.nombreIconoCategoria = iconoCategoria
+            detailController.fixedSpaceWidth1 = widthFixedSpace1
             detailController.fixedSpaceWidth = widthFixedSpace
             detailController.tituloPublicacionesCategoria = textoPublicacionesCategoria
+        }
+        
+        if (segue.identifier == "buscarDesdeHomePublicaciones")
+        {
+            let detailController = segue.destination as! BuscarViewController
+            detailController.publicaciones = modelPublicacion.publicacionesPopulares
         }
     }
 
@@ -910,6 +924,32 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         createPageViewController()
     }
     
+    var pos = 0
+    var created = true
+    
+    func advancePage ()
+    {
+        if created
+        {
+            pos = 1
+            created = false
+        }
+        
+        let firstController = pageFotoAtIndex(pos)
+        
+        let startingViewControllers: NSArray = [firstController]
+        
+        pageViewController.setViewControllers(startingViewControllers as? [UIViewController] , direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
+        
+        if pos < (modelPublicacion.publicacionesDestacadas.count) - 1
+        {
+            pos = pos + 1
+        }else
+        {
+            pos = 0
+        }
+    }
+    
     fileprivate func createPageViewController()
     {
         let pageController = self.storyboard!.instantiateViewController(withIdentifier: "FotosPageController") as! UIPageViewControllerWithOverlayIndicator
@@ -917,8 +957,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         pageController.dataSource = self
         pageController.delegate = self
         
-        
-        let firstController = pageFotoAtIndex(0)
+        let firstController = pageFotoAtIndex(pos)
         
         let startingViewControllers: NSArray = [firstController]
         
@@ -948,6 +987,8 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
         self.scrollContent.sendSubview(toBack: pageViewController!.view)
         
         pageViewController!.didMove(toParentViewController: self)
+        
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(HomePublicacionesViewController.advancePage), userInfo: nil, repeats: true)
     }
     
     // MARK: - UIPageViewControllerDataSource
@@ -996,6 +1037,6 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int
     {
-        return 0
+        return pos
     }
 }
