@@ -136,7 +136,8 @@ class CompraExitosaViewController: UIViewController, UITableViewDelegate, UITabl
     
     func irAPrecargar(_ notification: Notification)
     {
-        self.performSegue(withIdentifier: "precargarPublicacionesDesdeCompraExitosa", sender: self)
+        modelUsuario.selectedControlIndex = 1
+        self.performSegue(withIdentifier: "mostrarTabBar", sender: self)
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -164,6 +165,12 @@ class CompraExitosaViewController: UIViewController, UITableViewDelegate, UITabl
         {
             let detailController = segue.destination as! PreCargaDatosViewController
             detailController.omitir = false
+        }
+        
+        if segue.identifier == "mostrarTabBar"
+        {
+            let tabbarController = segue.destination as! UITabBarController
+            tabbarController.selectedIndex = 1
         }
     }
 

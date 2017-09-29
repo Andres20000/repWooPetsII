@@ -45,6 +45,8 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
         segCtrlCarrito.layer.borderWidth = 1.0
         segCtrlCarrito.layer.borderColor = UIColor.white.cgColor
         
+        segCtrlCarrito.selectedSegmentIndex = modelUsuario.selectedControlIndex
+        
         switch segCtrlCarrito.selectedSegmentIndex
         {
         case 0:
@@ -113,6 +115,8 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
                 viewMensaje.isHidden = true
             }
             
+            modelUsuario.selectedControlIndex = 0
+            
         case 1:
             viewMensaje.isHidden = false
             imgMensaje.image = UIImage(named: "imgCarritoVacio")
@@ -123,6 +127,8 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
                 viewMensaje.isHidden = true
             }
             
+            modelUsuario.selectedControlIndex = 1
+            
         case 2:
             viewMensaje.isHidden = false
             imgMensaje.image = UIImage(named: "imgFavoritoVacio")
@@ -132,6 +138,8 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
             {
                 viewMensaje.isHidden = true
             }
+            
+            modelUsuario.selectedControlIndex = 2
             
         default:
             break
@@ -513,6 +521,8 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
+        
+        segCtrlCarrito.selectedSegmentIndex = modelUsuario.selectedControlIndex
         
         NotificationCenter.default.addObserver(self, selector: #selector(CarritoComprasViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoPublicaciones"), object: nil)
         

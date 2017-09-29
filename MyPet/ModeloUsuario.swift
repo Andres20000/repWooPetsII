@@ -180,6 +180,7 @@ class ModeloUsuario
     var misCompras = [CompraUsuario]()
     var misComprasCompleto = [CompraUsuario]()
     var compra = CompraUsuario()
+    var selectedControlIndex = 0
     
     var calificacionMiCompra = Calificacion()
     var calificacionesPublicaciones = [Calificacion]()

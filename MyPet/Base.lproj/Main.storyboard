@@ -6477,6 +6477,7 @@
                         <outlet property="btnContinuar" destination="X8B-7t-68L" id="Qh4-CP-ahh"/>
                         <outlet property="tableCompras" destination="NDl-37-fDz" id="0IK-jZ-Qwj"/>
                         <segue destination="kP5-u7-Mb7" kind="presentation" identifier="precargarPublicacionesDesdeCompraExitosa" id="a0Y-0f-miF"/>
+                        <segue destination="FDB-yi-kVl" kind="presentation" identifier="mostrarTabBar" id="wsN-PC-7C9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xH7-oU-mzE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -6912,21 +6913,22 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7RF-48-icR"/>
-        <segue reference="TnN-1C-z0q"/>
+        <segue reference="KSr-oI-4G4"/>
         <segue reference="7hU-I0-I2k"/>
         <segue reference="B7O-E2-n1O"/>
         <segue reference="Sxi-cS-EGb"/>
-        <segue reference="KNz-Nx-pOf"/>
+        <segue reference="ccS-eF-KMJ"/>
         <segue reference="rmU-qS-rqw"/>
         <segue reference="6DQ-fI-DhW"/>
         <segue reference="a1h-2i-JbW"/>
         <segue reference="oQN-Js-Es1"/>
-        <segue reference="c64-eH-oia"/>
-        <segue reference="i9R-bi-MDr"/>
+        <segue reference="wsN-PC-7C9"/>
+        <segue reference="5yC-5s-kks"/>
+        <segue reference="elx-fp-KNU"/>
         <segue reference="ZfC-qD-0SX"/>
         <segue reference="pQ7-FT-sEN"/>
-        <segue reference="MuH-BR-ujl"/>
-        <segue reference="bgn-VA-ZLh"/>
+        <segue reference="d72-8e-bX5"/>
+        <segue reference="a0Y-0f-miF"/>
         <segue reference="zqQ-T9-Bkb"/>
         <segue reference="rxK-zF-aLe"/>
     </inferredMetricsTieBreakers>
