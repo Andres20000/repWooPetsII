@@ -13,6 +13,7 @@ import FBSDKLoginKit
 class ViewController: UIViewController
 {
     var model  = ModeloUsuario.sharedInstance
+    var cargarHome:Bool = false
     
     override func viewDidLoad()
     {
@@ -27,6 +28,8 @@ class ViewController: UIViewController
             {
                 if Comando.isConnectedToNetwork()
                 {
+                    self.cargarHome = true
+                    
                     ComandoUsuario.getUsuario(uid: (user?.uid)!)
                     
                     NotificationCenter.default.addObserver(self, selector: #selector(ViewController.validarIngreso(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
@@ -73,28 +76,33 @@ class ViewController: UIViewController
     
     func validarIngreso(_ notification: Notification)
     {
-        if self.model.usuario.count == 0
+        if cargarHome
         {
+            cargarHome = false
             
-            precargarPublicacionesOferente()
-            
-            /*let transition = CATransition()
-            transition.duration = 0.5
-            transition.type = kCATransitionReveal
-            transition.subtype = kCATransitionFade
-            view.window!.layer.add(transition, forKey: kCATransition)*/
-            
-            self.performSegue(withIdentifier: "homeOferenteDesdeVistaDeCarga", sender: self)
-        }else
-        {
-            /*let transition = CATransition()
-            transition.duration = 0.5
-            transition.type = kCATransitionReveal
-            transition.subtype = kCATransitionFade
-            view.window!.layer.add(transition, forKey: kCATransition)*/
-            ComandoUsuario.getCalificacionesPublicaciones()
-            
-            performSegue(withIdentifier: "precargarPublicacionesDesdeVistaDeCarga", sender: self)
+            if self.model.usuario.count == 0
+            {
+                
+                precargarPublicacionesOferente()
+                
+                /*let transition = CATransition()
+                 transition.duration = 0.5
+                 transition.type = kCATransitionReveal
+                 transition.subtype = kCATransitionFade
+                 view.window!.layer.add(transition, forKey: kCATransition)*/
+                
+                self.performSegue(withIdentifier: "homeOferenteDesdeVistaDeCarga", sender: self)
+            }else
+            {
+                /*let transition = CATransition()
+                 transition.duration = 0.5
+                 transition.type = kCATransitionReveal
+                 transition.subtype = kCATransitionFade
+                 view.window!.layer.add(transition, forKey: kCATransition)*/
+                ComandoUsuario.getCalificacionesPublicaciones()
+                
+                performSegue(withIdentifier: "precargarPublicacionesDesdeVistaDeCarga", sender: self)
+            }
         }
     }
     

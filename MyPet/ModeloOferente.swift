@@ -41,9 +41,6 @@ class Ubicacion
     var longitud:Double? = 0
 }
 
-
-
-
 enum Dias:Int
 {
     case domingo = 1
@@ -299,6 +296,11 @@ class PublicacionOferente
     }
     
     var target:String?  = ""
+    
+    var cadenaBusquedaPublicacion:String
+    {
+        return nombre!
+    }
 }
 
 class Foto

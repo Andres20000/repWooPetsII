@@ -23,6 +23,8 @@ class MenuUsuarioViewController: UIViewController
     @IBOutlet var lblCerrarSesion: UILabel!
     @IBOutlet var btnCerrarSesion: UIButton!
     
+    var editarDatosPersonales:Bool = false
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -55,6 +57,8 @@ class MenuUsuarioViewController: UIViewController
                     self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Aún no te has completado tu registro")
                 } else
                 {
+                    editarDatosPersonales = true
+                    
                     ComandoUsuario.getUsuario(uid: (user?.uid)!)
                     
                     NotificationCenter.default.addObserver(self, selector: #selector(MenuUsuarioViewController.cargarDatosPerfil(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
@@ -129,7 +133,7 @@ class MenuUsuarioViewController: UIViewController
                 }
             }
             
-            if (user?.uid)! != nil
+            if editarDatosPersonales
             {
                 editarDatosPersonales = false
                 

@@ -151,8 +151,6 @@ class Comando
                 {
                     let snapHorario = publicacion.childSnapshot(forPath: "horario").value as! NSDictionary
                     
-                    var i = 0
-                    
                     for (idHorario, horario) in snapHorario
                     {
                         let postDictHorario = (horario as! [String : AnyObject])
@@ -184,7 +182,6 @@ class Comando
                             datosPublicacion.horario?.append(horarioServicioFestivo)
                         }
                         
-                        i += 1
                     }
                 }
                 
@@ -650,8 +647,6 @@ class Comando
             {
                 let snapHorario = snap.childSnapshot(forPath: "horario").value as! NSDictionary
                 
-                var i = 0
-                
                 for (idHorario, horario) in snapHorario
                 {
                     let postDictHorario = (horario as! [String : AnyObject])
@@ -683,7 +678,6 @@ class Comando
                         datosPublicacion.horario?.append(horarioServicioFestivo)
                     }
                     
-                    i += 1
                 }
             }
             

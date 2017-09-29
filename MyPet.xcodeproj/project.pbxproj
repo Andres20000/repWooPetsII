@@ -283,6 +283,26 @@
 		84D5AC0D1EE7A74700A18D7E /* RegistroUsuarioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5AC0B1EE7A74700A18D7E /* RegistroUsuarioViewController.swift */; };
 		84E328851F7D612C00E068C8 /* DireccionesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E328841F7D612C00E068C8 /* DireccionesViewController.swift */; };
 		84E328861F7D612C00E068C8 /* DireccionesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E328841F7D612C00E068C8 /* DireccionesViewController.swift */; };
+		84E3288A1F7DBC7A00E068C8 /* PreguntaRespuestaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846005B71F7CB2B900A44BA5 /* PreguntaRespuestaTableViewCell.swift */; };
+		84E3288B1F7DBC7B00E068C8 /* PreguntaRespuestaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846005B71F7CB2B900A44BA5 /* PreguntaRespuestaTableViewCell.swift */; };
+		84E3288C1F7DBC8F00E068C8 /* PreguntaRespuestaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846005B41F7CB2B800A44BA5 /* PreguntaRespuestaTableViewCell.xib */; };
+		84E3288D1F7DBC9000E068C8 /* PreguntaRespuestaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846005B41F7CB2B800A44BA5 /* PreguntaRespuestaTableViewCell.xib */; };
+		84E3288E1F7DBC9300E068C8 /* PreguntaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846005B51F7CB2B800A44BA5 /* PreguntaTableViewCell.swift */; };
+		84E3288F1F7DBC9300E068C8 /* PreguntaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846005B51F7CB2B800A44BA5 /* PreguntaTableViewCell.swift */; };
+		84E328901F7DBC9700E068C8 /* PreguntaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846005B61F7CB2B900A44BA5 /* PreguntaTableViewCell.xib */; };
+		84E328911F7DBC9800E068C8 /* PreguntaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846005B61F7CB2B900A44BA5 /* PreguntaTableViewCell.xib */; };
+		84E328921F7DBCB000E068C8 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846005B21F7CB19100A44BA5 /* ResenaTableViewCell.swift */; };
+		84E328931F7DBCB000E068C8 /* ResenaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846005B21F7CB19100A44BA5 /* ResenaTableViewCell.swift */; };
+		84E328941F7DBCB400E068C8 /* ResenaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846005B31F7CB19200A44BA5 /* ResenaTableViewCell.xib */; };
+		84E328951F7DBCB400E068C8 /* ResenaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846005B31F7CB19200A44BA5 /* ResenaTableViewCell.xib */; };
+		84E328961F7DBCEA00E068C8 /* BusquedaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846005B01F7CA66800A44BA5 /* BusquedaTableViewCell.swift */; };
+		84E328971F7DBCEB00E068C8 /* BusquedaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846005B01F7CA66800A44BA5 /* BusquedaTableViewCell.swift */; };
+		84E328981F7DBCEE00E068C8 /* BusquedaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846005B11F7CA66800A44BA5 /* BusquedaTableViewCell.xib */; };
+		84E328991F7DBCEF00E068C8 /* BusquedaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846005B11F7CA66800A44BA5 /* BusquedaTableViewCell.xib */; };
+		84E3289A1F7DBD1F00E068C8 /* DireccionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E328891F7D615200E068C8 /* DireccionTableViewCell.swift */; };
+		84E3289B1F7DBD1F00E068C8 /* DireccionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E328891F7D615200E068C8 /* DireccionTableViewCell.swift */; };
+		84E3289C1F7DBD2400E068C8 /* DireccionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E328881F7D615100E068C8 /* DireccionTableViewCell.xib */; };
+		84E3289D1F7DBD2400E068C8 /* DireccionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E328881F7D615100E068C8 /* DireccionTableViewCell.xib */; };
 		84E4CF291F22EADA009DC256 /* PublicacionProductoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4CF281F22EADA009DC256 /* PublicacionProductoViewController.swift */; };
 		84E4CF2A1F22EADA009DC256 /* PublicacionProductoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4CF281F22EADA009DC256 /* PublicacionProductoViewController.swift */; };
 		84E4CF2D1F22EAFF009DC256 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4CF2C1F22EAFF009DC256 /* FloatRatingView.swift */; };
@@ -1031,16 +1051,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				847FDC1D1ED37089002F9530 /* DetalleDescripcionTableViewCell.xib in Resources */,
+				84E328981F7DBCEE00E068C8 /* BusquedaTableViewCell.xib in Resources */,
 				84417B931EB2CAE800A70ABC /* DireccionRegistroTableViewCell.xib in Resources */,
 				847FDC2F1ED54342002F9530 /* Assets.xcassets in Resources */,
 				84A3E1D21EC4335B0013E4DD /* PublicacionTableViewCell.xib in Resources */,
 				84F4FA551EAA955900F3E69A /* LaunchScreen.storyboard in Resources */,
 				41F6CDB71F658B610070DA46 /* CeldaPreguntaFrecuente.xib in Resources */,
 				847FDC111ED34029002F9530 /* DetalleEstandarTableViewCell.xib in Resources */,
+				84E328941F7DBCB400E068C8 /* ResenaTableViewCell.xib in Resources */,
 				844860091F46447300DF5D9D /* ProductoCompradoTableViewCell.xib in Resources */,
 				840B1B5D1F36612500423832 /* Oferente.storyboard in Resources */,
 				4124FE551F3D36ED00C9A1C5 /* HeaderPreguntaCelda.xib in Resources */,
 				84AF006A1F53A3BC004702F5 /* MiCompraConfirmadaTableViewCell.xib in Resources */,
+				84E328901F7DBC9700E068C8 /* PreguntaTableViewCell.xib in Resources */,
 				847838CF1F1699EC006A41F8 /* PublicacionCollectionViewCell.xib in Resources */,
 				847FDC171ED3469F002F9530 /* DetalleHorarioTableViewCell.xib in Resources */,
 				84417B991EB93D0D00A70ABC /* HorarioTableViewCell.xib in Resources */,
@@ -1049,11 +1072,13 @@
 				84417B8D1EB2AA0600A70ABC /* EstandarRegistroTableViewCell.xib in Resources */,
 				840B1B591F3594AD00423832 /* FavoritoTableViewCell.xib in Resources */,
 				84A3E1D91EC66EA80013E4DD /* CategoriaCollectionViewCell.xib in Resources */,
+				84E3289C1F7DBD2400E068C8 /* DireccionTableViewCell.xib in Resources */,
 				844860151F4B3F2400DF5D9D /* MiCompraPendienteTableViewCell.xib in Resources */,
 				84CA9EFE1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
 				4124FE5B1F3D3D6800C9A1C5 /* ChatCelda.xib in Resources */,
 				8451A38D1EFB7A6200B59E46 /* UbicacionTableViewCell.xib in Resources */,
 				8448600F1F4644A600DF5D9D /* ServicioCompradoTableViewCell.xib in Resources */,
+				84E3288C1F7DBC8F00E068C8 /* PreguntaRespuestaTableViewCell.xib in Resources */,
 				8453268A1F0C9B11007A4776 /* AlertaTableViewCell.xib in Resources */,
 				846C92601F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib in Resources */,
 				84818C571F411CC1001011BA /* CarritoTableViewCell.xib in Resources */,
@@ -1071,9 +1096,13 @@
 				843A4AFD1F62F0780064C1C9 /* MiCompraFinalizadaTableViewCell.xib in Resources */,
 				846C92611F5DA2EC00DACBC6 /* TelefonoRegistroTableViewCell.xib in Resources */,
 				84417B941EB2CAE800A70ABC /* DireccionRegistroTableViewCell.xib in Resources */,
+				84E328991F7DBCEF00E068C8 /* BusquedaTableViewCell.xib in Resources */,
 				84A5A4D71F3CD1A600429500 /* CompraTableViewCell.xib in Resources */,
 				84A3E1D31EC4335B0013E4DD /* PublicacionTableViewCell.xib in Resources */,
+				84E328911F7DBC9800E068C8 /* PreguntaTableViewCell.xib in Resources */,
+				84E3289D1F7DBD2400E068C8 /* DireccionTableViewCell.xib in Resources */,
 				84CA9EFF1F02E6ED000F6F72 /* MascotaTableViewCell.xib in Resources */,
+				84E3288D1F7DBC9000E068C8 /* PreguntaRespuestaTableViewCell.xib in Resources */,
 				41F6CDB81F658B610070DA46 /* CeldaPreguntaFrecuente.xib in Resources */,
 				84F4FA781EAAEF0300F3E69A /* Main.storyboard in Resources */,
 				843A4B031F635E7D0064C1C9 /* GoogleService-Info.plist in Resources */,
@@ -1098,6 +1127,7 @@
 				847FDC181ED3469F002F9530 /* DetalleHorarioTableViewCell.xib in Resources */,
 				847FDC121ED34029002F9530 /* DetalleEstandarTableViewCell.xib in Resources */,
 				847FDC2E1ED54336002F9530 /* Media.xcassets in Resources */,
+				84E328951F7DBCB400E068C8 /* ResenaTableViewCell.xib in Resources */,
 				4124FE5C1F3D3D6800C9A1C5 /* ChatCelda.xib in Resources */,
 				840B1B5A1F3594AD00423832 /* FavoritoTableViewCell.xib in Resources */,
 			);
@@ -1218,6 +1248,7 @@
 				84BD20811EF0A58F001422E7 /* MenuUsuarioViewController.swift in Sources */,
 				84A3E1C21EC3BE3C0013E4DD /* PublicacionOferenteViewController.swift in Sources */,
 				4124FE611F3D533400C9A1C5 /* ChatOferente.swift in Sources */,
+				84E3288E1F7DBC9300E068C8 /* PreguntaTableViewCell.swift in Sources */,
 				84A3E1B61EC1850F0013E4DD /* ComandoOferente.swift in Sources */,
 				84A766041F2ABB8A001708CE /* VistaPreguntasViewController.swift in Sources */,
 				84417B911EB2CAE800A70ABC /* DireccionRegistroTableViewCell.swift in Sources */,
@@ -1226,7 +1257,9 @@
 				84417B971EB93D0D00A70ABC /* HorarioTableViewCell.swift in Sources */,
 				41F6CDB01F6451EA0070DA46 /* PreguntasFrecuentes.swift in Sources */,
 				84417B9E1EBACB2400A70ABC /* HorarioViewController.swift in Sources */,
+				84E3288A1F7DBC7A00E068C8 /* PreguntaRespuestaTableViewCell.swift in Sources */,
 				8448600D1F4644A600DF5D9D /* ServicioCompradoTableViewCell.swift in Sources */,
+				84E3289A1F7DBD1F00E068C8 /* DireccionTableViewCell.swift in Sources */,
 				84417B701EB04F6900A70ABC /* RegistroOferenteViewController.swift in Sources */,
 				4101FA4B1F4B7B380098F735 /* TPCliente.swift in Sources */,
 				41D9E45B1F4E465000923B2B /* Parametros.swift in Sources */,
@@ -1254,6 +1287,7 @@
 				84A3E1DC1EC6B4350013E4DD /* ComandoPublicacion.swift in Sources */,
 				84BD207E1EF0A56C001422E7 /* CarritoComprasViewController.swift in Sources */,
 				8446CC3D1EE8F927005BA3D4 /* IngresoExitosoViewController.swift in Sources */,
+				84E328921F7DBCB000E068C8 /* ResenaTableViewCell.swift in Sources */,
 				4126C95D1F44877D00BC4413 /* MisVentas.swift in Sources */,
 				84A766071F2AE0F1001708CE /* PreguntarViewController.swift in Sources */,
 				411A85FE1F41E5F500BDC788 /* ChatCeldaSinRespuesta.swift in Sources */,
@@ -1261,6 +1295,7 @@
 				84BD20781EF09FDB001422E7 /* HomeUsuarioViewController.swift in Sources */,
 				84A3E1BF1EC3BE1F0013E4DD /* AgregarPublicacionViewController.swift in Sources */,
 				845326881F0C9B11007A4776 /* AlertaTableViewCell.swift in Sources */,
+				84E328961F7DBCEA00E068C8 /* BusquedaTableViewCell.swift in Sources */,
 				84485FFC1F455CC500DF5D9D /* CompraExitosaViewController.swift in Sources */,
 				4101FA4E1F4B7B3E0098F735 /* TPErrores.swift in Sources */,
 				840B1B571F3594AD00423832 /* FavoritoTableViewCell.swift in Sources */,
@@ -1335,6 +1370,7 @@
 				84BD20821EF0A58F001422E7 /* MenuUsuarioViewController.swift in Sources */,
 				84A3E1C31EC3BE3C0013E4DD /* PublicacionOferenteViewController.swift in Sources */,
 				4124FE621F3D533400C9A1C5 /* ChatOferente.swift in Sources */,
+				84E3288F1F7DBC9300E068C8 /* PreguntaTableViewCell.swift in Sources */,
 				84A3E1B71EC1850F0013E4DD /* ComandoOferente.swift in Sources */,
 				84A766051F2ABB8A001708CE /* VistaPreguntasViewController.swift in Sources */,
 				84417B921EB2CAE800A70ABC /* DireccionRegistroTableViewCell.swift in Sources */,
@@ -1343,7 +1379,9 @@
 				84417B981EB93D0D00A70ABC /* HorarioTableViewCell.swift in Sources */,
 				41F6CDB11F6451EA0070DA46 /* PreguntasFrecuentes.swift in Sources */,
 				84417B9F1EBACB2400A70ABC /* HorarioViewController.swift in Sources */,
+				84E3288B1F7DBC7B00E068C8 /* PreguntaRespuestaTableViewCell.swift in Sources */,
 				8448600E1F4644A600DF5D9D /* ServicioCompradoTableViewCell.swift in Sources */,
+				84E3289B1F7DBD1F00E068C8 /* DireccionTableViewCell.swift in Sources */,
 				84417B711EB04F6900A70ABC /* RegistroOferenteViewController.swift in Sources */,
 				4101FA4C1F4B7B380098F735 /* TPCliente.swift in Sources */,
 				41D9E45C1F4E465100923B2B /* Parametros.swift in Sources */,
@@ -1371,6 +1409,7 @@
 				84A3E1DD1EC6B4350013E4DD /* ComandoPublicacion.swift in Sources */,
 				84BD207F1EF0A56C001422E7 /* CarritoComprasViewController.swift in Sources */,
 				8446CC3E1EE8F927005BA3D4 /* IngresoExitosoViewController.swift in Sources */,
+				84E328931F7DBCB000E068C8 /* ResenaTableViewCell.swift in Sources */,
 				4126C95E1F44877D00BC4413 /* MisVentas.swift in Sources */,
 				84A766081F2AE0F1001708CE /* PreguntarViewController.swift in Sources */,
 				411A85FF1F41E5F500BDC788 /* ChatCeldaSinRespuesta.swift in Sources */,
@@ -1378,6 +1417,7 @@
 				84BD20791EF09FDB001422E7 /* HomeUsuarioViewController.swift in Sources */,
 				84A3E1C01EC3BE1F0013E4DD /* AgregarPublicacionViewController.swift in Sources */,
 				845326891F0C9B11007A4776 /* AlertaTableViewCell.swift in Sources */,
+				84E328971F7DBCEB00E068C8 /* BusquedaTableViewCell.swift in Sources */,
 				84485FFD1F455CC500DF5D9D /* CompraExitosaViewController.swift in Sources */,
 				4101FA4F1F4B7B3E0098F735 /* TPErrores.swift in Sources */,
 				840B1B581F3594AD00423832 /* FavoritoTableViewCell.swift in Sources */,

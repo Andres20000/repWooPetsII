@@ -16,6 +16,8 @@ class UbicacionViewController: UIViewController, CLLocationManagerDelegate, UITa
     var model  = ModeloUsuario.sharedInstance
     var modelOferente  = ModeloOferente.sharedInstance
     
+    @IBOutlet var barFixedSpace: UIBarButtonItem!
+    
     var ubicarDireccion:Int?
     var ubicacionTableView:[UbicacionGoogleMaps]? = []
     
@@ -26,18 +28,19 @@ class UbicacionViewController: UIViewController, CLLocationManagerDelegate, UITa
     var locationManager = CLLocationManager()
     var shareLocation: CLLocationCoordinate2D?
     var placesClient: GMSPlacesClient!
+    var zoomLevel: Float = 15.0
     
     @IBAction func backView(_ sender: Any)
     {
         if ubicarDireccion == 0
         {
             let transition = CATransition()
-            transition.duration = 0.5
+            transition.duration = 0.3
             transition.type = kCATransitionPush
             transition.subtype = kCATransitionFromLeft
             view.window!.layer.add(transition, forKey: kCATransition)
             
-            dismiss(animated: true, completion: nil)
+            dismiss(animated: false, completion: nil)
         } else
         {
             dismiss(animated: true, completion: nil)
@@ -47,10 +50,18 @@ class UbicacionViewController: UIViewController, CLLocationManagerDelegate, UITa
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
-        self.initializeTheLocationManager()
+        if DeviceType.IS_IPHONE_5
+        {
+            barFixedSpace.width = 40.0
+        }
+        
+        if DeviceType.IS_IPHONE_6P
+        {
+            barFixedSpace.width = 80.0
+        }
         
         if ubicarDireccion == 0
         {
@@ -63,18 +74,33 @@ class UbicacionViewController: UIViewController, CLLocationManagerDelegate, UITa
         let nib = UINib(nibName: "UbicacionTableViewCell", bundle: nil)
         tableDirecciones.register(nib, forCellReuseIdentifier: "ubicacionTableViewCell")
         
+        locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
         placesClient = GMSPlacesClient.shared()
+        
+        self.initializeTheLocationManager()
     }
     
     func initializeTheLocationManager()
     {
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        
+        // Only find location when app is in use
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse
+        {
+            locationManager.startUpdatingLocation()
+            
+        } else
+        {
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
     }
     
     // MARK: - CLLocationManagerDelegate
     
+    // Handle authorization for the location manager.
     private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus)
     {
         if (status == CLAuthorizationStatus.authorizedWhenInUse)
@@ -88,13 +114,15 @@ class UbicacionViewController: UIViewController, CLLocationManagerDelegate, UITa
         let location = locationManager.location?.coordinate
         
         cameraMoveToLocation(toLocation: location)
+        
+        refreshView()
     }
     
     func cameraMoveToLocation(toLocation: CLLocationCoordinate2D?)
     {
         if toLocation != nil
         {
-            let camera = GMSCameraPosition.camera(withTarget: toLocation!, zoom: 15)
+            let camera = GMSCameraPosition.camera(withTarget: toLocation!, zoom: zoomLevel)
             mapView = GMSMapView.map(withFrame: CGRect.init(x: 0.0, y: 44.0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 44.0 - 250), camera: camera)
             mapView.mapType = .normal
             mapView.isMyLocationEnabled = true
@@ -110,8 +138,45 @@ class UbicacionViewController: UIViewController, CLLocationManagerDelegate, UITa
             self.view .addSubview(mapView)
             self.view .sendSubview(toBack: mapView)
         }
-        
-        tableDirecciones.reloadData()
+    }
+    
+    // Handle location manager errors.
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        locationManager.stopUpdatingLocation()
+        print("Error: \(error)")
+    }
+    
+    // Populate the array with the list of likely places.
+    
+    func refreshView()
+    {
+        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
+            if let error = error {
+                print("Pick Place error: \(error.localizedDescription)")
+                return
+            }
+            
+            if let placeLikelihoodList = placeLikelihoodList
+            {
+                self.ubicacionTableView?.removeAll()
+                
+                for likelihood in placeLikelihoodList.likelihoods
+                {
+                    let place = likelihood.place
+                    let ubicacionData = UbicacionGoogleMaps()
+                    
+                    ubicacionData.direccion = place.formattedAddress!
+                    
+                    ubicacionData.latitud = place.coordinate.latitude
+                    ubicacionData.longitud = place.coordinate.longitude
+                    
+                    self.ubicacionTableView?.append(ubicacionData)
+                }
+            }
+            
+            self.tableDirecciones.reloadData()
+        })
     }
     
     // #pragma mark - Table View
@@ -129,7 +194,7 @@ class UbicacionViewController: UIViewController, CLLocationManagerDelegate, UITa
         {
             Comando.init().EmptyMessage("No se puede mostrar información. Esto se debe a que no has permitido que la aplicación acceda a la información de ubicación.", tableView: tableDirecciones)
             
-            //tableDirecciones.separatorStyle = .none
+            tableDirecciones.separatorStyle = .none
             
             return 0
         }
@@ -274,12 +339,12 @@ class UbicacionViewController: UIViewController, CLLocationManagerDelegate, UITa
         if ubicarDireccion == 0
         {
             let transition = CATransition()
-            transition.duration = 0.5
+            transition.duration = 0.3
             transition.type = kCATransitionPush
             transition.subtype = kCATransitionFromLeft
             view.window!.layer.add(transition, forKey: kCATransition)
             
-            dismiss(animated: true, completion: nil)
+            dismiss(animated: false, completion: nil)
         } else
         {
             dismiss(animated: true, completion: nil)
@@ -297,45 +362,11 @@ class UbicacionViewController: UIViewController, CLLocationManagerDelegate, UITa
         return 50
     }
     
-    func refreshView()
-    {
-        placesClient.currentPlace(callback: { (placeLikelihoodList, error) -> Void in
-            if let error = error {
-                print("Pick Place error: \(error.localizedDescription)")
-                return
-            }
-            
-            if let placeLikelihoodList = placeLikelihoodList {
-                for likelihood in placeLikelihoodList.likelihoods {
-                    let place = likelihood.place
-                    let ubicacionData = UbicacionGoogleMaps()
-                    
-                    /*print("Latitude: \(place.coordinate.latitude)")
-                    print("Longitude: \(place.coordinate.longitude)")
-                    
-                    print("Current Place name \(place.name) at likelihood \(likelihood.likelihood)")
-                    print("Current Place address \(place.formattedAddress!)")
-                    print("Current Place attributions \(place.attributions!)")
-                    print("Current PlaceID \(place.placeID)")*/
-                    
-                    ubicacionData.direccion = place.formattedAddress!
-                    
-                    ubicacionData.latitud = place.coordinate.latitude
-                    ubicacionData.longitud = place.coordinate.longitude
-                    
-                    self.ubicacionTableView?.append(ubicacionData)
-                }
-            }
-            
-            self.initializeTheLocationManager()
-        })
-    }
-    
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
-        self .refreshView()
+        refreshView()
     }
     
     override func didReceiveMemoryWarning()
@@ -344,15 +375,16 @@ class UbicacionViewController: UIViewController, CLLocationManagerDelegate, UITa
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
+
