@@ -156,7 +156,6 @@ class MenuUsuarioViewController: UIViewController
             print("Entra aquí al estar con FB")
         }
         
-        model.publicacionesDestacadas.removeAll()
         modelUsuario.usuario.removeAll()
         
         try! FIRAuth.auth()!.signOut()
