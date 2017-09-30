@@ -171,7 +171,7 @@ class InicioSesionOferenteViewController: UIViewController, UITextFieldDelegate
     
     func mostrarAlerta(titulo:String, mensaje:String)
     {
-        let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
+        let alerta = UIAlertController.init(title: titulo, message: mensaje, preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
             
