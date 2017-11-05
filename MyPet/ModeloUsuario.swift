@@ -12,6 +12,7 @@ class Usuario
 {
     var correo:String?  = ""
     var datosComplementarios:[DatosComplementarios]? = []
+    var id = ""
     
     var tieneDatosComplementarios:Bool
     {
@@ -21,6 +22,8 @@ class Usuario
         }
         return true
     }
+    
+    var tokenDevice:String?  = ""
 }
 
 class DatosComplementarios
@@ -32,8 +35,8 @@ class DatosComplementarios
     var documento:String?  = ""
     var favoritos:[Favorito]? = []
     var mascotas:[Mascota]? = []
+    var metodoDePago:String?  = ""
     var nombre:String?  = ""
-    var pagoEfectvo:Bool?
 }
 
 class Carrito
@@ -52,6 +55,7 @@ class Direccion
     var direccion:String?  = ""
     var nombre:String?  = ""
     var porDefecto:Bool?
+    var posicion:Int?  = 0
     var ubicacion:[Ubicacion]? = []
 }
 
@@ -86,12 +90,13 @@ class Mascota
 
 class Alerta
 {
-    var idAlerta:String?  = ""
     var activada:Bool?
     var fechaFin:String?  = ""
     var fechaInicio:String?  = ""
     var frecuencia:String?  = ""
     var hora:String?  = ""
+    var idAlerta:String?  = ""
+    var idMascota:String?  = ""
     var nombre:String?  = ""
     var tipoRecordatorio:String?  = ""
 }
@@ -105,24 +110,51 @@ class UbicacionGoogleMaps
 
 class CompraUsuario
 {
+    var calificacion:[Calificacion]? = []
     var fecha:String?  = ""
     var idCompra:String?  = ""
     var idCliente:String?  = ""
     var idOferente:String?  = ""
+    var idTarjeta:String?  = ""
+    var metodoPago:String?  = ""
+    var nombrePublicacion:String?  = ""
     var pedido:[PedidoUsuario]? = []
-    var timestamp:CLong! = 0
+    var tokenDeviceOferente:String?  = ""
+    var timestamp:CLong?
     var valor:Int?  = 0
 }
 
 class PedidoUsuario
 {
     var cantidadCompra:Int?  = 0
+    var direccion:String?  = ""
     var estado:String?  = ""
     var fechaServicio:String?  = ""
     var idPedido:Int?  = 0
     var idPublicacion:String?  = ""
     var publicacionCompra = PublicacionOferente()
+    var reprogramada:Bool? = false
     var servicio:Bool?
+}
+
+class Tips
+{
+    var idTip:String?  = ""
+    var nombreTip:String?  = ""
+}
+
+class SolicitudCliente
+{
+    var enunciado:String?  = ""
+    var estado:String?  = ""
+    var fechaGeneracion:String?  = ""
+    var fechaRespuesta:String?  = ""
+    var idCliente:String?  = ""
+    var idSolicitud:String?  = ""
+    var numeroSeguimiento:String?  = ""
+    var respuesta:String?  = ""
+    var timestamp:CLong?
+    var tipoSolicitud:String?  = ""
 }
 
 class ModeloUsuario
@@ -135,6 +167,8 @@ class ModeloUsuario
         
         return instance
     }()
+    
+    var idUsuario = ""
     
     var usuario = [Usuario]()
     
@@ -155,11 +189,136 @@ class ModeloUsuario
     var alertasMascotaSeleccionada = [Alerta]()
     var alertaMascota = Alerta()
     
+    func getAlarmasMascota(idMascota:String)
+    {
+        alertasMascotaSeleccionada.removeAll()
+        
+        for mascota in (usuario[0].datosComplementarios?[0].mascotas)!
+        {
+            if mascota.idMascota == idMascota
+            {
+                for alerta in mascota.alertas!
+                {
+                    alertasMascotaSeleccionada.append(alerta)
+                }
+            }
+        }
+    }
+    
     var publicacionCarrito = Carrito()
     
     var misCompras = [CompraUsuario]()
-    var misComprasCompleto = [CompraUsuario]()
+    
+    func ordenarMisCompras()
+    {
+        for _ in misCompras
+        {
+            misCompras.sort(by: {$0.timestamp! > $1.timestamp!})
+        }
+    }
+    
+    var misComprasAbiertas = [CompraUsuario]()
+    var misComprasCerradas = [CompraUsuario]()
+    
     var compra = CompraUsuario()
+    var selectedControlIndex = 0
+    var selectedControlIndexSegmentControl = 0
+    var compraExitosa:Bool?
+    
+    var calificacionMiCompra = Calificacion()
+    var calificacionesPublicaciones = [Calificacion]()
+    
+    func getCalificacionCompra(posicion:Int)
+    {
+        for calificacion in calificacionesPublicaciones
+        {
+            if calificacion.idCompra == misCompras[posicion].idCompra
+            {
+                misCompras[posicion].calificacion?.removeAll()
+                misCompras[posicion].calificacion?.append(calificacion)
+            }
+        }
+    }
+    
+    var calificacionesPublicacion = [Calificacion]()
+    
+    func getCalificacionesPublicacion(idPublicacion:String)
+    {
+        calificacionesPublicacion.removeAll()
+        
+        for calificacion in calificacionesPublicaciones
+        {
+            if calificacion.idPublicacion == idPublicacion
+            {
+                calificacionesPublicacion.append(calificacion)
+            }
+        }
+    }
+    
+    var notificacionesUsuarioSinLeer = 0
+    
+    func contarNotificacionesSinLeer()
+    {
+        let model  = Modelo.sharedInstance
+        notificacionesUsuarioSinLeer = 0
+        
+        for notificacion in model.notificacionesOferente
+        {
+            if notificacion.visto == false
+            {
+                notificacionesUsuarioSinLeer+=1
+            }
+        }
+    }
+    
+    var tpagaUsuario = TPaga()
+    
+    var chatCompra = [ChatCompraVenta]()
+    var chatCompraUsuarioSinLeer = 0
+    
+    func getChatCompra(idCompra:String, idUsuario:String)
+    {
+        let model  = Modelo.sharedInstance
+        chatCompra.removeAll()
+        chatCompraUsuarioSinLeer = 0
+        
+        for chat in model.chatsCompraVenta
+        {
+            if chat.idCompra == idCompra
+            {
+                if !chat.visto! && chat.receptor == idUsuario
+                {
+                    chatCompraUsuarioSinLeer+=1
+                }
+                
+                chatCompra.append(chat)
+                chatCompra.sort(by: {$0.timestamp! < $1.timestamp!})
+            }
+        }
+    }
+    
+    var tipsDeUso:[Tips]? = []
+    
+    var misSolicitudes = [SolicitudCliente]()
+    var miSolicitud = SolicitudCliente()
+    
+    func LlamarComandosUsuario()
+    {
+        Comando.getEstadoOferentes()
+        Comando.getPublicaciones()
+        Comando.getCategorias()
+        Comando.getNotificaciones()
+        Comando.getChatsCompras()
+        Comando.getTiposSolicitudes()
+        ComandoUsuario.getTipsDeUso()
+        
+        NotificationCenter.default.addObserver(ModeloUsuario.sharedInstance, selector: #selector(ModeloUsuario.sharedInstance.CargarDatosParaUsuario(_:)), name:NSNotification.Name("cargoEstadoOferentes"), object: nil)
+    }
+    
+    @objc func CargarDatosParaUsuario(_ notification: Notification)
+    {
+        NotificationCenter.default.post(name: Notification.Name("seCarganDatosDesdeElModeloUsuario"), object: nil)
+    }
 }
 
 

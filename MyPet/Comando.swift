@@ -10,93 +10,53 @@ import Foundation
 import UIKit
 import Firebase
 
+import SystemConfiguration
+
 class Comando
 {
+    class func crearId(rama:String?) -> String
+    {
+        let refHandle  = Database.database().reference().child(rama!)
+        let ref = refHandle.childByAutoId()
+        
+        return ref.key
+    }
+    
+    // Estados Oferentes
+    class func getEstadoOferentes()
+    {
+        let model  = Modelo.sharedInstance
+        model.estadoOferentes.removeAll()
+        
+        let ref  = Database.database().reference().child("oferentes")
+        
+        ref.observe(.value, with: {(snap) -> Void in
+            
+            let oferentes = snap.children
+            
+            while let oferente = oferentes.nextObject() as? DataSnapshot
+            {
+                let value = oferente.value as! [String : AnyObject]
+                let datosOferente = Oferente()
+                
+                datosOferente.aprobacionMyPet = value["aprobacionMyPet"] as? String
+                datosOferente.idOferente = oferente.key
+                
+                model.estadoOferentes.append(datosOferente)
+            }
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoEstadoOferentes"), object: nil)
+        })
+    }
+    
     // Datos Publicaciones
     
     class func getPublicaciones()
     {
         let model  = Modelo.sharedInstance
-        let modelUsuario = ModeloUsuario.sharedInstance
-        
-        model.publicacionesDestacadas.removeAll()
         
         model.publicacionesPopulares.removeAll()
-        
-        model.publicacionesParaAve.removeAll()
-        model.publicacionesParaExotico.removeAll()
-        model.publicacionesParaGato.removeAll()
-        model.publicacionesParaPerro.removeAll()
-        model.publicacionesParaPez.removeAll()
-        model.publicacionesParaRoedor.removeAll()
-        
-        model.publicacionesAccesorios.removeAll()
-        model.publicacionesAccesoriosParaAve.removeAll()
-        model.publicacionesAccesoriosParaExotico.removeAll()
-        model.publicacionesAccesoriosParaGato.removeAll()
-        model.publicacionesAccesoriosParaPerro.removeAll()
-        model.publicacionesAccesoriosParaPez.removeAll()
-        model.publicacionesAccesoriosParaRoedor.removeAll()
-        
-        model.publicacionesEsteticaHigiene.removeAll()
-        model.publicacionesEsteticaHigieneParaAve.removeAll()
-        model.publicacionesEsteticaHigieneParaExotico.removeAll()
-        model.publicacionesEsteticaHigieneParaGato.removeAll()
-        model.publicacionesEsteticaHigieneParaPerro.removeAll()
-        model.publicacionesEsteticaHigieneParaPez.removeAll()
-        model.publicacionesEsteticaHigieneParaRoedor.removeAll()
-        
-        model.publicacionesFuneraria.removeAll()
-        model.publicacionesFunerariaParaAve.removeAll()
-        model.publicacionesFunerariaParaExotico.removeAll()
-        model.publicacionesFunerariaParaGato.removeAll()
-        model.publicacionesFunerariaParaPerro.removeAll()
-        model.publicacionesFunerariaParaPez.removeAll()
-        model.publicacionesFunerariaParaRoedor.removeAll()
-        
-        model.publicacionesGuarderia.removeAll()
-        model.publicacionesGuarderiaParaAve.removeAll()
-        model.publicacionesGuarderiaParaExotico.removeAll()
-        model.publicacionesGuarderiaParaGato.removeAll()
-        model.publicacionesGuarderiaParaPerro.removeAll()
-        model.publicacionesGuarderiaParaPez.removeAll()
-        model.publicacionesGuarderiaParaRoedor = [PublicacionOferente]()
-        
-        model.publicacionesMedicamentos.removeAll()
-        model.publicacionesMedicamentosParaAve.removeAll()
-        model.publicacionesMedicamentosParaExotico.removeAll()
-        model.publicacionesMedicamentosParaGato.removeAll()
-        model.publicacionesMedicamentosParaPerro.removeAll()
-        model.publicacionesMedicamentosParaPez.removeAll()
-        model.publicacionesMedicamentosParaRoedor.removeAll()
-        
-        model.publicacionesNutricion.removeAll()
-        model.publicacionesNutricionParaAve.removeAll()
-        model.publicacionesNutricionParaExotico.removeAll()
-        model.publicacionesNutricionParaGato.removeAll()
-        model.publicacionesNutricionParaPerro.removeAll()
-        model.publicacionesNutricionParaPez.removeAll()
-        model.publicacionesNutricionParaRoedor.removeAll()
-        
-        model.publicacionesPaseador.removeAll()
-        model.publicacionesPaseadorParaAve.removeAll()
-        model.publicacionesPaseadorParaExotico.removeAll()
-        model.publicacionesPaseadorParaGato.removeAll()
-        model.publicacionesPaseadorParaPerro.removeAll()
-        model.publicacionesPaseadorParaPez.removeAll()
-        model.publicacionesPaseadorParaRoedor.removeAll()
-        
-        model.publicacionesSalud.removeAll()
-        model.publicacionesSaludParaAve.removeAll()
-        model.publicacionesSaludParaExotico.removeAll()
-        model.publicacionesSaludParaGato.removeAll()
-        model.publicacionesSaludParaPerro.removeAll()
-        model.publicacionesSaludParaPez.removeAll()
-        model.publicacionesSaludParaRoedor.removeAll()
-        
-        model.publicacionesEnCarrito.removeAll()
-        modelUsuario.misComprasCompleto.removeAll()
-        model.publicacionesFavoritas.removeAll()
+        model.publicacionesGeneral.removeAll()
         
         let refHandle = Database.database().reference().child("productos")
         
@@ -114,6 +74,21 @@ class Comando
                 datosPublicacion.categoria = value["categoria"] as? String
                 datosPublicacion.descripcion = value["descripcion"] as? String
                 datosPublicacion.destacado = value["destacado"] as? Bool
+                
+                if publicacion.hasChild("duracion")
+                {
+                    datosPublicacion.duracion = value["duracion"] as? Int
+                }
+                
+                if publicacion.hasChild("duracionMedida")
+                {
+                    datosPublicacion.duracionMedida = value["duracionMedida"] as? String
+                }
+                
+                if publicacion.hasChild("fechaCreacion")
+                {
+                    datosPublicacion.fechaCreacion = value["fechaCreacion"] as? String
+                }
                 
                 if publicacion.hasChild("fotos")
                 {
@@ -139,8 +114,6 @@ class Comando
                 {
                     let snapHorario = publicacion.childSnapshot(forPath: "horario").value as! NSDictionary
                     
-                    var i = 0
-                    
                     for (idHorario, horario) in snapHorario
                     {
                         let postDictHorario = (horario as! [String : AnyObject])
@@ -153,6 +126,7 @@ class Comando
                             horarioServicioSemana.horaInicio = postDictHorario["horaInicio"] as? String
                             horarioServicioSemana.horaCierre = postDictHorario["horaCierre"] as? String
                             horarioServicioSemana.nombreArbol = idHorario as? String
+                            horarioServicioSemana.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                             
                             datosPublicacion.horario?.append(horarioServicioSemana)
                             
@@ -166,23 +140,29 @@ class Comando
                             horarioServicioFestivo.horaInicio = postDictHorario["horaInicio"] as? String
                             horarioServicioFestivo.horaCierre = postDictHorario["horaCierre"] as? String
                             horarioServicioFestivo.nombreArbol = idHorario as? String
+                            horarioServicioFestivo.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                             
                             datosPublicacion.horario?.append(horarioServicioFestivo)
                         }
                         
-                        i += 1
                     }
                 }
                 
                 datosPublicacion.idOferente = value["idOferente"] as? String
+                datosPublicacion.estadoOferente = model.getEstadoOferente(idOferente: datosPublicacion.idOferente!)
                 datosPublicacion.idPublicacion = publicacion.key
                 datosPublicacion.nombre = value["nombre"] as? String
                 datosPublicacion.precio = value["precio"] as? String
                 datosPublicacion.servicio = value["servicio"] as? Bool
                 
+                if publicacion.hasChild("servicioEnDomicilio")
+                {
+                    datosPublicacion.servicioEnDomicilio = value["servicioEnDomicilio"] as? Bool
+                }
+                
                 if publicacion.hasChild("stock")
                 {
-                    datosPublicacion.stock = value["stock"] as? String
+                    datosPublicacion.stock = value["stock"] as? Int
                 }
                 
                 if publicacion.hasChild("subcategoria")
@@ -192,394 +172,37 @@ class Comando
                 
                 datosPublicacion.target = value["target"] as? String
                 
-                if modelUsuario.usuario.count != 0
+                if publicacion.hasChild("timestamp")
                 {
-                    if modelUsuario.usuario[0].datosComplementarios?.count != 0
-                    {
-                        if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
-                        {
-                            for publicacionCarrito in (modelUsuario.usuario[0].datosComplementarios?[0].carrito)!
-                            {
-                                if publicacionCarrito.idPublicacion == datosPublicacion.idPublicacion
-                                {
-                                    publicacionCarrito.publicacionCompra = datosPublicacion
-                                    
-                                    model.publicacionesEnCarrito.append(publicacionCarrito)
-                                }
-                            }
-                        }
-                        
-                        print("mis Compras: \(modelUsuario.misCompras.count)")
-                        
-                        if modelUsuario.misCompras.count != 0
-                        {
-                            for miCompra in (modelUsuario.misCompras)
-                            {
-                                print("id compra: \(miCompra.idCompra!) - cant. Pedido: \((miCompra.pedido?.count)!)")
-                                
-                                if miCompra.pedido?.count != 0
-                                {
-                                    if miCompra.pedido?[0].idPublicacion == datosPublicacion.idPublicacion
-                                    {
-                                        print("id compraPedido: \((miCompra.pedido?[0].idPublicacion)!) - id. Publicacion: \(datosPublicacion.idPublicacion!)")
-                                        
-                                        miCompra.pedido?[0].publicacionCompra = datosPublicacion
-                                        
-                                        modelUsuario.misComprasCompleto.append(miCompra)
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    datosPublicacion.timestamp = value["timestamp"] as? CLong
                 }
                 
-                if datosPublicacion.activo!
+                model.publicacionesGeneral.append(datosPublicacion)
+                
+                print("estado: \(model.getEstadoOferente(idOferente: datosPublicacion.idOferente!))")
+                
+                if datosPublicacion.estadoOferente == "Aprobado"
                 {
-                    if modelUsuario.usuario.count != 0
+                    print("Entra si está aprobado")
+                    if datosPublicacion.activo!
                     {
-                        if modelUsuario.usuario[0].datosComplementarios?.count != 0
+                        print("Entra si está activo")
+                        if model.publicacionesPopulares.count > 10
                         {
-                            if modelUsuario.usuario[0].datosComplementarios?[0].favoritos?.count != 0
+                            var i = 0
+                            
+                            for publicacion in model.publicacionesPopulares
                             {
-                                for favorito in (modelUsuario.usuario[0].datosComplementarios?[0].favoritos)!
+                                if publicacion.idPublicacion == datosPublicacion.idPublicacion
                                 {
-                                    if favorito.idPublicacion == datosPublicacion.idPublicacion
-                                    {
-                                        if favorito.activo!
-                                        {
-                                            model.publicacionesFavoritas.append(datosPublicacion)
-                                        }
-                                    }
+                                    model.publicacionesPopulares.remove(at: i)
                                 }
+                                
+                                i+=1
                             }
                         }
-                    }
-                    
-                    model.publicacionesPopulares.append(datosPublicacion)
-                    
-                    if datosPublicacion.destacado!
-                    {
-                        model.publicacionesDestacadas.append(datosPublicacion)
-                    }
-                    
-                    if datosPublicacion.categoria == "Accesorios"
-                    {
-                        model.publicacionesAccesorios.append(datosPublicacion)
-                    }
-                    
-                    if datosPublicacion.categoria == "Lind@ y Limpi@"
-                    {
-                        model.publicacionesEsteticaHigiene.append(datosPublicacion)
-                    }
-                    
-                    if datosPublicacion.categoria == "Amiguitos en el cielo"
-                    {
-                        model.publicacionesFuneraria.append(datosPublicacion)
-                    }
-                    
-                    if datosPublicacion.categoria == "Guardería 5 patas"
-                    {
-                        model.publicacionesGuarderia.append(datosPublicacion)
-                    }
-                    
-                    if datosPublicacion.categoria == "Medicamentos"
-                    {
-                        model.publicacionesMedicamentos.append(datosPublicacion)
-                    }
-                    
-                    if datosPublicacion.categoria == "Nutrición"
-                    {
-                        model.publicacionesNutricion.append(datosPublicacion)
-                    }
-                    
-                    if datosPublicacion.categoria == "Paseador"
-                    {
-                        model.publicacionesPaseador.append(datosPublicacion)
-                    }
-                    
-                    if datosPublicacion.categoria == "Vamos al médico"
-                    {
-                        model.publicacionesSalud.append(datosPublicacion)
-                    }
-                    
-                    var tipoMascotas = ModeloOferente.sharedInstance.tipoMascotas
-                    
-                    if tipoMascotas == nil {
                         
-                        tipoMascotas = TipoMascotas()
-                    }
-                    
-                    tipoMascotas?.adicionarMascota(mascotas: datosPublicacion.target!)
-                    
-                
-                    if (tipoMascotas?.esMascotaIncluido(miMascota: .perro))!
-                    {
-                        model.publicacionesParaPerro.append(datosPublicacion)
-                        
-                        if datosPublicacion.categoria == "Accesorios"
-                        {
-                            model.publicacionesAccesoriosParaPerro.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Lind@ y Limpi@"
-                        {
-                            model.publicacionesEsteticaHigieneParaPerro.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Amiguitos en el cielo"
-                        {
-                            model.publicacionesFunerariaParaPerro.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Guardería 5 patas"
-                        {
-                            model.publicacionesGuarderiaParaPerro.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Medicamentos"
-                        {
-                            model.publicacionesMedicamentosParaPerro.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Nutrición"
-                        {
-                            model.publicacionesNutricionParaPerro.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Paseador"
-                        {
-                            model.publicacionesPaseadorParaPerro.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Vamos al médico"
-                        {
-                            model.publicacionesSaludParaPerro.append(datosPublicacion)
-                        }
-                    }
-                
-                    if (tipoMascotas?.esMascotaIncluido(miMascota: .gato))!
-                    {
-                        model.publicacionesParaGato.append(datosPublicacion)
-                        
-                        if datosPublicacion.categoria == "Accesorios"
-                        {
-                            model.publicacionesAccesoriosParaGato.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Lind@ y Limpi@"
-                        {
-                            model.publicacionesEsteticaHigieneParaGato.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Amiguitos en el cielo"
-                        {
-                            model.publicacionesFunerariaParaGato.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Guardería 5 patas"
-                        {
-                            model.publicacionesGuarderiaParaGato.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Medicamentos"
-                        {
-                            model.publicacionesMedicamentosParaGato.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Nutrición"
-                        {
-                            model.publicacionesNutricionParaGato.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Paseador"
-                        {
-                            model.publicacionesPaseadorParaGato.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Vamos al médico"
-                        {
-                            model.publicacionesSaludParaGato.append(datosPublicacion)
-                        }
-                    }
-                
-                    if (tipoMascotas?.esMascotaIncluido(miMascota: .ave))!
-                    {
-                        model.publicacionesParaAve.append(datosPublicacion)
-                        
-                        if datosPublicacion.categoria == "Accesorios"
-                        {
-                            model.publicacionesAccesoriosParaAve.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Lind@ y Limpi@"
-                        {
-                            model.publicacionesEsteticaHigieneParaAve.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Amiguitos en el cielo"
-                        {
-                            model.publicacionesFunerariaParaAve.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Guardería 5 patas"
-                        {
-                            model.publicacionesGuarderiaParaAve.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Medicamentos"
-                        {
-                            model.publicacionesMedicamentosParaAve.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Nutrición"
-                        {
-                            model.publicacionesNutricionParaAve.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Paseador"
-                        {
-                            model.publicacionesPaseadorParaAve.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Vamos al médico"
-                        {
-                            model.publicacionesSaludParaAve.append(datosPublicacion)
-                        }
-                    }
-                
-                    if (tipoMascotas?.esMascotaIncluido(miMascota: .pez))!
-                    {
-                        model.publicacionesParaPez.append(datosPublicacion)
-                        
-                        if datosPublicacion.categoria == "Accesorios"
-                        {
-                            model.publicacionesAccesoriosParaPez.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Lind@ y Limpi@"
-                        {
-                            model.publicacionesEsteticaHigieneParaPez.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Amiguitos en el cielo"
-                        {
-                            model.publicacionesFunerariaParaPez.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Guardería 5 patas"
-                        {
-                            model.publicacionesGuarderiaParaPez.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Medicamentos"
-                        {
-                            model.publicacionesMedicamentosParaPez.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Nutrición"
-                        {
-                            model.publicacionesNutricionParaPez.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Paseador"
-                        {
-                            model.publicacionesPaseadorParaPez.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Vamos al médico"
-                        {
-                            model.publicacionesSaludParaPez.append(datosPublicacion)
-                        }
-                    }
-                
-                    if (tipoMascotas?.esMascotaIncluido(miMascota: .roedor))!
-                    {
-                        model.publicacionesParaRoedor.append(datosPublicacion)
-                        
-                        if datosPublicacion.categoria == "Accesorios"
-                        {
-                            model.publicacionesAccesoriosParaRoedor.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Lind@ y Limpi@"
-                        {
-                            model.publicacionesEsteticaHigieneParaRoedor.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Amiguitos en el cielo"
-                        {
-                            model.publicacionesFunerariaParaRoedor.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Guardería 5 patas"
-                        {
-                            model.publicacionesGuarderiaParaRoedor.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Medicamentos"
-                        {
-                            model.publicacionesMedicamentosParaRoedor.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Nutrición"
-                        {
-                            model.publicacionesNutricionParaRoedor.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Paseador"
-                        {
-                            model.publicacionesPaseadorParaRoedor.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Vamos al médico"
-                        {
-                            model.publicacionesSaludParaRoedor.append(datosPublicacion)
-                        }
-                    }
-                
-                    if (tipoMascotas?.esMascotaIncluido(miMascota: .exotico))!
-                    {
-                        model.publicacionesParaExotico.append(datosPublicacion)
-                        
-                        if datosPublicacion.categoria == "Accesorios"
-                        {
-                            model.publicacionesAccesoriosParaExotico.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Lind@ y Limpi@"
-                        {
-                            model.publicacionesEsteticaHigieneParaExotico.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Amiguitos en el cielo"
-                        {
-                            model.publicacionesFunerariaParaExotico.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Guardería 5 patas"
-                        {
-                            model.publicacionesGuarderiaParaExotico.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Medicamentos"
-                        {
-                            model.publicacionesMedicamentosParaExotico.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Nutrición"
-                        {
-                            model.publicacionesNutricionParaExotico.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Paseador"
-                        {
-                            model.publicacionesPaseadorParaExotico.append(datosPublicacion)
-                        }
-                        
-                        if datosPublicacion.categoria == "Vamos al médico"
-                        {
-                            model.publicacionesSaludParaExotico.append(datosPublicacion)
-                        }
+                        model.publicacionesPopulares.append(datosPublicacion)
                     }
                 }
             }
@@ -602,6 +225,21 @@ class Comando
             datosPublicacion.categoria = value["categoria"] as? String
             datosPublicacion.descripcion = value["descripcion"] as? String
             datosPublicacion.destacado = value["destacado"] as? Bool
+            
+            if snap.hasChild("duracion")
+            {
+                datosPublicacion.duracion = value["duracion"] as? Int
+            }
+            
+            if snap.hasChild("duracionMedida")
+            {
+                datosPublicacion.duracionMedida = value["duracionMedida"] as? String
+            }
+            
+            if snap.hasChild("fechaCreacion")
+            {
+                datosPublicacion.fechaCreacion = value["fechaCreacion"] as? String
+            }
             
             if snap.hasChild("fotos")
             {
@@ -627,8 +265,6 @@ class Comando
             {
                 let snapHorario = snap.childSnapshot(forPath: "horario").value as! NSDictionary
                 
-                var i = 0
-                
                 for (idHorario, horario) in snapHorario
                 {
                     let postDictHorario = (horario as! [String : AnyObject])
@@ -641,6 +277,7 @@ class Comando
                         horarioServicioSemana.horaInicio = postDictHorario["horaInicio"] as? String
                         horarioServicioSemana.horaCierre = postDictHorario["horaCierre"] as? String
                         horarioServicioSemana.nombreArbol = idHorario as? String
+                        horarioServicioSemana.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                         
                         datosPublicacion.horario?.append(horarioServicioSemana)
                         
@@ -654,11 +291,11 @@ class Comando
                         horarioServicioFestivo.horaInicio = postDictHorario["horaInicio"] as? String
                         horarioServicioFestivo.horaCierre = postDictHorario["horaCierre"] as? String
                         horarioServicioFestivo.nombreArbol = idHorario as? String
+                        horarioServicioFestivo.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                         
                         datosPublicacion.horario?.append(horarioServicioFestivo)
                     }
                     
-                    i += 1
                 }
             }
             
@@ -668,9 +305,14 @@ class Comando
             datosPublicacion.precio = value["precio"] as? String
             datosPublicacion.servicio = value["servicio"] as? Bool
             
+            if snap.hasChild("servicioEnDomicilio")
+            {
+                datosPublicacion.servicioEnDomicilio = value["servicioEnDomicilio"] as? Bool
+            }
+            
             if snap.hasChild("stock")
             {
-                datosPublicacion.stock = value["stock"] as? String
+                datosPublicacion.stock = value["stock"] as? Int
             }
             
             if snap.hasChild("subcategoria")
@@ -679,6 +321,11 @@ class Comando
             }
             
             datosPublicacion.target = value["target"] as? String
+            
+            if snap.hasChild("timestamp")
+            {
+                datosPublicacion.timestamp = value["timestamp"] as? CLong
+            }
             
             NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoPublicacion"), object: nil)
         })
@@ -699,12 +346,14 @@ class Comando
             
             let categorias = snap.children
             
-            while let CategoriaChild = categorias.nextObject() as? DataSnapshot {
+            while let CategoriaChild = categorias.nextObject() as? DataSnapshot
+            {
                 
                 let categoria = Categoria()
                 let postDict = CategoriaChild.value as! [String : AnyObject]
                 
                 categoria.imagen = postDict["imagen"] as? String
+                categoria.posicion = postDict["posicion"] as? Int
                 categoria.nombre = postDict["nombre"] as? String
                 categoria.servicio  = postDict["servicio"] as? Bool
                 
@@ -724,6 +373,7 @@ class Comando
                 }
                 
                 model.categorias.append(categoria)
+                model.categorias.sort(by: {$0.posicion! < $1.posicion!})
             }
             
             NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoCategorias"), object: nil)
@@ -875,8 +525,8 @@ class Comando
             
             for profile in user!.providerData
             {
-                let providerID = profile.providerID
-                let uid = profile.uid;  // Provider-specific UID
+                //let providerID = profile.providerID
+                //let uid = profile.uid;  // Provider-specific UID
                 provider = profile.providerID
             }
             
@@ -899,10 +549,278 @@ class Comando
     {
         let ref  = Database.database().reference().child(tipo + "/" + uid)
         
-        ref.child("/fechaUltimoLogeo").setValue(Date().fechaString()  as AnyObject)
-        ref.child("/horaUltimoLogeo").setValue(Date().horaString()  as AnyObject)
-        ref.child("/systemDevice").setValue("iOS")
-        ref.child("/version").setValue(version)
+        let newItem = ["fechaUltimoLogeo":Date().fechaString() as AnyObject,
+                       "horaUltimoLogeo":Date().horaString() as AnyObject,
+                       "systemDevice": "iOS",
+                       "version":version as AnyObject] as [String : AnyObject]
+        
+        ref.updateChildValues(newItem)
+    }
+    
+    // Mensajes para PushNotifications
+    
+    class func enviarMensaje(mensaje:Mensaje)
+    {
+        let refHandle  = Database.database().reference().child("mensajes").childByAutoId()
+        
+        var newItem = ["mensaje": mensaje.mensaje as AnyObject,
+                       "timestamp":ServerValue.timestamp(),
+                       "tipo":mensaje.tipo as AnyObject,
+                       "titulo":mensaje.titulo as AnyObject,
+                       "tokens/\(mensaje.token!)":true as AnyObject,
+                       "visto":mensaje.visto as AnyObject] as [String : AnyObject]
+        
+        if mensaje.idCliente != ""
+        {
+            newItem["idCliente"] = mensaje.idCliente as AnyObject
+        }
+        
+        if mensaje.idCompra != ""
+        {
+            newItem["idCompra"] = mensaje.idCompra as AnyObject
+        }
+        
+        if mensaje.idOferente != ""
+        {
+            newItem["idOferente"] = mensaje.idOferente as AnyObject
+        }
+        
+        if mensaje.idPublicacion != ""
+        {
+            newItem["idPublicacion"] = mensaje.idPublicacion as AnyObject
+        }
+        
+        if mensaje.infoAdicional != ""
+        {
+            newItem["infoAdicional"] = mensaje.infoAdicional as AnyObject
+        }
+        
+        refHandle.updateChildValues(newItem)
+    }
+    
+    class func getNotificaciones()
+    {
+        let model  = Modelo.sharedInstance
+        let modelOferente  = ModeloOferente.sharedInstance
+        let modelUsuario  = ModeloUsuario.sharedInstance
+        
+        model.notificacionesUsuario.removeAll()
+        model.notificacionesOferente.removeAll()
+        modelOferente.notificacionesOferenteSinLeer = 0
+        modelUsuario.notificacionesUsuarioSinLeer = 0
+        
+        let refHandle  = Database.database().reference().child("mensajes")
+        
+        refHandle.observeSingleEvent(of: .value, with: {snap in
+            
+            let notificaciones = snap.children
+            
+            while let notificacion = notificaciones.nextObject() as? DataSnapshot
+            {
+                if notificacion.value as? [String : AnyObject] != nil
+                {
+                    let postDict = notificacion.value as! [String : AnyObject]
+                    let miNotificacion = Mensaje()
+                    
+                    if notificacion.hasChild("idCompra")
+                    {
+                        miNotificacion.idCompra = postDict["idCompra"] as? String
+                    }
+                    
+                    miNotificacion.idMensaje = notificacion.key
+                    
+                    if notificacion.hasChild("idPublicacion")
+                    {
+                        miNotificacion.idPublicacion = postDict["idPublicacion"] as? String
+                    }
+                    
+                    miNotificacion.infoAdicional = postDict["infoAdicional"] as? String
+                    miNotificacion.timestamp = postDict["timestamp"] as? CLong
+                    miNotificacion.tipo = postDict["tipo"] as? String
+                    miNotificacion.visto = postDict["visto"] as? Bool
+                    
+                    let  user = Auth.auth().currentUser
+                    
+                    if notificacion.hasChild("idCliente")
+                    {
+                        miNotificacion.idCliente = postDict["idCliente"] as? String
+                        
+                        if user != nil
+                        {
+                            if (user?.uid)! == miNotificacion.idCliente
+                            {
+                                var i = 0
+                                
+                                for notificacion in model.notificacionesUsuario
+                                {
+                                    if notificacion.idMensaje == miNotificacion.idMensaje
+                                    {
+                                        model.notificacionesUsuario.remove(at: i)
+                                    }
+                                    
+                                    i+=1
+                                }
+                                
+                                if !miNotificacion.visto!
+                                {
+                                    modelUsuario.notificacionesUsuarioSinLeer+=1
+                                }
+                                
+                                model.notificacionesUsuario.append(miNotificacion)
+                                model.notificacionesUsuario.sort(by: {$0.timestamp! > $1.timestamp!})
+                            }
+                        }
+                    }
+                    
+                    if notificacion.hasChild("idOferente")
+                    {
+                        miNotificacion.idOferente = postDict["idOferente"] as? String
+                        
+                        if user != nil
+                        {
+                            if (user?.uid)! == miNotificacion.idOferente
+                            {
+                                var i = 0
+                                
+                                for notificacion in model.notificacionesOferente
+                                {
+                                    if notificacion.idMensaje == miNotificacion.idMensaje
+                                    {
+                                        model.notificacionesOferente.remove(at: i)
+                                    }
+                                    
+                                    i+=1
+                                }
+                                
+                                if !miNotificacion.visto!
+                                {
+                                    modelOferente.notificacionesOferenteSinLeer+=1
+                                }
+                                
+                                model.notificacionesOferente.append(miNotificacion)
+                                model.notificacionesOferente.sort(by: {$0.timestamp! > $1.timestamp!})
+                            }
+                        }
+                    }
+                }
+            }
+            
+            NotificationCenter.default.post(name: Notification.Name("cargoNotificaciones"), object: nil)
+        })
+    }
+    
+    class func cambiarVistoNotificacion(mensaje:Mensaje)
+    {
+        let refHandle  = Database.database().reference().child("mensajes/" + mensaje.idMensaje!)
+        refHandle.child("visto").setValue(true)
+    }
+    
+    class func eliminarNotificacion(mensaje:Mensaje)
+    {
+        let refHandle  = Database.database().reference().child("mensajes/" + mensaje.idMensaje!)
+        // Remove the post from the DB
+        refHandle.removeValue()
+    }
+    
+    // Funciones para Chat
+    
+    class func enviarMensajeAlChat(chat:ChatCompraVenta)
+    {
+        let refHandle  = Database.database().reference().child("chats").childByAutoId()
+        
+        let newItem = ["emisor": chat.emisor as AnyObject,
+                       "fechaMensaje":chat.fechaMensaje as AnyObject,
+                       "idCompra":chat.idCompra as AnyObject,
+                       "mensaje":chat.mensaje as AnyObject,
+                       "receptor":chat.receptor as AnyObject,
+                       "timestamp":ServerValue.timestamp(),
+                       "visto":chat.visto as AnyObject] as [String : AnyObject]
+        
+        refHandle.updateChildValues(newItem)
+    }
+    
+    class func cambiarVistoChat(chat:ChatCompraVenta)
+    {
+        let refHandle  = Database.database().reference().child("chats/" + chat.idChat!)
+        refHandle.child("visto").setValue(true)
+    }
+    
+    class func  getChatsCompras()
+    {
+        let model = Modelo.sharedInstance
+        model.chatsCompraVenta.removeAll()
+        
+        let refHandle:DatabaseReference! = Database.database().reference().child("chats")
+        
+        refHandle.observeSingleEvent(of: .value, with: {snap in
+            
+            let chats = snap.children
+            
+            while let ChatChild = chats.nextObject() as? DataSnapshot
+            {
+                let postDict = ChatChild.value as! [String : AnyObject]
+                let chat = ChatCompraVenta()
+                
+                chat.emisor = postDict["emisor"] as? String
+                chat.fechaMensaje = postDict["fechaMensaje"] as? String
+                chat.idChat = ChatChild.key
+                chat.idCompra = postDict["idCompra"] as? String
+                chat.mensaje = postDict["mensaje"] as? String
+                chat.receptor = postDict["receptor"] as? String
+                chat.timestamp = postDict["timestamp"] as? CLong
+                chat.visto = postDict["visto"] as? Bool
+                
+                /*var i = 0
+                
+                for chat in model.chatsCompraVenta
+                {
+                    if chat.idChat == chat.idChat
+                    {
+                        model.chatsCompraVenta.remove(at: i)
+                    }
+                    
+                    i+=1
+                }*/
+                
+                model.chatsCompraVenta.append(chat)
+                model.chatsCompraVenta.sort(by: {$0.timestamp! > $1.timestamp!})
+            }
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoChatsCompras"), object: nil)
+            
+        })
+    }
+    
+    // Ayuda PQRS (Solicitudes)
+    
+    class func getTiposSolicitudes()
+    {
+        let model  = Modelo.sharedInstance
+        model.tiposSolicitudes.removeAll()
+        
+        let ref  = Database.database().reference().child("/listados/tiposSolicitudes")
+        
+        ref.observeSingleEvent(of: .value, with: {snap in
+            
+            let tiposSolicitudes = snap.children
+            
+            while let tiposChild = tiposSolicitudes.nextObject() as? DataSnapshot
+            {
+                let tipoSolicitud = TipoSolicitud()
+                let postDict = tiposChild.value as! [String : AnyObject]
+                
+                tipoSolicitud.consecutivo = postDict["consecutivo"] as? Int
+                tipoSolicitud.idTipoSolicitud = tiposChild.key
+                tipoSolicitud.nombre = postDict["nombre"] as? String
+                tipoSolicitud.siglaConsecutivo = postDict["siglaConsecutivo"] as? String
+                
+                model.tiposSolicitudes.append(tipoSolicitud)
+                model.tiposSolicitudes.sort { $0.idTipoSolicitud?.localizedCaseInsensitiveCompare($1.idTipoSolicitud!) == ComparisonResult.orderedAscending }
+            }
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "cargoTiposSolicitudes"), object: nil)
+            
+        });
     }
     
     // Mensaje en TableView sin datos
@@ -931,21 +849,56 @@ class Comando
         
     }
     
-    class func calcularEdadEnAños(birthday:NSDate) -> Int
+    class func calcularFechaEnAños(fecha1:NSDate, fecha2:NSDate) -> Int
     {
         let calendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
-        let now: NSDate! = NSDate()
-        let calcAge = calendar.components(.year, from: birthday as Date, to: now as Date, options: [])
+        let calcAge = calendar.components(.year, from: fecha2 as Date, to: fecha1 as Date, options: [])
         let age = calcAge.year
         return age!
     }
     
-    class func calcularEdadEnMeses(birthday:NSDate) -> Int
+    class func calcularFechaEnMeses(fecha1:NSDate, fecha2:NSDate) -> Int
     {
         let calendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
-        let now: NSDate! = NSDate()
-        let calcAge = calendar.components(.month, from: birthday as Date, to: now as Date, options: [])
-        let month = calcAge.month
+        let calcMonth = calendar.components(.month, from: fecha2 as Date, to: fecha1 as Date, options: [])
+        let month = calcMonth.month
         return month!
     }
+    
+    class func calcularFechaEnDias(fecha1:NSDate, fecha2:NSDate) -> Int
+    {
+        let calendar: NSCalendar! = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
+        let calcDay = calendar.components(.day, from: fecha2 as Date, to: fecha1 as Date, options: [])
+        let day = calcDay.day
+        return day!
+    }
+    
+    // Internet Vaidation Helper...
+    class func isConnectedToNetwork() -> Bool
+    {
+        
+        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
+        if SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) == false {
+            return false
+        }
+        
+        // Working for Cellular and WIFI
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        let ret = (isReachable && !needsConnection)
+        
+        return ret
+        
+    }
+
 }

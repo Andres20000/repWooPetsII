@@ -39,7 +39,8 @@ class ComandoOferente
         {
             let horario = ["dias" : horarioRegistro.dias as AnyObject,
                            "horaCierre" : horarioRegistro.horaCierre as AnyObject,
-                           "horaInicio" : horarioRegistro.horaInicio as AnyObject] as [String : AnyObject]
+                           "horaInicio" : horarioRegistro.horaInicio as AnyObject,
+                           "sinJornadaContinua" : horarioRegistro.sinJornadaContinua as AnyObject] as [String : AnyObject]
             
             newItem["horario/\(horarioRegistro.nombreArbol as AnyObject)"] = horario as AnyObject
         }
@@ -61,6 +62,12 @@ class ComandoOferente
         
     }
     
+    class func sendTokenDevice(uid:String, token:String)
+    {
+        let refHandle = Database.database().reference().child("oferentes/" + uid)
+        refHandle.child("/tokenDevice").setValue(token)
+    }
+    
     class func getOferente(uid:String?)
     {
         if uid == nil {
@@ -70,15 +77,15 @@ class ComandoOferente
         let model  = ModeloOferente.sharedInstance
         model.oferente.removeAll()
         
-        let datosOferente = Oferente()
-        let datosContactoOferente = ContactoPrincipal()
-        let datosUbicacionOferente = Ubicacion()
-        
         let ref  = Database.database().reference().child("oferentes/" + uid!)
         
         ref.observeSingleEvent(of: .value, with: {snap in
             
             let value = snap.value as? NSDictionary
+            
+            let datosOferente = Oferente()
+            let datosContactoOferente = ContactoPrincipal()
+            let datosUbicacionOferente = Ubicacion()
             
             datosOferente.correo = value?["correo"] as? String
             
@@ -117,7 +124,9 @@ class ComandoOferente
                             model.horarioSemana.horaInicio = postDictHorario["horaInicio"] as? String
                             model.horarioSemana.horaCierre = postDictHorario["horaCierre"] as? String
                             model.horarioSemana.nombreArbol = idHorario as? String
+                            model.horarioSemana.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
                             
+                            datosOferente.horario?.append(model.horarioSemana)
                         }
                         
                         if (idHorario as? String == "FinDeSemana")
@@ -126,6 +135,9 @@ class ComandoOferente
                             model.horarioFestivo.horaInicio = postDictHorario["horaInicio"] as? String
                             model.horarioFestivo.horaCierre = postDictHorario["horaCierre"] as? String
                             model.horarioFestivo.nombreArbol = idHorario as? String
+                            model.horarioFestivo.sinJornadaContinua = postDictHorario["sinJornadaContinua"] as? Bool
+                            
+                            datosOferente.horario?.append(model.horarioFestivo)
                         }
                         
                         i += 1
@@ -149,6 +161,8 @@ class ComandoOferente
                 datosUbicacionOferente.longitud = valUbicacion?["lon"] as? Double
                 
                 datosOferente.ubicacion?.append(datosUbicacionOferente)
+                
+                datosOferente.tokenDevice = value?["tokenDevice"] as? String
                 
                 model.oferente.append(datosOferente)
             }
@@ -200,10 +214,148 @@ class ComandoOferente
         {
             let horario = ["dias" : horarioRegistro.dias as AnyObject,
                            "horaCierre" : horarioRegistro.horaCierre as AnyObject,
-                           "horaInicio" : horarioRegistro.horaInicio as AnyObject] as [String : AnyObject]
+                           "horaInicio" : horarioRegistro.horaInicio as AnyObject,
+                           "sinJornadaContinua" : horarioRegistro.sinJornadaContinua as AnyObject] as [String : AnyObject]
             
             ref.child("/horario/\(horarioRegistro.nombreArbol as AnyObject)").setValue(horario)
         }
         
     }
+    
+    // Funciones para Tpaga
+    
+    class func setIdClienteTpaga(uid:String, idClienteTpaga:String)
+    {
+        let ref  = Database.database().reference().child("oferentes/" + uid + "/datosTpaga/idClienteTpaga")
+        
+        ref.setValue(idClienteTpaga)
+    }
+    
+    class func setDatosTpaga(uid:String)
+    {
+        let model = ModeloOferente.sharedInstance
+        
+        let ref  = Database.database().reference().child("oferentes/" + uid + "/datosTpaga")
+        
+        let newItem = ["nombres":model.tpaga.nombre,
+                       "apellidos": model.tpaga.apellido,
+                       "telefono": model.tpaga.telefono,
+                       "correo":model.tpaga.correo] as [String : Any]
+
+        ref.updateChildValues(newItem)
+    }
+    
+    class func getDatosTPaga(uid:String)
+    {
+        let model = ModeloOferente.sharedInstance
+        
+        let ref  = Database.database().reference().child("oferentes/" + uid + "/datosTpaga")
+        
+        ref.observeSingleEvent(of: .value, with: {(snap) -> Void in
+        
+            if snap.value as? [String : AnyObject] != nil
+            {
+                let value = snap.value as! [String : AnyObject]
+                
+                model.tpaga.idClienteEnTpaga = value["idClienteTpaga"] as! String
+                model.tpaga.nombre = value["nombres"] as! String
+                model.tpaga.apellido = value["apellidos"] as! String
+                model.tpaga.telefono = value["telefono"] as! String
+                model.tpaga.correo = value["correo"] as! String
+            }
+        })
+        
+    }
+    
+    class func desactivarTarjeta(uid:String?, idTarjeta:String)
+    {
+        let ref  = Database.database().reference().child("oferentes/" + uid! + "/tarjetas/" + idTarjeta + "/activo")
+        
+        ref.setValue(false)
+    }
+    
+    class func crearTarjeta(uid:String, lastFour:String, token : String, cuotas : Int,franquicia: String , activo: Bool  ) -> String
+    {
+        let ref  = Database.database().reference().child("oferentes/" + uid + "/tarjetas" ).childByAutoId()
+        
+        let newItem = ["lastFour":lastFour,
+                       "cuotas": cuotas,
+                       "token": token,
+                       "franquicia":franquicia,
+                       "activo":activo] as [String : Any]
+        
+        ref.setValue(newItem)
+        
+        return ref.key
+    }
+    
+    class func getTarjetas(uid:String)
+    {
+        let model = ModeloOferente.sharedInstance
+        var ref  = Database.database().reference().child("oferentes/" + uid + "/tarjetas" )
+        
+        ref.observe(.childAdded, with: { snap in
+            
+            let tarj = snap.value as! NSDictionary
+            
+            let mini = MiniTarjeta()
+            mini.activa = tarj["activo"] as! Bool
+            mini.cuotas = tarj["cuotas"] as! Int
+            mini.numero = tarj["lastFour"] as! String
+            mini.token = tarj["token"] as! String
+            mini.franquicia = tarj["franquicia"] as! String
+            mini.id = snap.key
+            model.tpaga.adicionarMiniTarjeta(mini: mini)
+        })
+        
+        //Ademas traemos el idClienteTpaga
+        ref  = Database.database().reference().child("clientes/" + uid + "/idClienteTpaga")
+        
+        ref.observe(.value, with: {snap in
+            
+            if snap.exists() {
+                model.tpaga.idClienteEnTpaga = snap.value as! String
+            }
+        })
+    }
+    
+    
+    class func activarDestacado( idPublicacion:String , idTarjeta:String)
+    {
+        let model = ModeloOferente.sharedInstance
+        let tpaga = model.tpaga
+        
+        let refi  = Database.database().reference().child("pagosOferente")
+        let ref = refi.childByAutoId()
+        
+        let pago = ["authorizationCode":tpaga.authorizationCode,
+                    "paymentTransaction": tpaga.paymentTransaction,
+                    "idPago": tpaga.idPago,
+                    "idTarjeta":idTarjeta,
+                    "metodoPago":"Tarjeta",
+                    "idPublicacion":idPublicacion,
+                    "Descripcion":"Destacado"] as [String : Any]
+        
+        ref.setValue(pago, withCompletionBlock: { error, snap in
+            
+            if error == nil {
+                NotificationCenter.default.post(name: Notification.Name("pagoExitoso"), object: nil)
+                
+            }else {
+                print(error.debugDescription)
+                print(error!.localizedDescription)
+                
+                NotificationCenter.default.post(name: Notification.Name("pagoFallido"), object: nil)
+            }
+        })
+    }
+    
+    class func reprogramarServicio(idCompra:String, nuevaFecha:String)
+    {
+        let refHandle  = Database.database().reference().child("compras/abiertas/" + idCompra)
+        
+        refHandle.child("pedido/1/fechaServicio").setValue(nuevaFecha)
+        refHandle.child("pedido/1/estado").setValue("Reprogramada")
+    }
+    
 }
