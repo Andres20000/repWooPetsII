@@ -11,6 +11,10 @@ import FirebaseAuth
 
 class HomeUsuarioViewController: UITabBarController
 {
+    let model = Modelo.sharedInstance
+    let modelUsuario = ModeloUsuario.sharedInstance
+    let  user = FIRAuth.auth()?.currentUser
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -26,8 +30,6 @@ class HomeUsuarioViewController: UITabBarController
         self.tabBar.items?[2].selectedImage = UIImage(named: "btnMenuAzul")?.withRenderingMode(.alwaysOriginal)
         self.tabBar.items?[2].image = UIImage(named: "btnMenu")?.withRenderingMode(.alwaysOriginal)
         
-        let  user = FIRAuth.auth()?.currentUser
-        
         if user != nil
         {
             let model = Modelo.sharedInstance
@@ -37,11 +39,32 @@ class HomeUsuarioViewController: UITabBarController
         }
     }
     
+    func refrescarVista(_ notification: Notification)
+    {
+        if model.publicacionesEnCarrito.count != 0
+        {
+            self.tabBar.items?[1].badgeValue = "\((model.publicacionesEnCarrito.count))"
+        } else
+        {
+            self.tabBar.items?[1].badgeValue = nil
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
-        //self.tabBar.items?[1].badgeValue = "1"
+        if user != nil
+        {
+            ComandoUsuario.getMisComprasUsuario(uid: (user?.uid)!)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(HomeUsuarioViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoMisComprasUsuario"), object: nil)
+        }
+        
+        Comando.getPublicaciones()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeUsuarioViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoPublicaciones"), object: nil)
+        
     }
     
     override func didReceiveMemoryWarning()

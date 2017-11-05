@@ -53,7 +53,7 @@ class Pregunta
     var idPublicacion:String?  = ""
     var pregunta:String?  = ""
     var respuesta:String?  = ""
-    var timestamp:CLong?
+    var timestamp:CLong! = 0
 }
 
 class Modelo
@@ -148,6 +148,8 @@ class Modelo
     var publicacionesPorCategoriaPorMascota = [PublicacionOferente]()
     
     var publicacionSeleccionada = PublicacionOferente()
+    
+    var publicacionesEnCarrito = [Carrito]()
     
     // Datos Preguntas y Respuestas
     var preguntasPublicacion = [Pregunta]()

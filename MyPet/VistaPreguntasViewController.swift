@@ -153,10 +153,6 @@ class VistaPreguntasViewController: UIViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
         
         tablePreguntasRespuestas.reloadData()
-        //tablePreguntasRespuestas.reloadData()
-        //model.preguntasPublicacion.removeAll()
-        
-        //NotificationCenter.default.addObserver(self, selector: #selector(VistaPreguntasViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoPreguntasRespuestasPublicacion"), object: nil)
     }
     
     override func didReceiveMemoryWarning()

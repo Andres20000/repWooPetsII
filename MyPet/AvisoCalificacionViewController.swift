@@ -1,17 +1,16 @@
 //
-//  AvisoCarritoViewController.swift
+//  AvisoCalificacionViewController.swift
 //  MyPet
 //
-//  Created by Jose Aguilar on 9/08/17.
+//  Created by Jose Aguilar on 21/08/17.
 //  Copyright © 2017 Jose Aguilar. All rights reserved.
 //
 
 import UIKit
 
-class AvisoCarritoViewController: UIViewController
+class AvisoCalificacionViewController: UIViewController
 {
-    @IBOutlet var btnEntendido: UIButton!
-    @IBOutlet var btnOmitir: UIButton!
+    @IBOutlet var btnCalificar: UIButton!
     
     override func viewDidLoad()
     {
@@ -19,19 +18,20 @@ class AvisoCarritoViewController: UIViewController
 
         // Do any additional setup after loading the view.
         
-        btnEntendido.layer.cornerRadius = 10.0
-        btnOmitir.layer.cornerRadius = 10.0
+        btnCalificar.layer.cornerRadius = 10.0
     }
     
-    @IBAction func continuar(_ sender: Any)
+    @IBAction func calificar(_ sender: Any)
     {
-        dismiss(animated: true, completion: nil)
+        //self.performSegue(withIdentifier: "calificacionPublicacionDesdeAvisoCalificacion", sender: self)
+        print("calificacionPublicacionDesdeAvisoCalificacion")
     }
     
     @IBAction func omitirAviso(_ sender: Any)
     {
-        self.writeStringToFile()
-        dismiss(animated: true, completion: nil)
+        //self.writeStringToFile()
+        //self.performSegue(withIdentifier: "calificacionPublicacionDesdeAvisoCalificacion", sender: self)
+        print("calificacionPublicacionDesdeAvisoCalificacion")
     }
     
     override func didReceiveMemoryWarning()
@@ -55,7 +55,7 @@ class AvisoCarritoViewController: UIViewController
     
     func writeStringToFile()
     {
-        let fileName = "AvisoCarrito"
+        let fileName = "AvisoCalificacion"
         
         let dir = try? FileManager.default.url(for: .documentDirectory,
                                                in: .userDomainMask, appropriateFor: nil, create: true)
@@ -72,5 +72,5 @@ class AvisoCarritoViewController: UIViewController
             }
         }
     }
-    
+
 }

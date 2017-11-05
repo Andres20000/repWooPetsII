@@ -14,6 +14,8 @@ import FBSDKLoginKit
 
 class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate
 {
+    var modelUsuario  = ModeloUsuario.sharedInstance
+    
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceTopLayoutConstraint: NSLayoutConstraint?
     
@@ -21,10 +23,10 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
     @IBOutlet var txtContrasena: UITextField!
     @IBOutlet var btnRegistro: UIButton!
     @IBOutlet weak var botonFacebook: FBSDKLoginButton!
-    //@IBOutlet var btnRegistroFB: UIButton!
     @IBOutlet var btnInicioSesion: UIButton!
     
     var sizeFont : CGFloat = 0.0
+    var email = ""
     
     @IBAction func backView(_ sender: Any)
     {
@@ -40,8 +42,9 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             
             if user != nil {
-                print("Registro: Con usuario listo")
-                self.performSegue(withIdentifier: "ingresoExitosoDesdeRegistroUsuario", sender: self)
+                ComandoUsuario.getUsuario(uid: (user?.uid)!)
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(RegistroUsuarioViewController.verificarUsuario(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
             }
             else {
                 print("Registro: Con usuario en NILLL")
@@ -50,6 +53,45 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
                 self.botonFacebook.isHidden = false
             }
         }
+    }
+    
+    func verificarUsuario(_ notification: Notification)
+    {
+        if Comando.validarTipoIngreso()
+        {
+            if modelUsuario.usuario.count == 0
+            {
+                let  user = FIRAuth.auth()?.currentUser
+                ComandoUsuario.registrarUsuario(uid: (user?.uid)!, correo: email)
+                
+                ComandoUsuario.getUsuario(uid: (user?.uid)!)
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(RegistroUsuarioViewController.continuarFB(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
+                
+            }else
+            {
+                let alertController = UIAlertController (title: "Registro fallido", message: "Ya te encuentras registrado con tu cuenta de Facebook, si quieres ingresar puedes iniciar sesión con éste usuario.", preferredStyle: .alert)
+                
+                let oKAction = UIAlertAction(title: "OK", style: .default) { (_) -> Void in
+                    FBSDKAccessToken.setCurrent(nil)
+                    try! FIRAuth.auth()!.signOut()
+                }
+                
+                alertController.addAction(oKAction)
+                
+                present(alertController, animated: true, completion: nil)
+            }
+        }else
+        {
+            print("Registro: Con usuario listo")
+            self.performSegue(withIdentifier: "ingresoExitosoDesdeRegistroUsuario", sender: self)
+        }
+    }
+    
+    func continuarFB(_ notification: Notification)
+    {
+        print("Registro: Con usuario listo")
+        self.performSegue(withIdentifier: "ingresoExitosoDesdeRegistroUsuario", sender: self)
     }
     
     // #pragma mark - textField
@@ -76,8 +118,6 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
                     }else
                     {
                         ComandoUsuario.registrarUsuario(uid: (user?.uid)!, correo: self.txtCorreo.text!)
-                        
-                        //self.performSegue(withIdentifier: "ingresoExitosoDesdeRegistroUsuario", sender: self)
                     }
                 })
             }else
@@ -106,8 +146,6 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
         
         let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
         
-        var email = ""
-        
         FIRAuth.auth()?.signIn(with: credential) { (user, error) in
             if let error = error {
                 self.mostrarAlerta(titulo: "Registro", mensaje: "No se ha podido hacer el registro. La dirección de correo electrónico ya está en uso por otra cuenta.")
@@ -122,11 +160,9 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
                 testMail = user?.providerData[0].email
                 
                 if testMail != nil {
-                    email = testMail!
+                    self.email = testMail!
                 }
             }
-            
-            ComandoUsuario.registrarUsuario(uid: (user?.uid)!, correo: email)
         }
     }
     

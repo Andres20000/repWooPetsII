@@ -31,6 +31,7 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     @IBOutlet var lblPrecio: UILabel!
     @IBOutlet var floatRatingView: FloatRatingView!
     @IBOutlet var txtDescripcion: UITextView!
+    @IBOutlet var lblFechaHoraReserva: UILabel!
     @IBOutlet var lblPreguntas: UILabel!
     
     @IBOutlet var btnComprar: UIButton!
@@ -40,6 +41,11 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     
     @IBAction func backView(_ sender: Any)
     {
+        modelUsuario.publicacionCarrito.cantidadCompra = 0
+        modelUsuario.publicacionCarrito.fechaHoraReserva = ""
+        modelUsuario.publicacionCarrito.idCarrito = ""
+        modelUsuario.publicacionCarrito.idPublicacion = ""
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -107,10 +113,24 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
                     {
                         barItemFavorito.image = UIImage(named: "btnNoFavorito")?.withRenderingMode(.alwaysOriginal)
                     }
-                    
                 }else
                 {
                     barItemFavorito.image = UIImage(named: "btnNoFavorito")?.withRenderingMode(.alwaysOriginal)
+                }
+                
+                if modelUsuario.usuario[0].datosComplementarios?[0].carrito?.count != 0
+                {
+                    for publicacionCarrito in (modelUsuario.usuario[0].datosComplementarios?[0].carrito)!
+                    {
+                        if publicacionCarrito.idPublicacion == modelOferente.publicacion.idPublicacion
+                        {
+                            modelUsuario.publicacionCarrito.fechaHoraReserva = publicacionCarrito.fechaHoraReserva
+                            modelUsuario.publicacionCarrito.idCarrito = publicacionCarrito.idCarrito
+                            modelUsuario.publicacionCarrito.idPublicacion = publicacionCarrito.idPublicacion
+                            modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
+                            modelUsuario.publicacionCarrito.servicio = modelOferente.publicacion.servicio
+                        }
+                    }
                 }
             } else
             {
@@ -133,6 +153,37 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
             {
                 lblPreguntas.text = "Ver las \(model.preguntasPublicacion.count) preguntas realizadas"
             }
+        }
+        
+        if modelUsuario.publicacionCarrito.idCarrito != ""
+        {
+            lblFechaHoraReserva.text = "Agendado para el: \(modelUsuario.publicacionCarrito.fechaHoraReserva!)"
+            
+            btnCarrito.tag = 1
+            btnCarrito.setTitle("Eliminar del carrito", for: .normal)
+            
+            btnCarrito.titleLabel?.font = UIFont (name: "HelveticaNeue-Light", size: 17.0)
+            let attributes = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+            let attributedText = NSAttributedString(string: btnCarrito.currentTitle!, attributes: attributes)
+            
+            btnCarrito.setAttributedTitle(attributedText, for: .normal)
+        } else
+        {
+            lblFechaHoraReserva.text = "Agendar el servicio"
+            
+            btnCarrito.tag = 0
+            btnCarrito.setTitle("Añadir al carrito", for: .normal)
+            
+            btnCarrito.titleLabel?.font = UIFont (name: "HelveticaNeue-Light", size: 17.0)
+            let attributes = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+            let attributedText = NSAttributedString(string: btnCarrito.currentTitle!, attributes: attributes)
+            
+            btnCarrito.setAttributedTitle(attributedText, for: .normal)
+        }
+        
+        if modelUsuario.publicacionCarrito.fechaHoraReserva != ""
+        {
+            lblFechaHoraReserva.text = "Agendado para el: \(modelUsuario.publicacionCarrito.fechaHoraReserva!)"
         }
     }
     
@@ -195,13 +246,146 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     
     @IBAction func agendarServicio(_ sender: Any)
     {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromRight
-        view.window!.layer.add(transition, forKey: kCATransition)
+        if self.validarRegistro()
+        {
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            view.window!.layer.add(transition, forKey: kCATransition)
+            
+            self.performSegue(withIdentifier: "agendarDesdePublicacionServicio", sender: self)
+        }
+    }
+    
+    @IBAction func comprar(_ sender: Any)
+    {
+        if self.validarRegistro()
+        {
+            if modelUsuario.publicacionCarrito.fechaHoraReserva == ""
+            {
+                self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes reservar tu servicio para realizar la compra")
+            } else
+            {
+                modelUsuario.publicacionCarrito.cantidadCompra = 1
+                modelUsuario.publicacionCarrito.idPublicacion = modelOferente.publicacion.idPublicacion
+                modelUsuario.publicacionCarrito.servicio = modelOferente.publicacion.servicio
+                modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
+                
+                self.performSegue(withIdentifier: "confirmacionUnoDesdePublicacionServicio", sender: self)
+            }
+        }
+    }
+    
+    @IBAction func agregarPublicacionAlCarito(sender: UIButton!)
+    {
+        if sender.tag == 0
+        {
+            if self.validarRegistro()
+            {
+                if modelUsuario.publicacionCarrito.fechaHoraReserva == ""
+                {
+                    self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Debes reservar tu servicio para realizar la compra")
+                } else
+                {
+                    modelUsuario.publicacionCarrito.cantidadCompra = 1
+                    modelUsuario.publicacionCarrito.idPublicacion = modelOferente.publicacion.idPublicacion
+                    modelUsuario.publicacionCarrito.servicio = modelOferente.publicacion.servicio
+                    modelUsuario.publicacionCarrito.publicacionCompra = modelOferente.publicacion
+                    
+                    ComandoUsuario.agregarAlCarrito(uid: (user?.uid)!, carrito: modelUsuario.publicacionCarrito)
+                    
+                    if self.readStringFromFile() == ""
+                    {
+                        ComandoUsuario.getUsuario(uid: (user?.uid)!)
+                        
+                        self.performSegue(withIdentifier: "avisoCarritoDesdePublicacionServicio", sender: self)
+                    } else
+                    {
+                        modelUsuario.publicacionCarrito.cantidadCompra = 0
+                        modelUsuario.publicacionCarrito.fechaHoraReserva = ""
+                        modelUsuario.publicacionCarrito.idCarrito = ""
+                        modelUsuario.publicacionCarrito.idPublicacion = ""
+                        
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        } else
+        {
+            let alert:UIAlertController = UIAlertController(title: "Confirmar", message: "¿Estás seguro de remover de tu carrito ésta compra?", preferredStyle: .alert)
+            
+            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                ComandoUsuario.eliminarPublicacionCarrito(uid: (self.user?.uid)!, idPublicacionCarrito: self.modelUsuario.publicacionCarrito.idCarrito!)
+                
+                if self.user?.uid != nil
+                {
+                    ComandoUsuario.getUsuario(uid: (self.user?.uid)!)
+                }
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(PublicacionProductoViewController.refrescarVista(_:)), name:NSNotification.Name(rawValue:"cargoUsuario"), object: nil)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+            {
+                UIAlertAction in
+            }
+            
+            // Add the actions
+            alert.addAction(continuarAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
         
-        self.performSegue(withIdentifier: "agendarDesdePublicacionServicio", sender: self)
+    }
+    
+    func validarRegistro() -> Bool
+    {
+        if modelUsuario.usuario.count == 0
+        {
+            let alert:UIAlertController = UIAlertController(title: "Aún no estás registrado", message: "Para poder agendar un servicio, debes estar registrado. ¿Deseas registrarte?", preferredStyle: .alert)
+            
+            let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                self.performSegue(withIdentifier: "registroUsuarioDesdePublicacionServicio", sender: self)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+            {
+                UIAlertAction in
+            }
+            
+            // Add the actions
+            alert.addAction(continuarAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            
+        }else
+        {
+            if modelUsuario.usuario[0].datosComplementarios?.count == 0
+            {
+                let alert:UIAlertController = UIAlertController(title: "Aún no has completado tu registro", message: "Para poder agendar un servicio, debes completar tu registro. ¿Deseas terminar de registrarte?", preferredStyle: .alert)
+                
+                let continuarAction = UIAlertAction(title: "Sí, continuar", style: .default) { (_) -> Void in
+                    self.performSegue(withIdentifier: "completarRegistroDesdePublicacionServicio", sender: self)
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel)
+                {
+                    UIAlertAction in
+                }
+                
+                // Add the actions
+                alert.addAction(continuarAction)
+                alert.addAction(cancelAction)
+                self.present(alert, animated: true, completion: nil)
+                
+            } else
+            {
+                return true
+            }
+        }
+        
+        return false
     }
     
     @IBAction func verPreguntas(_ sender: Any)
@@ -298,7 +482,6 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     
     func hacerMontaje(_ notification: Notification)
     {
-        print("count Servicio: \(modelOferente.oferente.count) - \(modelOferente.publicacion.idOferente)")
         createPageViewController()
     }
     
@@ -413,5 +596,32 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
         
         alerta.addAction(OKAction)
         present(alerta, animated: true, completion: { return })
+    }
+    
+    // Leer texto de archivo .txt
+    
+    func readStringFromFile() -> NSString
+    {
+        let fileName = "AvisoCarrito"
+        var inString = ""
+        
+        let dir = try? FileManager.default.url(for: .documentDirectory,
+                                               in: .userDomainMask, appropriateFor: nil, create: true)
+        
+        // If the directory was found, we write a file to it and read it back
+        if let fileURL = dir?.appendingPathComponent(fileName).appendingPathExtension("txt")
+        {
+            // Then reading it back from the file
+            
+            do {
+                inString = try String(contentsOf: fileURL)
+            } catch {
+                print("Failed reading from URL: \(fileURL), Error: " + error.localizedDescription)
+            }
+            print("Read from the file: \(inString)")
+            
+        }
+        
+        return inString as NSString
     }
 }

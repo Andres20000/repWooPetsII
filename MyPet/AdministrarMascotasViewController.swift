@@ -91,15 +91,6 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
             let path = "mascotas/" + (user?.uid)! + "/" + (model.mascotas[indexPath.row].idMascota)! + "/" + (model.mascotas[indexPath.row].foto)!
             
             cell.imgFotoMascota.loadImageUsingCacheWithUrlString(pathString: path)
-            
-            cell.imgFotoMascota.translatesAutoresizingMaskIntoConstraints = false
-            cell.imgFotoMascota.layer.masksToBounds = true
-            cell.imgFotoMascota.contentMode = .scaleAspectFill
-            cell.imgFotoMascota.leftAnchor.constraint(equalTo: cell.imgFotoMascota.leftAnchor, constant: 8).isActive = true
-            cell.imgFotoMascota.centerYAnchor.constraint(equalTo: cell.imgFotoMascota.centerYAnchor).isActive = true
-            cell.imgFotoMascota.widthAnchor.constraint(equalToConstant: cell.imgFotoMascota.frame.width).isActive = true
-            cell.imgFotoMascota.heightAnchor.constraint(equalToConstant: cell.imgFotoMascota.frame.height).isActive = true
-            cell.imgFotoMascota.layer.cornerRadius = cell.imgFotoMascota.frame.height / 2
         }
         
         cell.btnActivarPerfil.tag = indexPath.row
@@ -236,26 +227,6 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
             // handle delete (by removing the data from your array and updating the tableview)
         }
     }
-    
-    /*func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]?
-    {
-        let more = UITableViewRowAction(style: .destructive, title: "More") { action, index in
-            print("more button tapped")
-        }
-        more.backgroundColor = .lightGray
-        
-        let favorite = UITableViewRowAction(style: .normal, title: "Favorite") { action, index in
-            print("favorite button tapped")
-        }
-        favorite.backgroundColor = .orange
-        
-        let share = UITableViewRowAction(style: .normal, title: "Share") { action, index in
-            print("share button tapped")
-        }
-        share.backgroundColor = .blue
-        
-        return [share, favorite, more]
-    }*/
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
