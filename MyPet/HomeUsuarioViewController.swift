@@ -13,7 +13,7 @@ class HomeUsuarioViewController: UITabBarController
 {
     let model = Modelo.sharedInstance
     let modelUsuario = ModeloUsuario.sharedInstance
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     
     override func viewDidLoad()
     {

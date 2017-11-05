@@ -13,7 +13,7 @@ class ComandoOferente
 {
     class func crearOferente(uid:String, registro:Oferente)
     {
-        let ref  = FIRDatabase.database().reference().child("oferentes/" + uid)
+        let ref  = Database.database().reference().child("oferentes/" + uid)
         
         var newItem = ["aprobacionMyPet":registro.aprobacionMyPet as AnyObject,
                        "celular":registro.celular as AnyObject,
@@ -74,7 +74,7 @@ class ComandoOferente
         let datosContactoOferente = ContactoPrincipal()
         let datosUbicacionOferente = Ubicacion()
         
-        let ref  = FIRDatabase.database().reference().child("oferentes/" + uid!)
+        let ref  = Database.database().reference().child("oferentes/" + uid!)
         
         ref.observeSingleEvent(of: .value, with: {snap in
             
@@ -160,7 +160,7 @@ class ComandoOferente
     
     class func actualizarOferente(uid:String, registro:Oferente)
     {
-        let ref  = FIRDatabase.database().reference().child("oferentes/" + uid)
+        let ref  = Database.database().reference().child("oferentes/" + uid)
         
         var newItem = ["aprobacionMyPet":registro.aprobacionMyPet as AnyObject,
                        "celular":registro.celular as AnyObject,

@@ -17,7 +17,7 @@ class HomePublicacionesViewController: UIViewController, UICollectionViewDelegat
     let modelPublicacion = Modelo.sharedInstance
     var publicaciones = [PublicacionOferente]()
     
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceTopLayoutConstraint: NSLayoutConstraint?

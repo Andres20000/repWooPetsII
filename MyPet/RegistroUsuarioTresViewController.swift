@@ -53,7 +53,7 @@ class RegistroUsuarioTresViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func cambiarView(_ sender: Any)
     {
-        let connectedRef = FIRDatabase.database().reference(withPath: ".info/connected")
+        let connectedRef = Database.database().reference(withPath: ".info/connected")
         
         connectedRef.observe(.value, with: { snapshot in
             if let connected = snapshot.value as? Bool, connected {
@@ -68,7 +68,7 @@ class RegistroUsuarioTresViewController: UIViewController, UITextFieldDelegate
     {
         model.registroComplementario.pagoEfectvo = true
         
-        let  user = FIRAuth.auth()?.currentUser
+        let  user = Auth.auth().currentUser
         
         ComandoUsuario.completarRegistro(uid: (user?.uid)!, datos: model.registroComplementario)
         

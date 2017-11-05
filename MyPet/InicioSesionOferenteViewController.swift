@@ -34,7 +34,7 @@ class InicioSesionOferenteViewController: UIViewController, UITextFieldDelegate
 
         // Do any additional setup after loading the view.
         
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+        Auth.auth().addStateDidChangeListener { auth, user in
             
             if user != nil {
                 
@@ -53,7 +53,7 @@ class InicioSesionOferenteViewController: UIViewController, UITextFieldDelegate
             let alertController = UIAlertController (title: "Ingreso fallido", message: "Tus datos están creados como Usuario. Registra uno nuevo o ingresa otros datos válidos.", preferredStyle: .alert)
             
             let oKAction = UIAlertAction(title: "OK", style: .default) { (_) -> Void in
-                try! FIRAuth.auth()!.signOut()
+                try! Auth.auth().signOut()
             }
             
             alertController.addAction(oKAction)
@@ -85,7 +85,7 @@ class InicioSesionOferenteViewController: UIViewController, UITextFieldDelegate
         txtCorreo.resignFirstResponder()
         txtContrasena.resignFirstResponder()
         
-        FIRAuth.auth()?.signIn(withEmail: txtCorreo.text!, password: txtContrasena.text!, completion: { (user, error) in
+        Auth.auth().signIn(withEmail: txtCorreo.text!, password: txtContrasena.text!, completion: { (user, error) in
             
             if error != nil {
                 
@@ -99,7 +99,7 @@ class InicioSesionOferenteViewController: UIViewController, UITextFieldDelegate
     {
         if Comando.init().isValidEmail(testStr: txtCorreo.text!)
         {
-            FIRAuth.auth()?.sendPasswordReset(withEmail: txtCorreo.text!) { error in
+            Auth.auth().sendPasswordReset(withEmail: txtCorreo.text!) { error in
                 if error != nil
                 {
                     self.mostrarAlerta(titulo: "e-mail Inválido", mensaje: "El e-mail no es válido o no existe en nuestros registros, escríbelo correctamente para que puedas actualizar tu contraseña")

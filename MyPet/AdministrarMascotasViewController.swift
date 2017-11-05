@@ -14,7 +14,7 @@ class AdministrarMascotasViewController: UIViewController, UITableViewDelegate, 
 {
     let model = ModeloUsuario.sharedInstance
     
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     
     @IBOutlet var tableMascotas: UITableView!
     

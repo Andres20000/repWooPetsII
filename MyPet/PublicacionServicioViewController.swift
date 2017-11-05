@@ -15,7 +15,7 @@ class PublicacionServicioViewController: UIViewController, UIPageViewControllerD
     let modelUsuario = ModeloUsuario.sharedInstance
     let modelOferente = ModeloOferente.sharedInstance
     
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceLeadingLayoutConstraint: NSLayoutConstraint?

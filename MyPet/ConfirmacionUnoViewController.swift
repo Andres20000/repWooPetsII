@@ -14,7 +14,7 @@ class ConfirmacionUnoViewController: UIViewController, UITableViewDelegate, UITa
     let modelUsuario = ModeloUsuario.sharedInstance
     let modelOferente = ModeloOferente.sharedInstance
     
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     
     @IBOutlet var tableCompras: UITableView!
     

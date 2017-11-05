@@ -37,7 +37,7 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
 
         // Do any additional setup after loading the view.
         
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+        Auth.auth().addStateDidChangeListener { auth, user in
             
             if user != nil {
                 ComandoUsuario.getUsuario(uid: (user?.uid)!)
@@ -64,7 +64,7 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
                 
                 let oKAction = UIAlertAction(title: "OK", style: .default) { (_) -> Void in
                     FBSDKAccessToken.setCurrent(nil)
-                    try! FIRAuth.auth()!.signOut()
+                    try! Auth.auth().signOut()
                 }
                 
                 alertController.addAction(oKAction)
@@ -75,7 +75,7 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
                 let alertController = UIAlertController (title: "Ingreso fallido", message: "Tus datos están creados como Oferente. Registra uno nuevo o ingresa otros datos válidos.", preferredStyle: .alert)
                 
                 let oKAction = UIAlertAction(title: "OK", style: .default) { (_) -> Void in
-                    try! FIRAuth.auth()!.signOut()
+                    try! Auth.auth().signOut()
                 }
                 
                 alertController.addAction(oKAction)
@@ -106,7 +106,7 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
         
         if btnRegistro.tag == 1
         {
-            FIRAuth.auth()?.signIn(withEmail: txtCorreo.text!, password: txtContrasena.text!, completion: { (user, error) in
+            Auth.auth().signIn(withEmail: txtCorreo.text!, password: txtContrasena.text!, completion: { (user, error) in
                 
                 if error != nil {
                     
@@ -121,7 +121,7 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
     {
         if Comando.init().isValidEmail(testStr: txtCorreo.text!)
         {
-            FIRAuth.auth()?.sendPasswordReset(withEmail: txtCorreo.text!) { error in
+            Auth.auth().sendPasswordReset(withEmail: txtCorreo.text!) { error in
                 if error != nil
                 {
                     self.mostrarAlerta(titulo: "e-mail Inválido", mensaje: "El e-mail no es válido o no existe en nuestros registros, escríbelo correctamente para que puedas actualizar tu contraseña")
@@ -155,11 +155,11 @@ class InicioSesionUsuarioViewController: UIViewController, UITextFieldDelegate, 
             return
         }
         
-        let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
         
         var email = ""
         
-        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+        Auth.auth().signIn(with: credential) { (user, error) in
             if let error = error {
                 self.mostrarAlerta(titulo: "Registro", mensaje: "No se ha podido hacer el registro. La dirección de correo electrónico ya está en uso por otra cuenta.")
                 print(error.localizedDescription)

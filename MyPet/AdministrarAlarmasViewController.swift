@@ -14,7 +14,7 @@ class AdministrarAlarmasViewController: UIViewController, UITableViewDelegate, U
 {
     let model = ModeloUsuario.sharedInstance
     
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     
     @IBOutlet var tableAlertasMascota: UITableView!
     @IBOutlet var lblAviso: UILabel!

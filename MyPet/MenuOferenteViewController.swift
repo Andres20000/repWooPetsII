@@ -99,7 +99,7 @@ class MenuOferenteViewController: UIViewController
         model.horarioFestivo.dias = ""
         model.oferente.removeAll()
         
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
         
         performSegue(withIdentifier: "ingresoDesdeHomeOferente", sender: self)
     }
@@ -108,7 +108,7 @@ class MenuOferenteViewController: UIViewController
     {
         super.viewWillAppear(animated)
         
-        ComandoOferente.getOferente(uid: FIRAuth.auth()?.currentUser?.uid)
+        ComandoOferente.getOferente(uid: Auth.auth().currentUser?.uid)
         
         NotificationCenter.default.addObserver(self, selector: #selector(MenuOferenteViewController.cargarDatosOferente(_:)), name:NSNotification.Name(rawValue:"cargoOferente"), object: nil)
     }

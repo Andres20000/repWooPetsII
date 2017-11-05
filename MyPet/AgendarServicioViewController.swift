@@ -12,7 +12,7 @@ import FirebaseAuth
 class AgendarServicioViewController: UIViewController
 {
     let modelUsuario = ModeloUsuario.sharedInstance
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     
     @IBOutlet var lblDuracion: UILabel!
     

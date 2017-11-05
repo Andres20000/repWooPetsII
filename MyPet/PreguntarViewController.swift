@@ -79,7 +79,7 @@ class PreguntarViewController: UIViewController, UITextViewDelegate
             self.mostrarAlerta(titulo: "¡Advertencia!", mensaje: "Formula tu pregunta para poder enviarla")
         } else
         {
-            let  user = FIRAuth.auth()?.currentUser
+            let  user = Auth.auth().currentUser
             let nowDate = NSDate()
             
             let dateFormatter = DateFormatter()

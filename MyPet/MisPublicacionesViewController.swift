@@ -15,7 +15,7 @@ class MisPublicacionesViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet var btnInactivas: UIButton!
     
     let model = ModeloOferente.sharedInstance
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     
     var publicaciones = [PublicacionOferente]()
     

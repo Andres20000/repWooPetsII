@@ -14,7 +14,7 @@ class CarritoComprasViewController: UIViewController, UITableViewDelegate, UITab
     let model = Modelo.sharedInstance
     let modelOferente = ModeloOferente.sharedInstance
     let modelUsuario = ModeloUsuario.sharedInstance
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     
     @IBOutlet var segCtrlCarrito: UISegmentedControl!
     

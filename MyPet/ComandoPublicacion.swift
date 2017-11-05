@@ -14,7 +14,7 @@ class ComandoPublicacion
 {
     class func crearIdPublicacionOferente() -> String
     {
-        let refHandle  = FIRDatabase.database().reference().child("productos")
+        let refHandle  = Database.database().reference().child("productos")
         let ref = refHandle.childByAutoId()
         
         return ref.key
@@ -22,7 +22,7 @@ class ComandoPublicacion
     
     class func crearPublicacionOferente(publicacion:PublicacionOferente)
     {
-        let refHandle  = FIRDatabase.database().reference().child("productos/" + publicacion.idPublicacion!)
+        let refHandle  = Database.database().reference().child("productos/" + publicacion.idPublicacion!)
         
         var newItem = ["activo":publicacion.activo as Any,
                        "categoria":publicacion.categoria as Any,
@@ -77,7 +77,7 @@ class ComandoPublicacion
         model.publicacionesActivas.removeAll()
         model.publicacionesInactivas.removeAll()
         
-        let refHandle = FIRDatabase.database().reference().child("productos")
+        let refHandle = Database.database().reference().child("productos")
         
         let ref = refHandle.queryOrdered(byChild: "/idOferente").queryEqual(toValue: uid)
         
@@ -85,7 +85,7 @@ class ComandoPublicacion
             
             let publicaciones = snap.children
             
-            while let publicacion = publicaciones.nextObject() as? FIRDataSnapshot
+            while let publicacion = publicaciones.nextObject() as? DataSnapshot
             {
                 let datosPublicacion = PublicacionOferente()
                 let value = publicacion.value as! [String : AnyObject]
@@ -188,14 +188,14 @@ class ComandoPublicacion
     
     class func loadImagenPublicacion(idFoto: String, nombreFoto: String, fotoData:Data)
     {
-        let storage = FIRStorage.storage()
+        let storage = Storage.storage()
         
         // Create a reference to the file you want to upload
         let path = "productos/" + idFoto + "/" + nombreFoto
         let ref = storage.reference(withPath: path)
         
         // Upload the file to the path
-        let uploadTask = ref.put(fotoData, metadata: nil) { metadata, error in
+        let uploadTask = ref.putData(fotoData, metadata: nil) { metadata, error in
             if (error != nil) {
                 // Uh-oh, an error occurred!
                 print("Error load image desde Firebase: \(error.debugDescription)")
@@ -220,7 +220,7 @@ class ComandoPublicacion
     
     class func deleteImagenesPublicacion(idFoto: String, nombreFoto: String)
     {
-        let storage = FIRStorage.storage()
+        let storage = Storage.storage()
         
         // Create a reference to the file to delete
         let path = "productos/" + idFoto + "/" + nombreFoto
@@ -240,13 +240,13 @@ class ComandoPublicacion
     
     class func updateEstadoPublicacion(idPublicacion:String, activo:Bool)
     {
-        let refHandle = FIRDatabase.database().reference().child("/productos/" + idPublicacion)
+        let refHandle = Database.database().reference().child("/productos/" + idPublicacion)
         refHandle.child("/activo").setValue(activo)
     }
     
     class func updateTipo(idPublicacion:String, tipo:String)
     {
-        let refHandle = FIRDatabase.database().reference().child("/productos/" + idPublicacion)
+        let refHandle = Database.database().reference().child("/productos/" + idPublicacion)
         refHandle.child("/target").setValue(tipo)
     }
     
@@ -254,7 +254,7 @@ class ComandoPublicacion
     {
         let model  = ModeloOferente.sharedInstance
         
-        let refHandle = FIRDatabase.database().reference().child("/productos/" + idPublicacion)
+        let refHandle = Database.database().reference().child("/productos/" + idPublicacion)
         
         refHandle.child("/descripcion").setValue(model.publicacion.descripcion)
         refHandle.child("/nombre").setValue(model.publicacion.nombre)
@@ -288,7 +288,7 @@ class ComandoPublicacion
     {
         let model  = ModeloOferente.sharedInstance
         
-        let refHandle = FIRDatabase.database().reference().child("/productos/" + idPublicacion)
+        let refHandle = Database.database().reference().child("/productos/" + idPublicacion)
         
         for foto in (model.publicacion.fotos)!
         {
@@ -302,7 +302,7 @@ class ComandoPublicacion
         let model = Modelo.sharedInstance
         model.preguntasPublicacion.removeAll()
         
-        let refHandle = FIRDatabase.database().reference().child("preguntas")
+        let refHandle = Database.database().reference().child("preguntas")
         
         let ref = refHandle.queryOrdered(byChild: "/idPublicacion").queryEqual(toValue: idPublicacion)
         
@@ -310,7 +310,7 @@ class ComandoPublicacion
             
             let preguntas = snap.children
             
-            while let pregunta = preguntas.nextObject() as? FIRDataSnapshot
+            while let pregunta = preguntas.nextObject() as? DataSnapshot
             {
                 let datosPregunta = Pregunta()
                 let value = pregunta.value as! [String : AnyObject]

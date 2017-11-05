@@ -98,13 +98,13 @@ class Comando
         modelUsuario.misComprasCompleto.removeAll()
         model.publicacionesFavoritas.removeAll()
         
-        let refHandle = FIRDatabase.database().reference().child("productos")
+        let refHandle = Database.database().reference().child("productos")
         
         refHandle.observe(.value, with: {(snap) -> Void in
             
             let publicaciones = snap.children
             
-            while let publicacion = publicaciones.nextObject() as? FIRDataSnapshot
+            while let publicacion = publicaciones.nextObject() as? DataSnapshot
             {
                 let datosPublicacion = PublicacionOferente()
                 
@@ -592,9 +592,9 @@ class Comando
     {
         let datosPublicacion = PublicacionOferente()
         
-        let refHandle = FIRDatabase.database().reference().child("productos/" + idPublicacion!)
+        let refHandle = Database.database().reference().child("productos/" + idPublicacion!)
         
-        refHandle.observe(FIRDataEventType.value, with: { (snap) in
+        refHandle.observe(DataEventType.value, with: { (snap) in
             
             let value = snap.value as! [String : AnyObject]
             
@@ -693,13 +693,13 @@ class Comando
         let model  = ModeloOferente.sharedInstance
         model.categorias.removeAll()
         
-        let ref  = FIRDatabase.database().reference().child("/listados/categorias")
+        let ref  = Database.database().reference().child("/listados/categorias")
         
         ref.observeSingleEvent(of: .value, with: {snap in
             
             let categorias = snap.children
             
-            while let CategoriaChild = categorias.nextObject() as? FIRDataSnapshot {
+            while let CategoriaChild = categorias.nextObject() as? DataSnapshot {
                 
                 let categoria = Categoria()
                 let postDict = CategoriaChild.value as! [String : AnyObject]
@@ -736,7 +736,7 @@ class Comando
         let model  = Modelo.sharedInstance
         model.tiposMascota.removeAll()
         
-        let ref  = FIRDatabase.database().reference().child("/listados/tiposMascota")
+        let ref  = Database.database().reference().child("/listados/tiposMascota")
         
         ref.observeSingleEvent(of: .value, with: {snap in
             
@@ -762,7 +762,7 @@ class Comando
         let model  = Modelo.sharedInstance
         model.razasPerro.removeAll()
         
-        let ref  = FIRDatabase.database().reference().child("/listados/razasPerro")
+        let ref  = Database.database().reference().child("/listados/razasPerro")
         
         ref.observeSingleEvent(of: .value, with: {snap in
             
@@ -788,7 +788,7 @@ class Comando
         let model  = Modelo.sharedInstance
         model.razasGato.removeAll()
         
-        let ref  = FIRDatabase.database().reference().child("/listados/razasGato")
+        let ref  = Database.database().reference().child("/listados/razasGato")
         
         ref.observeSingleEvent(of: .value, with: {snap in
             
@@ -816,7 +816,7 @@ class Comando
         let model  = Modelo.sharedInstance
         model.tiposRecordatorio.removeAll()
         
-        let ref  = FIRDatabase.database().reference().child("/listados/tiposRecordatorio")
+        let ref  = Database.database().reference().child("/listados/tiposRecordatorio")
         
         ref.observeSingleEvent(of: .value, with: {snap in
             
@@ -842,7 +842,7 @@ class Comando
         let model  = Modelo.sharedInstance
         model.frecuenciasRecordatorio.removeAll()
         
-        let ref  = FIRDatabase.database().reference().child("/listados/frecuenciasRecordatorio")
+        let ref  = Database.database().reference().child("/listados/frecuenciasRecordatorio")
         
         ref.observeSingleEvent(of: .value, with: {snap in
             
@@ -867,7 +867,7 @@ class Comando
     
     class func validarTipoIngreso() -> Bool
     {
-        let user = FIRAuth.auth()?.currentUser
+        let user = Auth.auth().currentUser
         
         if user != nil
         {
@@ -897,7 +897,7 @@ class Comando
     
     class func updateDataSystem(tipo:String, uid:String, version : String)
     {
-        let ref  = FIRDatabase.database().reference().child(tipo + "/" + uid)
+        let ref  = Database.database().reference().child(tipo + "/" + uid)
         
         ref.child("/fechaUltimoLogeo").setValue(Date().fechaString()  as AnyObject)
         ref.child("/horaUltimoLogeo").setValue(Date().horaString()  as AnyObject)

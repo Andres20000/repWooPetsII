@@ -11,7 +11,7 @@ import FirebaseAuth
 
 class CompraExitosaViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     
     let modelUsuario = ModeloUsuario.sharedInstance
     let modelOferente = ModeloOferente.sharedInstance

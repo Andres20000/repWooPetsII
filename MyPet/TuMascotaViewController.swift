@@ -15,7 +15,7 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
     let model = Modelo.sharedInstance
     let modelUsuario = ModeloUsuario.sharedInstance
     
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     
     let pickerTipoMascota = UIPickerView()
     let pickerRazaMascota = UIPickerView()
@@ -143,7 +143,7 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
             
         }else
         {
-            let  user = FIRAuth.auth()?.currentUser
+            let  user = Auth.auth().currentUser
             
             if user != nil
             {
@@ -539,7 +539,7 @@ class TuMascotaViewController: UIViewController, UIPickerViewDelegate, UITextFie
     
     @IBAction func aceptarEditarMascota(_ sender: Any)
     {
-        let connectedRef = FIRDatabase.database().reference(withPath: ".info/connected")
+        let connectedRef = Database.database().reference(withPath: ".info/connected")
         
         connectedRef.observe(.value, with: { snapshot in
             if let connected = snapshot.value as? Bool, connected {

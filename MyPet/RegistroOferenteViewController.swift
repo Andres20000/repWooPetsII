@@ -665,7 +665,7 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
                 self.mostrarAlerta(titulo: "¡Información Incompleta!", mensaje: "Por favor, revisa que todos los campos estén correctamente diligenciados")
             } else
             {
-                FIRAuth.auth()?.createUser(withEmail: (model.oferente[0].contactoPrincipal?[0].correo)!, password: (model.oferente[0].contactoPrincipal?[0].contraseña)!, completion: { (user, error) in
+                Auth.auth().createUser(withEmail: (model.oferente[0].contactoPrincipal?[0].correo)!, password: (model.oferente[0].contactoPrincipal?[0].contraseña)!, completion: { (user, error) in
                     if error != nil {
                         self.mostrarAlerta(titulo: "Registro", mensaje: "No se ha podido hacer el registro. Esa cuenta ya existe o la contraseña es muy débil")
                         print(error?.localizedDescription)
@@ -693,7 +693,7 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
             
         } else
         {
-            let connectedRef = FIRDatabase.database().reference(withPath: ".info/connected")
+            let connectedRef = Database.database().reference(withPath: ".info/connected")
             
             connectedRef.observe(.value, with: { snapshot in
                 if let connected = snapshot.value as? Bool, connected {
@@ -712,7 +712,7 @@ class RegistroOferenteViewController: UIViewController, UITableViewDelegate, UIT
     
     func editarDatosOferente()
     {
-        let  user = FIRAuth.auth()?.currentUser
+        let  user = Auth.auth().currentUser
         
         ComandoOferente.actualizarOferente(uid: (user?.uid)!, registro: self.model.oferente[0])
         

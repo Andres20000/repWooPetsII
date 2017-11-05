@@ -48,11 +48,11 @@ extension UIImageView
             return
         }
         
-        let storage = FIRStorage.storage()
+        let storage = Storage.storage()
         
         let ref = storage.reference(withPath: pathString)
         
-        ref.data(withMaxSize: 1024 * 1024, completion: { (data, error ) in
+        ref.getData(maxSize: 1024 * 1024, completion: { (data, error ) in
             if error != nil {
                 print("Error Caché: \(error.debugDescription)")
                 

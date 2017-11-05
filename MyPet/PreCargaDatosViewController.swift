@@ -12,7 +12,7 @@ import FirebaseAuth
 
 class PreCargaDatosViewController: UIViewController
 {
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     let model = ModeloUsuario.sharedInstance
     
     var omitir:Bool = false

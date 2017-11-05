@@ -13,13 +13,13 @@ class ComandoUsuario
 {
     class func registrarUsuario(uid:String, correo:String)
     {
-        let ref  = FIRDatabase.database().reference().child("clientes/" + uid)
+        let ref  = Database.database().reference().child("clientes/" + uid)
         ref.child("/correo").setValue(correo)
     }
     
     class func completarRegistro(uid:String, datos:DatosComplementarios)
     {
-        let ref  = FIRDatabase.database().reference().child("clientes/" + uid)
+        let ref  = Database.database().reference().child("clientes/" + uid)
         
         ref.child("/apellido").setValue(datos.apellido)
         ref.child("/celular").setValue(datos.celular)
@@ -55,7 +55,7 @@ class ComandoUsuario
         
         let datosUsuario = Usuario()
         
-        let ref  = FIRDatabase.database().reference().child("clientes/" + uid!)
+        let ref  = Database.database().reference().child("clientes/" + uid!)
         
         ref.observeSingleEvent(of: .value, with: {snap in
             
@@ -187,7 +187,7 @@ class ComandoUsuario
     
     class func crearIdMascotaUsuario(uid:String?) -> String
     {
-        let refHandle  = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas")
+        let refHandle  = Database.database().reference().child("clientes/" + uid! + "/mascotas")
         let ref = refHandle.childByAutoId()
         
         return ref.key
@@ -195,14 +195,14 @@ class ComandoUsuario
     
     class func loadFotoMascota(uid:String?, idMascota: String, nombreFoto: String, fotoData:Data)
     {
-        let storage = FIRStorage.storage()
+        let storage = Storage.storage()
         
         // Create a reference to the file you want to upload
         let path = "mascotas/\(uid!)/\(idMascota)/\(nombreFoto)"
         let ref = storage.reference(withPath: path)
         
         // Upload the file to the path
-        let uploadTask = ref.put(fotoData, metadata: nil) { metadata, error in
+        let uploadTask = ref.putData(fotoData, metadata: nil) { metadata, error in
             if (error != nil) {
                 // Uh-oh, an error occurred!
                 print("Error load image desde Firebase: \(error.debugDescription)")
@@ -228,7 +228,7 @@ class ComandoUsuario
     
     class func deleteFotoMascota(uid:String?, idMascota: String, nombreFoto: String)
     {
-        let storage = FIRStorage.storage()
+        let storage = Storage.storage()
         
         // Create a reference to the file to delete
         let path = "mascotas/\(uid!)/\(idMascota)/\(nombreFoto)"
@@ -248,7 +248,7 @@ class ComandoUsuario
     
     class func crearEditarMascota(uid:String?, mascota:Mascota)
     {
-        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + mascota.idMascota!)
+        let refHandle = Database.database().reference().child("clientes/" + uid! + "/mascotas/" + mascota.idMascota!)
         
         refHandle.child("/activa").setValue(mascota.activa)
         refHandle.child("/fechaNacimiento").setValue(mascota.fechaNacimiento)
@@ -263,7 +263,7 @@ class ComandoUsuario
     {
         for mascota in datos.mascotas!
         {
-            let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + mascota.idMascota!)
+            let refHandle = Database.database().reference().child("clientes/" + uid! + "/mascotas/" + mascota.idMascota!)
             
             if (mascota.idMascota == idMascota)
             {
@@ -277,14 +277,14 @@ class ComandoUsuario
     
     class func eliminarPerfilMascota(uid:String?, mascota:Mascota)
     {
-        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + mascota.idMascota!)
+        let refHandle = Database.database().reference().child("clientes/" + uid! + "/mascotas/" + mascota.idMascota!)
         // Remove the post from the DB
         refHandle.removeValue()
     }
     
     class func crearIdAlertaMascotaUsuario(uid:String?, idMascota:String?) -> String
     {
-        let refHandle  = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + idMascota! + "/alertas")
+        let refHandle  = Database.database().reference().child("clientes/" + uid! + "/mascotas/" + idMascota! + "/alertas")
         let ref = refHandle.childByAutoId()
         
         return ref.key
@@ -292,7 +292,7 @@ class ComandoUsuario
     
     class func crearEditarAlertaMascota(uid:String?, idMascota:String?, alerta:Alerta)
     {
-        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + idMascota! + "/alertas/" + alerta.idAlerta!)
+        let refHandle = Database.database().reference().child("clientes/" + uid! + "/mascotas/" + idMascota! + "/alertas/" + alerta.idAlerta!)
         
         refHandle.child("/activada").setValue(alerta.activada)
         refHandle.child("/fechaFin").setValue(alerta.fechaFin)
@@ -305,38 +305,38 @@ class ComandoUsuario
     
     class func desactivarAlertaMascota(uid:String?, idMascota:String?, alerta:Alerta)
     {
-        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + idMascota! + "/alertas/" + alerta.idAlerta!)
+        let refHandle = Database.database().reference().child("clientes/" + uid! + "/mascotas/" + idMascota! + "/alertas/" + alerta.idAlerta!)
         refHandle.child("/activada").setValue(false)
     }
     
     class func eliminarAlertaMascota(uid:String?, idMascota:String?, alerta:Alerta)
     {
-        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/mascotas/" + idMascota! + "/alertas/" + alerta.idAlerta!)
+        let refHandle = Database.database().reference().child("clientes/" + uid! + "/mascotas/" + idMascota! + "/alertas/" + alerta.idAlerta!)
         // Remove the post from the DB
         refHandle.removeValue()
     }
     
     class func activarDesactivarFavorito(uid:String?, idPublicacion:String?, activo:Bool)
     {
-        let refHandle = FIRDatabase.database().reference().child("clientes/" + uid! + "/favoritos")
+        let refHandle = Database.database().reference().child("clientes/" + uid! + "/favoritos")
         refHandle.child("/\(idPublicacion!)").setValue(activo)
     }
     
     class func preguntarEnPublicacion(pregunta:Pregunta)
     {
-        let refHandle  = FIRDatabase.database().reference().child("preguntas").childByAutoId()
+        let refHandle  = Database.database().reference().child("preguntas").childByAutoId()
         
         refHandle.child("/fechaPregunta").setValue(pregunta.fechaPregunta)
         refHandle.child("/idCliente").setValue(pregunta.idCliente)
         refHandle.child("/idOferente").setValue(pregunta.idOferente)
         refHandle.child("/idPublicacion").setValue(pregunta.idPublicacion)
         refHandle.child("/pregunta").setValue(pregunta.pregunta)
-        refHandle.child("/timestamp").setValue(FIRServerValue.timestamp())
+        refHandle.child("/timestamp").setValue(ServerValue.timestamp())
     }
     
     class func agregarAlCarrito(uid:String?, carrito:Carrito)
     {
-        let refHandle  = FIRDatabase.database().reference().child("clientes/" + uid! + "/carrito").childByAutoId()
+        let refHandle  = Database.database().reference().child("clientes/" + uid! + "/carrito").childByAutoId()
         
         refHandle.child("/cantidadCompra").setValue(carrito.cantidadCompra)
         
@@ -351,14 +351,14 @@ class ComandoUsuario
     
     class func eliminarPublicacionCarrito(uid:String?, idPublicacionCarrito:String?)
     {
-        let refHandle  = FIRDatabase.database().reference().child("clientes/" + uid! + "/carrito/" + idPublicacionCarrito!)
+        let refHandle  = Database.database().reference().child("clientes/" + uid! + "/carrito/" + idPublicacionCarrito!)
         // Remove the post from the DB
         refHandle.removeValue()
     }
     
     class func editarPublicacionCarrito(uid:String?, carrito:Carrito)
     {
-        let refHandle  = FIRDatabase.database().reference().child("clientes/" + uid! + "/carrito/" + carrito.idCarrito!)
+        let refHandle  = Database.database().reference().child("clientes/" + uid! + "/carrito/" + carrito.idCarrito!)
         
         if carrito.servicio!
         {
@@ -371,15 +371,15 @@ class ComandoUsuario
     
     class func realizarCompra(compra:CompraUsuario)
     {
-        var refHandle:FIRDatabaseReference! = nil
+        var refHandle:DatabaseReference! = nil
         
         if compra.idCompra == ""
         {
-            refHandle  = FIRDatabase.database().reference().child("compras/abiertas").childByAutoId()
+            refHandle  = Database.database().reference().child("compras/abiertas").childByAutoId()
             
         }else
         {
-            refHandle  = FIRDatabase.database().reference().child("compras/abiertas/" + compra.idCompra!)
+            refHandle  = Database.database().reference().child("compras/abiertas/" + compra.idCompra!)
         }
         
         refHandle.child("/fecha").setValue(compra.fecha)
@@ -395,7 +395,7 @@ class ComandoUsuario
         
         refHandle.child("/pedido/1/idPublicacion").setValue(compra.pedido?[0].idPublicacion)
         refHandle.child("/pedido/1/servicio").setValue(compra.pedido?[0].servicio)
-        refHandle.child("/timestamp").setValue(FIRServerValue.timestamp())
+        refHandle.child("/timestamp").setValue(ServerValue.timestamp())
         refHandle.child("/valor").setValue(compra.valor)
     }
     
@@ -404,7 +404,7 @@ class ComandoUsuario
         let modelUsuario = ModeloUsuario.sharedInstance
         modelUsuario.misCompras.removeAll()
         
-        let refHandle  = FIRDatabase.database().reference().child("compras/abiertas")
+        let refHandle  = Database.database().reference().child("compras/abiertas")
         let ref = refHandle.queryOrdered(byChild: "/idCliente").queryEqual(toValue: uid)
         
         ref.observe(.childAdded, with: {(snap) -> Void in
@@ -422,7 +422,7 @@ class ComandoUsuario
             let snapPedidos = snap.childSnapshot(forPath: "pedido")
             let pedidos = snapPedidos.children
             
-            while let pedido = pedidos.nextObject() as? FIRDataSnapshot
+            while let pedido = pedidos.nextObject() as? DataSnapshot
             {
                 let pedidoCompra = PedidoUsuario()
                 let postDictPedido = pedido.value as! NSDictionary

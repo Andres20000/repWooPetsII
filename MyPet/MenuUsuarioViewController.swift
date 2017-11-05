@@ -13,7 +13,7 @@ import FBSDKLoginKit
 class MenuUsuarioViewController: UIViewController
 {
     var model  = ModeloUsuario.sharedInstance
-    let  user = FIRAuth.auth()?.currentUser
+    let  user = Auth.auth().currentUser
     
     // This constraint ties an element at zero points from the top layout guide
     @IBOutlet var spaceBottomLayoutConstraint: NSLayoutConstraint?
@@ -97,7 +97,7 @@ class MenuUsuarioViewController: UIViewController
         
         model.usuario.removeAll()
         
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
         
         performSegue(withIdentifier: "ingresoDesdeHomeUsuario", sender: self)
     }

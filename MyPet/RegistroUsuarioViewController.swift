@@ -39,7 +39,7 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
 
         // Do any additional setup after loading the view.
         
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+        Auth.auth().addStateDidChangeListener { auth, user in
             
             if user != nil {
                 ComandoUsuario.getUsuario(uid: (user?.uid)!)
@@ -61,7 +61,7 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
         {
             if modelUsuario.usuario.count == 0
             {
-                let  user = FIRAuth.auth()?.currentUser
+                let  user = Auth.auth().currentUser
                 ComandoUsuario.registrarUsuario(uid: (user?.uid)!, correo: email)
                 
                 ComandoUsuario.getUsuario(uid: (user?.uid)!)
@@ -74,7 +74,7 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
                 
                 let oKAction = UIAlertAction(title: "OK", style: .default) { (_) -> Void in
                     FBSDKAccessToken.setCurrent(nil)
-                    try! FIRAuth.auth()!.signOut()
+                    try! Auth.auth().signOut()
                 }
                 
                 alertController.addAction(oKAction)
@@ -110,7 +110,7 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
         {
             if Comando.init().isValidEmail(testStr: txtCorreo.text!)
             {
-                FIRAuth.auth()?.createUser(withEmail: txtCorreo.text!, password: txtContrasena.text!, completion: { (user, error) in
+                Auth.auth().createUser(withEmail: txtCorreo.text!, password: txtContrasena.text!, completion: { (user, error) in
                     if error != nil {
                         self.mostrarAlerta(titulo: "Registro", mensaje: "No se ha podido hacer el registro. Esa cuenta ya existe o la contraseña es muy débil")
                         print(error?.localizedDescription)
@@ -144,9 +144,9 @@ class RegistroUsuarioViewController: UIViewController, UITextFieldDelegate, FBSD
             return
         }
         
-        let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
         
-        FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+        Auth.auth().signIn(with: credential) { (user, error) in
             if let error = error {
                 self.mostrarAlerta(titulo: "Registro", mensaje: "No se ha podido hacer el registro. La dirección de correo electrónico ya está en uso por otra cuenta.")
                 print(error.localizedDescription)

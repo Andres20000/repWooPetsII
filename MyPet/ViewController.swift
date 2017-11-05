@@ -23,7 +23,7 @@ class ViewController: UIViewController
     {
         //try! FIRAuth.auth()!.signOut()
         
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+        Auth.auth().addStateDidChangeListener { auth, user in
             
             if user != nil
             {

@@ -680,7 +680,7 @@ class PublicacionOferenteCuatroViewController: UIViewController, UIImagePickerCo
             dismiss(animated: true, completion: nil)
         } else
         {
-            let connectedRef = FIRDatabase.database().reference(withPath: ".info/connected")
+            let connectedRef = Database.database().reference(withPath: ".info/connected")
             
             connectedRef.observe(.value, with: { snapshot in
                 if let connected = snapshot.value as? Bool, connected {
@@ -694,7 +694,7 @@ class PublicacionOferenteCuatroViewController: UIViewController, UIImagePickerCo
     
     func confirmarPublicacion()
     {
-        let  user = FIRAuth.auth()?.currentUser
+        let  user = Auth.auth().currentUser
         
         model.publicacion.idOferente = (user?.uid)!
         model.publicacion.activo = true

@@ -29,7 +29,7 @@ class HomeOferenteViewController: UITabBarController
         let model = Modelo.sharedInstance
         
         let version = model.myApp.version
-        Comando.updateDataSystem(tipo: "oferentes", uid: (FIRAuth.auth()?.currentUser?.uid)!, version: version)
+        Comando.updateDataSystem(tipo: "oferentes", uid: (Auth.auth().currentUser?.uid)!, version: version)
         
     }
 
